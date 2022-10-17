@@ -1,12 +1,10 @@
 import React from 'react';
-import UploadVideo from './uploadVideo';
-// import FilterComponent from './filterComponent'
+import UploadVideo from '../uploadVideo/uploadVideo';
 
 const home = () => {
   return (
     <div>
       <UploadVideo title= "On behalf of User"/>
-      {/* <FilterComponent/> */}
     </div>
   )
 }
