@@ -10,7 +10,7 @@ const navigation = (): VerticalNavItemsType => {
     {
       title: 'Dashboards',
       icon: HomeOutline,
-      path: '/home'
+      path: '/dashboards/crm'
     },
     {
       title: 'Videos',
@@ -18,15 +18,15 @@ const navigation = (): VerticalNavItemsType => {
       children: [
         {
           title: 'List Videos',
-          children:[
+          children: [
             {
               title: 'User Videos',
-              path:"videos/listvideos/uservideos",
+              path: '/videos/listvideos/uservideos'
             }
           ]
-        }
+        },
       ]
-    }
+    },
   ]
 }
 
