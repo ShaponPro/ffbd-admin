@@ -1,10 +1,10 @@
 import React from 'react';
-import FilterComponent from '../filterComponent/filterComponent'
+import { FilterComponent } from 'src/components/FilterComponent';
 
 const home = () => {
   return (
     <div>
-      <FilterComponent/>
+      <FilterComponent  title ='select'/>
     </div>
   )
 }
