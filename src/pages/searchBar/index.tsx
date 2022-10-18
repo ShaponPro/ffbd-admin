@@ -25,10 +25,6 @@ const SearchBar = ({ placeholder }: any) => {
           </div>
         </div>
       </div>
-
-      {/* <div>
-        <h2>{value}</h2>
-      </div> */}
     </>
   )
 }

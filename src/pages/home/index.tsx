@@ -1,12 +1,11 @@
 // ** MUI Imports
-// import Card from '@mui/material/Card'
 
-import SearchBar from '../searchBar'
+import SearchComponent from 'src/components/SearchComponent'
 
 const Home = () => {
   return (
     <>
-      <SearchBar placeholder='Search and filer' value='videos' />
+      <SearchComponent placeholder='search and filter' value='video' />
     </>
   )
 }

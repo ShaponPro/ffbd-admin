@@ -1,21 +1,40 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import SearchIcon from '@mui/icons-material/Search'
 
 type props = {
-    placeholder: string;
-    value: string;
-    onChange: (value: string) => void;
-    style: React.CSSProperties;
+  placeholder: string
+  value: string
+
+  //  onChange: (value: string) => void;
+  // style: React.CSSProperties;
 }
-export const SearchComponent = (props: props) => {
-    console.log('props :>> ', props);
+const SearchComponent = (props: props) => {
+  // console.log('props :>> ', props);
   return (
-    <div>SearchComponent</div>
+    <>
+      <div className='search'>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            border: '2px solid black',
+            width: '40%',
+            padding: '8px',
+            background: '#FFFFFF',
+            boxShadow: '2px 5px 20px rgba(22, 31, 41, 0.1)',
+            borderRadius: '20px',
+            position: 'absolute'
+          }}
+          className='searchInput'
+        >
+          <input style={{ border: 0, outline: 'none' }} type='text' placeholder={props.placeholder} />
+          <div className='searchIcon'>
+            <SearchIcon />
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 
-const mapStateToProps = (state: any) => ({})
-
-const mapDispatchToProps = {}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchComponent)
+export default SearchComponent
