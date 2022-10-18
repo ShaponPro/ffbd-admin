@@ -3,29 +3,33 @@ import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  border:'2px solid white',
+const StyledTableCell = styled(TableCell)(() => ({
+  border: '1px solid white',
   padding: '10px',
-gap: "10px",
+  gap: '10px',
+  paddingLeft:'10px',
+
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "rgba(22, 31, 41, 0.07)",
-    color: theme.palette.common.black,
+    backgroundColor: 'rgba(22, 31, 41, 0.07)',
+    fontFamily: 'arial',
+    fontWeight: '700',
+    fontSize: '12px',
+    lineHeight: '16px',
+    color: '#161F29',
+
   },
   [`&.${tableCellClasses.body}`]: {
-    backgroundColor: "rgba(22, 31, 41, 0.07)",
-    fontSize: 12,
-  },
-}));
-
-
-
+    backgroundColor: 'rgba(22, 31, 41, 0.07)',
+    fontSize: 12
+  }
+}))
 
 interface Column {
   id: 'name' | 'code' | 'population' | 'size' | 'density'
@@ -36,8 +40,8 @@ interface Column {
 }
 
 const columns: readonly Column[] = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+  { id: 'name', label: 'Video ID', minWidth: 100 },
+  { id: 'code', label: 'Thambnail', minWidth: 100 },
   {
     id: 'population',
     label: 'Population',
@@ -100,8 +104,7 @@ const columns: readonly Column[] = [
     minWidth: 170,
     align: 'right',
     format: (value: number) => value.toFixed(2)
-  },
-
+  }
 ]
 
 interface Data {
@@ -119,21 +122,7 @@ function createData(name: string, code: string, population: number, size: number
 }
 
 const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767)
+  createData('62b956a760a6af7b2e98cae1', 'IN', 1324171354, 3287263),
 ]
 
 export default function ListComponent() {
@@ -153,45 +142,45 @@ export default function ListComponent() {
     <>
       <Card>
         <CardHeader title='For Button Field' />
-          <TableContainer>
-            <Table stickyHeader aria-label='sticky table'>
-              <TableHead>
-                <TableRow>
-                  {columns.map(column => (
-                    <StyledTableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }}>
-                      {column.label}
-                    </StyledTableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody sx={{background: "rgba(22, 31, 41, 0.03)"}}>
-                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
-                  return (
-                    <TableRow hover role='checkbox' tabIndex={-1} key={row.code}>
-                      {columns.map(column => {
-                        const value = row[column.id]
+        <TableContainer sx={{background: "#F3F3F4", padding:'20px'}}>
+          <Table stickyHeader aria-label='sticky table'>
+            <TableHead>
+              <TableRow>
+                {columns.map(column => (
+                  <StyledTableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }}>
+                    {column.label}
+                  </StyledTableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody sx={{ background: 'rgba(22, 31, 41, 0.03)' }}>
+              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
+                return (
+                  <TableRow hover role='checkbox' tabIndex={-1} key={row.code}>
+                    {columns.map(column => {
+                      const value = row[column.id]
 
-                        return (
-                          <StyledTableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number' ? column.format(value) : value}
-                          </StyledTableCell>
-                        )
-                      })}
-                    </TableRow>
-                  )
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component='div'
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
+                      return (
+                        <StyledTableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number' ? column.format(value) : value}
+                        </StyledTableCell>
+                      )
+                    })}
+                  </TableRow>
+                )
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component='div'
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
       </Card>
     </>
   )
