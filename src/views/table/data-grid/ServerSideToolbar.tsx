@@ -39,7 +39,7 @@ const ServerSideToolbar = (props: Props) => {
         placeholder='search and filter'
         value={value}
         onChange={(value: string) => setValue(value)}
-        style={{ display: 'flex' }}
+        style={{ display: 'flex', margin:'10px' }}
       />
       </Box>
       {/* <TextField

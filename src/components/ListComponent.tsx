@@ -25,6 +25,19 @@ import { DataGridRowType } from 'src/@fake-db/types'
 
 import styled from '@emotion/styled'
 
+const StyledDataGrid = styled(DataGrid)(()=> ({
+  background: '#F3F3F4',
+  margin: '20px',
+  border: '2px solid black',
+  borderRadius: '0px',
+  
+  '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
+    background: 'rgba(22, 31, 41, 0.07)',
+    border: '1px solid white',
+    borderRadius: '0px',
+  },
+}))
+
 let ListComponentContainer = styled.div({})
 
 
@@ -42,7 +55,7 @@ type SortType = 'asc' | 'desc' | undefined | null
 const columns: GridColumns = [
   {
     flex: 0.25,
-    minWidth: 100,
+    //minWidth: 100,
     field: 'videoId',
     headerName: 'Video ID',
     renderCell: (params: GridRenderCellParams) => {
@@ -61,7 +74,7 @@ const columns: GridColumns = [
   },
   {
     flex: 0.175,
-    minWidth: 120,
+    //minWidth: 80,
     headerName: 'Thumbnail',
     field: 'thumbnail',
     renderCell: (params: GridRenderCellParams) => (
@@ -72,7 +85,7 @@ const columns: GridColumns = [
   },
   {
     flex: 0.175,
-    minWidth: 110,
+    //minWidth: 110,
     field: 'salary',
     headerName: 'Salary',
     renderCell: (params: GridRenderCellParams) => (
@@ -84,7 +97,7 @@ const columns: GridColumns = [
   {
     flex: 0.125,
     field: 'age',
-    minWidth: 80,
+    //minWidth: 80,
     headerName: 'Age',
     renderCell: (params: GridRenderCellParams) => (
       <Typography variant='body2' sx={{ color: 'text.primary' }}>
@@ -94,7 +107,7 @@ const columns: GridColumns = [
   },
   {
     flex: 0.175,
-    minWidth: 140,
+    //minWidth: 140,
     field: 'status',
     headerName: 'Status',
     renderCell: (params: GridRenderCellParams) => (
@@ -170,7 +183,7 @@ const ListComponent = (props: Props) => {
     <ListComponentContainer>
       <Card>
         <CardHeader title='List Component' />
-        <DataGrid
+        <StyledDataGrid
           autoHeight
           pagination
           rows={rows}
@@ -182,8 +195,6 @@ const ListComponent = (props: Props) => {
           onSortModelChange={handleSortModel}
           rowsPerPageOptions={[7, 10, 25, 50]}
           onPageChange={newPage => setPage(newPage)}
-          style={{ border: '2px solid black', margin:'20px' , ...props.style }}
-
           components={{ Toolbar: ServerSideToolbar }}
           onPageSizeChange={newPageSize => setPageSize(newPageSize)}
           componentsProps={{

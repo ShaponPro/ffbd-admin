@@ -18,6 +18,58 @@ const data: DataGridRowType[] = [
     experience: '2 Years',
     status: 1
   },      
+  {
+    id: 1,
+    avatar: '2.png',
+    videoId: 123456,
+    thumbnail: 'Human Resources Assistant',
+    email: 'eebsworth2m@sbwire.com',
+    city: 'Puzi',
+    start_date: '09/27/2018',
+    salary: 19586.23,
+    age: '27',
+    experience: '2 Years',
+    status: 1
+  },      
+  {
+    id: 1,
+    avatar: '2.png',
+    videoId: 123456,
+    thumbnail: 'Human Resources Assistant',
+    email: 'eebsworth2m@sbwire.com',
+    city: 'Puzi',
+    start_date: '09/27/2018',
+    salary: 19586.23,
+    age: '27',
+    experience: '2 Years',
+    status: 1
+  },      
+  {
+    id: 1,
+    avatar: '2.png',
+    videoId: 123456,
+    thumbnail: 'Human Resources Assistant',
+    email: 'eebsworth2m@sbwire.com',
+    city: 'Puzi',
+    start_date: '09/27/2018',
+    salary: 19586.23,
+    age: '27',
+    experience: '2 Years',
+    status: 1
+  },      
+  {
+    id: 1,
+    avatar: '2.png',
+    videoId: 123456,
+    thumbnail: 'Human Resources Assistant',
+    email: 'eebsworth2m@sbwire.com',
+    city: 'Puzi',
+    start_date: '09/27/2018',
+    salary: 19586.23,
+    age: '27',
+    experience: '2 Years',
+    status: 1
+  },      
 ]
 
 mock.onGet('/api/table/data').reply(config => {
