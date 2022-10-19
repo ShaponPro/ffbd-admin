@@ -12,6 +12,12 @@ import { styled } from '@mui/material/styles'
 import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
 
+type Props = {
+  title: string
+  onChange?: (value: string) => void
+  style?: React.CSSProperties
+}
+
 // Styled TabList component
 const TabList = styled(MuiTabList)<TabListProps>(({ theme }) => ({
   '& .MuiTabs-indicator': {
@@ -19,12 +25,27 @@ const TabList = styled(MuiTabList)<TabListProps>(({ theme }) => ({
   },
   '& .Mui-selected': {
     backgroundColor: theme.palette.primary.main,
-    color: 'white'
+    color: 'white !important',
+    fontweight: 400,
+    fontSize: '16px',
+
+    height: '40px',
+    width: '200px !important',
+    textTransform: 'capitalize',
+    background: '#161F29 !important'
   },
   '& .MuiTab-root': {
-    minHeight: 38,
-    minWidth: 110,
-    borderRadius: 8,
+    marginLeft: '10px',
+    textTransform: 'capitalize',
+    fontweight: 700,
+    fontSize: '16px !important',
+    height: '40px',
+    width: '200px !important',
+
+    borderRadius: '20px',
+    background: 'rgba(255, 255, 255, 0.5)',
+    border: '1px solid rgba(22, 31, 41, 0.5)',
+    color: '#161F29',
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2)
   }
@@ -69,7 +90,7 @@ const TabList = styled(MuiTabList)<TabListProps>(({ theme }) => ({
 //   }
 // }
 
-const TabbarComponent = () => {
+const TabbarComponent = (props: Props) => {
   // ** State
   const [value, setValue] = useState<string>('1')
 
@@ -80,9 +101,10 @@ const TabbarComponent = () => {
   return (
     <TabContext value={value}>
       <TabList onChange={handleChange} aria-label='customized tabs example'>
-        <Tab value='1' label='Tab 1' />
-        <Tab value='2' label='Tab 2' />
-        <Tab value='3' label='Tab 3' />
+        <Tab value='1' label='Regular' />
+        <Tab value='2' label='Active Monetization' />
+        <Tab value='3' label='Trending' />
+        <Tab value='4' label='Customization' />
       </TabList>
       <TabPanel value='1'>
         <Typography>
@@ -97,6 +119,12 @@ const TabbarComponent = () => {
         </Typography>
       </TabPanel>
       <TabPanel value='3'>
+        <Typography>
+          Danish tiramisu jujubes cupcake chocolate bar cake cheesecake chupa chups. Macaroon ice cream tootsie roll
+          carrot cake gummi bears.
+        </Typography>
+      </TabPanel>
+      <TabPanel value='4'>
         <Typography>
           Danish tiramisu jujubes cupcake chocolate bar cake cheesecake chupa chups. Macaroon ice cream tootsie roll
           carrot cake gummi bears.
