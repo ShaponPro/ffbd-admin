@@ -1,91 +1,108 @@
-import * as React from 'react'
+// ** React Imports
+import {
+  SyntheticEvent,
+  useState
+} from 'react'
 
-import Box from '@mui/material/Box'
+// ** MUI Imports
+import TabContext from '@mui/lab/TabContext'
+import MuiTabList, { TabListProps } from '@mui/lab/TabList'
+import TabPanel from '@mui/lab/TabPanel'
+import { styled } from '@mui/material/styles'
 import Tab from '@mui/material/Tab'
-import Tabs from '@mui/material/Tabs'
 import Typography from '@mui/material/Typography'
+
+// Styled TabList component
+const TabList = styled(MuiTabList)<TabListProps>(({ theme }) => ({
+  '& .MuiTabs-indicator': {
+    backgroundColor: 'transparent'
+  },
+  '& .Mui-selected': {
+    backgroundColor: theme.palette.primary.main,
+    color: 'white'
+  },
+  '& .MuiTab-root': {
+    minHeight: 38,
+    minWidth: 110,
+    borderRadius: 8,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2)
+  }
+}))
 
 // props type-----------
 
-type TabPanelProps = {
-  children?: React.ReactNode
-  index: number
-  value: number
-  title: string
-  status: string
-}
+// type TabPanelProps = {
+//   children?: React.ReactNode
+//   index: number
+//   value: number
+//   title: string
+//   status: string
+// }
 
-//  tabpanel function create
+// //  tabpanel function create
 
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props
+// function TabPanel(props: TabPanelProps) {
+//   const { children, value, index, ...other } = props
 
-  //   conditional rendering tabbar
-  return (
-    <div
-      role='tabpanel'
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  )
-}
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`
-  }
-}
+//   //   conditional rendering tabbar
+//   return (
+//     <div
+//       role='tabpanel'
+//       hidden={value !== index}
+//       id={`simple-tabpanel-${index}`}
+//       aria-labelledby={`simple-tab-${index}`}
+//       {...other}
+//     >
+//       {value === index && (
+//         <Box sx={{ p: 3 }}>
+//           <Typography>{children}</Typography>
+//         </Box>
+//       )}
+//     </div>
+//   )
+// }
+// function a11yProps(index: number) {
+//   return {
+//     id: `simple-tab-${index}`,
+//     'aria-controls': `simple-tabpanel-${index}`
+//   }
+// }
 
 const TabbarComponent = () => {
-  const [value, setValue] = React.useState(0)
+  // ** State
+  const [value, setValue] = useState<string>('1')
 
-  // on click nabbar state change
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (event: SyntheticEvent, newValue: string) => {
     setValue(newValue)
   }
 
   return (
-    <>
-      <Box sx={{ width: '100%' }}>
-        <Box
-          sx={{
-            height: '66px',
-
-            background: '#ECF8FF',
-            boxShadow: '1px 2px 3px rgba(22, 31, 41, 0.2)',
-
-            padding: '13px 20px'
-          }}
-        >
-          <Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
-            <Tab label='Regular' {...a11yProps(0)} />
-            <Tab label='Active Monitization' {...a11yProps(1)} />
-            <Tab label='Trending' {...a11yProps(2)} />
-            <Tab label='Customized' {...a11yProps(2)} />
-          </Tabs>
-        </Box>
-        <TabPanel value={value} index={0}>
-          Regular
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          Active Monitization
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          Trending
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          Customized
-        </TabPanel>
-      </Box>
-    </>
+    <TabContext value={value}>
+      <TabList onChange={handleChange} aria-label='customized tabs example'>
+        <Tab value='1' label='Tab 1' />
+        <Tab value='2' label='Tab 2' />
+        <Tab value='3' label='Tab 3' />
+      </TabList>
+      <TabPanel value='1'>
+        <Typography>
+          Cake apple pie chupa chups biscuit liquorice tootsie roll liquorice sugar plum. Cotton candy wafer wafer jelly
+          cake caramels brownie gummies.
+        </Typography>
+      </TabPanel>
+      <TabPanel value='2'>
+        <Typography>
+          Chocolate bar carrot cake candy canes sesame snaps. Cupcake pie gummi bears jujubes candy canes. Chupa chups
+          sesame snaps halvah.
+        </Typography>
+      </TabPanel>
+      <TabPanel value='3'>
+        <Typography>
+          Danish tiramisu jujubes cupcake chocolate bar cake cheesecake chupa chups. Macaroon ice cream tootsie roll
+          carrot cake gummi bears.
+        </Typography>
+      </TabPanel>
+    </TabContext>
   )
 }
 
