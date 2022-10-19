@@ -1,5 +1,5 @@
 // ** React Imports
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useState } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -11,6 +11,9 @@ import { GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid'
 // ** Icons Imports
 import Close from 'mdi-material-ui/Close'
 import Magnify from 'mdi-material-ui/Magnify'
+
+//Import Search Component
+import SearchComponent from '../../../components/SearchComponent'
 
 interface Props {
   value: string
@@ -28,12 +31,20 @@ const StyledGridToolbarContainer = styled(GridToolbarContainer)({
 })
 
 const ServerSideToolbar = (props: Props) => {
+  const [value, setValue] = useState<string>('')
+  console.log(value);
+
   return (
     <StyledGridToolbarContainer>
       <Box>
-        <GridToolbarExport printOptions={{ disableToolbarButton: true }} />
+      <SearchComponent
+        placeholder='search and filter'
+        value={value}
+        onChange={(value: string) => setValue(value)}
+        style={{ display: 'flex' }}
+      />
       </Box>
-      <TextField
+      {/* <TextField
         variant='standard'
         value={props.value}
         onChange={props.onChange}
@@ -60,7 +71,7 @@ const ServerSideToolbar = (props: Props) => {
             borderColor: 'divider'
           }
         }}
-      />
+      /> */}
     </StyledGridToolbarContainer>
   )
 }

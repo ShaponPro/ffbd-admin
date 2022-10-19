@@ -183,7 +183,7 @@ const ListComponent = (props: Props) => {
           onPageChange={newPage => setPage(newPage)}
           style={{ border: '2px solid black', margin:'20px' , ...props.style }}
 
-          // components={{ Toolbar: ServerSideToolbar }}
+          components={{ Toolbar: ServerSideToolbar }}
           onPageSizeChange={newPageSize => setPageSize(newPageSize)}
           componentsProps={{
             toolbar: {
