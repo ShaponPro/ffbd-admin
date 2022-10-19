@@ -4,16 +4,14 @@ import { ChangeEvent, useState } from 'react'
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
-import TextField from '@mui/material/TextField'
-import IconButton from '@mui/material/IconButton'
-import { GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid'
+
+import { GridToolbarContainer } from '@mui/x-data-grid'
 
 // ** Icons Imports
-import Close from 'mdi-material-ui/Close'
-import Magnify from 'mdi-material-ui/Magnify'
+
 
 //Import Search Component
-import SearchComponent from '../../../components/SearchComponent'
+import SearchComponent from '../../../components/SearchComponent';
 
 interface Props {
   value: string
