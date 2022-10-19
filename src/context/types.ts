@@ -32,3 +32,8 @@ export type AuthValuesType = {
   login: (params: LoginParams, errorCallback?: ErrCallbackType) => void
   register: (params: RegisterParams, errorCallback?: ErrCallbackType) => void
 }
+
+export type ListItemType = {
+  id: number
+  title: string
+}
