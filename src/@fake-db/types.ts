@@ -89,13 +89,13 @@ export type CardStatsType = {
 export type DataGridRowType = {
   id: number
   age: string
-  post: string
+  thumbnail: string
   city: string
   email: string
   salary: number
   status: number
   avatar: string
-  full_name: string
+  videoId: number
   start_date: string
   experience: string
 }
