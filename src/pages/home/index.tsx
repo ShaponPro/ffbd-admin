@@ -1,11 +1,9 @@
 // ** MUI Imports
 
-import TabbarComponent from 'src/components/TabbarComponent'
-
 const Home = () => {
   return (
     <>
-      <TabbarComponent />
+      <h3>dfjbsdhb</h3>
     </>
   )
 }
