@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 type props = {
     placeholder: string;
@@ -14,8 +13,4 @@ export const SearchComponent = (props: props) => {
   )
 }
 
-const mapStateToProps = (state: any) => ({})
-
-const mapDispatchToProps = {}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchComponent)
+export default SearchComponent;
