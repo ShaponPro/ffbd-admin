@@ -5,14 +5,23 @@
  * ! To clear local storage, you may refer https://www.leadshook.com/help/how-to-clear-local-storage-in-google-chrome-browser/.
  */
 
-// ** MUI Imports
-import { PaletteMode, Direction } from '@mui/material'
-
 // ** Icon Import
 import Circle from 'mdi-material-ui/Circle'
-
 // ** Types
-import { Skin, AppBar, Footer, ContentWidth, VerticalNavToggle, HorizontalMenuToggle } from 'src/@core/layouts/types'
+import {
+  AppBar,
+  ContentWidth,
+  Footer,
+  HorizontalMenuToggle,
+  Skin,
+  VerticalNavToggle
+} from 'src/@core/layouts/types'
+
+// ** MUI Imports
+import {
+  Direction,
+  PaletteMode
+} from '@mui/material'
 
 type ThemeConfig = {
   skin: Skin
@@ -75,7 +84,7 @@ const themeConfig: ThemeConfig = {
   // ** Other Configs
   responsiveFontSizes: true /* true | false */,
   disableRipple: false /* true | false */,
-  disableCustomizer: false/* true | false */,
+  disableCustomizer: false /* true | false */,
   toastPosition: 'top-right' /* top-left | top-center | top-right | bottom-left | bottom-center | bottom-right */
 }
 
