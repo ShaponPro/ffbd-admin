@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 type props = {
     title: string;
@@ -17,8 +16,4 @@ export const UploadTypeComponent = (props: props) => {
   )
 }
 
-const mapStateToProps = (state: any) => ({})
-
-const mapDispatchToProps = {}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UploadTypeComponent)
+export default UploadTypeComponent
