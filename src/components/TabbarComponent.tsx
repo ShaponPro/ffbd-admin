@@ -98,6 +98,8 @@ const TabbarComponent = (props: Props) => {
     setValue(newValue)
   }
 
+  console.log(value)
+
   return (
     <TabContext value={value}>
       <TabList onChange={handleChange} aria-label='customized tabs example'>
