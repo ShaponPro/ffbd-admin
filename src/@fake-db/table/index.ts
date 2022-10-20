@@ -7,69 +7,38 @@ import { DataGridRowType } from 'src/@fake-db/types'
 const data: DataGridRowType[] = [
   {
     id: 1,
-    avatar: '2.png',
     videoId: 123456,
-    thumbnail: 'Human Resources Assistant',
-    email: 'eebsworth2m@sbwire.com',
-    city: 'Puzi',
-    start_date: '09/27/2018',
-    salary: 19586.23,
-    age: '27',
-    experience: '2 Years',
-    status: 1
-  },      
+    thumbnail: 'thambnail',
+    videoTitle: 'this is title',
+    fileSize: 123456,
+    videoLength: 1254,
+    userName: 'Nazmul Islam',
+    userId: 12345,
+    fanfareId: 123456,
+    userCreatedDate: '6/25/2022',
+    uploadDate: '6/25/2022',
+    uploadTime: '1:05:11',
+    uploadDays: 410,
+    uploadedCountry: 'Bangladesh',
+    uploadedIp: '103.103.34.34',
+  },        
   {
     id: 1,
-    avatar: '2.png',
     videoId: 123456,
-    thumbnail: 'Human Resources Assistant',
-    email: 'eebsworth2m@sbwire.com',
-    city: 'Puzi',
-    start_date: '09/27/2018',
-    salary: 19586.23,
-    age: '27',
-    experience: '2 Years',
-    status: 1
-  },      
-  {
-    id: 1,
-    avatar: '2.png',
-    videoId: 123456,
-    thumbnail: 'Human Resources Assistant',
-    email: 'eebsworth2m@sbwire.com',
-    city: 'Puzi',
-    start_date: '09/27/2018',
-    salary: 19586.23,
-    age: '27',
-    experience: '2 Years',
-    status: 1
-  },      
-  {
-    id: 1,
-    avatar: '2.png',
-    videoId: 123456,
-    thumbnail: 'Human Resources Assistant',
-    email: 'eebsworth2m@sbwire.com',
-    city: 'Puzi',
-    start_date: '09/27/2018',
-    salary: 19586.23,
-    age: '27',
-    experience: '2 Years',
-    status: 1
-  },      
-  {
-    id: 1,
-    avatar: '2.png',
-    videoId: 123456,
-    thumbnail: 'Human Resources Assistant',
-    email: 'eebsworth2m@sbwire.com',
-    city: 'Puzi',
-    start_date: '09/27/2018',
-    salary: 19586.23,
-    age: '27',
-    experience: '2 Years',
-    status: 1
-  },      
+    thumbnail: 'thambnail',
+    videoTitle: 'this is title',
+    fileSize: 123456,
+    videoLength: 1254,
+    userName: 'Nazmul Islam',
+    userId: 12345,
+    fanfareId: 123456,
+    userCreatedDate: '6/25/2022',
+    uploadDate: '6/25/2022',
+    uploadTime: '1:05:11',
+    uploadDays: 410,
+    uploadedCountry: 'Bangladesh',
+    uploadedIp: '103.103.34.34',
+  },        
 ]
 
 mock.onGet('/api/table/data').reply(config => {
@@ -85,11 +54,9 @@ mock.onGet('/api/table/data').reply(config => {
     (item: DataGridRowType) =>
       item.id.toString().toLowerCase().includes(queryLowered) ||
       item.thumbnail.toLowerCase().includes(queryLowered) ||
-      item.email.toLowerCase().includes(queryLowered) ||
-      item.age.toLowerCase().includes(queryLowered) ||
-      item.salary.toString().toLowerCase().includes(queryLowered) ||
-      item.city.toLowerCase().includes(queryLowered) ||
-      item.start_date.toLowerCase().includes(queryLowered)
+      item.videoTitle.toLowerCase().includes(queryLowered)
+
+      //item.start_date.toLowerCase().includes(queryLowered)
   )
 
   return [

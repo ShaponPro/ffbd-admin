@@ -6,12 +6,12 @@ import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
 
 import { GridToolbarContainer } from '@mui/x-data-grid'
+import { GridToolbar } from '@mui/x-data-grid'
 
 // ** Icons Imports
 
-
 //Import Search Component
-import SearchComponent from '../../../components/SearchComponent';
+import SearchComponent from '../../../components/SearchComponent'
 
 interface Props {
   value: string
@@ -30,18 +30,23 @@ const StyledGridToolbarContainer = styled(GridToolbarContainer)({
 
 const ServerSideToolbar = (props: Props) => {
   const [value, setValue] = useState<string>('')
-  console.log(value);
+  console.log(value)
 
   return (
     <StyledGridToolbarContainer>
       <Box>
-      <SearchComponent
-        placeholder='search and filter'
-        value={value}
-        onChange={(value: string) => setValue(value)}
-        style={{ display: 'flex', margin:'10px' }}
-      />
+        <SearchComponent
+          placeholder='search and filter'
+          value={value}
+          onChange={(value: string) => setValue(value)}
+          style={{ display: 'flex', margin: '10px' }}
+        />
       </Box>
+
+      <Box>
+        <GridToolbar />
+      </Box>
+      
       {/* <TextField
         variant='standard'
         value={props.value}

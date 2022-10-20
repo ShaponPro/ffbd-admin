@@ -88,14 +88,18 @@ export type CardStatsType = {
 
 export type DataGridRowType = {
   id: number
-  age: string
-  thumbnail: string
-  city: string
-  email: string
-  salary: number
-  status: number
-  avatar: string
   videoId: number
-  start_date: string
-  experience: string
+  thumbnail: string
+  videoTitle: string
+  fileSize: number
+  videoLength: number
+  userName: string
+  userId: number
+  fanfareId: number
+  userCreatedDate: string
+  uploadDate: string
+  uploadTime: string
+  uploadDays: number
+  uploadedCountry: string
+  uploadedIp: string
 }

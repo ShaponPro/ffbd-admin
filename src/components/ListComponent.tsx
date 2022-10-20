@@ -1,4 +1,3 @@
-
 // ** React Imports
 import React, { ChangeEvent, useState, useCallback, useEffect } from 'react'
 
@@ -7,7 +6,17 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
-import { DataGrid, GridColumns, GridRenderCellParams, GridSortModel } from '@mui/x-data-grid'
+import {
+  DataGrid,
+  GridColumns,
+  GridRenderCellParams,
+  GridSortModel,
+  gridPageCountSelector,
+  gridPageSelector,
+  useGridApiContext,
+  useGridSelector, 
+} from '@mui/x-data-grid'
+import Pagination from '@mui/material/Pagination'
 
 // ** ThirdParty Components
 import axios from 'axios'
@@ -19,28 +28,61 @@ import ServerSideToolbar from 'src/views/table/data-grid/ServerSideToolbar'
 // ** Types Imports
 import { DataGridRowType } from 'src/@fake-db/types'
 
-
 // ** Icons Imports
-
 
 import styled from '@emotion/styled'
 
-const StyledDataGrid = styled(DataGrid)(()=> ({
-  background: '#F3F3F4',
+const StyledDataGrid = styled(DataGrid)(() => ({
+  //background: '#F3F3F4',
   margin: '20px',
   border: '2px solid black',
   borderRadius: '0px',
-  
-  '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
-    background: 'rgba(22, 31, 41, 0.07)',
-    border: '1px solid white',
-    borderRadius: '0px',
+
+  //Column Table container CSS
+  '& 	.MuiDataGrid-rowReorderCell': {
+    border: '2px solid red'
   },
+
+  //Column Table container CSS
+  '& .MuiDataGrid-main': {
+    border: '2px solid black',
+    margin: '20px'
+  },
+
+  //Column Footer Title CSS
+  '& .MuiDataGrid-footerContainer': {
+    border: '2px solid yellow'
+  },
+
+  //Column Header Title CSS
+  '& .MuiDataGrid-columnHeader': {
+    border: '2px solid red'
+  },
+
+  '& .MuiDataGrid-columnSeparator': {
+    visibility: 'hidden'
+  },
+
+  '& .MuiDataGrid-virtualScrollerRenderZone': {
+    '& .MuiDataGrid-row': {
+      '&:nth-child(2n)': { backgroundColor: 'rgba(235, 235, 235, .7)' }
+    }
+  },
+
+  '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
+    border: '1px solid green',
+    borderRadius: '0px'
+  }
+
+  // virtualScrollerContent: {
+  //   height: '100% !important',
+  //   overflow: 'scroll'
+  // }
 }))
 
-let ListComponentContainer = styled.div({})
-
-
+const ListComponentContainer = styled.div({
+  border: '2px solid red'
+})
 
 type Props = {
   placeholder?: string
@@ -51,13 +93,13 @@ type Props = {
 
 type SortType = 'asc' | 'desc' | undefined | null
 
-
 const columns: GridColumns = [
   {
-    flex: 0.25,
-    //minWidth: 100,
+    flex: 1,
+    minWidth: 100,
     field: 'videoId',
     headerName: 'Video ID',
+    sortable: false,
     renderCell: (params: GridRenderCellParams) => {
       const { row } = params
 
@@ -73,50 +115,174 @@ const columns: GridColumns = [
     }
   },
   {
-    flex: 0.175,
-    //minWidth: 80,
-    headerName: 'Thumbnail',
+    flex: 1,
+    minWidth: 200,
     field: 'thumbnail',
+    headerName: 'Thumbnail',
+    sortable: false,
+    renderCell: (params: GridRenderCellParams) => {
+      const { row } = params
+
+      return (
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography noWrap variant='body2' sx={{ color: 'text.primary', fontWeight: 600 }}>
+              {row.thumbnail}
+            </Typography>
+          </Box>
+        </Box>
+      )
+    }
+  },
+  {
+    flex: 1,
+    field: 'fileSize',
+    minWidth: 200,
+    headerName: 'File Size',
+    sortable: false,
     renderCell: (params: GridRenderCellParams) => (
       <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.thumbnail}
+        {params.row.fileSize}
       </Typography>
     )
   },
   {
-    flex: 0.175,
-    //minWidth: 110,
-    field: 'salary',
-    headerName: 'Salary',
+    flex: 1,
+    field: 'videoLength',
+    minWidth: 200,
+    headerName: 'Video Length',
+    sortable: false,
     renderCell: (params: GridRenderCellParams) => (
       <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.salary}
+        {params.row.videoLength}
       </Typography>
     )
   },
   {
-    flex: 0.125,
-    field: 'age',
-    //minWidth: 80,
-    headerName: 'Age',
+    flex: 1,
+    field: 'userName',
+    minWidth: 200,
+    headerName: 'User Name',
+    sortable: false,
     renderCell: (params: GridRenderCellParams) => (
       <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.age}
+        {params.row.userName}
       </Typography>
     )
   },
   {
-    flex: 0.175,
-    //minWidth: 140,
-    field: 'status',
-    headerName: 'Status',
+    flex: 1,
+    field: 'userId',
+    minWidth: 200,
+    headerName: 'User ID',
+    sortable: false,
     renderCell: (params: GridRenderCellParams) => (
       <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.post}
+        {params.row.userId}
+      </Typography>
+    )
+  },
+  {
+    flex: 1,
+    field: 'fanfareId',
+    minWidth: 200,
+    headerName: 'Fanfare ID',
+    sortable: false,
+    renderCell: (params: GridRenderCellParams) => (
+      <Typography variant='body2' sx={{ color: 'text.primary' }}>
+        {params.row.fanfareId}
+      </Typography>
+    )
+  },
+  {
+    flex: 1,
+    field: 'userCreatedDate',
+    minWidth: 200,
+    headerName: 'User Created Date',
+    sortable: false,
+    renderCell: (params: GridRenderCellParams) => (
+      <Typography variant='body2' sx={{ color: 'text.primary' }}>
+        {params.row.userCreatedDate}
+      </Typography>
+    )
+  },
+  {
+    flex: 1,
+    field: 'uploadDate',
+    minWidth: 200,
+    headerName: 'Upload Date',
+    sortable: false,
+    renderCell: (params: GridRenderCellParams) => (
+      <Typography variant='body2' sx={{ color: 'text.primary' }}>
+        {params.row.uploadDate}
+      </Typography>
+    )
+  },
+  {
+    flex: 1,
+    field: 'uploadTime',
+    minWidth: 200,
+    headerName: 'Upload Time',
+    sortable: false,
+    renderCell: (params: GridRenderCellParams) => (
+      <Typography variant='body2' sx={{ color: 'text.primary' }}>
+        {params.row.uploadTime}
+      </Typography>
+    )
+  },
+  {
+    flex: 1,
+    field: 'uploadDays',
+    minWidth: 200,
+    headerName: 'Upload Days',
+    sortable: false,
+    renderCell: (params: GridRenderCellParams) => (
+      <Typography variant='body2' sx={{ color: 'text.primary' }}>
+        {params.row.uploadDays}
+      </Typography>
+    )
+  },
+  {
+    flex: 1,
+    field: 'uploadedCountry',
+    minWidth: 200,
+    headerName: 'Uploaded Country',
+    sortable: false,
+    renderCell: (params: GridRenderCellParams) => (
+      <Typography variant='body2' sx={{ color: 'text.primary' }}>
+        {params.row.uploadedCountry}
+      </Typography>
+    )
+  },
+  {
+    flex: 1,
+    field: 'uploadedIp',
+    minWidth: 200,
+    headerName: 'Uploaded IP',
+    sortable: false,
+    renderCell: (params: GridRenderCellParams) => (
+      <Typography variant='body2' sx={{ color: 'text.primary' }}>
+        {params.row.uploadedIp}
       </Typography>
     )
   }
 ]
+
+function CustomPagination() {
+  const apiRef = useGridApiContext()
+  const page = useGridSelector(apiRef, gridPageSelector)
+  const pageCount = useGridSelector(apiRef, gridPageCountSelector)
+
+  return (
+    <Pagination
+      variant='text'
+      shape='rounded'
+      count={pageCount}
+      page={page + 1}
+      onChange={(event, value) => apiRef.current.setPage(value - 1)}
+    />
+  )
+}
 
 const ListComponent = (props: Props) => {
   // ** State
@@ -187,15 +353,18 @@ const ListComponent = (props: Props) => {
           autoHeight
           pagination
           rows={rows}
+          disableSelectionOnClick
+          disableColumnMenu
           rowCount={total}
           columns={columns}
           pageSize={pageSize}
           sortingMode='server'
           paginationMode='server'
-          onSortModelChange={handleSortModel}
-          rowsPerPageOptions={[7, 10, 25, 50]}
+
+          //onSortModelChange={handleSortModel}
+          rowsPerPageOptions={[5]}
           onPageChange={newPage => setPage(newPage)}
-          components={{ Toolbar: ServerSideToolbar }}
+          components={{ Toolbar: ServerSideToolbar, Pagination: CustomPagination }}
           onPageSizeChange={newPageSize => setPageSize(newPageSize)}
           componentsProps={{
             toolbar: {
