@@ -1,5 +1,5 @@
 // ** MUI Imports
-import { ButtonComponent } from 'src/components/ButtonComponent'
+import ButtonComponent from 'src/components/ButtonComponent'
 
 
 
@@ -29,7 +29,7 @@ const Home = () => {
           boxShadow: '1px 2px 3px rgba(22, 31, 41, 0.2)'
         }}
       >
-        <ButtonComponent type='tabButton' title='Regular' isActive={false}/>
+        <ButtonComponent type='tabButton' title='Regular' isActive={true}/>
         <ButtonComponent type='tabButton' title='Regular' isActive={false}/>
         <ButtonComponent type='tabButton' title='Regular' isActive={false}/>
         <ButtonComponent type='tabButton' title='Regular' isActive={false}/>

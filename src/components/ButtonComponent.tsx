@@ -1,5 +1,7 @@
-import { Button } from '@mui/material'
 import React, { useState } from 'react'
+import { Button } from '@mui/material'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 
 type Props = {
   title: string
@@ -10,7 +12,7 @@ type Props = {
 }
 
 
-export const ButtonComponent = (props: Props) => {
+const ButtonComponent = (props: Props) => {
 
   const styleButton = (type: string, isActive: boolean) => {
     if (type === 'tabButton')
@@ -177,23 +179,20 @@ export const ButtonComponent = (props: Props) => {
         textTransform: 'capitalize'
       }
     }
-    
-    
   }
-  
-  const [isActive , setIsActive] = useState(props.isActive);
-  
 
   return (
     <div>
       <Button
-        style = {styleButton(props.type || '',isActive)}
-        onClick= {()=>setIsActive(
-          (pre)=>!pre
-        )}
+        style = {styleButton(props.type || '', props.isActive)}
+        onClick= {props.onClick}
       >
-        {props.title}
+        <Typography variant="overline" display="block" style={props.isActive ? {color: "#fff"} : {color: "#161F29"}}>
+          {props.title}
+        </Typography>
       </Button>
     </div>
   )
 }
+
+export default ButtonComponent;
