@@ -1,25 +1,10 @@
 # FanFare Admin Panel
-# FanFare Admin Panel built with Next JS 12+, Tailwind CSS 3 and TypeScript 
+# FanFare Admin Panel built with Next JS 12+, Material UI and TypeScript 
 
-🚀 FanFare Admin Panel written in Next.js, Tailwind CSS and TypeScript ⚡️ Made with developer experience first: Next.js, TypeScript, ESLint, Prettier, Husky, Lint-Staged, VSCode, Netlify, PostCSS, Tailwind CSS.
+🚀 FanFare Admin Panel written in Next.js, Material UI and TypeScript ⚡️ Made with developer experience first: Next.js, TypeScript, ESLint, Prettier, Husky, Lint-Staged, VSCode, Netlify, PostCSS, Material UI.
 
 Clone this project and use it to create your own [Next.js](https://nextjs.org) project. You can check a [Next js templates demo](https://creativedesignsguru.com/demo/nextjs-landing-page/).
 
-### Set Up
-#Step 1: Clone the repository
-`git clone https://github.com/FanFareBD/ffbd-admin.git`
-
-#Step 2: Install packages
-`cd ./ffbd-admin`
-
-`npm install`
-or
-`Yarn`
-
-#Step 3: Run the project
-`npm run dev`
-or
-`yarn dev`
 
 ### DEMO
 
@@ -30,8 +15,8 @@ Check out demo [live demo](https://github.com/FanFareBD/ffbd-admin/tree/beta).
 Developer experience first:
 
 - 🔥 [Next.js](https://nextjs.org) for Static Site Generator
-- 🎨 Integrate with [Tailwind CSS](https://tailwindcss.com)
-- 💅 PostCSS for processing Tailwind CSS and integrated to `styled-jsx`
+- 🎨 Integrate with [Material UI](https://mui.com/)
+- 💅 PostCSS for processing Material UI and integrated to `styled-jsx`
 - 🎉 Type checking [TypeScript](https://www.typescriptlang.org)
 - ✅ Strict Mode for TypeScript and React 17
 - ✏️ Linter with [ESLint](https://eslint.org) (default NextJS, NextJS Core Web Vitals and Airbnb configuration)
@@ -110,7 +95,7 @@ Open http://localhost:3000 with your favorite browser to see your project. For y
 │   ├── styles           # PostCSS style folder with Tailwind
 │   ├── templates        # Default template
 │   └── utils            # Utility folder
-├── tailwind.config.js   # Tailwind CSS configuration
+├── tailwind.config.js   # Material UI configuration
 └── tsconfig.json        # TypeScript configuration
 ```
 
@@ -123,7 +108,7 @@ $ npm run build
 $ npm run start
 ```
 
-The generated HTML and CSS files are minified (built-in feature from Next js). It will also removed unused CSS from [Tailwind CSS](https://tailwindcss.com).
+The generated HTML and CSS files are minified (built-in feature from Next js). It will also removed unused CSS from [Material UI](https://mui.com/).
 
 You can create an optimized production build with:
 
