@@ -44,6 +44,13 @@ const Home = () => {
         <ButtonComponent type='more-less' title='more' />
       </div>
       <div style={{ display: 'flex', gap: '10px', padding: '20px', position: 'relative' }}>
+        <ButtonComponent type='select-custom' title='select Filter/Field'/>
+        <ButtonComponent type='select-custom' title='select Filter/Field'/>
+        <ButtonComponent type='select-custom' title='select Filter/Field'/>
+        <ButtonComponent type='select-custom' title='select Filter/Field'/>
+      </div>
+
+      <div style={{ display: 'flex', gap: '10px', padding: '20px', position: 'relative' }}>
         <ButtonComponent type='go' title='Go' />
         <ButtonComponent type='go' title='Go' />
         <ButtonComponent type='go' title='Go' />
@@ -57,10 +64,11 @@ const Home = () => {
         <ButtonComponent type='proceed' title='Proceed' />
         <ButtonComponent type='proceed' title='Proceed' />
       </div>
-      <div>
+      <div style={{ display: 'flex', gap: '30px', padding: '20px', position: 'relative' }}>
         <ButtonComponent type='apply' title='Apply' />
         <ButtonComponent type='cancel' title='cancel' />
         <ButtonComponent title='default'/>
+        <ButtonComponent type='tabButton2' title='Target Audience Edit' />
       </div>
     </div>
   )
