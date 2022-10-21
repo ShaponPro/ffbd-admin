@@ -1,16 +1,14 @@
-<<<<<<< HEAD
 // ** React Imports
 import React, {
   ChangeEvent,
   useState
 } from 'react'
-=======
-import React from 'react'
->>>>>>> 04e4c9e788c9d9faf4e58fc3fc7dbd53f7178fa3
 
 import styled from '@emotion/styled'
+
 // ** Icons Imports
 import SearchIcon from '@mui/icons-material/Search'
+
 // ** MUI Imports
 import InputAdornment from '@mui/material/InputAdornment'
 import OutlinedInput from '@mui/material/OutlinedInput'
@@ -74,7 +72,6 @@ const SearchComponent = (props: Props) => {
   )
 }
 
-<<<<<<< HEAD
 export default SearchComponent
 
 SearchComponent.defaultProps = {
@@ -83,6 +80,3 @@ SearchComponent.defaultProps = {
   onChange: () => null,
   style: {}
 }
-=======
-export default SearchComponent;
->>>>>>> 04e4c9e788c9d9faf4e58fc3fc7dbd53f7178fa3
