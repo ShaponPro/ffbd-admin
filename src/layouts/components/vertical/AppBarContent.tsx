@@ -3,8 +3,11 @@ import MenuIcon from 'mdi-material-ui/Menu'
 // ** Type Import
 import { Settings } from 'src/@core/context/settingsContext'
 // ** Components
+import Autocomplete from 'src/layouts/components/Autocomplete'
 import ModeToggler from 'src/@core/layouts/components/shared-components/ModeToggler'
-import UserDropdown from 'src/layouts/components/UserDropdown'
+import UserDropdown from 'src/@core/layouts/components/shared-components/UserDropdown'
+import LanguageDropdown from 'src/@core/layouts/components/shared-components/LanguageDropdown'
+import NotificationDropdown from 'src/@core/layouts/components/shared-components/NotificationDropdown'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -29,10 +32,12 @@ const AppBarContent = (props: Props) => {
             <MenuIcon />
           </IconButton>
         ) : null}
-
-        <ModeToggler settings={settings} saveSettings={saveSettings} />
+        <Autocomplete hidden={hidden} settings={settings} />
       </Box>
       <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
+        <LanguageDropdown settings={settings} saveSettings={saveSettings} />
+        <ModeToggler settings={settings} saveSettings={saveSettings} />
+        <NotificationDropdown settings={settings} />
         <UserDropdown settings={settings} />
       </Box>
     </Box>

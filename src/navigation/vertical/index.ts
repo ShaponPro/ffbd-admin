@@ -1,4 +1,3 @@
-// ** Type import
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
 
 // ** Icon imports
@@ -23,12 +22,12 @@ const navigation = (): VerticalNavItemsType => {
     {
       title: 'Dashboard',
       icon: AlarmOnIcon,
-      path: '/home'
+      path: '/dashboard'
     },
     {
       title: 'videos',
       icon: VideocamIcon,
-      path: '/second-page'
+      path: '/videos'
     },
     {
       title: 'Ad Centre',
