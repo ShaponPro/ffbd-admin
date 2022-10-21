@@ -68,7 +68,7 @@ const Drawer = (props: Props) => {
     if (skin === 'semi-dark' && theme.palette.mode === 'light') {
       return {
         '& .MuiTypography-root': {
-          color: `rgba(${theme.palette.customColors.dark}, 0.87)`
+          color: `rgba(${theme.palette.customColors.dark})`
         }
       }
     } else if (skin === 'semi-dark' && theme.palette.mode === 'dark') {
