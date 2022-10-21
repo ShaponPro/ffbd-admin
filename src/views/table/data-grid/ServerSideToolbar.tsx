@@ -4,6 +4,9 @@ import { ChangeEvent, useState } from 'react'
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import TextField from '@mui/material/TextField'
+import Autocomplete from '@mui/material/Autocomplete'
 
 import { GridToolbarContainer } from '@mui/x-data-grid'
 import { GridToolbar } from '@mui/x-data-grid'
@@ -12,6 +15,9 @@ import { GridToolbar } from '@mui/x-data-grid'
 
 //Import Search Component
 import SearchComponent from '../../../components/SearchComponent'
+
+// ** Data
+import { top100Films } from 'src/@fake-db/autocomplete'
 
 interface Props {
   value: string
@@ -34,6 +40,16 @@ const ServerSideToolbar = (props: Props) => {
 
   return (
     <StyledGridToolbarContainer>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+        <Typography>Show</Typography>
+        <Autocomplete
+          sx={{ width: 250 }}
+          options={top100Films}
+          id='autocomplete-outlined'
+          getOptionLabel={option => option.title}
+          renderInput={params => <TextField {...params} label='20' />}
+        />
+      </Box>
       <Box>
         <SearchComponent
           placeholder='search and filter'
@@ -46,7 +62,7 @@ const ServerSideToolbar = (props: Props) => {
       <Box>
         <GridToolbar />
       </Box>
-      
+
       {/* <TextField
         variant='standard'
         value={props.value}
