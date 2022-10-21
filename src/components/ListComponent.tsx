@@ -6,17 +6,7 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
-import {
-  DataGrid,
-  GridColumns,
-  GridRenderCellParams,
-  GridSortModel,
-  gridPageCountSelector,
-  gridPageSelector,
-  useGridApiContext,
-  useGridSelector, 
-} from '@mui/x-data-grid'
-import Pagination from '@mui/material/Pagination'
+import { DataGrid, GridColumns, GridRenderCellParams } from '@mui/x-data-grid'
 
 // ** ThirdParty Components
 import axios from 'axios'
@@ -31,6 +21,7 @@ import { DataGridRowType } from 'src/@fake-db/types'
 // ** Icons Imports
 
 import styled from '@emotion/styled'
+import MainGridFooter from 'src/views/table/data-grid/MainGridFooter'
 
 const StyledDataGrid = styled(DataGrid)(() => ({
   //background: '#F3F3F4',
@@ -45,7 +36,7 @@ const StyledDataGrid = styled(DataGrid)(() => ({
 
   //Column Table container CSS
   '& .MuiDataGrid-main': {
-    border: '2px solid black',
+    border: '2px solid blue',
     margin: '20px'
   },
 
@@ -268,22 +259,6 @@ const columns: GridColumns = [
   }
 ]
 
-function CustomPagination() {
-  const apiRef = useGridApiContext()
-  const page = useGridSelector(apiRef, gridPageSelector)
-  const pageCount = useGridSelector(apiRef, gridPageCountSelector)
-
-  return (
-    <Pagination
-      variant='text'
-      shape='rounded'
-      count={pageCount}
-      page={page + 1}
-      onChange={(event, value) => apiRef.current.setPage(value - 1)}
-    />
-  )
-}
-
 const ListComponent = (props: Props) => {
   // ** State
   const [page, setPage] = useState(0)
@@ -306,16 +281,16 @@ const ListComponent = (props: Props) => {
     return data.slice(currentPage * pageSize, (currentPage + 1) * pageSize)
   }
 
-  const handleSortModel = (newModel: GridSortModel) => {
-    if (newModel.length) {
-      setSort(newModel[0].sort)
-      setSortColumn(newModel[0].field)
-      fetchTableData(newModel[0].sort, searchValue, newModel[0].field)
-    } else {
-      setSort('asc')
-      setSortColumn('full_name')
-    }
-  }
+  // const handleSortModel = (newModel: GridSortModel) => {
+  //   if (newModel.length) {
+  //     setSort(newModel[0].sort)
+  //     setSortColumn(newModel[0].field)
+  //     fetchTableData(newModel[0].sort, searchValue, newModel[0].field)
+  //   } else {
+  //     setSort('asc')
+  //     setSortColumn('full_name')
+  //   }
+  // }
 
   const handleSearch = (value: string) => {
     setSearchValue(value)
@@ -360,11 +335,11 @@ const ListComponent = (props: Props) => {
           pageSize={pageSize}
           sortingMode='server'
           paginationMode='server'
-
+          rowsPerPageOptions={[5, 10, 20]}
+          
           //onSortModelChange={handleSortModel}
-          rowsPerPageOptions={[5]}
           onPageChange={newPage => setPage(newPage)}
-          components={{ Toolbar: ServerSideToolbar, Pagination: CustomPagination }}
+          components={{ Toolbar: ServerSideToolbar, Footer: MainGridFooter }}
           onPageSizeChange={newPageSize => setPageSize(newPageSize)}
           componentsProps={{
             toolbar: {

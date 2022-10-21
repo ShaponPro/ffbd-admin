@@ -5,11 +5,10 @@ import { ChangeEvent, useState } from 'react'
 import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
-import TextField from '@mui/material/TextField'
-import Autocomplete from '@mui/material/Autocomplete'
+import Select from '@mui/material/Select'
+import FormControl from '@mui/material/FormControl'
 
-import { GridToolbarContainer } from '@mui/x-data-grid'
-import { GridToolbar } from '@mui/x-data-grid'
+import { GridToolbarContainer, GridToolbarExport, } from '@mui/x-data-grid'
 
 // ** Icons Imports
 
@@ -17,7 +16,6 @@ import { GridToolbar } from '@mui/x-data-grid'
 import SearchComponent from '../../../components/SearchComponent'
 
 // ** Data
-import { top100Films } from 'src/@fake-db/autocomplete'
 
 interface Props {
   value: string
@@ -34,21 +32,42 @@ const StyledGridToolbarContainer = styled(GridToolbarContainer)({
   justifyContent: 'space-between'
 })
 
+const StyledFormControl = styled(FormControl)({
+  borderRadius: '0px',
+  height: '36px',
+  width: '80px'
+})
+
+const StyledSelect = styled(Select)({
+  borderRadius: '0px',
+  height: '36px',
+  width: '80px',
+  boxShadow: 'inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)'
+})
+
+const StyledSelectReport = styled(Select)({
+  borderRadius: '20px',
+  height: '36px',
+  width: '126px',
+  boxShadow: 'inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)', 
+
+  '& .MuiSelect-select': {
+    transition: '0s !important'
+  }
+})
+
 const ServerSideToolbar = (props: Props) => {
   const [value, setValue] = useState<string>('')
   console.log(value)
 
   return (
     <StyledGridToolbarContainer>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
         <Typography>Show</Typography>
-        <Autocomplete
-          sx={{ width: 250 }}
-          options={top100Films}
-          id='autocomplete-outlined'
-          getOptionLabel={option => option.title}
-          renderInput={params => <TextField {...params} label='20' />}
-        />
+        <StyledFormControl sx={{ m: 2 }} size='small'>
+          <StyledSelect></StyledSelect>
+        </StyledFormControl>
+        <Typography>entries</Typography>
       </Box>
       <Box>
         <SearchComponent
@@ -58,10 +77,15 @@ const ServerSideToolbar = (props: Props) => {
           style={{ display: 'flex', margin: '10px' }}
         />
       </Box>
-
-      <Box>
-        <GridToolbar />
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+        <FormControl sx={{ m: 2 }} size='small'>
+          <StyledSelectReport><GridToolbarExport /></StyledSelectReport>
+        </FormControl>
       </Box>
+
+      {/* <Box>
+        <GridToolbar />
+      </Box> */}
 
       {/* <TextField
         variant='standard'
