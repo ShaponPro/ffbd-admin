@@ -1,13 +1,13 @@
 // ** MUI Imports
 
-import SearchComponent from 'src/components/SearchComponent'
+import React from 'react';
 
-const Home = () => {
+const home = () => {
   return (
-    <>
-      <SearchComponent placeholder='search and filter' value='video' />
-    </>
+    <div>
+      This is home page
+    </div>
   )
 }
 
-export default Home
+export default home

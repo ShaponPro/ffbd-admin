@@ -5,8 +5,10 @@ import React, {
 } from 'react'
 
 import styled from '@emotion/styled'
+
 // ** Icons Imports
 import SearchIcon from '@mui/icons-material/Search'
+
 // ** MUI Imports
 import InputAdornment from '@mui/material/InputAdornment'
 import OutlinedInput from '@mui/material/OutlinedInput'
