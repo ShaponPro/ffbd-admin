@@ -48,7 +48,7 @@ const SearchComponent = (props: Props) => {
           color: 'rgba(22, 31, 41, 0.25)',
           width: '100%',
           fontWeight: 400,
-          fontSize: '12px',
+          fontSize: '12px !impportant',
           padding: '10px 20px',
           outline: 'none',
           height: '36px',

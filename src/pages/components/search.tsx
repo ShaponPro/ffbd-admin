@@ -13,7 +13,8 @@ const Home = () => {
         placeholder='search and filter'
         value={value}
         onChange={(value: string) => setValue(value)}
-        style={{ display: 'flex' }}
+        style={{ display: 'flex',
+         }}
       />
     </div>
   )
