@@ -6,10 +6,9 @@ import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import FormControl from '@mui/material/FormControl'
+import usePagination from '@mui/material/usePagination'
 
 import { GridToolbarContainer } from '@mui/x-data-grid'
-import { gridPageCountSelector, gridPageSelector, useGridApiContext, useGridSelector } from '@mui/x-data-grid'
-import Pagination from '@mui/material/Pagination'
 
 // ** Icons Imports
 
@@ -30,19 +29,54 @@ const StyledGridToolbarContainer = styled(GridToolbarContainer)({
   justifyContent: 'space-between'
 })
 
-function CustomPagination() {
-  const apiRef = useGridApiContext()
-  const page = useGridSelector(apiRef, gridPageSelector)
-  const pageCount = useGridSelector(apiRef, gridPageCountSelector)
+const List = styled('ul')({
+  listStyle: 'none',
+  padding: 0,
+  margin: 0,
+  display: 'flex'
+})
+
+function UsePagination() {
+  const { items } = usePagination({
+    count: 10
+  })
 
   return (
-    <Pagination
-      showFirstButton
-      showLastButton
-      count={pageCount}
-      page={page + 1}
-      onChange={(event, value) => apiRef.current.setPage(value - 1)}
-    />
+    <nav>
+      <List>
+        {items.map(({ page, type, selected, ...item }, index) => {
+          let children = null
+
+          if (type === 'start-ellipsis' || type === 'end-ellipsis') {
+            children = '…'
+          } else if (type === 'page') {
+            children = (
+              <button
+                type='button'
+                style={{
+                  border: 'none',
+                  outline: 'none',
+                  background: '#F3F3F4',
+                  color: '#009EFA',
+                  fontWeight: selected ? 'bold' : undefined
+                }}
+                {...item}
+              >
+                {page}
+              </button>
+            )
+          } else {
+            children = (
+              <button type='button' {...item} style={{ border: 'none', outline: 'none', color: '#009EFA', background: '#F3F3F4',}}>
+                {type}
+              </button>
+            )
+          }
+
+          return <li key={index}>{children}</li>
+        })}
+      </List>
+    </nav>
   )
 }
 
@@ -57,8 +91,10 @@ const MainGridFooter = (props: Props) => {
       </Box>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
         <FormControl sx={{ m: 2 }} size='small'>
-          <CustomPagination />
+          <UsePagination />
         </FormControl>
+
+        jump to
       </Box>
     </StyledGridToolbarContainer>
   )

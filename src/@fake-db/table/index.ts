@@ -53,8 +53,8 @@ mock.onGet('/api/table/data').reply(config => {
   const filteredData = dataToFilter.filter(
     (item: DataGridRowType) =>
       item.id.toString().toLowerCase().includes(queryLowered) ||
-      item.thumbnail.toLowerCase().includes(queryLowered) ||
-      item.videoTitle.toLowerCase().includes(queryLowered)
+      item.thumbnail.toLowerCase().includes(queryLowered) 
+      
 
       //item.start_date.toLowerCase().includes(queryLowered)
   )

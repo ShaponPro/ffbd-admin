@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography'
 import Select from '@mui/material/Select'
 import FormControl from '@mui/material/FormControl'
 
-import { GridToolbarContainer, GridToolbarExport, } from '@mui/x-data-grid'
+import { GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid'
 
 // ** Icons Imports
 
@@ -39,6 +39,7 @@ const StyledFormControl = styled(FormControl)({
 })
 
 const StyledSelect = styled(Select)({
+  background: 'white',
   borderRadius: '0px',
   height: '36px',
   width: '80px',
@@ -47,9 +48,10 @@ const StyledSelect = styled(Select)({
 
 const StyledSelectReport = styled(Select)({
   borderRadius: '20px',
+  background: 'white',
   height: '36px',
   width: '126px',
-  boxShadow: 'inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)', 
+  boxShadow: 'inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)',
 
   '& .MuiSelect-select': {
     transition: '0s !important'
@@ -57,6 +59,7 @@ const StyledSelectReport = styled(Select)({
 })
 
 const ServerSideToolbar = (props: Props) => {
+  const [answer, setAnswer] = useState<string>('')
   const [value, setValue] = useState<string>('')
   console.log(value)
 
@@ -65,11 +68,15 @@ const ServerSideToolbar = (props: Props) => {
       <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
         <Typography>Show</Typography>
         <StyledFormControl sx={{ m: 2 }} size='small'>
-          <StyledSelect></StyledSelect>
+          <StyledSelect
+            displayEmpty
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setAnswer(e.target.value)}
+            renderValue={answer !== '' ? undefined : () => '20'}
+          />
         </StyledFormControl>
         <Typography>entries</Typography>
-      </Box>
-      <Box>
+
+        <Box>
         <SearchComponent
           placeholder='search and filter'
           value={value}
@@ -77,9 +84,17 @@ const ServerSideToolbar = (props: Props) => {
           style={{ display: 'flex', margin: '10px' }}
         />
       </Box>
+      </Box>
+
       <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
         <FormControl sx={{ m: 2 }} size='small'>
-          <StyledSelectReport><GridToolbarExport /></StyledSelectReport>
+          <StyledSelectReport
+            displayEmpty
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setAnswer(e.target.value)}
+            renderValue={answer !== '' ? undefined : () => 'Report'}
+          >
+            <GridToolbarExport />
+          </StyledSelectReport>
         </FormControl>
       </Box>
 
