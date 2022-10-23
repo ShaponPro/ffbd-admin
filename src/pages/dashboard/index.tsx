@@ -1,38 +1,74 @@
 // ** MUI Imports
+import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
-import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
+import Grid, { GridProps } from '@mui/material/Grid'
 
-const Home = () => {
+// ** Styled Component Import
+import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
+
+// ** Components
+import TabbarComponent from 'src/components/TabbarComponent'
+import ListComponent from 'src/components/ListComponent'
+import {FilterComponent} from 'src/components/FilterComponent';
+
+const tabs = [
+  {
+    key: "regular",
+    title: "Regular",
+  },
+  {
+    key: "monetization",
+    title: "Active Monetization",
+  },
+  {
+    key: "trending",
+    title: "Trending",
+  },
+  {
+    key: "customized",
+    title: "Customized",
+  },
+];
+
+const AnalyticsCongratulations = () => {
+
+   /**
+   * Handle on tab change
+   */
+  const tabChangeHandler = (key: string) =>{
+    console.log('key', key)
+  }
+
   return (
-    <Grid container spacing={6}>
-      <Grid item xs={12}>
-        <Card>
-          <CardHeader title='Kick start your project 🚀'></CardHeader>
-          <CardContent>
-            <Typography sx={{ mb: 2 }}>All the best for your new project.</Typography>
-            <Typography>
-              Please make sure to read our Template Documentation to understand where to go from here and how to use our
-              template.
-            </Typography>
-          </CardContent>
-        </Card>
+    <ApexChartWrapper>
+      <Grid container spacing={6}>
+        <Grid item xs={12} md={12}>
+          <Typography variant='h5' sx={{ mb: 4.5 }}>
+              <Box component='span' sx={{ fontWeight: 'bold' }}>
+                User Videos
+              </Box>
+          </Typography>
+        </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Card>
-          <CardHeader title='ACL and JWT 🔒'></CardHeader>
-          <CardContent>
-            <Typography sx={{ mb: 2 }}>
-              Access Control (ACL) and Authentication (JWT) are the two main security features of our template and are implemented in the starter-kit as well.
-            </Typography>
-            <Typography>Please read our Authentication and ACL Documentations to get more out of them.</Typography>
-          </CardContent>
-        </Card>
-      </Grid>
-    </Grid>
+    <Card sx={{ position: 'relative' }}>
+      <CardContent sx={{ p: theme => `${theme.spacing(6.75, 7.5)} !important` }}>
+        <Grid container spacing={6}>
+          <Grid item xs={12} sm={12}>
+            <TabbarComponent options={tabs} activekey={"trending"} onChange={tabChangeHandler}/>
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <FilterComponent  title ='select'/>
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <ListComponent/>
+          </Grid>
+        </Grid>
+      </CardContent>
+    </Card>
+    </ApexChartWrapper>
   )
 }
 
-export default Home
+export default AnalyticsCongratulations

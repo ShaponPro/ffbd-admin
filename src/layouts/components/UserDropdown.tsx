@@ -1,33 +1,34 @@
 // ** React Imports
-import { useState, SyntheticEvent, Fragment } from 'react'
-
-// ** Next Import
-import { useRouter } from 'next/router'
-
-// ** MUI Imports
-import Box from '@mui/material/Box'
-import Menu from '@mui/material/Menu'
-import Badge from '@mui/material/Badge'
-import Avatar from '@mui/material/Avatar'
-import Divider from '@mui/material/Divider'
-import MenuItem from '@mui/material/MenuItem'
-import { styled } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
+import {
+  Fragment,
+  SyntheticEvent,
+  useState
+} from 'react'
 
 // ** Icons Imports
+import AccountOutline from 'mdi-material-ui/AccountOutline'
 import CogOutline from 'mdi-material-ui/CogOutline'
 import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
 import EmailOutline from 'mdi-material-ui/EmailOutline'
-import LogoutVariant from 'mdi-material-ui/LogoutVariant'
-import AccountOutline from 'mdi-material-ui/AccountOutline'
-import MessageOutline from 'mdi-material-ui/MessageOutline'
 import HelpCircleOutline from 'mdi-material-ui/HelpCircleOutline'
-
+import LogoutVariant from 'mdi-material-ui/LogoutVariant'
+import MessageOutline from 'mdi-material-ui/MessageOutline'
+// ** Next Import
+import { useRouter } from 'next/router'
+// ** Type Imports
+import { Settings } from 'src/@core/context/settingsContext'
 // ** Context
 import { useAuth } from 'src/hooks/useAuth'
 
-// ** Type Imports
-import { Settings } from 'src/@core/context/settingsContext'
+// ** MUI Imports
+import Avatar from '@mui/material/Avatar'
+import Badge from '@mui/material/Badge'
+import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import { styled } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 
 interface Props {
   settings: Settings
@@ -129,11 +130,7 @@ const UserDropdown = (props: Props) => {
                 horizontal: 'right'
               }}
             >
-              <Avatar
-                alt='John Doe'
-                src='/images/avatars/1.png'
-                sx={{ width: '2.5rem', height: '2.5rem' }}
-              />
+              <Avatar alt='John Doe' src='/images/avatars/1.png' sx={{ width: '2.5rem', height: '2.5rem' }} />
             </Badge>
             <Box
               sx={{
@@ -144,10 +141,7 @@ const UserDropdown = (props: Props) => {
               }}
             >
               <Typography sx={{ fontWeight: 600 }}>John Doe</Typography>
-              <Typography
-                variant='body2'
-                sx={{ fontSize: '0.8rem', color: 'text.disabled' }}
-              >
+              <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
                 Admin
               </Typography>
             </Box>

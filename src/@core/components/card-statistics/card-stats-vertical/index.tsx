@@ -39,7 +39,7 @@ const CardStatsVertical = (props: CardStatsVerticalProps) => {
           {stats}
         </Typography>
         <Typography variant='body2' sx={{ mb: 5 }}>
-          {title}
+          {/* {title} */}
         </Typography>
         <CustomChip
           skin='light'
