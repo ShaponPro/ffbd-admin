@@ -56,11 +56,11 @@ const navigation = (): VerticalNavItemsType => {
         },
         {
           title: 'Upload a Video',
-          path: '/ui/cards/widgets'
+          path: '/videos/upload-videos'
         },
         {
           title: 'Download Code',
-          path: '/ui/cards/widgets'
+          path: '/uploadVideo'
         },
         {
           title: 'Content Restriction',
