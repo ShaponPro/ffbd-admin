@@ -1,15 +1,19 @@
-import React from 'react'
-
-// ** MUI Imports
-import { TextField, InputBase, Box, Container, InputAdornment, Typography } from '@mui/material'
-import Autocomplete from '@mui/material/Autocomplete'
-import Radio from '@mui/material/Radio'
-
 // ** Icons Imports
-import SearchIcon from '@mui/icons-material/Search'
-import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
-import { styled } from '@mui/material/styles'
+import SearchIcon from '@mui/icons-material/Search';
+// ** MUI Imports
+import {
+  Box,
+  Container,
+  InputAdornment,
+  InputBase,
+  TextField,
+  Typography,
+} from '@mui/material';
+import Autocomplete from '@mui/material/Autocomplete';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Radio from '@mui/material/Radio';
+import { styled } from '@mui/material/styles';
 
 //**style classes
 const gridStyle = {
@@ -100,7 +104,6 @@ export const FilterComponent = (props: props) => {
             <Item style={itemStyle}>
               <Autocomplete
                 multiple
-
                 id='radio-tags-demo'
                 options={fields}
                 disableCloseOnSelect

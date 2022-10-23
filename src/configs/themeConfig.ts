@@ -32,6 +32,7 @@ type ThemeConfig = {
   appBarBlur: boolean
   navSubItemIcon: any
   direction: Direction
+  templateTitle: string
   templateName: string
   navCollapsed: boolean
   routingLoader: boolean
@@ -53,7 +54,9 @@ type ThemeConfig = {
 
 const themeConfig: ThemeConfig = {
   // ** Layout Configs
-  templateName: 'Materialize' /* App Name */,
+  templateName: 'Fanfare Bangladesh' /* App Name */,
+  templateTitle: 'Admin',
+
   layout: 'vertical' /* vertical | horizontal */,
   mode: 'light' /* light | dark */,
   direction: 'ltr' /* ltr | rtl */,
