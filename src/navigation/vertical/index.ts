@@ -28,7 +28,7 @@ const navigation = (): VerticalNavItemsType => {
       title: 'videos',
       icon: VideocamIcon,
       path: '/videos',
-      action: 'read',
+
       children: [
         {
           title: 'Video Analytics',
@@ -36,7 +36,7 @@ const navigation = (): VerticalNavItemsType => {
         },
         {
           title: 'List Videos',
-          path: '/ui/cards/statistics'
+          path: '/videos'
         },
         {
           title: 'User Videos',
@@ -56,11 +56,11 @@ const navigation = (): VerticalNavItemsType => {
         },
         {
           title: 'Upload a Video',
-          path: '/ui/cards/widgets'
+          path: '/videos/upload-videos'
         },
         {
           title: 'Download Code',
-          path: '/ui/cards/widgets'
+          path: '/uploadVideo'
         },
         {
           title: 'Content Restriction',
