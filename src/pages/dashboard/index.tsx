@@ -47,7 +47,7 @@ const AnalyticsCongratulations = () => {
         <Grid item xs={12} md={12}>
           <Typography variant='h5' sx={{ mb: 4.5 }}>
               <Box component='span' sx={{ fontWeight: 'bold' }}>
-                User Videos
+                Dashboard
               </Box>
           </Typography>
         </Grid>
@@ -56,13 +56,12 @@ const AnalyticsCongratulations = () => {
       <CardContent sx={{ p: theme => `${theme.spacing(6.75, 7.5)} !important` }}>
         <Grid container spacing={6}>
           <Grid item xs={12} sm={12}>
-            <TabbarComponent options={tabs} activekey={"trending"} onChange={tabChangeHandler}/>
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <FilterComponent  title ='select'/>
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <ListComponent/>
+            <Typography variant='h5' sx={{ mb: 4.5 }}>
+                <Box component='span' sx={{ fontWeight: 'bold' }}>
+                  FanFare Bangladesh
+                </Box>
+            </Typography>
+            <Typography>FanFare's Dashboard</Typography>
           </Grid>
         </Grid>
       </CardContent>
