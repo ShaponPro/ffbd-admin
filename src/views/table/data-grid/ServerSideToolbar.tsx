@@ -8,12 +8,19 @@ import Typography from '@mui/material/Typography'
 import Select from '@mui/material/Select'
 import FormControl from '@mui/material/FormControl'
 
-import { GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid'
+import {
+  GridToolbarContainer,
+  GridCsvExportOptions,
+  useGridApiContext,
+  GridCsvGetRowsToExportParams, 
+  gridPaginatedVisibleSortedGridRowIdsSelector
+} from '@mui/x-data-grid'
 
 // ** Icons Imports
 
 //Import Search Component
 import SearchComponent from '../../../components/SearchComponent'
+import { Button } from '@mui/material'
 
 // ** Data
 
@@ -58,9 +65,15 @@ const StyledSelectReport = styled(Select)({
   }
 })
 
+const getRowsFromCurrentPage = ({ apiRef }: GridCsvGetRowsToExportParams) =>
+  gridPaginatedVisibleSortedGridRowIdsSelector(apiRef)
+
 const ServerSideToolbar = (props: Props) => {
   const [answer, setAnswer] = useState<string>('')
   const [value, setValue] = useState<string>('')
+  const apiRef = useGridApiContext()
+  const handleExport = (options: GridCsvExportOptions) => apiRef.current.exportDataAsCsv(options)
+
   console.log(value)
 
   return (
@@ -77,13 +90,13 @@ const ServerSideToolbar = (props: Props) => {
         <Typography>entries</Typography>
 
         <Box>
-        <SearchComponent
-          placeholder='search and filter'
-          value={value}
-          onChange={(value: string) => setValue(value)}
-          style={{ display: 'flex', margin: '10px' }}
-        />
-      </Box>
+          <SearchComponent
+            placeholder='search and filter'
+            value={value}
+            onChange={(value: string) => setValue(value)}
+            style={{ display: 'flex', margin: '10px' }}
+          />
+        </Box>
       </Box>
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -93,7 +106,7 @@ const ServerSideToolbar = (props: Props) => {
             onChange={(e: ChangeEvent<HTMLInputElement>) => setAnswer(e.target.value)}
             renderValue={answer !== '' ? undefined : () => 'Report'}
           >
-            <GridToolbarExport />
+            <Button variant="text" onClick={() => handleExport({ getRowsToExport: getRowsFromCurrentPage })} sx={{m:3}}>Export table (xls.)</Button>
           </StyledSelectReport>
         </FormControl>
       </Box>

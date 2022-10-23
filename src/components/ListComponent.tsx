@@ -286,6 +286,7 @@ const ListComponent = (props: Props) => {
    * @returns void
    */
 
+
   function loadServerRows(currentPage: number, data: DataGridRowType[]) {
     return data.slice(currentPage * pageSize, (currentPage + 1) * pageSize)
   }
@@ -344,11 +345,11 @@ const ListComponent = (props: Props) => {
           pageSize={pageSize}
           sortingMode='server'
           paginationMode='server'
-          rowsPerPageOptions={[5, 10, 20]}
+          rowsPerPageOptions={[7, 10, 25, 50]}
           
           //onSortModelChange={handleSortModel}
           onPageChange={newPage => setPage(newPage)}
-          components={{ Toolbar: ServerSideToolbar, Footer: MainGridFooter }}
+          components={{ Toolbar: ServerSideToolbar }}
           onPageSizeChange={newPageSize => setPageSize(newPageSize)}
           componentsProps={{
             toolbar: {
