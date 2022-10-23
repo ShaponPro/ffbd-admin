@@ -38,7 +38,6 @@ const typographyStyle = {
 
 const listStyle = {
   display: 'flex',
-  listStyle: "none",
   justifyContent: 'space-between',
   height: '36px',
   fontSize: '12px',
