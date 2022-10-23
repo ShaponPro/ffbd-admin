@@ -38,7 +38,6 @@ const typographyStyle = {
 
 const listStyle = {
   display: 'flex',
-  listStyle: "none",
   justifyContent: 'space-between',
   height: '36px',
   fontSize: '12px',
@@ -75,7 +74,7 @@ export const FilterComponent = (props: props) => {
               User Id/Name
             </Typography>
             <Item style={itemStyle}>
-              <InputBase placeholder='Search and Filter' style={{ fontSize: '12px' }} />
+              <InputBase placeholder='Search and Filter' style={{ fontSize: '10px' }} />
               <InputAdornment position='end'>
                 <SearchIcon />
               </InputAdornment>
@@ -89,7 +88,7 @@ export const FilterComponent = (props: props) => {
               Uploaded Country
             </Typography>
             <Item style={itemStyle}>
-              <InputBase placeholder='Search and Filter' style={{ fontSize: '12px' }} />
+              <InputBase placeholder='Search and Filter' style={{ fontSize: '10px' }} />
               <InputAdornment position='end'>
                 <SearchIcon />
               </InputAdornment>
