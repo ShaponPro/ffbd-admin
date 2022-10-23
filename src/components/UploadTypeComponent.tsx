@@ -7,6 +7,7 @@ import { styled } from '@mui/system'
 type props = {
   title: string[]
   placeholder: string
+  
   // default: object;
   //selected: object;
   // options: object[];

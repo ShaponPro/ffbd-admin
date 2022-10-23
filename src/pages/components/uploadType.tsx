@@ -10,6 +10,7 @@ const uploadType = () => {
   return (
       <div>
         <UploadTypeComponent
+
           placeholder='select item'
           // title={['On behalf of User', 'On behalf of Board', 'Tutorial', 'Youtube Crawler']}
           // style={{ display: 'flex' }}
