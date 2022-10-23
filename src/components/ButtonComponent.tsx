@@ -164,7 +164,7 @@ const ButtonComponent = (props: Props) => {
       }
     }
 
-    if(type === ''){
+    else{
       return{
         width: '100px',
         height: '36px',
@@ -187,7 +187,7 @@ const ButtonComponent = (props: Props) => {
         style = {styleButton(props.type || '', props.isActive)}
         onClick= {props.onClick}
       >
-        <Typography variant="overline" display="block" style={props.isActive ? {color: "#fff"} : {color: "#161F29"}}>
+        <Typography variant="overline" display="block" style={props.isActive ? {color: "#fff",  textTransform: 'capitalize'} : {color: "#161F29", textTransform: 'capitalize'}}>
           {props.title}
         </Typography>
       </Button>
