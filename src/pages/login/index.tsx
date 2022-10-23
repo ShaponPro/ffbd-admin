@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, ReactNode, MouseEvent } from 'react'
+import { useState, ReactNode } from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
@@ -9,7 +9,6 @@ import Button, { ButtonProps } from '@mui/material/Button'
 import Alert from '@mui/material/Alert'
 import MuiLink from '@mui/material/Link'
 import Checkbox from '@mui/material/Checkbox'
-import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
 import Box, { BoxProps } from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl'
@@ -18,7 +17,7 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import { styled, useTheme } from '@mui/material/styles'
 import FormHelperText from '@mui/material/FormHelperText'
 import InputAdornment from '@mui/material/InputAdornment'
-import Typography, { TypographyProps } from '@mui/material/Typography'
+import Typography from '@mui/material/Typography'
 import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
 
 // ** Icons Imports
@@ -50,13 +49,6 @@ const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
     maxWidth: 400
   }
 }))
-
-// const TypographyStyled = styled(Typography)<TypographyProps>(({ theme }) => ({
-//   fontWeight: 600,
-//   letterSpacing: '0.18px',
-//   marginBottom: theme.spacing(1.5),
-//   [theme.breakpoints.down('md')]: { marginTop: theme.spacing(8) }
-// }))
 
 const CustomButton = styled(Button)<ButtonProps>(({ theme }) => ({
   width: ' 270px',
@@ -105,8 +97,7 @@ const LoginPage = () => {
   const theme = useTheme()
   const bgClasses = useBgColor()
   const { settings } = useSettings()
-  const hidden = useMediaQuery(theme.breakpoints.down('md'))
-
+ 
   // ** Vars
   const { skin } = settings
 
@@ -251,14 +242,15 @@ const LoginPage = () => {
                 />
               </Box>
               
-              <CustomButton variant='contained'>Sign In</CustomButton>
+              <CustomButton variant='contained' type='submit' sx={{fontWeight:700}}>Sign In</CustomButton>
+
               <Box sx={{ textAlign: 'center'}}>
-                <Typography variant='subtitle1' sx={{ my: 4, color: 'rgba(255, 255, 255, 0.7) ' }}>
+                <Typography variant='subtitle1' sx={{ my: 4, color: 'rgba(255, 255, 255, 0.7) ',fontWeight:400 }}>
                   Have you not yet registered?
                 </Typography>
                 <Typography>
                   <Link passHref href='/register'>
-                    <Typography component={MuiLink} sx={{ color: '#0F60FF' }}>
+                    <Typography variant='subtitle1' component={MuiLink} sx={{ color: '#0F60FF',fontWeight:700 ,textDecoration:'underline'}}>
                       Register Now
                     </Typography>
                   </Link>
