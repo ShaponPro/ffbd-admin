@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button } from '@mui/material'
 import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
 
 type Props = {
   title: string
@@ -184,7 +183,7 @@ const ButtonComponent = (props: Props) => {
   return (
     <div>
       <Button
-        style = {styleButton(props.type || '', props.isActive)}
+        style = {styleButton(props.type || '', props.isActive || false)}
         onClick= {props.onClick}
       >
         <Typography variant="overline" display="block" style={props.isActive ? {color: "#fff",  textTransform: 'capitalize'} : {color: "#161F29", textTransform: 'capitalize'}}>
@@ -196,3 +195,11 @@ const ButtonComponent = (props: Props) => {
 }
 
 export default ButtonComponent;
+
+ButtonComponent.defaultProps = {
+  title: "",
+  type: "",
+  style: {},
+  onClick: () => null,
+  isActive: false
+}
