@@ -1,9 +1,10 @@
 // ** React Imports
-import {useState} from 'react'
+import { useState } from 'react';
+
+import ButtonComponent from 'src/components/ButtonComponent';
 
 // ** MUI Imports
-import styled from '@emotion/styled'
-import ButtonComponent from 'src/components/ButtonComponent'
+import styled from '@emotion/styled';
 
 const TabContainer = styled.div({
   display: 'flex',
