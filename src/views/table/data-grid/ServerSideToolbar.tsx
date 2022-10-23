@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Select from '@mui/material/Select'
 import FormControl from '@mui/material/FormControl'
+import Link from '@mui/material/Link';
 
 import {
   GridToolbarContainer,
@@ -106,7 +107,7 @@ const ServerSideToolbar = (props: Props) => {
             onChange={(e: ChangeEvent<HTMLInputElement>) => setAnswer(e.target.value)}
             renderValue={answer !== '' ? undefined : () => 'Report'}
           >
-            <Button variant="text" onClick={() => handleExport({ getRowsToExport: getRowsFromCurrentPage })} sx={{m:3}}>Export table (xls.)</Button>
+            <Link underline="none" onClick={() => handleExport({ getRowsToExport: getRowsFromCurrentPage })} sx={{m:2, color: 'black', fontSize:'12px'}}>Export table (xls.)</Link>
           </StyledSelectReport>
         </FormControl>
       </Box>

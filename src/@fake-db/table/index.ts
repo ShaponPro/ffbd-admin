@@ -23,7 +23,7 @@ const data: DataGridRowType[] = [
     uploadedIp: '103.103.34.34',
   },        
   {
-    id: 1,
+    id: 2,
     videoId: 123456,
     thumbnail: 'thambnail',
     videoTitle: 'this is title',
@@ -53,8 +53,8 @@ mock.onGet('/api/table/data').reply(config => {
   const filteredData = dataToFilter.filter(
     (item: DataGridRowType) =>
       item.id.toString().toLowerCase().includes(queryLowered) ||
-      item.thumbnail.toLowerCase().includes(queryLowered) 
-      
+      item.thumbnail.toLowerCase().includes(queryLowered) ||
+      item.videoTitle.toLowerCase().includes(queryLowered)
 
       //item.start_date.toLowerCase().includes(queryLowered)
   )

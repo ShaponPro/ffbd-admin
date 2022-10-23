@@ -3,9 +3,7 @@ import React, { ChangeEvent, useState, useCallback, useEffect } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
-import CardHeader from '@mui/material/CardHeader'
 import { DataGrid, GridColumns, GridRenderCellParams } from '@mui/x-data-grid'
 
 // ** ThirdParty Components
@@ -34,7 +32,13 @@ const StyledDataGrid = styled(DataGrid)(() => ({
   '& 	.MuiDataGrid-columnHeaders': {
     //border: '2px solid red',
     borderRadius: '0px',
-    background:'rgba(22, 31, 41, 0.07)'
+    background: 'rgba(22, 31, 41, 0.07)'
+  },
+
+  //Column Table rows
+  '& .MuiDataGrid-row': {
+    //border: '2px solid blue',
+    //height:'300px'
   },
 
   //Column Table container CSS
@@ -51,6 +55,11 @@ const StyledDataGrid = styled(DataGrid)(() => ({
   },
 
   //Column Header Title CSS
+  '& .MuiDataGrid-columnHeaderTitle': {
+    textTransform: 'none'
+  },
+
+  //Column Header CSS
   '& .MuiDataGrid-columnHeader': {
     //border: '2px solid red',
     borderRadius: '0px'
@@ -80,10 +89,6 @@ const StyledDataGrid = styled(DataGrid)(() => ({
   // }
 }))
 
-const ListComponentContainer = styled.div({
-  //border: '2px solid red'
-})
-
 type Props = {
   placeholder?: string
   value?: string
@@ -99,6 +104,7 @@ const columns: GridColumns = [
     minWidth: 100,
     field: 'videoId',
     headerName: 'Video ID',
+    filterable: true,
     sortable: false,
     renderCell: (params: GridRenderCellParams) => {
       const { row } = params
@@ -120,15 +126,14 @@ const columns: GridColumns = [
     field: 'thumbnail',
     headerName: 'Thumbnail',
     sortable: false,
+    filterable: true,
     renderCell: (params: GridRenderCellParams) => {
       const { row } = params
 
       return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography noWrap variant='body2' sx={{ color: 'text.primary', fontWeight: 600 }}>
-              {row.thumbnail}
-            </Typography>
+          
           </Box>
         </Box>
       )
@@ -286,7 +291,6 @@ const ListComponent = (props: Props) => {
    * @returns void
    */
 
-
   function loadServerRows(currentPage: number, data: DataGridRowType[]) {
     return data.slice(currentPage * pageSize, (currentPage + 1) * pageSize)
   }
@@ -331,36 +335,31 @@ const ListComponent = (props: Props) => {
   }, [fetchTableData, searchValue, sort, sortColumn])
 
   return (
-    <ListComponentContainer>
-      <Card>
-        <CardHeader title='List Component' />
-        <StyledDataGrid
-          autoHeight
-          pagination
-          rows={rows}
-          disableSelectionOnClick
-          disableColumnMenu
-          rowCount={total}
-          columns={columns}
-          pageSize={pageSize}
-          sortingMode='server'
-          paginationMode='server'
-          rowsPerPageOptions={[7, 10, 25, 50]}
-          
-          //onSortModelChange={handleSortModel}
-          onPageChange={newPage => setPage(newPage)}
-          components={{ Toolbar: ServerSideToolbar }}
-          onPageSizeChange={newPageSize => setPageSize(newPageSize)}
-          componentsProps={{
-            toolbar: {
-              value: searchValue,
-              clearSearch: () => handleSearch(''),
-              onChange: (event: ChangeEvent<HTMLInputElement>) => handleSearch(event.target.value)
-            }
-          }}
-        />
-      </Card>
-    </ListComponentContainer>
+    <StyledDataGrid
+      autoHeight
+      pagination
+      rows={rows}
+      disableSelectionOnClick
+      disableColumnMenu
+      rowCount={total}
+      columns={columns}
+      pageSize={pageSize}
+      sortingMode='server'
+      paginationMode='server'
+      rowsPerPageOptions={[7, 10, 25, 50]}
+
+      //onSortModelChange={handleSortModel}
+      onPageChange={newPage => setPage(newPage)}
+      components={{ Toolbar: ServerSideToolbar }}
+      onPageSizeChange={newPageSize => setPageSize(newPageSize)}
+      componentsProps={{
+        toolbar: {
+          value: searchValue,
+          clearSearch: () => handleSearch(''),
+          onChange: (event: ChangeEvent<HTMLInputElement>) => handleSearch(event.target.value)
+        }
+      }}
+    />
   )
 }
 export default ListComponent
