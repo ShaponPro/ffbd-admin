@@ -18,11 +18,13 @@ const gridStyle = {
 
 const itemStyle = {
   borderRadius: '0',
-  padding: '10px',
+  padding: '5px',
   display: 'flex',
   alignItems: 'center',
   gap: '10px',
-  boxShadow: ' inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)'
+  boxShadow: ' inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)', 
+  
+  border: "2px solid red", 
 }
 
 const typographyStyle = { 
@@ -36,7 +38,9 @@ const listStyle = {
   justifyContent: 'space-between',
   height: '36px',
   fontSize: '12px',
-  color: 'black'
+  color: 'black',
+  border:"2px solid green", 
+
 }
 
 //**props
@@ -48,6 +52,7 @@ type props = {
   // onChange: (fields: object[]) => void;
   // style: React.CSSProperties;
 }
+
 
 const fields = [{ title: 'Like' }, { title: 'Comment' }, { title: 'Share' }, { title: 'Download' }]
 
@@ -105,7 +110,7 @@ export const FilterComponent = (props: props) => {
                 disableCloseOnSelect
                 getOptionLabel={option => option.title}
                 renderOption={(props, option, { selected }) => (
-                  <li {...props} style={listStyle}>
+                  <li>
                     {option.title}
                     <Radio style={{ color: '#57CE66' }} checked={selected} />
                   </li>
