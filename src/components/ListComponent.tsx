@@ -6,17 +6,7 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
-import {
-  DataGrid,
-  GridColumns,
-  GridRenderCellParams,
-  GridSortModel,
-  gridPageCountSelector,
-  gridPageSelector,
-  useGridApiContext,
-  useGridSelector, 
-} from '@mui/x-data-grid'
-import Pagination from '@mui/material/Pagination'
+import { DataGrid, GridColumns, GridRenderCellParams } from '@mui/x-data-grid'
 
 // ** ThirdParty Components
 import axios from 'axios'
@@ -31,46 +21,56 @@ import { DataGridRowType } from 'src/@fake-db/types'
 // ** Icons Imports
 
 import styled from '@emotion/styled'
+import MainGridFooter from 'src/views/table/data-grid/MainGridFooter'
 
 const StyledDataGrid = styled(DataGrid)(() => ({
-  //background: '#F3F3F4',
+  background: '#F3F3F4',
   margin: '20px',
-  border: '2px solid black',
+
+  //border: '2px solid black',
   borderRadius: '0px',
 
-  //Column Table container CSS
-  '& 	.MuiDataGrid-rowReorderCell': {
-    border: '2px solid red'
+  //Column Table columnHeaders CSS
+  '& 	.MuiDataGrid-columnHeaders': {
+    //border: '2px solid red',
+    borderRadius: '0px',
+    background:'rgba(22, 31, 41, 0.07)'
   },
 
   //Column Table container CSS
   '& .MuiDataGrid-main': {
-    border: '2px solid black',
-    margin: '20px'
+    //border: '2px solid blue',
+    margin: '20px',
+    borderRadius: '0px'
   },
 
   //Column Footer Title CSS
   '& .MuiDataGrid-footerContainer': {
-    border: '2px solid yellow'
+    //border: '2px solid yellow',
+    borderRadius: '0px'
   },
 
   //Column Header Title CSS
   '& .MuiDataGrid-columnHeader': {
-    border: '2px solid red'
+    //border: '2px solid red',
+    borderRadius: '0px'
   },
 
   '& .MuiDataGrid-columnSeparator': {
-    visibility: 'hidden'
+    visibility: 'hidden',
+    borderRadius: '0px'
   },
 
   '& .MuiDataGrid-virtualScrollerRenderZone': {
     '& .MuiDataGrid-row': {
-      '&:nth-child(2n)': { backgroundColor: 'rgba(235, 235, 235, .7)' }
-    }
+      '&:nth-child(2n)': { backgroundColor: 'rgba(235, 235, 235, .7)' },
+      borderRadius: '0px'
+    },
+    borderRadius: '0px'
   },
 
   '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
-    border: '1px solid green',
+    border: '1px solid white',
     borderRadius: '0px'
   }
 
@@ -81,7 +81,7 @@ const StyledDataGrid = styled(DataGrid)(() => ({
 }))
 
 const ListComponentContainer = styled.div({
-  border: '2px solid red'
+  //border: '2px solid red'
 })
 
 type Props = {
@@ -268,22 +268,6 @@ const columns: GridColumns = [
   }
 ]
 
-function CustomPagination() {
-  const apiRef = useGridApiContext()
-  const page = useGridSelector(apiRef, gridPageSelector)
-  const pageCount = useGridSelector(apiRef, gridPageCountSelector)
-
-  return (
-    <Pagination
-      variant='text'
-      shape='rounded'
-      count={pageCount}
-      page={page + 1}
-      onChange={(event, value) => apiRef.current.setPage(value - 1)}
-    />
-  )
-}
-
 const ListComponent = (props: Props) => {
   // ** State
   const [page, setPage] = useState(0)
@@ -302,20 +286,21 @@ const ListComponent = (props: Props) => {
    * @returns void
    */
 
+
   function loadServerRows(currentPage: number, data: DataGridRowType[]) {
     return data.slice(currentPage * pageSize, (currentPage + 1) * pageSize)
   }
 
-  const handleSortModel = (newModel: GridSortModel) => {
-    if (newModel.length) {
-      setSort(newModel[0].sort)
-      setSortColumn(newModel[0].field)
-      fetchTableData(newModel[0].sort, searchValue, newModel[0].field)
-    } else {
-      setSort('asc')
-      setSortColumn('full_name')
-    }
-  }
+  // const handleSortModel = (newModel: GridSortModel) => {
+  //   if (newModel.length) {
+  //     setSort(newModel[0].sort)
+  //     setSortColumn(newModel[0].field)
+  //     fetchTableData(newModel[0].sort, searchValue, newModel[0].field)
+  //   } else {
+  //     setSort('asc')
+  //     setSortColumn('full_name')
+  //   }
+  // }
 
   const handleSearch = (value: string) => {
     setSearchValue(value)
@@ -360,11 +345,11 @@ const ListComponent = (props: Props) => {
           pageSize={pageSize}
           sortingMode='server'
           paginationMode='server'
-
+          rowsPerPageOptions={[7, 10, 25, 50]}
+          
           //onSortModelChange={handleSortModel}
-          rowsPerPageOptions={[5]}
           onPageChange={newPage => setPage(newPage)}
-          components={{ Toolbar: ServerSideToolbar, Pagination: CustomPagination }}
+          components={{ Toolbar: ServerSideToolbar }}
           onPageSizeChange={newPageSize => setPageSize(newPageSize)}
           componentsProps={{
             toolbar: {
