@@ -32,7 +32,7 @@ const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>({
   },
   '& .MuiListItem-gutters': {
     paddingLeft: 4,
-    paddingRight: 4,
+    paddingRight: 2,
     paddingTop: 8
   },
   '& .MuiDrawer-paper': {

@@ -3,13 +3,17 @@ import { useState } from 'react'
 
 // ** Icons Imports
 import ArrowUp from 'mdi-material-ui/ArrowUp'
+
 // ** Components
 import Customizer from 'src/@core/components/customizer'
 import ScrollToTop from 'src/@core/components/scroll-to-top'
+
 // ** Type Import
 import { LayoutProps } from 'src/@core/layouts/types'
+
 // ** Styled Component
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
+
 // ** Theme Config Import
 import themeConfig from 'src/configs/themeConfig'
 
