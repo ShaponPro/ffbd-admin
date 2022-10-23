@@ -157,7 +157,7 @@ const LoginPage = () => {
             >
               <img width={210} height={62} src='https://i.ibb.co/QvVTdGf/ff-logo.png' alt='' />
             </Box>
-            <Box sx={{ mb: 6, textAlign: 'center' }}>
+            <Box sx={{ mb: 6, textAlign: 'center', marginBottom:'70px' }}>
               <Typography variant='h4' sx={{ color: '#FFFFFF', fontWeight: 700 }}>
                 Brand Dashboard
               </Typography>
