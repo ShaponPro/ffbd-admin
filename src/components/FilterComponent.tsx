@@ -1,4 +1,3 @@
-import React from 'react'
 
 // ** MUI Imports
 import { TextField, InputBase, Box, Container, InputAdornment, Typography } from '@mui/material'
@@ -44,6 +43,7 @@ const listStyle = {
 
 type props = {
   title: string
+  
   // fields: object[];
   // onChange: (fields: object[]) => void;
   // style: React.CSSProperties;

@@ -1,10 +1,8 @@
-// ** MUI Imports
-
 import { useState } from 'react'
 
 import SearchComponent from 'src/components/SearchComponent'
 
-const Home = () => {
+const Search = () => {
   const [value, setValue] = useState<string>('')
 
   return (
@@ -13,10 +11,11 @@ const Home = () => {
         placeholder='search and filter'
         value={value}
         onChange={(value: string) => setValue(value)}
-        style={{ display: 'flex' }}
+        style={{ display: 'flex',
+         }}
       />
     </div>
   )
 }
 
-export default Home
+export default Search
