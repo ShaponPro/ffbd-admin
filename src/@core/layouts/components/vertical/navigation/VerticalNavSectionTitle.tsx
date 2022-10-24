@@ -1,16 +1,18 @@
+// ** Types
+import { Settings } from 'src/@core/context/settingsContext'
+import { NavSectionTitle } from 'src/@core/layouts/types'
+// ** Custom Components Imports
+import CanViewNavSectionTitle from 'src/layouts/components/acl/CanViewNavSectionTitle'
+import Translations from 'src/layouts/components/Translations'
+
 // ** MUI Imports
 import Divider from '@mui/material/Divider'
-import Typography from '@mui/material/Typography'
-import { styled, useTheme } from '@mui/material/styles'
 import MuiListSubheader, { ListSubheaderProps } from '@mui/material/ListSubheader'
-
-// ** Types
-import { NavSectionTitle } from 'src/@core/layouts/types'
-import { Settings } from 'src/@core/context/settingsContext'
-
-// ** Custom Components Imports
-import Translations from 'src/layouts/components/Translations'
-import CanViewNavSectionTitle from 'src/layouts/components/acl/CanViewNavSectionTitle'
+import {
+  styled,
+  useTheme
+} from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 
 interface Props {
   navHover: boolean

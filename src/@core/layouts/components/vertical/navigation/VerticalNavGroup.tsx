@@ -1,5 +1,8 @@
 // ** React Imports
-import { Fragment, useEffect } from 'react'
+import {
+  Fragment,
+  useEffect
+} from 'react'
 
 // ** Third Party Imports
 import clsx from 'clsx'
@@ -12,7 +15,10 @@ import { Settings } from 'src/@core/context/settingsContext'
 // ** Types
 import { NavGroup } from 'src/@core/layouts/types'
 // ** Utils
-import { hasActiveChild, removeChildren } from 'src/@core/layouts/utils'
+import {
+  hasActiveChild,
+  removeChildren
+} from 'src/@core/layouts/utils'
 // ** Configs Import
 import themeConfig from 'src/configs/themeConfig'
 import CanViewNavGroup from 'src/layouts/components/acl/CanViewNavGroup'
@@ -26,7 +32,10 @@ import Collapse from '@mui/material/Collapse'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import { styled, useTheme } from '@mui/material/styles'
+import {
+  styled,
+  useTheme
+} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
 // ** Custom Components Imports
@@ -333,7 +342,7 @@ const VerticalNavGroup = (props: Props) => {
             </MenuItemTextWrapper>
           </ListItemButton>
           <Collapse
-            component='ul'
+            component='li'
             onClick={e => e.stopPropagation()}
             in={groupActive.includes(item.title)}
             sx={{
@@ -346,9 +355,9 @@ const VerticalNavGroup = (props: Props) => {
             <VerticalNavItems
               {...props}
               parent={item}
+              navHover={navHover}
               navVisible={navVisible}
               verticalNavItems={item.children}
-              isSubToSub={parent && item.children ? item : undefined}
             />
           </Collapse>
         </ListItem>
