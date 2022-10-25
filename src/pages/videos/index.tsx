@@ -37,6 +37,10 @@ const AnalyticsCongratulations = () => {
    /**
    * Handle on tab change
    */
+  const filterChangeHandler = (key: string) =>{
+    console.log('key', key)
+  }
+
   const tabChangeHandler = (key: string) =>{
     console.log('key', key)
   }
@@ -59,7 +63,7 @@ const AnalyticsCongratulations = () => {
             <TabbarComponent options={tabs} activekey={"trending"} onChange={tabChangeHandler}/>
           </Grid>
           <Grid item xs={12} sm={12}>
-            <FilterComponent  title ='select'/>
+            <FilterComponent  title ='select' onChange = {filterChangeHandler}/>
           </Grid>
           <Grid item xs={12} sm={12}>
             <ListComponent/>
