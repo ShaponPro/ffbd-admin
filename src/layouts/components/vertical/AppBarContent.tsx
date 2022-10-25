@@ -18,7 +18,7 @@ interface Props {
 
 const AppBarContent = (props: Props) => {
   // ** Props
-  const { settings} = props
+  const { settings } = props
 
   return (
     <Box
@@ -36,7 +36,7 @@ const AppBarContent = (props: Props) => {
         paddingLeft: '15px'
       }}
     >
-      <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
+      <Box className='actions-left'>
         <img style={{ width: '100px', height: '29.41px' }} src='https://i.ibb.co/31K6v89/ff-logo.png' alt='' />
       </Box>
       <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
