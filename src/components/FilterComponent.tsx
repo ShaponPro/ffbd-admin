@@ -48,6 +48,7 @@ const listStyle = {
 
 type props = {
   title: string
+  
   // fields: object[];
   // onChange: (fields: object[]) => void;
   // style: React.CSSProperties;

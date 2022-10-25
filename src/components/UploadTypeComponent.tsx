@@ -5,13 +5,14 @@ import { styled } from '@mui/system'
 
 //**props define
 type props = {
-  title: string[]
-  placeholder: string
+  title?: string[]
+  placeholder?: string
+  // eslint-disable-next-line lines-around-comment
   // default: object;
   //selected: object;
   // options: object[];
   //onChange: (fields: object[]) => void;
-  //style?: React.CSSProperties
+  style?: React.CSSProperties
 }
 
 //**styles
@@ -62,7 +63,7 @@ interface UploadType {
 //**Video type
 const videoTypes = (): UploadType[] => [
   { title: 'On behalf of User' },
-  { title: 'On behalf of Board' },
+  { title: 'On behalf of Brand' },
   { title: 'Tutorial' },
   { title: 'Youtube Crawler' }
 ]
@@ -95,7 +96,7 @@ export default function UploadTypeComponent(props: props) {
         <Input {...getInputProps()} placeholder={props.placeholder} />
       </div>
       {groupedOptions.length > 0 ? (
-        <Listbox {...getListboxProps()}>
+        <Listbox {...getListboxProps()} >
           {(groupedOptions as UploadType[]).map((option, index) => (
             <li key={index} style={{padding:'5px'}} {...getOptionProps({ option, index })}>{option.title}</li>
           ))}

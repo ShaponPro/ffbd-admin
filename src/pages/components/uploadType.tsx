@@ -11,6 +11,7 @@ const uploadType = () => {
       <div>
         <UploadTypeComponent
           placeholder='select item'
+          // eslint-disable-next-line lines-around-comment
           // title={['On behalf of User', 'On behalf of Board', 'Tutorial', 'Youtube Crawler']}
           // style={{ display: 'flex' }}
         />
