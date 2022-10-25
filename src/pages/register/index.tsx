@@ -59,6 +59,12 @@ const BoxContainer = styled(Box)<BoxProps>(({ theme }) => ({
   margin: '30px',
   gap: '20px',
   width: '1840px',
+  [theme.breakpoints.up('md')]: {
+    minWidth: 400
+  },
+  [theme.breakpoints.up('lg')]: {
+    minWidth: 450
+  },
   height: '1107px',
   background: ' #ffffff',
   boxShadow: '2px 5px 20px rgba(22, 31, 41, 0.1)',
@@ -194,7 +200,7 @@ const Register = () => {
 
           <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
             <BoxWrapper sx={{}}>
-              <Grid item xs={3}>
+              <Grid item xs={6} md={8}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   *Brand Name
                 </Typography>
@@ -203,7 +209,7 @@ const Register = () => {
                 </Item>
               </Grid>
 
-              <Grid item xs={3} sx={{ marginTop: '10px' }}>
+              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Parent Brand Name
                 </Typography>
@@ -212,7 +218,7 @@ const Register = () => {
                 </Item>
               </Grid>
 
-              <Grid item xs={3} sx={{ marginTop: '10px' }}>
+              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Company Name
                 </Typography>
@@ -221,7 +227,7 @@ const Register = () => {
                 </Item>
               </Grid>
 
-              <Grid item xs={3} sx={{ marginTop: '10px' }}>
+              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Company Address
                 </Typography>
@@ -230,7 +236,7 @@ const Register = () => {
                 </Item>
               </Grid>
 
-              <Grid item xs={3} sx={{ marginTop: '10px' }}>
+              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Description
                 </Typography>
@@ -240,8 +246,8 @@ const Register = () => {
               </Grid>
             </BoxWrapper>
 
-            <BoxWrapper sx={{ background: ' #f3f3f4', padding: '20px', borderRadius: '5px', marginTop: '25px' }}>
-              <Grid item xs={3}>
+            <BoxWrapper>
+              <Grid item xs={6} md={8}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Business Name
                 </Typography>
@@ -250,12 +256,12 @@ const Register = () => {
                 </Item>
               </Grid>
 
-              <Grid item xs={3} sx={{ marginTop: '10px' }}>
+              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Upload TIN
                 </Typography>
                 <Item>
-                <Button variant="outlined"  size="small" color="secondary">
+                <Button variant="outlined" component="label" size="small" color="secondary">
                     Choose File
                     <input type='file' hidden />
                   </Button>
@@ -270,12 +276,12 @@ const Register = () => {
                 </Typography>
               </Grid>
 
-              <Grid item xs={3} sx={{ marginTop: '10px' }}>
+              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Upload BIN
                 </Typography>
                 <Item>
-                <Button variant="outlined"  size="small" color="secondary">
+                <Button variant="outlined" component="label" size="small" color="secondary">
                     Choose File
                     <input type='file' hidden />
                   </Button>
@@ -290,12 +296,12 @@ const Register = () => {
                 </Typography>
               </Grid>
 
-              <Grid item xs={3} sx={{ marginTop: '10px' }}>
+              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Upload NID
                 </Typography>
                 <Item>
-                  <Button variant="outlined"  size="small" color="secondary">
+                  <Button variant="outlined" component="label" size="small" color="secondary">
                     Choose File
                     <input type='file' hidden />
                   </Button>
