@@ -2,7 +2,6 @@
 
 // ** Type Import
 import { Settings } from 'src/@core/context/settingsContext'
-
 // ** Components
 import UserDropdown from 'src/@core/layouts/components/shared-components/UserDropdown'
 

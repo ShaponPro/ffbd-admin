@@ -1,28 +1,11 @@
-// import {
-//   NavGroup,
-//   NavLink,
-//   VerticalNavItemsType
-// } from 'src/@core/layouts/types'
+import { useState } from 'react'
 
-// import { Box } from '@mui/material'
-
-import * as React from 'react'
-
-// import VerticalNavItems from '../@core/layouts/components/vertical/navigation/VerticalNavItems'
 import Box from '@mui/material/Box'
-// interface Props {
-//   verticalNavItems?: VerticalNavItemsType
-//   navVisible?: boolean
-//   parent?: NavGroup
-//   item: NavGroup
-//   children?: (NavGroup | NavLink)[]
-// }
 import Step from '@mui/material/Step'
-import StepContent from '@mui/material/StepContent'
 import StepLabel from '@mui/material/StepLabel'
 import Stepper from '@mui/material/Stepper'
-import Typography from '@mui/material/Typography'
 
+// steps label
 const steps = [
   {
     label: 'User Video'
@@ -39,143 +22,100 @@ const steps = [
 ]
 
 const SideBarContentComponents = () => {
-  //   const { item, children, navVisible } = props
+  const [isHover, setIsHover] = useState<boolean>(false)
 
-  const [activeStep, setActiveStep] = React.useState(0)
+  // hover effect
 
-  const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1)
+  const handleMouseEnter = () => {
+    setIsHover(true)
   }
-
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1)
-  }
-
-  const handleReset = () => {
-    setActiveStep(0)
+  const handleMouseLeave = () => {
+    setIsHover(false)
   }
 
   return (
     <Box
       style={{
-        height: '100%',
+        height: '1030px',
         width: '185px',
         background: '#FFFFFF',
-        boxShadow: '0px 5px 10px rgba(22, 31, 41, 0.1)'
+        boxShadow: '0px 5px 10px rgba(22, 31, 41, 0.1)',
+        paddingRight: '1px'
       }}
     >
       {/* <VerticalNavItems {...props} navVisible={navVisible} verticalNavItems={item} /> */}
       <ul
         style={{
+          paddingTop: '25px',
           fontWeight: 700,
-          fontSize: '16px',
-          paddingBottom: '32px'
+          fontSize: '16px'
         }}
       >
         Videos
         <li
           style={{
-            paddingTop: '32px',
-            fontWeight: 400,
-            paddingBottom: '20px',
-            lineHeight: ' 100%',
+            backgroundColor: isHover ? '#F3F3F4' : '#FFFFFF',
 
-            color: '#161F29'
+            cursor: 'pointer',
+            paddingTop: '20px',
+            fontWeight: 400,
+            paddingBottom: '10px',
+            paddingLeft: '5px'
           }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           Video Analytics
         </li>
         <li
           style={{
-            paddingTop: '32px',
             fontWeight: 400,
-            paddingBottom: '22px',
-            lineHeight: ' 100%',
+            paddingBottom: '10px',
 
+            paddingTop: '15px',
             color: '#161F29'
           }}
         >
           List Video
         </li>
-        <Box sx={{ maxWidth: 400 }}>
+        <Box>
           <Stepper orientation='vertical'>
             {steps.map((step, index) => (
-              <Step key={step.label}>
-                <StepLabel optional={index === 2 ? <Typography variant='caption'></Typography> : null}>
-                  {step.label}
-                </StepLabel>
-                <StepContent>
-                  {/* <Box sx={{ mb: 2 }}>
-                    <div>
-                      <Button variant='contained' onClick={handleNext} sx={{ mt: 1, mr: 1 }}>
-                        {index === steps.length - 1 ? 'Finish' : 'Continue'}
-                      </Button>
-                      <Button disabled={index === 0} onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
-                        Back
-                      </Button>
-                    </div>
-                  </Box> */}
-                </StepContent>
+              <Step
+                key={step.label}
+                sx={{
+                  '& .MuiStepLabel-root .Mui-completed': {
+                    color: '#161F29'
+
+                    // circle color (COMPLETED)
+                  },
+                  '& .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel': {
+                    color: '#161F29',
+                    fontSize: '1px !important'
+
+                    // Just text label (COMPLETED)
+                  },
+                  '& .MuiStepLabel-root .Mui-active': {
+                    color: '#161F29' // circle color (ACTIVE)
+                  },
+                  '& .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel': {
+                    color: 'rgba(22, 31, 41, 0.5) !important' // Just text label (ACTIVE)
+                  },
+                  '& .MuiStepLabel-root .Mui-active .MuiStepIcon-text': {
+                    fill: '' // circle's number (ACTIVE)
+                  }
+                }}
+              >
+                <StepLabel style={{ color: '#161F29', height: '15px' }}>{step.label}</StepLabel>
               </Step>
             ))}
           </Stepper>
         </Box>
-        {/* <li
-          style={{
-            paddingTop: '32px',
-            fontWeight: 400,
-            paddingBottom: '24px',
-            lineHeight: ' 100%',
-
-            color: '#161F29'
-          }}
-        >
-          User Video
-        </li>
         <li
           style={{
-            paddingTop: '32px',
             fontWeight: 400,
-            paddingBottom: '24px',
-            lineHeight: ' 100%',
-
-            color: '#161F29'
-          }}
-        >
-          {' '}
-          Brand Videos
-        </li>
-        <li
-          style={{
-            paddingTop: '32px',
-            fontWeight: 400,
-            paddingBottom: '24px',
-            lineHeight: ' 100%',
-
-            color: '#161F29'
-          }}
-        >
-          Tutorial
-        </li>
-        <li
-          style={{
-            paddingTop: '32px',
-            fontWeight: 400,
-            paddingBottom: '24px',
-            lineHeight: ' 100%',
-
-            color: '#161F29'
-          }}
-        >
-          Youtube Crawler
-        </li> */}
-        <li
-          style={{
-            paddingTop: '32px',
-            fontWeight: 400,
-            paddingBottom: '20px',
-            lineHeight: ' 100%',
-
+            paddingBottom: '18px',
+            paddingTop: '19px',
             color: '#161F29'
           }}
         >
@@ -183,10 +123,8 @@ const SideBarContentComponents = () => {
         </li>
         <li
           style={{
-            paddingTop: '32px',
             fontWeight: 400,
-            paddingBottom: '24px',
-            lineHeight: ' 100%',
+            paddingBottom: '16px',
 
             color: '#161F29'
           }}
@@ -195,10 +133,8 @@ const SideBarContentComponents = () => {
         </li>
         <li
           style={{
-            paddingTop: '32px',
             fontWeight: 400,
-            paddingBottom: '24px',
-            lineHeight: ' 100%',
+            paddingBottom: '16px',
 
             color: '#161F29'
           }}
