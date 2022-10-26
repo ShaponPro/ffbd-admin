@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography'
 import Card, { CardProps } from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
-import Grid from '@mui/material/Grid'
+import Grid, { GridProps } from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import BrandLogo from 'public/images/logo/brandlogo.png'
 import CoverImage from 'public/images/logo/coverImage.png'
@@ -52,31 +52,43 @@ interface FormData {
 
 // ** Styled Components
 
-const BoxContainer = styled(Box)<BoxProps>(({ theme }) => ({
+const BoxContainer = styled(Grid)<GridProps>(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   padding: '20px',
-  margin: '30px',
+  margin: '20px',
   gap: '20px',
-  width: '1840px',
+  width: '98%',
   [theme.breakpoints.up('md')]: {
-    minWidth: 400
+    minWidth: '40%'
   },
-  [theme.breakpoints.up('lg')]: {
-    minWidth: 450
+  [theme.breakpoints.up('sm')]: {
+    minWidth: '20%'
   },
-  height: '1107px',
+  height: '100%',
   background: ' #ffffff',
   boxShadow: '2px 5px 20px rgba(22, 31, 41, 0.1)',
   borderRadius: '10px'
 }))
 
-const RightWrapper = styled(Box)<BoxProps>(({ theme }) => ({
-  width: '50%'
+const RightWrapper = styled(Grid)<GridProps>(({ theme }) => ({
+  width: '50%',
+  [theme.breakpoints.up('md')]: {
+    minWidth: '25%'
+  },
+  [theme.breakpoints.up('sm')]: {
+    minWidth: '25%'
+  },
 }))
 
-const LeftWrapper = styled(Box)<BoxProps>(({ theme }) => ({
-  width: '50%'
+const LeftWrapper = styled(Grid)<GridProps>(({ theme }) => ({
+  width: '50%',
+  [theme.breakpoints.up('md')]: {
+    minWidth: '25%'
+  },
+  [theme.breakpoints.up('sm')]: {
+    minWidth: '25%'
+  },
 }))
 
 const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
@@ -92,7 +104,7 @@ const CardWrapper = styled(Card)<CardProps>(({ theme }) => ({
   flexDirection: 'row',
   alignItems: 'center',
   padding: '20px',
-  width: '890px',
+  width: '100%',
   height: '190px',
   background: '#f3f3f4',
   borderRadius: '5px'
@@ -103,14 +115,14 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,
   borderRadius: '0',
-  width: '850px',
+  width: '100%',
   height: '39px',
   padding: '5px',
   boxShadow: ' inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)'
 }))
 
 const SubmitButton = styled(Button)<ButtonProps>(({ theme }) => ({
-  width: '125px',
+  width: '100%',
   height: '42px',
   background: '#57ce66',
   borderRadius: '3px',
@@ -119,7 +131,7 @@ const SubmitButton = styled(Button)<ButtonProps>(({ theme }) => ({
 }))
 
 const CancleButton = styled(Button)<ButtonProps>(({ theme }) => ({
-  width: '125px',
+  width: '100%',
   height: '42px',
   background: '#F3F3F4',
   borderRadius: '3px',
@@ -134,7 +146,6 @@ const Register = () => {
   const theme = useTheme()
   const { register } = useAuth()
   const { settings } = useSettings()
-  const hidden = useMediaQuery(theme.breakpoints.down('md'))
 
   // ** Vars
   const { skin } = settings
@@ -149,7 +160,6 @@ const Register = () => {
     control,
     setError,
     handleSubmit,
-    formState: { errors }
   } = useForm({
     defaultValues,
     mode: 'onBlur',
@@ -177,6 +187,7 @@ const Register = () => {
   return (
     <>
       <NabBarComponent />
+
       <BoxContainer>
         {/***** Left side Container */}
         <LeftWrapper>
@@ -199,8 +210,8 @@ const Register = () => {
           {/*****Card 1 End*/}
 
           <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
-            <BoxWrapper sx={{}}>
-              <Grid item xs={6} md={8}>
+            <BoxWrapper>
+              <Grid item xs={12} md={6}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   *Brand Name
                 </Typography>
@@ -209,7 +220,7 @@ const Register = () => {
                 </Item>
               </Grid>
 
-              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
+              <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Parent Brand Name
                 </Typography>
@@ -218,7 +229,7 @@ const Register = () => {
                 </Item>
               </Grid>
 
-              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
+              <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Company Name
                 </Typography>
@@ -227,7 +238,7 @@ const Register = () => {
                 </Item>
               </Grid>
 
-              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
+              <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Company Address
                 </Typography>
@@ -236,7 +247,7 @@ const Register = () => {
                 </Item>
               </Grid>
 
-              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
+              <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Description
                 </Typography>
@@ -247,7 +258,7 @@ const Register = () => {
             </BoxWrapper>
 
             <BoxWrapper>
-              <Grid item xs={6} md={8}>
+              <Grid item xs={12} md={6}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Business Name
                 </Typography>
@@ -256,7 +267,7 @@ const Register = () => {
                 </Item>
               </Grid>
 
-              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
+              <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Upload TIN
                 </Typography>
@@ -276,7 +287,7 @@ const Register = () => {
                 </Typography>
               </Grid>
 
-              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
+              <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Upload BIN
                 </Typography>
@@ -296,7 +307,7 @@ const Register = () => {
                 </Typography>
               </Grid>
 
-              <Grid item xs={6} md={8} sx={{ marginTop: '10px' }}>
+              <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
                 <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                   Upload NID
                 </Typography>
@@ -340,8 +351,8 @@ const Register = () => {
           </CardWrapper>
           {/*****Card 2  End*/}
 
-          <BoxWrapper sx={{}}>
-            <Grid item xs={3}>
+          <BoxWrapper>
+            <Grid item xs={12} md={6}>
               <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                 Website
               </Typography>
@@ -350,7 +361,7 @@ const Register = () => {
               </Item>
             </Grid>
 
-            <Grid item xs={3} sx={{ marginTop: '10px' }}>
+            <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
               <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                 Social Media URL
               </Typography>
@@ -366,7 +377,7 @@ const Register = () => {
                 </Typography>
             </Grid>
 
-            <Grid item xs={3} sx={{ marginTop: '10px' }}>
+            <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
               <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                 Category
               </Typography>
@@ -375,7 +386,7 @@ const Register = () => {
               </Item>
             </Grid>
 
-            <Grid item xs={3} sx={{ marginTop: '10px' }}>
+            <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
               <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                 Preferred Hashtag
               </Typography>
@@ -384,7 +395,7 @@ const Register = () => {
               </Item>
             </Grid>
 
-            <Grid item xs={3} sx={{ marginTop: '10px' }}>
+            <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
               <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                 Preferred Brand Tag
               </Typography>
@@ -393,7 +404,7 @@ const Register = () => {
               </Item>
             </Grid>
 
-            <Grid item xs={3} sx={{ marginTop: '10px' }}>
+            <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
               <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                 Contact Name
               </Typography>
@@ -402,7 +413,7 @@ const Register = () => {
               </Item>
             </Grid>
 
-            <Grid item xs={3} sx={{ marginTop: '10px' }}>
+            <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
               <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                 Contact Number
               </Typography>
@@ -411,7 +422,7 @@ const Register = () => {
               </Item>
             </Grid>
 
-            <Grid item xs={3} sx={{ marginTop: '10px' }}>
+            <Grid item xs={12} md={6} sx={{ marginTop: '10px' }}>
               <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
                 Email*
               </Typography>
@@ -428,6 +439,7 @@ const Register = () => {
               alignItems: 'end',
               height: '180px',
               width: '100%',
+              minWidth:'40%',
               paddingLeft: '630px'
             }}
           >
@@ -444,6 +456,7 @@ const Register = () => {
         </RightWrapper>
         {/***** Right side Container End*/}
       </BoxContainer>
+
     </>
   )
 }

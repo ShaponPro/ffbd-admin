@@ -1,4 +1,4 @@
-
+// ** Icon React
 import React, { useState } from "react";
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -24,13 +24,24 @@ const createBrandBox = {
   padding: '0 20px'
 }
 
-// const closeButton = {
-//     background: '#ee5d08',
-//     color: 'white !important',
-//     padding: ' 8px'
-// }
-
 export default function NabBarComponent() {
+
+  const [isHover, setIsHover] = useState<boolean>(false);
+   const handleMouseEnter = () => {
+      setIsHover(true);
+   };
+   const handleMouseLeave = () => {
+      setIsHover(false);
+   };
+
+   const closeButton = {
+    backgroundColor: isHover ? '#ee5d08' : 'none',
+    color: isHover ? 'white' : 'rgba(22, 31, 41, 0.5)',
+    padding: '3px',
+    cursor:'pointer',
+    fontSize: '40px',
+}
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -45,7 +56,10 @@ export default function NabBarComponent() {
       <br />
       <Box sx={createBrandBox}>
         <Typography sx={createBrandText}>Create Brand</Typography>
-        <Close />
+        <Close sx={closeButton} 
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        />
       </Box>
     </>
   )
