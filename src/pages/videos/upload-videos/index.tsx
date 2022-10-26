@@ -56,7 +56,7 @@ const AnalyticsCongratulations = () => {
               <UploadTypeComponent  />
             </Grid>
             <Grid item xs={12} sm={12}>
-              <OnBehalfBrand/>
+              
             <OnBehalfUser/>
             </Grid>
           </Grid>
