@@ -126,23 +126,24 @@ const App = (props: ExtendedAppProps) => {
   const aclAbilities = Component.acl ?? defaultACLObj;
 
   // write a GraphQL query that asks for names and codes for all countries
-const LIST_COUNTRIES = gql`
-{
-  query Post{
-    posts{
-      id
-    }
-  }
-}
-`;
+  
+// const LIST_COUNTRIES = gql`
+// {
+//   query Post{
+//     posts{
+//       id
+//     }
+//   }
+// }
+// `;
 
-  const {data, loading, error} = useQuery(LIST_COUNTRIES, {client});
+//   const {data, loading, error} = useQuery(LIST_COUNTRIES, {client});
 
-  if (loading || error) {
-    return <p>{error ? error.message : 'Loading...'}</p>;
-  }
+//   if (loading || error) {
+//     return <p>{error ? error.message : 'Loading...'}</p>;
+//   }
 
-  console.log('data', data)
+//   console.log('data', data)
 
   return (
     <ApolloProvider client={client}>

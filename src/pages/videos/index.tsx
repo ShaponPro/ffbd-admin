@@ -12,6 +12,9 @@ import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 import TabbarComponent from 'src/components/TabbarComponent'
 import ListComponent from 'src/components/ListComponent'
 import {FilterComponent} from 'src/components/FilterComponent';
+import { useQuery } from '@apollo/client';
+
+import QUERY_VIDEOS from './queryVideos.graphql';
 
 const tabs = [
   {
@@ -33,6 +36,15 @@ const tabs = [
 ];
 
 const AnalyticsCongratulations = () => {
+
+  const { data, loading, error } = useQuery(QUERY_VIDEOS);
+
+  // check for errors
+  if (error) {
+    return <p>:( an error happened</p>;
+  }
+
+  console.log('data', data)
 
    /**
    * Handle on tab change
