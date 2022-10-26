@@ -23,7 +23,7 @@ const data: DataGridRowType[] = [
     uploadedIp: '103.103.34.34',
   },        
   {
-    id: 1,
+    id: 2,
     videoId: 123456,
     thumbnail: 'thambnail',
     videoTitle: 'this is title',

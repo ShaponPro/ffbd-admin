@@ -5,10 +5,7 @@ import { ReactNode } from 'react'
 import { Settings } from 'src/@core/context/settingsContext'
 
 // ** MUI Imports
-import {
-  styled,
-  useTheme
-} from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
 import MuiSwipeableDrawer, { SwipeableDrawerProps } from '@mui/material/SwipeableDrawer'
 
 interface Props {
@@ -32,7 +29,7 @@ const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>({
   },
   '& .MuiListItem-gutters': {
     paddingLeft: 4,
-    paddingRight: 4,
+    paddingRight: 2,
     paddingTop: 8
   },
   '& .MuiDrawer-paper': {

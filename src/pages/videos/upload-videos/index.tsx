@@ -11,7 +11,7 @@ import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 // ** Components
 import TabbarComponent from 'src/components/TabbarComponent'
 import UploadTypeComponent from 'src/components/UploadTypeComponent'
- 
+import OnBehalfBrand from './OnBehalfBrand'
 import OnBehalfUser from './OnBehalfUser'
 
 
@@ -53,9 +53,10 @@ const AnalyticsCongratulations = () => {
               <TabbarComponent options={tabs} activekey={'drafts'} onChange={tabChangeHandler} />
             </Grid>
             <Grid container direction='row' justifyContent='center' alignItems='center' item xs={12} sm={12}>
-              <UploadTypeComponent placeholder='select item' />
+              <UploadTypeComponent  />
             </Grid>
             <Grid item xs={12} sm={12}>
+              <OnBehalfBrand/>
             <OnBehalfUser/>
             </Grid>
           </Grid>

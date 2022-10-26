@@ -55,7 +55,7 @@ function OnBehalfUser() {
               <Typography style={typographyStyle}>Upload Video</Typography>
             </Grid>
             <Grid item xs={8.5}>
-              <TextInputField type='file' helperText='Recommended video format mp4, avi & length max 7 minutes' />
+              <TextInputField title='StyledField' type='file' helperText='Recommended video format mp4, avi & length max 7 minutes' />
             </Grid>
           </Grid>
           <Grid container xs={12} sm={12} md={6}>
@@ -104,7 +104,7 @@ function OnBehalfUser() {
               <Typography style={typographyStyle}>Select Contest</Typography>
             </Grid>
             <Grid item xs={8.5}>
-              <TextInputField placeholder='Select Item' helperText='Only one contest can be selected' select={true} />
+              <TextInputField title='StyledField' placeholder='Select Item' helperText='Only one contest can be selected' select={true} />
             </Grid>
           </Grid>
           <Grid container xs={12} sm={12} md={6}>
@@ -112,7 +112,7 @@ function OnBehalfUser() {
               <Typography style={typographyStyle}>Tag People</Typography>
             </Grid>
             <Grid item xs={8.5}>
-              <TextInputField placeholder='Select Item' select={true} />
+              <TextInputField title='StyledField' placeholder='Select Item' select={true} />
             </Grid>
           </Grid>
           <Grid container xs={12} sm={12} md={6}>
@@ -120,7 +120,7 @@ function OnBehalfUser() {
               <Typography style={typographyStyle}>Tag Location</Typography>
             </Grid>
             <Grid item xs={8.5}>
-              <TextInputField placeholder='Select Item' select={true} />
+              <TextInputField title='StyledField' placeholder='Select Item' select={true} />
             </Grid>
           </Grid>
           <Grid container xs={12} sm={12} md={6}>

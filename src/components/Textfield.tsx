@@ -2,11 +2,11 @@ import * as React from 'react'
 import FormControl from '@mui/material/FormControl'
 import Box from '@mui/material/Box'
 import FormHelperText from '@mui/material/FormHelperText'
-import {  OutlinedInput } from '@mui/material'
+import {  Input, InputBase, MenuItem, OutlinedInput, TextField } from '@mui/material'
 import styled from '@emotion/styled'
 
 type inputProps = {
-  title?: string
+  title?: 'StyledField'
   placeholder?: string
   type?: string
   endAdornment?: any
@@ -19,15 +19,28 @@ type inputProps = {
   helperText?: any
   disabled?: boolean
   select?: boolean
-  child?: string
+  fieldSize?: string
 }
 
 
 
-const StyledField = styled(OutlinedInput) ({
+const StyledField = styled(TextField) ({
   
   border:'0 !important',
-  padding: '10px',
+
+  width: '497.5px',
+  height: '36px',
+  background: '#FFFFFF',
+  outline:'none !important',
+  boxShadow: 'inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)',
+  borderRadius: '2px',
+  position:'relative'  
+})
+
+const StyledFields = styled(OutlinedInput) ({
+  
+  border:'0 !important',
+  padding:'10px',
   width: '497.5px',
   height: '36px',
   background: '#FFFFFF',
@@ -38,6 +51,11 @@ const StyledField = styled(OutlinedInput) ({
 })
 
 export default function TextInputField(props: inputProps) {
+
+  // const styleText= (fieldSize:string )=>{
+  //   if(fieldSize==='')
+  // }
+
   return (
     <Box 
       component='form'
@@ -48,21 +66,38 @@ export default function TextInputField(props: inputProps) {
       }}
       style={{margin: '10px 0px'}}
     >
-      
-
       <FormControl 
         style={{
-          outline:'none !important'
+          outline:'none !important',
+          width: '100%'
         }}
-      
       >
-        <StyledField
-      
+        {props.title==='StyledField' ?
+        (<StyledField
+          
+          type={props.type}
+          placeholder={props.placeholder}
+          disabled={props.disabled}
+          size='small'
+          select={props.select}
+          style={{width: '100%'}}
+         
+          
+        />
+          
+        ) : (
+          <StyledFields
+          size='small'
           type={props.type}
           placeholder={props.placeholder}
           disabled={props.disabled}
           endAdornment={props.endAdornment}
+          style={{width: '100%'}}
         />
+        )
+
+        }
+        
          
 
         <FormHelperText>{props.helperText}</FormHelperText>
