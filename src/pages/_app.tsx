@@ -63,10 +63,10 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 // import '../../styles/globals.css'
 
 import { ApolloProvider } from '@apollo/client';
-import {ApolloClient, InMemoryCache, gql, useQuery} from '@apollo/client';
+import {ApolloClient, InMemoryCache} from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'https://jsonplaceholder.ir/graphql',
+  uri: 'http://api-staging.fanfarebd.com:3000/graphql',
   cache: new InMemoryCache(),
 });
 
