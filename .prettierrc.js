@@ -9,9 +9,9 @@ module.exports = {
   proseWrap: 'preserve',
   quoteProps: 'as-needed',
   requirePragma: false,
-  semi: false,
-  singleQuote: true,
+  semi: true,
+  singleQuote: false,
   tabWidth: 2,
-  trailingComma: 'none',
+  trailingComma: "es5",
   useTabs: false
 }
