@@ -6,13 +6,13 @@ import { Button, Grid } from "@mui/material";
 import FieldTableColumnComponent from "./FieldTableColumnComponent";
 
 const fieldButton = css`
+  width: 100%;
   margin: 0px !important;
   padding: 0px !important;
+  padding: 10px !important;
   color: #161f29 !important;
   background: rgba(22, 31, 41, 0.07);
   margin-bottom: 2px !important;
-  width: 136px;
-  height: 36px;
   font-family: "Open Sans", sans-serif !important;
   font-style: normal;
   font-weight: 400;
@@ -23,19 +23,26 @@ const fieldButton = css`
   justify-content: flex-start;
 `;
 
+const headerButtonGrid = css`
+  padding: 0px !important;
+  margin: 0px !important;
+  width: 100% !important;
+`;
+
 const fieldHeaderButton = css`
   ${fieldButton};
-  width: 930px !important;
   font-weight: 700 !important;
   justify-content: center !important;
 `;
 
 const fieldColumnGrid = css`
-  width: 1380px !important;
+  padding: 0px !important;
+  margin: 0px !important;
 `;
 
-const fieldHeaderGrid = css`
-  // width: 1378px !important;
+const fieldTable = css`
+  padding: 0px !important;
+  margin: 0px !important;
 `;
 
 const FieldTableComponent = () => {
@@ -164,9 +171,9 @@ const FieldTableComponent = () => {
 
   return (
     <>
-      <Grid lg={12}>
+      <Grid container css={fieldTable}>
         {/* Selected Fields header Grid */}
-        <Grid css={fieldHeaderGrid}>
+        <Grid css={headerButtonGrid}>
           <Button variant='text' css={fieldHeaderButton} disabled>
             Selected Fields
           </Button>

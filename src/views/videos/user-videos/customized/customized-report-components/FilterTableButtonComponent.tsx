@@ -14,12 +14,11 @@ type buttonProps = {
 const filterButton = css`
   margin: 0px !important;
   padding: 0px !important;
+  padding: 10px !important;
   color: #161f29 !important;
-  background: rgba(22, 31, 41, 0.07);
   margin-bottom: 2px !important;
   margin-right: 2px !important;
-  width: 136px !important;
-  height: 36px;
+  width: 100% !important;
   font-family: "Open Sans", sans-serif !important;
   font-style: normal;
   font-weight: 400;
@@ -28,23 +27,13 @@ const filterButton = css`
   text-transform: capitalize !important;
   border-radius: 0px !important;
   justify-content: flex-start;
-`;
-
-const filterBodyButton = css`
-  ${filterButton};
-  padding-left: 10px !important;
-  &:nth-of-type(odd) {
-    background: rgba(22, 31, 41, 0.03);
-  }
-  &:nth-of-type(even) {
-    background: rgba(22, 31, 41, 0.07);
-  }
+  white-space: nowrap !important;
 `;
 
 const FilterTableButtonComponent = (props: buttonProps) => {
   return (
     <>
-      <Button variant="text" css={filterBodyButton} disabled>
+      <Button variant='text' css={filterButton} disabled>
         {props.label}
       </Button>
     </>

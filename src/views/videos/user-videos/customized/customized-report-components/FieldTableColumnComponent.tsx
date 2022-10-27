@@ -12,13 +12,13 @@ type props = {
 };
 
 const fieldButton = css`
+  width: 136px;
   margin: 0px !important;
   padding: 0px !important;
+  padding: 10px !important;
   color: #161f29 !important;
   background: rgba(22, 31, 41, 0.07);
   margin-bottom: 2px !important;
-  width: 136px;
-  height: 36px;
   font-family: "Open Sans", sans-serif !important;
   font-style: normal;
   font-weight: 400;
@@ -29,34 +29,43 @@ const fieldButton = css`
   justify-content: flex-start;
 `;
 
-const fieldHeaderButton1 = css`
+const buttonGrid = css`
+  padding: 0px !important;
+  margin: 0px !important;
+  width: 100%;
+`;
+
+const nestedHeaderButton = css`
   ${fieldButton};
   justify-content: center !important;
 `;
 
 const nestedColumns = css`
   margin-right: 2px !important;
+  margin-bottom: 10px !important;
+`;
+
+const nestedColumnsBody = css`
+  padding: 0px !important;
+  margin: 0px !important;
 `;
 
 const FieldTableColumnComponent = (props: props) => {
   return (
     <>
       <Grid css={nestedColumns}>
-        <Grid>
-          <Button variant="text" css={fieldHeaderButton1} disabled>
+        <Grid css={buttonGrid}>
+          <Button variant='text' css={nestedHeaderButton} disabled>
             {props.label}
           </Button>
         </Grid>
 
-        <Grid>
-          {props.childData.map((eachChildData) => {
+        <Grid css={nestedColumnsBody}>
+          {props.childData.map(eachChildData => {
             const label = eachChildData.label;
 
             return (
-              <FieldTableColumnButtonComponent
-                key={eachChildData.id}
-                label={label}
-              ></FieldTableColumnButtonComponent>
+              <FieldTableColumnButtonComponent key={eachChildData.id} label={label}></FieldTableColumnButtonComponent>
             );
           })}
         </Grid>

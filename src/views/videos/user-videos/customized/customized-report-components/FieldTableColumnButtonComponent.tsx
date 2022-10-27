@@ -10,12 +10,15 @@ type buttonProps = {
 };
 
 const fieldButton = css`
+  width: 136px;
   margin: 0px !important;
   padding: 0px !important;
+  padding-left: 10px !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  padding-right: 10px !important;
   color: #161f29 !important;
   margin-bottom: 2px !important;
-  width: 136px;
-  height: 36px;
   font-family: "Open Sans", sans-serif !important;
   font-style: normal;
   font-weight: 400;
@@ -27,12 +30,10 @@ const fieldButton = css`
   white-space: nowrap;
 `;
 
-const fieldBodyButton = css`
-  ${fieldButton};
-  padding-left: 5px !important;
-`;
-
-const nestedOddEvenStyle = css`
+const buttonGrid = css`
+  width: 100%;
+  padding: 0px !important;
+  margin: 0px !important;
   &:nth-of-type(odd) {
     background: rgba(22, 31, 41, 0.03) !important;
   }
@@ -44,8 +45,8 @@ const nestedOddEvenStyle = css`
 const FieldTableColumnButtonComponent = (props: buttonProps) => {
   return (
     <>
-      <Grid css={nestedOddEvenStyle}>
-        <Button variant="text" css={fieldBodyButton} disabled>
+      <Grid css={buttonGrid}>
+        <Button variant='text' css={fieldButton} disabled>
           {props.label}
         </Button>
       </Grid>

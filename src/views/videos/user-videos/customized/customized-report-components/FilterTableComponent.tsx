@@ -5,15 +5,24 @@ import { css } from "@emotion/react";
 import { Button, Grid } from "@mui/material";
 import FilterTableButtonComponent from "./FilterTableButtonComponent";
 
-const filterButton = css`
+const buttonGrid = css`
+  padding: 0px !important;
+  margin: 0px !important;
+  width: 100% !important;
+  // @media (max-width: 900px) {
+  //   width: 100% !important;
+  // }
+`;
+
+const filterTableButton = css`
   margin: 0px !important;
   padding: 0px !important;
+  padding: 10px !important;
   color: #161f29 !important;
   background: rgba(22, 31, 41, 0.07);
   margin-bottom: 2px !important;
   margin-right: 2px !important;
-  width: 136px !important;
-  height: 36px;
+  width: 100% !important;
   font-family: "Open Sans", sans-serif !important;
   font-style: normal;
   font-weight: 400;
@@ -21,11 +30,36 @@ const filterButton = css`
   line-height: 16px;
   text-transform: capitalize !important;
   border-radius: 0px !important;
+  white-space: nowrap !important;
 `;
 
-const filterHeaderButton = css`
-  ${filterButton};
+const filterTableHeaderButton = css`
+  ${filterTableButton};
+  background: rgba(22, 31, 41, 0.07) !important;
   font-weight: 700 !important;
+`;
+const filterTableHeaderGrid = css`
+  padding: 0px !important;
+  margin: 0px !important;
+  width: 100% !important;
+`;
+
+const filterTableBodyGrid = css`
+  padding: 0px !important;
+  margin: 0px !important;
+  width: 100% !important;
+`;
+
+const filterTableBodyButton = css`
+  padding: 0px !important;
+  margin: 0px !important;
+  width: 100% !important;
+  &:nth-of-type(odd) {
+    background: rgba(22, 31, 41, 0.03);
+  }
+  &:nth-of-type(even) {
+    background: rgba(22, 31, 41, 0.07);
+  }
 `;
 
 const FilterTableComponent = () => {
@@ -42,26 +76,31 @@ const FilterTableComponent = () => {
     <>
       {/* Selected Filters header Grid */}
 
-      <Grid>
-        <Button variant="text" css={filterHeaderButton} disabled>
-          Selected Filters
-        </Button>
+      <Grid md={12} css={filterTableHeaderGrid}>
+        <Grid css={buttonGrid}>
+          <Button variant='text' css={filterTableHeaderButton} disabled>
+            Selected Filters
+          </Button>
+        </Grid>
 
-        <Button variant="text" css={filterHeaderButton} disabled>
-          -
-        </Button>
+        <Grid css={buttonGrid}>
+          <Button variant='text' css={filterTableHeaderButton} disabled>
+            -
+          </Button>
+        </Grid>
       </Grid>
 
       {/* Selected Filters Data Grid */}
-      <Grid>
-        {selectedFiltersState.map((eachSelectedFiltersState) => {
+      <Grid md={12} css={filterTableBodyGrid}>
+        {selectedFiltersState.map(eachSelectedFiltersState => {
           return (
-            <FilterTableButtonComponent
-              key={eachSelectedFiltersState.id}
-              label={eachSelectedFiltersState.label}
-              selectedFiltersState={selectedFiltersState}
-              setSelectedFiltersState={setSelectedFiltersState}
-            ></FilterTableButtonComponent>
+            <Grid key={eachSelectedFiltersState.id} css={filterTableBodyButton}>
+              <FilterTableButtonComponent
+                label={eachSelectedFiltersState.label}
+                selectedFiltersState={selectedFiltersState}
+                setSelectedFiltersState={setSelectedFiltersState}
+              ></FilterTableButtonComponent>
+            </Grid>
           );
         })}
       </Grid>
