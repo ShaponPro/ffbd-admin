@@ -1,8 +1,10 @@
 import React from 'react'
 import TextInputField from 'src/components/Textfield'
 import Box from '@mui/material/Box'
-import { Grid, InputAdornment, Typography } from '@mui/material'
+import { Grid, InputAdornment,  Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+
+
 
 const typographyStyle = {
   fontSize: '16px',
@@ -14,7 +16,7 @@ const typographyStyle = {
 
 function OnBehalfUser() {
   return (
-    <Box sx={{ flexGrow: 1 }} style={{ background: '#F3F3F4', padding: '0px 20px', display: 'grid' }}>
+    <Box sx={{ flexGrow: 1 }} style={{ background: '#F3F3F4', padding: '20px', display: 'grid' }}>
       <Box sx={{ width: '100%' }}>
         <Grid container rowSpacing={1} >
           <Grid container xs={12} sm={12}>

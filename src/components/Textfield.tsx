@@ -2,7 +2,7 @@ import * as React from 'react'
 import FormControl from '@mui/material/FormControl'
 import Box from '@mui/material/Box'
 import FormHelperText from '@mui/material/FormHelperText'
-import {   OutlinedInput, TextField } from '@mui/material'
+import {  OutlinedInput, TextField } from '@mui/material'
 import styled from '@emotion/styled'
 
 type inputProps = {
@@ -20,6 +20,10 @@ type inputProps = {
   disabled?: boolean
   select?: boolean
   fieldSize?: string
+  options?:object[];
+  children?:any
+
+
 }
 
 
@@ -72,7 +76,7 @@ export default function TextInputField(props: inputProps) {
           width: '100%'
         }}
       >
-        {props.title==='StyledField' ?
+        {props.select===true ?
         (<StyledField
           
           type={props.type}
@@ -81,9 +85,9 @@ export default function TextInputField(props: inputProps) {
           size='small'
           select={props.select}
           style={{width: '100%'}}
-         
+        >{props.children}</StyledField>
           
-        />
+       
           
         ) : (
           <StyledFields
@@ -100,7 +104,7 @@ export default function TextInputField(props: inputProps) {
         
          
 
-        <FormHelperText>{props.helperText}</FormHelperText>
+        <FormHelperText style={{textAlign:'right'}}>{props.helperText}</FormHelperText>
       </FormControl>
     </Box>
   )

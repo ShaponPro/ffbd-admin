@@ -55,6 +55,7 @@ const SearchComponent = (props: Props) => {
           background: '#FFFFFF',
           border: '1px solid rgba(22, 31, 41, 0.5)',
           borderRadius: '20px',
+        
           ...props.style
         }}
         onChange={handleChange}
