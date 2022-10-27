@@ -15,12 +15,16 @@ import {FilterComponent} from 'src/components/FilterComponent';
 
 const tabs = [
   {
-    key: "upload",
-    title: "Upload Now",
+    key: "video clips",
+    title: "Video Clips",
   },
   {
-    key: "drafts",
-    title: "Drafts",
+    key: "image",
+    title: "Image",
+  },
+  {
+    key: "text",
+    title: "Text",
   }
 ];
 
