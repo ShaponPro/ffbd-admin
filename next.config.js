@@ -23,7 +23,15 @@ module.exports = withTM({
       ...config.resolve.alias,
       apexcharts: path.resolve(__dirname, './node_modules/apexcharts-clevision')
     }
+    config.module.rules.push({
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      loader: 'graphql-tag/loader',
+    });
 
     return config
-  }
+  },
+  webpackDevMiddleware: (config) => {
+    return config;
+  },
 })

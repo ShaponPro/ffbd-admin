@@ -21,9 +21,7 @@ import {
 
 //Import Search Component
 import SearchComponent from '../../../components/SearchComponent'
-import { Button } from '@mui/material'
 
-// ** Data
 
 interface Props {
   value: string
@@ -43,7 +41,7 @@ const StyledGridToolbarContainer = styled(GridToolbarContainer)({
 const StyledFormControl = styled(FormControl)({
   borderRadius: '0px',
   height: '36px',
-  width: '80px'
+  width: '80px',
 })
 
 const StyledSelect = styled(Select)({

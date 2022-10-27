@@ -9,7 +9,7 @@ const data: DataGridRowType[] = [
     id: 1,
     videoId: 123456,
     thumbnail: 'thambnail',
-    videoTitle: 'this is title',
+    videoTitle: 'this is title this is video title this is video title',
     fileSize: 123456,
     videoLength: 1254,
     userName: 'Nazmul Islam',
