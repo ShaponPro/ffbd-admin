@@ -39,7 +39,7 @@ const AnalyticsCongratulations = () => {
         <Grid item xs={12} md={12}>
           <Typography variant='h5' sx={{ mb: 4.5 }}>
               <Box component='span' sx={{ fontWeight: 'bold' }}>
-                User Videos
+                Content Restrictions 
               </Box>
           </Typography>
         </Grid>
