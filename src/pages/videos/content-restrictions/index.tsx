@@ -8,6 +8,9 @@ import Button, { ButtonProps } from '@mui/material/Button'
 import InputBase from '@mui/material/InputBase'
 import InputAdornment from '@mui/material/InputAdornment'
 import OutlinedInput from '@mui/material/OutlinedInput'
+import FormControl from '@mui/material/FormControl'
+import Radio from '@mui/material/Radio'
+import Select from '@mui/material/Select'
 
 // ** Icons Imports
 import AddCircleIcon from '@mui/icons-material/AddCircle'
@@ -40,6 +43,23 @@ const AddButton = styled(Button)<ButtonProps>(({ theme }) => ({
   padding: '12px, 30px, 12px, 30px',
   color: 'white'
 }))
+
+const radioBtnContainerStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+  transition: '.15s ease-in-out',
+  margin: '0px 0px 0px 10px',
+  fontSize: '12px'
+}
+
+const StyledSelect = styled(Select)({
+  borderRadius: '0px',
+  background: 'white',
+  height: '36px',
+  boxShadow: 'inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)',
+  width: '160px'
+})
 
 const tabs = [
   {
@@ -126,8 +146,8 @@ const AnalyticsCongratulations = () => {
           </Grid>
           <br />
 
-          <Grid container spacing={3}>
-            <Grid item xs={6} md={3}>
+          <Grid container spacing={2}>
+            <Grid item xs={6} md={2}>
               <Grid>
                 {' '}
                 <Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>
@@ -135,9 +155,23 @@ const AnalyticsCongratulations = () => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={6} md={2}>
               <Grid>
-                <InputBase placeholder=' Browse' style={{ fontSize: '14px' }} />
+                <FormControl sx={{ minWidth: 120 }} size='small'>
+                  <StyledSelect>
+                    <label style={radioBtnContainerStyle}>Today</label>
+                    <label style={radioBtnContainerStyle}>Last 7 Days</label>
+                    <label style={radioBtnContainerStyle}>Last 15 Days</label>
+                    <label style={radioBtnContainerStyle}>Last 30 Days</label>
+                    <label style={radioBtnContainerStyle}>Last 60 Days</label>
+                    <label style={radioBtnContainerStyle}>Last 90 Days</label>
+
+                    <Grid sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <label style={radioBtnContainerStyle}>Custom Range</label>
+                      <Radio />
+                    </Grid>
+                  </StyledSelect>
+                </FormControl>
               </Grid>
             </Grid>
             <Grid item xs={4} md={1}>
@@ -147,9 +181,9 @@ const AnalyticsCongratulations = () => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item xs={8} md={5}>
+            <Grid item xs={8} md={7}>
               <OutlinedInput
-              placeholder=' Search and Filter'
+                placeholder=' Search and Filter'
                 style={{
                   borderRadius: '0',
                   width: '100%',
@@ -159,7 +193,7 @@ const AnalyticsCongratulations = () => {
                 }}
                 aria-describedby='icons-search-helper-text'
                 endAdornment={
-                  <InputAdornment  style={{ width: '16px' }} position='end'>
+                  <InputAdornment style={{ width: '16px' }} position='end'>
                     <SearchIcon />
                   </InputAdornment>
                 }
@@ -169,11 +203,9 @@ const AnalyticsCongratulations = () => {
               />
             </Grid>
           </Grid>
+          <br/>
           <Grid>
-            <ListComponent/>
-          </Grid>
-          <Grid>
-            <ButtonComponent/>
+            <ListComponent />
           </Grid>
         </CardContent>
       </Card>
