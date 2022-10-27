@@ -13,10 +13,9 @@ import TabbarComponent from 'src/components/TabbarComponent'
 import ListComponent from 'src/components/ListComponent'
 import {FilterComponent} from 'src/components/FilterComponent';
 
-
-
 import { useQuery } from '@apollo/client'
-import { QUERY_ALL_POSTS } from './graphql/Queries'
+
+import { GET_VIDEO_LIST } from './graphql/Queries'
 
 const tabs = [
   {
@@ -39,12 +38,13 @@ const tabs = [
 
 const AnalyticsCongratulations = () => {
 
-  const { error, loading, data } = useQuery(QUERY_ALL_POSTS, {
+  const { error, loading, data } = useQuery(GET_VIDEO_LIST, {
     variables:{ 
-      "endIndex": 100,
+      "endIndex": 10,
       "startIndex": 1
   }
   });
+
   console.log(data);
 
   // check for errors
