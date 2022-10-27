@@ -15,7 +15,8 @@ import { styled, TableHead } from '@mui/material'
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
     background: 'rgba(22, 31, 41, 0.07)',
-    height: '36px'
+    height: '36px',
+    border: '2px solid white'
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 12,
@@ -67,85 +68,96 @@ export default function listComponent() {
   }
 
   return (
-    <Box sx={{ border: '2px solid green' }}>
-      <TableContainer component={Paper} sx={{ borderRadius: '0px',}}>
-        <Table aria-label='custom pagination table' sx={{ textAlign:'center'}}>
-          <TableHead sx={{ display: 'table-header-group'}}>
-            <StyledTableRow style={{ height: 36 }}>
-              <StyledTableCell>Header 1</StyledTableCell>
-              <StyledTableCell>Header 2</StyledTableCell>
-              <StyledTableCell>Header 3</StyledTableCell>
-              <StyledTableCell>Header 4</StyledTableCell>
-            </StyledTableRow>
-          </TableHead>
-          <TableBody>
-            {(rowsPerPage > 0 ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : data).map(row => (
-              <StyledTableRow key={row.name}>
-                <StyledTableCell component='th' scope='row'>
-                  {row.name}
-                </StyledTableCell>
-                <StyledTableCell>{row.model}</StyledTableCell>
-                <StyledTableCell>{row.manufacturer}</StyledTableCell>
-                <StyledTableCell>{row.length}</StyledTableCell>
+    <Box display='grid' gridTemplateColumns='repeat(12, 1fr)' gap={2} sx={{ background: '#F3F3F4' }}>
+      <Box gridColumn='span 2' sx={{background:'green'}}>
+        item 1
+      </Box>
+      <Box gridColumn='span 4' sx={{background:'green'}}>
+        item 1
+      </Box>
+      <Box gridColumn='span 6' sx={{background:'green'}}>
+        item 1
+      </Box>
+      <Box gridColumn='span 12' sx={{ margin: '20px' }}>
+        <TableContainer component={Paper} sx={{ borderRadius: '0px' }}>
+          <Table aria-label='custom pagination table' sx={{ textAlign: 'center' }}>
+            <TableHead sx={{ display: 'table-header-group' }}>
+              <StyledTableRow style={{ height: 36 }}>
+                <StyledTableCell>Header 1</StyledTableCell>
+                <StyledTableCell>Header 2</StyledTableCell>
+                <StyledTableCell>Header 3</StyledTableCell>
+                <StyledTableCell>Header 4</StyledTableCell>
               </StyledTableRow>
-            ))}
+            </TableHead>
+            <TableBody>
+              {(rowsPerPage > 0 ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : data).map(row => (
+                <StyledTableRow key={row.name}>
+                  <StyledTableCell component='th' scope='row'>
+                    {row.name}
+                  </StyledTableCell>
+                  <StyledTableCell>{row.model}</StyledTableCell>
+                  <StyledTableCell>{row.manufacturer}</StyledTableCell>
+                  <StyledTableCell>{row.length}</StyledTableCell>
+                </StyledTableRow>
+              ))}
 
-            {emptyRows > 0 && (
+              {emptyRows > 0 && (
+                <StyledTableRow>
+                  <TableCell />
+                </StyledTableRow>
+              )}
+            </TableBody>
+
+            <TableFooter>
               <StyledTableRow>
-                <TableCell />
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 25]}
+                  count={data.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  SelectProps={{
+                    inputProps: {
+                      'aria-label': 'rows per page'
+                    }
+                  }}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  //ActionsComponent={TablePaginationActions}
+                  //component={Box}
+                  labelDisplayedRows={({ page }) => {
+                    return `Page: ${page}`
+                  }}
+                  backIconButtonProps={{
+                    color: 'secondary'
+                  }}
+                  nextIconButtonProps={{ color: 'secondary' }}
+                  showFirstButton={true}
+                  showLastButton={true}
+                  labelRowsPerPage={<span>Shows:</span>}
+                  sx={{
+                    '.MuiTablePagination-toolbar': {
+                      //border: '2px solid red'
+                      background: '#F3F3F4',
+                      border: '2px solid red'
+                    },
+                    '.MuiTablePagination-selectLabel': {
+                      fontWeight: 'bold',
+                      color: 'black'
+
+                      //border:'2px solid red'
+                    },
+                    '.MuiTablePagination-select': {
+                      border: '1px solid black',
+                      background: 'white',
+                      boxShadow: 'inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)'
+                    }
+                  }}
+                />
               </StyledTableRow>
-            )}
-          </TableBody>
-
-          <TableFooter>
-            <StyledTableRow>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
-                count={data.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: {
-                    'aria-label': 'rows per page'
-                  }
-                }}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                //ActionsComponent={TablePaginationActions}
-                //component={Box}
-                labelDisplayedRows={({ page }) => {
-                  return `Page: ${page}`
-                }}
-                backIconButtonProps={{
-                  color: 'secondary'
-                }}
-                nextIconButtonProps={{ color: 'secondary' }}
-                showFirstButton={true}
-                showLastButton={true}
-                labelRowsPerPage={<span>Shows:</span>}
-                sx={{
-                  '.MuiTablePagination-toolbar': {
-                    //border: '2px solid red'
-                    background:'#F3F3F4',
-                    border:'2px solid red', 
-                  },
-                  '.MuiTablePagination-selectLabel': {
-                    fontWeight: 'bold',
-                    color: 'black', 
-
-                    //border:'2px solid red'
-                  }, 
-                  '.MuiTablePagination-select':{
-                    border:'1px solid black',
-                    background:'white',
-                    boxShadow:'inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)'
-                  }
-                }}
-              />
-            </StyledTableRow>
-          </TableFooter>
-        </Table>
-      </TableContainer>
+            </TableFooter>
+          </Table>
+        </TableContainer>
+      </Box>
     </Box>
   )
 }
