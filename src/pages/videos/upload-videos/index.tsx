@@ -11,8 +11,8 @@ import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 // ** Components
 import TabbarComponent from 'src/components/TabbarComponent'
 import UploadTypeComponent from 'src/components/UploadTypeComponent'
-import OnBehalfBrand from './OnBehalfBrand'
-import OnBehalfUser from './OnBehalfUser'
+import Tutorial from './Tutorial'
+
 
 
 
@@ -57,7 +57,7 @@ const AnalyticsCongratulations = () => {
             </Grid>
             <Grid item xs={12} sm={12}>
               
-            <OnBehalfUser/>
+            <Tutorial/>
             </Grid>
           </Grid>
         </CardContent>

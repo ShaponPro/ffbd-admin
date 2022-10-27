@@ -1,91 +1,111 @@
-import React, { useState } from 'react'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import InputBase from '@mui/material/InputBase'
-import MenuItem from '@mui/material/MenuItem'
-import MuiFormControl, { FormControlProps } from '@mui/material/FormControl'
-import { styled } from '@mui/material/styles'
+import React from 'react'
+import TextInputField from 'src/components/Textfield'
+import Box from '@mui/material/Box'
+import { Grid, InputAdornment, Typography } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
 
-
-type props = {
-  options?: object[];
-  selected?: string;
-  onChange?: (field: string) => void;
-  style?: React.CSSProperties
+const typographyStyle = {
+  fontSize: '16px',
+  padding: '10px 20px',
+  fontWeight: '600',
+  align: 'left',
+  color: '#161F29'
 }
 
-const FormControl = styled(MuiFormControl)<FormControlProps>(({ theme }) => ({
-  '& .MuiFormLabel-root.Mui-focused': {
-    color: theme.palette.info.main
-  },
-  '& .MuiInputLabel-root': {
-    left: -14,
-    zIndex: 0
-  },
-  '& > .MuiInputBase-root': {
-    marginTop: theme.spacing(4),
-    '&.MuiInput-root:before, &.MuiInput-root:after': {
-      border: 0
-    }
-  },
-  '& .MuiInputBase-input': {
-    fontSize: 16,
-    borderRadius: 4,
-    position: 'relative',
-    padding: '10px 26px 10px 12px',
-  }
-}))
-
-export default function OnBehalfBrand(props: props) {
-
-  const [value, setValue] = useState<string>(props.selected || "")
-  const handleChange = (event: SelectChangeEvent) => {
-    setValue(event.target.value as string);
-    if(props.onChange) props.onChange(event.target.value as string);
-  }
-
+function OnBehalfBrand() {
   return (
+    <Box sx={{ flexGrow: 1 }} style={{ background: '#F3F3F4', padding: '0px 20px', display: 'grid' }}>
+      <Box sx={{ width: '100%' }}>
+        <Grid container rowSpacing={1} >
+          <Grid container xs={12} sm={12}>
+            <Grid item xs={3.5} sm={1.75} md={1.75}>
+              <Typography style={typographyStyle}>Upload Type</Typography>
+            </Grid>
+            <Grid item xs={8.5} sm={10.25} md={10.25}>
+              <TextInputField placeholder='On Behalf of Brand' disabled={true} style={{width:'230px !important'}} />
+            </Grid>
+          </Grid>
 
-    <FormControl style={{width: '100%', display: 'flex', alignItems: 'center'}}>
-    <Select
-          value={value}
-          input={<InputBase />}
-          onChange={handleChange}
-          id='demo-customized-select'
-          labelId='demo-customized-select-label'
-          style={{width: '100%', backgroundColor: '#fff', maxHeight: '40px', margin: '0px', padding: '0px'}}
-        >
-          {props.options && props.options.length ? props.options.map((option, i) => (
-            
-            <MenuItem key={i} value={option?.key||""}>{option?.key === props.selected ? (<em>{option?.title}</em>) : option?.title}</MenuItem>
-          )) : null}
-        </Select>
-        </FormControl>
+          <Grid container xs={12} sm={12} md={6}>
+            <Grid item xs={3.5}>
+              <Typography style={typographyStyle}>Select Brand Name</Typography>
+            </Grid>
+            <Grid item xs={8.5}>
+              <TextInputField
+                placeholder='Search and Filter'
+                endAdornment={
+                  <InputAdornment style={{ width: '16px' }} position='end'>
+                    <SearchIcon />
+                  </InputAdornment>
+                }
+              />{' '}
+            </Grid>
+          </Grid>
+
+          <Grid container xs={12} sm={12} md={6}>
+            <Grid item xs={3.5}>
+              <Typography style={typographyStyle}>Request Reference</Typography>
+            </Grid>
+            <Grid item xs={8.5}>
+              <TextInputField placeholder='Type' />
+            </Grid>
+          </Grid>
+          <Grid container xs={12} sm={12} md={6}>
+            <Grid item xs={3.5}>
+              <Typography style={typographyStyle}>Upload Video</Typography>
+            </Grid>
+            <Grid item xs={8.5}>
+              <TextInputField title='StyledField' type='file' helperText='Recommended video format mp4, avi & length max 7 minutes' />
+            </Grid>
+          </Grid>
+          <Grid container xs={12} sm={12} md={6}>
+            <Grid item xs={3.5}>
+              <Typography style={typographyStyle}>Upload Thumbnail</Typography>
+            </Grid>
+            <Grid item xs={8.5}>
+              <TextInputField type='file' helperText='Recommended image format JPG,GIF or PNG' />
+            </Grid>
+          </Grid>
+          <Grid container xs={12} sm={12} md={12}>
+            <Grid item xs={1.75}>
+              <Typography style={typographyStyle}>Title</Typography>
+            </Grid>
+            <Grid item xs={10.25}>
+              <TextInputField placeholder='Type' helperText='Max 30 Characters' />
+            </Grid>
+          </Grid>
+          <Grid container xs={12} sm={12} md={12}>
+            <Grid item xs={1.75}>
+              <Typography style={typographyStyle}>Description</Typography>
+            </Grid>
+            <Grid item xs={10.25}>
+              <TextInputField placeholder='Type' helperText='Max 150 Characters' />
+            </Grid>
+          </Grid>
+          <Grid container xs={12} sm={12} md={6}>
+            <Grid item xs={3.5}>
+              <Typography style={typographyStyle}>Brand Tag</Typography>
+            </Grid>
+            <Grid item xs={8.5}>
+              <TextInputField placeholder='Type' helperText='Only one brand tag' />
+            </Grid>
+          </Grid>
+          <Grid container xs={12} sm={12} md={6}>
+            <Grid item xs={3.5}>
+              {' '}
+              <Typography style={typographyStyle}>Hash Tag</Typography>
+            </Grid>
+            <Grid item xs={8.5}>
+              <TextInputField placeholder='Type' helperText='Maximum 2 hash tags' />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Box>
+
+      </Box>
+
+     
   )
 }
 
-
-OnBehalfBrand.defaultProps = {
-  options: [
-    {
-      key: 'default',
-      title: 'Select'
-    },
-    {
-      key: 'user',
-      title: 'On behalf of User'
-    },
-    {
-      key: 'brand',
-      title: 'On behalf of Brand'
-    },
-    {
-      key: 'tutorial',
-      title: 'Tutorial'
-    },
-    {
-      key: 'youtube_crawler',
-      title: 'Youtube Crawler'
-    }
-  ],
-  selected: "default"
-}
+export default OnBehalfBrand

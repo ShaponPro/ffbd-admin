@@ -12,9 +12,9 @@ const typographyStyle = {
   color: '#161F29'
 }
 
-function OnBehalfUser() {
+function Tutorial() {
   return (
-    <Box sx={{ flexGrow: 1 }} style={{ background: '#F3F3F4', padding: '0px 20px', display: 'grid' }}>
+    <Box sx={{ flexGrow: 1 }} style={{ background: '#F3F3F4', padding: '20px 20px', display: 'grid' }}>
       <Box sx={{ width: '100%' }}>
         <Grid container rowSpacing={1} >
           <Grid container xs={12} sm={12}>
@@ -22,15 +22,15 @@ function OnBehalfUser() {
               <Typography style={typographyStyle}>Upload Type</Typography>
             </Grid>
             <Grid item xs={8.5} sm={10.25} md={10.25}>
-              <TextInputField placeholder='On Behalf of User' disabled={true} style={{width:'230px !important'}} />
+              <TextInputField placeholder='Tutorial' disabled={true} style={{width:'230px !important'}} />
             </Grid>
           </Grid>
 
-          <Grid container xs={12} sm={12} md={6}>
-            <Grid item xs={3.5}>
-              <Typography style={typographyStyle}>Select User Name</Typography>
+          <Grid container xs={12} sm={12} md={12}>
+            <Grid item xs={1.75}>
+              <Typography style={typographyStyle}>Select Business Area</Typography>
             </Grid>
-            <Grid item xs={8.5}>
+            <Grid item xs={10.25}>
               <TextInputField
                 placeholder='Search and Filter'
                 endAdornment={
@@ -42,14 +42,7 @@ function OnBehalfUser() {
             </Grid>
           </Grid>
 
-          <Grid container xs={12} sm={12} md={6}>
-            <Grid item xs={3.5}>
-              <Typography style={typographyStyle}>Request Reference</Typography>
-            </Grid>
-            <Grid item xs={8.5}>
-              <TextInputField placeholder='Type' />
-            </Grid>
-          </Grid>
+          
           <Grid container xs={12} sm={12} md={6}>
             <Grid item xs={3.5}>
               <Typography style={typographyStyle}>Upload Video</Typography>
@@ -99,38 +92,6 @@ function OnBehalfUser() {
               <TextInputField placeholder='Type' helperText='Maximum 2 hash tags' />
             </Grid>
           </Grid>
-          <Grid container xs={12} sm={12} md={6}>
-            <Grid item xs={3.5}>
-              <Typography style={typographyStyle}>Select Contest</Typography>
-            </Grid>
-            <Grid item xs={8.5}>
-              <TextInputField title='StyledField' placeholder='Select Item' helperText='Only one contest can be selected' select={true} />
-            </Grid>
-          </Grid>
-          <Grid container xs={12} sm={12} md={6}>
-            <Grid item xs={3.5}>
-              <Typography style={typographyStyle}>Tag People</Typography>
-            </Grid>
-            <Grid item xs={8.5}>
-              <TextInputField title='StyledField' placeholder='Select Item' select={true} />
-            </Grid>
-          </Grid>
-          <Grid container xs={12} sm={12} md={6}>
-            <Grid item xs={3.5}>
-              <Typography style={typographyStyle}>Tag Location</Typography>
-            </Grid>
-            <Grid item xs={8.5}>
-              <TextInputField title='StyledField' placeholder='Select Item' select={true} />
-            </Grid>
-          </Grid>
-          <Grid container xs={12} sm={12} md={6}>
-            <Grid item xs={3.5}>
-              <Typography style={typographyStyle}>Who can watch this video?</Typography>
-            </Grid>
-            <Grid item xs={8.5}>
-              <TextInputField placeholder='Select Item' select={true} />
-            </Grid>
-          </Grid>
         </Grid>
       </Box>
 
@@ -140,4 +101,4 @@ function OnBehalfUser() {
   )
 }
 
-export default OnBehalfUser
+export default Tutorial
