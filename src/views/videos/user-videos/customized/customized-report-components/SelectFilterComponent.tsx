@@ -16,6 +16,7 @@ const text1 = css`
 `;
 
 const fullButtonGrid = css`
+  width: 100%important;
   padding: 0px !important;
   margin: 0px !important;
   background-color: #f3f3f4;
@@ -24,15 +25,12 @@ const fullButtonGrid = css`
   padding-right: 20px !important;
   padding-bottom: 20px !important;
   border-radius: 5px;
-  // height: 128px;
 `;
 
 const buttonGrid = css`
   padding: 0px !important;
   margin: 0px !important;
-  width: 100% !important;
-  height: 39px;
-  margin-bottom: 10px !important;
+  width: 244.17px !important;
 `;
 
 const filterGrid = css`
@@ -105,18 +103,18 @@ const SelectFilterComponent = () => {
 
   return (
     <>
-      <Grid container lg={12} css={filterGrid}>
+      <Grid container lg={12} md={12} sm={12} xs={12} css={filterGrid}>
         <Grid container css={text1}>
           Select Filters
         </Grid>
 
-        <Grid container item lg={12} css={fullButtonGrid}>
+        <Grid container item lg={12} md={12} sm={12} xs={12} css={fullButtonGrid}>
           {filterState.map(eachFilterState => {
             const label = eachFilterState.label;
             const isActive = eachFilterState.isActive;
 
             return (
-              <Grid container item lg={2} key={eachFilterState.id} css={buttonGrid}>
+              <Grid container item lg={2} md={4} sm={12} xs={12} key={eachFilterState.id} css={buttonGrid}>
                 <SelectFilterButtonComponent
                   label={label}
                   isActive={isActive}

@@ -12,13 +12,12 @@ const innerGrid2 = css`
   margin: 0 !important;
   margin-top: 20px !important;
   width: 100% !important;
-  height: 128px;
 `;
 
 const FilterComponent = () => {
   return (
     <>
-      <Grid container spacing={2} css={innerGrid2}>
+      <Grid container css={innerGrid2}>
         <SelectFilterComponent></SelectFilterComponent>
         <SelectFieldsComponent></SelectFieldsComponent>
         <FilterFieldTableComponent></FilterFieldTableComponent>

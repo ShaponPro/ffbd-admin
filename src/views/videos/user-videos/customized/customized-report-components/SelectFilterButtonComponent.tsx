@@ -15,13 +15,13 @@ type buttonProps = {
 const filterButton = css`
   margin: 0px !important;
   padding: 0px !important;
+  padding: 10px !important;
   color: #161f29 !important;
   background-color: #ffffff !important;
   box-shadow: inset 1px 1.5px 5px rgba(22, 31, 41, 0.1);
   margin-left: 10px !important;
   margin-top: 10px !important;
-  width: 1526.063%!important;
-  height: 39px;
+  width: 100% !important;
   font-family: "Open Sans", sans-serif !important;
   font-style: normal;
   font-weight: 400 !important;
@@ -40,7 +40,7 @@ const clickedFilterButton = css`
 
 const SelectFilterButtonComponent = (props: buttonProps) => {
   const handleSelectFilter = (label: string) => {
-    const updatedState = props.filterState.map((eachState) => {
+    const updatedState = props.filterState.map(eachState => {
       if (label == "Select All") {
       }
 
@@ -59,7 +59,7 @@ const SelectFilterButtonComponent = (props: buttonProps) => {
   return (
     <>
       <Button
-        variant="text"
+        variant='text'
         onClick={() => {
           handleSelectFilter(props.label);
         }}
