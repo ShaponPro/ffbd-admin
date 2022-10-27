@@ -18,17 +18,17 @@ type buttonProps = {
   setFieldsState: (fn: () => Array<any>) => void;
 };
 
-const filterButton = css`
+const fieldButton = css`
   margin: 0px !important;
   padding: 0px !important;
+  padding: 10px !important;
   color: #161f29 !important;
   background-color: #ffffff !important;
   box-shadow: inset 1px 1.5px 5px rgba(22, 31, 41, 0.1);
   border: 0.5px solid #161f29;
   margin-left: 10px !important;
   margin-top: 10px !important;
-  width: 244.17px;
-  height: 39px;
+  width: 100% !important;
   font-family: "Open Sans", sans-serif !important;
   font-style: normal;
   font-weight: 400 !important;
@@ -38,8 +38,8 @@ const filterButton = css`
   border-radius: 0px !important;
 `;
 
-const clickedFilterButton = css`
-  ${filterButton};
+const clickedFieldButton = css`
+  ${fieldButton};
   color: white !important;
   background-color: #57ce66 !important;
   font-weight: 700 !important;
@@ -49,7 +49,7 @@ const SelectedFieldsButtonComponent = (props: buttonProps) => {
   const handleSelectedFieldsButton = (label: string) => {
     const childData = props.childData;
 
-    const updatedChildData = childData.map((eachChildData) => {
+    const updatedChildData = childData.map(eachChildData => {
       if (eachChildData.label == label) {
         return { ...eachChildData, isActive: true };
       } else {
@@ -57,7 +57,7 @@ const SelectedFieldsButtonComponent = (props: buttonProps) => {
       }
     });
 
-    const updatedData = props.fieldsState.map((eachFieldsState) => {
+    const updatedData = props.fieldsState.map(eachFieldsState => {
       const childData = eachFieldsState.childData;
 
       if (eachFieldsState.isActive == true) {
@@ -81,11 +81,11 @@ const SelectedFieldsButtonComponent = (props: buttonProps) => {
   return (
     <>
       <Button
-        variant="text"
+        variant='text'
         onClick={() => {
           handleSelectedFieldsButton(props.label);
         }}
-        css={props.isActive ? clickedFilterButton : filterButton}
+        css={props.isActive ? clickedFieldButton : fieldButton}
       >
         {props.label}
       </Button>

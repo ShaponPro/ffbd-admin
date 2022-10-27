@@ -19,14 +19,13 @@ const text1 = css`
 const fullButtonGrid = css`
   padding: 0px !important;
   margin: 0px !important;
-  width: 1555px;
+  width: 100%;
 `;
 
 const buttonGrid = css`
   padding: 0px !important;
   margin: 0px !important;
   width: 307px !important;
-  height: 39px;
   margin-bottom: 5px !important;
 `;
 
@@ -610,18 +609,18 @@ const SelectFieldsComponent = () => {
 
   return (
     <>
-      <Grid container css={fieldGrid}>
+      <Grid container lg={12} md={12} sm={12} xs={12} css={fieldGrid}>
         <Grid container css={text1}>
           Select Fields
         </Grid>
 
-        <Grid container item lg={12} css={fullButtonGrid}>
+        <Grid container item lg={12} md={12} sm={12} xs={12} css={fullButtonGrid}>
           {fieldsState.map(eachFieldsState => {
             const label = eachFieldsState.label;
             const isActive = eachFieldsState.isActive;
 
             return (
-              <Grid container item lg={12 / 5} key={eachFieldsState.id} css={buttonGrid}>
+              <Grid container item lg={12 / 5} md={4} sm={12} xs={12} key={eachFieldsState.id} css={buttonGrid}>
                 <SelectFieldsButtonComponent
                   label={label}
                   isActive={isActive}
@@ -635,7 +634,7 @@ const SelectFieldsComponent = () => {
 
         {fieldsState.map(eachFieldsState => {
           return (
-            <Grid key={eachFieldsState.id}>
+            <Grid container item lg={12} md={12} sm={12} xs={12} key={eachFieldsState.id}>
               {eachFieldsState.isActive && (
                 <SelectedFieldsComponent
                   fieldsState={fieldsState}

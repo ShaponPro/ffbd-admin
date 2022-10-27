@@ -18,6 +18,7 @@ type props = {
 };
 
 const fullButtonGrid = css`
+  width: 100%important;
   padding: 0px !important;
   margin: 0px !important;
   background: rgba(0, 158, 250, 0.2);
@@ -26,7 +27,6 @@ const fullButtonGrid = css`
   padding-right: 20px !important;
   padding-bottom: 20px !important;
   border-radius: 5px;
-  width: 100%important;
   margin-top: 20px !important;
 `;
 
@@ -34,20 +34,18 @@ const buttonGrid = css`
   padding: 0px !important;
   margin: 0px !important;
   width: 244.17px !important;
-  height: 39px;
-  margin-bottom: 10px !important;
 `;
 
 const SelectedFieldsComponent = (props: props) => {
   return (
     <>
-      <Grid container item lg={12} css={fullButtonGrid}>
-        {props.childData.map((eachChildData) => {
+      <Grid container item lg={12} md={12} sm={12} xs={12} css={fullButtonGrid}>
+        {props.childData.map(eachChildData => {
           const label = eachChildData.label;
           const isActive = eachChildData.isActive;
 
           return (
-            <Grid container item lg={2} key={eachChildData.id} css={buttonGrid}>
+            <Grid container item lg={2} md={4} sm={12} xs={12} key={eachChildData.id} css={buttonGrid}>
               <SelectedFieldsButtonComponent
                 label={label}
                 isActive={isActive}

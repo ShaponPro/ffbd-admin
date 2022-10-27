@@ -20,10 +20,10 @@ type buttonProps = {
 const fieldsButton = css`
   margin: 0px !important;
   padding: 0px !important;
+  padding: 10px !important;
   color: #161f29 !important;
   background-color: #f3f3f4 !important;
-  width: 307px !important;
-  height: 39px;
+  width: 100% !important;
   font-family: "Open Sans", sans-serif !important;
   font-style: normal;
   font-weight: 400 !important;
@@ -44,7 +44,7 @@ const clickedFieldsButton = css`
 
 const SelectFieldsButtonComponent = (props: buttonProps) => {
   const handleSelectFields = (label: string) => {
-    const updatedState = props.fieldsState.map((eachState) => {
+    const updatedState = props.fieldsState.map(eachState => {
       if (label == "Select All") {
       }
 
@@ -63,7 +63,7 @@ const SelectFieldsButtonComponent = (props: buttonProps) => {
   return (
     <>
       <Button
-        variant="text"
+        variant='text'
         onClick={() => {
           handleSelectFields(props.label);
         }}
