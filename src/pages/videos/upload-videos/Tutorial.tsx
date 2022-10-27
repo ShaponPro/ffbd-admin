@@ -16,13 +16,13 @@ function Tutorial() {
   return (
     <Box sx={{ flexGrow: 1 }} style={{ background: '#F3F3F4', padding: '20px 20px', display: 'grid' }}>
       <Box sx={{ width: '100%' }}>
-        <Grid container rowSpacing={1} >
+        <Grid container rowSpacing={1}>
           <Grid container xs={12} sm={12}>
-            <Grid item xs={3.5} sm={1.75} md={1.75}>
+            <Grid item xs={3.5} sm={3.5} md={1.75}>
               <Typography style={typographyStyle}>Upload Type</Typography>
             </Grid>
-            <Grid item xs={8.5} sm={10.25} md={10.25}>
-              <TextInputField placeholder='Tutorial' disabled={true} style={{width:'230px !important'}} />
+            <Grid item xs={8.5} sm={8.5} md={10.25}>
+              <TextInputField placeholder='Tutorial' disabled={true} style={{ width: '230px !important' }} />
             </Grid>
           </Grid>
 
@@ -42,13 +42,16 @@ function Tutorial() {
             </Grid>
           </Grid>
 
-          
           <Grid container xs={12} sm={12} md={6}>
             <Grid item xs={3.5}>
               <Typography style={typographyStyle}>Upload Video</Typography>
             </Grid>
             <Grid item xs={8.5}>
-              <TextInputField title='StyledField' type='file' helperText='Recommended video format mp4, avi & length max 7 minutes' />
+              <TextInputField
+                title='StyledField'
+                type='file'
+                helperText='Recommended video format mp4, avi & length max 7 minutes'
+              />
             </Grid>
           </Grid>
           <Grid container xs={12} sm={12} md={6}>
@@ -60,18 +63,18 @@ function Tutorial() {
             </Grid>
           </Grid>
           <Grid container xs={12} sm={12} md={12}>
-            <Grid item xs={1.75}>
+            <Grid item xs={3.5} sm={3.5} md={1.75}>
               <Typography style={typographyStyle}>Title</Typography>
             </Grid>
-            <Grid item xs={10.25}>
+            <Grid item xs={8.5} sm={8.5} md={10.25}>
               <TextInputField placeholder='Type' helperText='Max 30 Characters' />
             </Grid>
           </Grid>
           <Grid container xs={12} sm={12} md={12}>
-            <Grid item xs={1.75}>
+            <Grid item xs={3.5} sm={3.5} md={1.75}>
               <Typography style={typographyStyle}>Description</Typography>
             </Grid>
-            <Grid item xs={10.25}>
+            <Grid item xs={8.5} sm={8.5} md={10.25}>
               <TextInputField placeholder='Type' helperText='Max 150 Characters' />
             </Grid>
           </Grid>
@@ -94,10 +97,7 @@ function Tutorial() {
           </Grid>
         </Grid>
       </Box>
-
-      </Box>
-
-     
+    </Box>
   )
 }
 
