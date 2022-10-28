@@ -1,17 +1,19 @@
 // ** React Imports
 import { ReactNode } from 'react'
 
-// ** MUI Imports
-import { styled, useTheme } from '@mui/material/styles'
-import useScrollTrigger from '@mui/material/useScrollTrigger'
-import MuiAppBar, { AppBarProps } from '@mui/material/AppBar'
-import MuiToolbar, { ToolbarProps } from '@mui/material/Toolbar'
-
 // ** Type Import
 import { Settings } from 'src/@core/context/settingsContext'
-
 // ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
+
+// ** MUI Imports
+import MuiAppBar, { AppBarProps } from '@mui/material/AppBar'
+import {
+  styled,
+  useTheme
+} from '@mui/material/styles'
+import MuiToolbar, { ToolbarProps } from '@mui/material/Toolbar'
+import useScrollTrigger from '@mui/material/useScrollTrigger'
 
 interface Props {
   hidden: boolean
@@ -59,7 +61,7 @@ const LayoutAppBar = (props: Props) => {
     return {
       px: `${theme.spacing(6)} !important`,
       ...(appBarBlur && { backdropFilter: 'blur(8px)' }),
-      boxShadow: theme.shadows[skin === 'bordered' ? 0 : 3],
+
       backgroundColor: hexToRGBA(theme.palette.background.paper, appBarBlur ? 0.9 : 1),
       ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}`, borderTopWidth: 0 })
     }
@@ -71,15 +73,7 @@ const LayoutAppBar = (props: Props) => {
 
   return (
     <AppBar elevation={0} color='default' className='layout-navbar' position={appBar === 'fixed' ? 'sticky' : 'static'}>
-      <Toolbar
-        className='navbar-content-container'
-        sx={{
-          ...(appBar === 'fixed' && scrollTrigger && { ...appBarFixedStyles() }),
-          ...(contentWidth === 'boxed' && {
-            '@media (min-width:1440px)': { maxWidth: `calc(1440px - ${theme.spacing(6)} * 2)` }
-          })
-        }}
-      >
+      <Toolbar className='navbar-content-container'>
         {(userVerticalAppBarContent && userVerticalAppBarContent(props)) || null}
       </Toolbar>
     </AppBar>

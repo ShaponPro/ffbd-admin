@@ -3,17 +3,14 @@ import { useState } from 'react'
 
 // ** Icons Imports
 import ArrowUp from 'mdi-material-ui/ArrowUp'
-
 // ** Components
 import Customizer from 'src/@core/components/customizer'
 import ScrollToTop from 'src/@core/components/scroll-to-top'
-
 // ** Type Import
 import { LayoutProps } from 'src/@core/layouts/types'
-
 // ** Styled Component
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
-
+import SideBarContentComponents from 'src/components/SideBarContentComponents'
 // ** Theme Config Import
 import themeConfig from 'src/configs/themeConfig'
 
@@ -86,7 +83,23 @@ const VerticalLayout = (props: LayoutProps) => {
             navigationBorderWidth={navigationBorderWidth}
             {...props}
           />
-        )}
+        )}{' '}
+        {navHover ? (
+          <Box>
+            <ul>
+              <li>Video Analytics</li>
+              <li>List Video</li>
+              <li>User Video</li>
+              <li>Brand Video</li>
+              <li>Tutorial</li>
+              <li>youTube Crawler </li>
+              <li>Upload a Video</li>
+              <li>Download a code</li>
+              <li>Upload a Video</li>
+            </ul>
+          </Box>
+        ) : null}
+        <SideBarContentComponents />
         <MainContentWrapper className='layout-content-wrapper'>
           {/* AppBar Component */}
           <AppBar toggleNavVisibility={toggleNavVisibility} {...props} />
