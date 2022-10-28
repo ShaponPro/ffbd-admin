@@ -1,7 +1,8 @@
-import React from 'react'
+import React from "react";
+import Index from "../../views/videos/upload-a-video/drafts/index";
 
-const index = () => {
-  return <div>index</div>
-}
+const Home = () => {
+    return <Index></Index>;
+};
 
-export default index
+export default Home;
