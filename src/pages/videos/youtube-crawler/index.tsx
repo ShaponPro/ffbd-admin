@@ -5,6 +5,10 @@ import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import Grid from '@mui/material/Grid'
 
+import { useQuery } from '@apollo/client'
+
+import { GET_VIDEO_LIST } from '../graphql/Queries'
+
 // ** Styled Component Import
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 
@@ -14,7 +18,39 @@ import ListComponent from 'src/components/ListComponent'
 import {FilterComponent}  from 'src/components/FilterComponent'
 import data from 'src/@fake-db/components/data'
 
-const YoutubeCrawler = () => {        
+const YoutubeCrawler = () => {   
+  
+  const { error, loading, data } = useQuery(GET_VIDEO_LIST, {
+    variables:{ 
+      "endIndex": 10,
+      "startIndex": 1
+  }
+  });
+
+  console.log(data);
+
+  // check for errors
+  if (error) {
+    return <p>:( an error happened</p>;
+  }
+
+  console.log('data', data)
+
+  const columns =[
+    {
+      field:"_id", header:"Video ID"
+    }, 
+    {
+      field:"title", header:"Video Title"
+    }, 
+    {
+      field:"activity_updated", header:"Last Activity Time"
+    }, 
+    {
+      field:"short_id", header:"Short ID"
+    }, 
+
+  ]
 
   return (
     <ApexChartWrapper>
@@ -48,7 +84,7 @@ const YoutubeCrawler = () => {
               <FilterComponent title ='select'/>
             </Grid>
             <Grid item xs={12} sm={12}>
-              <ListComponent/>
+              <ListComponent data={data} columns={columns} />
             </Grid>
           </Grid>
         </CardContent>
