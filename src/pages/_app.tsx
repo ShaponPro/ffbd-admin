@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // ** React Imports
 import { ReactNode } from 'react'
 
@@ -62,13 +63,25 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 // ** Global css styles
 // import '../../styles/globals.css'
 
-import { ApolloProvider } from '@apollo/client';
-import {ApolloClient, InMemoryCache} from '@apollo/client';
+// import { ApolloProvider, from, HttpLink } from '@apollo/client'
+// import { ApolloClient, InMemoryCache } from '@apollo/client'
 
-const client = new ApolloClient({
-  uri: 'http://api-staging.fanfarebd.com:3000/graphql',
-  cache: new InMemoryCache(),
-});
+//** Apollo Client Imports */
+
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+  from
+} from '@apollo/client';
+import {ErrorLink, onError} from '@apollo/client/link/error'
+import { setContext } from '@apollo/client/link/context';
+
+// const client = new ApolloClient({
+//   uri: 'http://api-staging.fanfarebd.com:3000/graphql',
+//   cache: new InMemoryCache(),
+// });
 
 // import '../styles/globals.css';
 import React from 'react'
@@ -84,6 +97,39 @@ type GuardProps = {
   guestGuard: boolean
   children: ReactNode
 }
+
+//** GraphQL ApolloClient Setup */
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    graphQLErrors.map(({ message, locations, path }) => {
+      alert(`graphql error ${message}`)
+    })
+
+  }
+
+})
+
+const link = from([errorLink, new HttpLink({ uri: 'http://api-staging.fanfarebd.com:3000/graphql' })])
+
+const authLink = setContext((_, { header }) => {
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTY2OWY5YzcxZTYzMGU2Yjk5NjkzNyIsImVtYWlsIjoibW9iaW5AZ21haWwuY29tIiwicm9sZXMiOlsidXNlciIsImFkbWluIl0sImlhdCI6MTY2Njg2NzU2OSwiZXhwIjoxNjY2ODY3Njg5fQ.uQOh0CLwDPeCcRfOiKbedKYdtzJYSqutD_-tGm_Hbaw'
+
+  return {
+    headers: {
+      ...header,
+      Authorization: token ? `Bearer ${token}` : ''
+    }
+  }
+})
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: authLink.concat(link)
+})
+
+
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -123,27 +169,27 @@ const App = (props: ExtendedAppProps) => {
 
   const guestGuard = Component.guestGuard ?? false
 
-  const aclAbilities = Component.acl ?? defaultACLObj;
+  const aclAbilities = Component.acl ?? defaultACLObj
 
   // write a GraphQL query that asks for names and codes for all countries
-  
-// const LIST_COUNTRIES = gql`
-// {
-//   query Post{
-//     posts{
-//       id
-//     }
-//   }
-// }
-// `;
 
-//   const {data, loading, error} = useQuery(LIST_COUNTRIES, {client});
+  // const LIST_COUNTRIES = gql`
+  // {
+  //   query Post{
+  //     posts{
+  //       id
+  //     }
+  //   }
+  // }
+  // `;
 
-//   if (loading || error) {
-//     return <p>{error ? error.message : 'Loading...'}</p>;
-//   }
+  //   const {data, loading, error} = useQuery(LIST_COUNTRIES, {client});
 
-//   console.log('data', data)
+  //   if (loading || error) {
+  //     return <p>{error ? error.message : 'Loading...'}</p>;
+  //   }
+
+  //   console.log('data', data)
 
   return (
     <ApolloProvider client={client}>

@@ -16,7 +16,7 @@ import {FilterComponent} from 'src/components/FilterComponent';
 
 
 import { useQuery } from '@apollo/client'
-import { QUERY_ALL_POSTS } from './graphql/Queries'
+import {  QUERY_ALL_VIDEOS } from '../../graphql/Queries'
 
 const tabs = [
   {
@@ -39,7 +39,7 @@ const tabs = [
 
 const AnalyticsCongratulations = () => {
 
-  const { error, loading, data } = useQuery(QUERY_ALL_POSTS, {
+  const { error, loading, data } = useQuery(QUERY_ALL_VIDEOS, {
     variables:{ 
       "endIndex": 100,
       "startIndex": 1
