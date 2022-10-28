@@ -1,41 +1,36 @@
 // ** React Imports
-import { useEffect, Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 
+// ** Third Party Imports
+import clsx from 'clsx'
+// ** Icons Imports
+import ChevronLeft from 'mdi-material-ui/ChevronLeft'
+import ChevronRight from 'mdi-material-ui/ChevronRight'
 // ** Next Import
 import { useRouter } from 'next/router'
+import { Settings } from 'src/@core/context/settingsContext'
+// ** Types
+import { NavGroup } from 'src/@core/layouts/types'
+// ** Utils
+import { hasActiveChild, removeChildren } from 'src/@core/layouts/utils'
+// ** Configs Import
+import themeConfig from 'src/configs/themeConfig'
+import CanViewNavGroup from 'src/layouts/components/acl/CanViewNavGroup'
+import Translations from 'src/layouts/components/Translations'
+import UserIcon from 'src/layouts/components/UserIcon'
 
+import Box, { BoxProps } from '@mui/material/Box'
 // ** MUI Imports
 import Chip from '@mui/material/Chip'
 import Collapse from '@mui/material/Collapse'
 import ListItem from '@mui/material/ListItem'
-import Typography from '@mui/material/Typography'
-import Box, { BoxProps } from '@mui/material/Box'
+import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import { styled, useTheme } from '@mui/material/styles'
-import ListItemButton from '@mui/material/ListItemButton'
-
-// ** Third Party Imports
-import clsx from 'clsx'
-
-// ** Icons Imports
-import ChevronLeft from 'mdi-material-ui/ChevronLeft'
-import ChevronRight from 'mdi-material-ui/ChevronRight'
-
-// ** Configs Import
-import themeConfig from 'src/configs/themeConfig'
-
-// ** Utils
-import { hasActiveChild, removeChildren } from 'src/@core/layouts/utils'
-
-// ** Types
-import { NavGroup } from 'src/@core/layouts/types'
-import { Settings } from 'src/@core/context/settingsContext'
+import Typography from '@mui/material/Typography'
 
 // ** Custom Components Imports
 import VerticalNavItems from './VerticalNavItems'
-import UserIcon from 'src/layouts/components/UserIcon'
-import Translations from 'src/layouts/components/Translations'
-import CanViewNavGroup from 'src/layouts/components/acl/CanViewNavGroup'
 
 interface Props {
   item: NavGroup

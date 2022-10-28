@@ -1,4 +1,3 @@
-import React from 'react'
 
 // ** MUI Imports
 import { TextField, InputBase, Box, Container, InputAdornment, Typography } from '@mui/material'
@@ -34,7 +33,6 @@ const typographyStyle = {
 
 const listStyle = {
   display: 'flex',
-  listStyle: "none",
   justifyContent: 'space-between',
   height: '36px',
   fontSize: '12px',
@@ -45,6 +43,7 @@ const listStyle = {
 
 type props = {
   title: string
+  
   // fields: object[];
   // onChange: (fields: object[]) => void;
   // style: React.CSSProperties;
@@ -101,20 +100,18 @@ export const FilterComponent = (props: props) => {
             <Item style={itemStyle}>
               <Autocomplete
                 multiple
-
                 id='radio-tags-demo'
                 options={fields}
                 disableCloseOnSelect
                 getOptionLabel={option => option.title}
                 renderOption={(props, option, { selected }) => (
-                  <li
-                   {...props} style={listStyle}>
+                  <li {...props} style={listStyle}>
                     {option.title}
-                    <Radio style={{ color: (selected)? '#57CE66': 'black' }} checked={selected} />
+                    <Radio style={{ color: '#57CE66' }} checked={selected} />
                   </li>
                 )}
-                style={{ width: 147, height: 23 , overflow: "hidden"}}
-                renderInput={params => <TextField  placeholder='Select Item' variant='standard' {...params} />}
+                style={{ width: 147, height: 23 }}
+                renderInput={params => <TextField variant='standard' {...params} />}
               />
             </Item>
           </Grid>
@@ -135,11 +132,11 @@ export const FilterComponent = (props: props) => {
                 renderOption={(props, option, { selected }) => (
                   <li {...props} style={listStyle}>
                     {option.title}
-                    <Radio style={{ color: (selected)? '#57CE66': 'black' }} checked={selected} />
+                    <Radio style={{ color: '#57CE66' }} checked={selected} />
                   </li>
                 )}
-                style={{ width: 147, height: 23 , overflow: "hidden"}}
-                renderInput={params => <TextField  placeholder='Select Item' variant='standard' {...params} />}
+                style={{ width: 147, height: 23 }}
+                renderInput={params => <TextField variant='standard' {...params}  />}
               />
             </Item>
           </Grid>
@@ -159,11 +156,11 @@ export const FilterComponent = (props: props) => {
                 renderOption={(props, option, { selected }) => (
                   <li {...props} style={listStyle}>
                     {option.title}
-                    <Radio style={{ color: (selected)? '#57CE66': 'black' }} checked={selected} />
+                    <Radio style={{ color: '#57CE66' }} checked={selected} />
                   </li>
                 )}
-                style={{ width: 147, height: 23 , overflow: "hidden"}}
-                renderInput={params => <TextField  placeholder='Select Item' variant='standard' {...params} />}
+                style={{ width: 147, height: 23 }}
+                renderInput={params => <TextField variant='standard' {...params}  />}
               />
             </Item>
           </Grid>
@@ -183,11 +180,11 @@ export const FilterComponent = (props: props) => {
                 renderOption={(props, option, { selected }) => (
                   <li {...props} style={listStyle}>
                     {option.title}
-                    <Radio style={{ color: (selected)? '#57CE66': 'black' }} checked={selected} />
+                    <Radio style={{ color: '#57CE66' }} checked={selected} />
                   </li>
                 )}
-                style={{ width: 147, height: 23 , overflow: "hidden"}}
-                renderInput={params => <TextField  placeholder='Select Item' variant='standard' {...params} />}
+                style={{ width: 147, height: 23 }}
+                renderInput={params => <TextField variant='standard' {...params}  />}
               />
             </Item>
           </Grid>
@@ -235,11 +232,11 @@ export const FilterComponent = (props: props) => {
                 renderOption={(props, option, { selected }) => (
                   <li {...props} style={listStyle}>
                     {option.title}
-                    <Radio style={{ color: (selected)? '#57CE66': 'black' }} checked={selected} />
+                    <Radio style={{ color: '#57CE66' }} checked={selected} />
                   </li>
                 )}
-                style={{ width: 147, height: 23 , overflow: "hidden"}}
-                renderInput={params => <TextField  placeholder='Select Item' variant='standard' {...params} />}
+                style={{ width: 147, height: 23 }}
+                renderInput={params => <TextField variant='standard' {...params}  />}
               />
             </Item>
           </Grid>
@@ -258,11 +255,11 @@ export const FilterComponent = (props: props) => {
                 renderOption={(props, option, { selected }) => (
                   <li {...props} style={listStyle}>
                     {option.title}
-                    <Radio style={{ color: (selected)? '#57CE66': 'black' }} checked={selected} />
+                    <Radio style={{ color: '#57CE66' }} checked={selected} />
                   </li>
                 )}
-                style={{ width: 147, height: 23 , overflow: "hidden"}}
-                renderInput={params => <TextField  placeholder='Select Item' variant='standard' {...params} />}
+                style={{ width: 147, height: 23 }}
+                renderInput={params => <TextField variant='standard' {...params} />}
               />
             </Item>
           </Grid>

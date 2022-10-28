@@ -5,19 +5,25 @@ import { ChangeEvent, useState } from 'react'
 import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
-import TextField from '@mui/material/TextField'
-import Autocomplete from '@mui/material/Autocomplete'
+import Select from '@mui/material/Select'
+import FormControl from '@mui/material/FormControl'
+import Link from '@mui/material/Link';
 
-import { GridToolbarContainer } from '@mui/x-data-grid'
-import { GridToolbar } from '@mui/x-data-grid'
+import {
+  GridToolbarContainer,
+  GridCsvExportOptions,
+  useGridApiContext,
+  GridCsvGetRowsToExportParams, 
+  gridPaginatedVisibleSortedGridRowIdsSelector
+} from '@mui/x-data-grid'
 
 // ** Icons Imports
 
 //Import Search Component
 import SearchComponent from '../../../components/SearchComponent'
+import { Button } from '@mui/material'
 
 // ** Data
-import { top100Films } from 'src/@fake-db/autocomplete'
 
 interface Props {
   value: string
@@ -34,34 +40,81 @@ const StyledGridToolbarContainer = styled(GridToolbarContainer)({
   justifyContent: 'space-between'
 })
 
+const StyledFormControl = styled(FormControl)({
+  borderRadius: '0px',
+  height: '36px',
+  width: '80px'
+})
+
+const StyledSelect = styled(Select)({
+  background: 'white',
+  borderRadius: '0px',
+  height: '36px',
+  width: '80px',
+  boxShadow: 'inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)'
+})
+
+const StyledSelectReport = styled(Select)({
+  borderRadius: '20px',
+  background: 'white',
+  height: '36px',
+  width: '126px',
+  boxShadow: 'inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)',
+
+  '& .MuiSelect-select': {
+    transition: '0s !important'
+  }
+})
+
+const getRowsFromCurrentPage = ({ apiRef }: GridCsvGetRowsToExportParams) =>
+  gridPaginatedVisibleSortedGridRowIdsSelector(apiRef)
+
 const ServerSideToolbar = (props: Props) => {
+  const [answer, setAnswer] = useState<string>('')
   const [value, setValue] = useState<string>('')
+  const apiRef = useGridApiContext()
+  const handleExport = (options: GridCsvExportOptions) => apiRef.current.exportDataAsCsv(options)
+
   console.log(value)
 
   return (
     <StyledGridToolbarContainer>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
         <Typography>Show</Typography>
-        <Autocomplete
-          sx={{ width: 250 }}
-          options={top100Films}
-          id='autocomplete-outlined'
-          getOptionLabel={option => option.title}
-          renderInput={params => <TextField {...params} label='20' />}
-        />
-      </Box>
-      <Box>
-        <SearchComponent
-          placeholder='search and filter'
-          value={value}
-          onChange={(value: string) => setValue(value)}
-          style={{ display: 'flex', margin: '10px' }}
-        />
+        <StyledFormControl sx={{ m: 2 }} size='small'>
+          <StyledSelect
+            displayEmpty
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setAnswer(e.target.value)}
+            renderValue={answer !== '' ? undefined : () => '20'}
+          />
+        </StyledFormControl>
+        <Typography>entries</Typography>
+
+        <Box>
+          <SearchComponent
+            placeholder='search and filter'
+            value={value}
+            onChange={(value: string) => setValue(value)}
+            style={{ display: 'flex', margin: '10px' }}
+          />
+        </Box>
       </Box>
 
-      <Box>
-        <GridToolbar />
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+        <FormControl sx={{ m: 2 }} size='small'>
+          <StyledSelectReport
+            displayEmpty
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setAnswer(e.target.value)}
+            renderValue={answer !== '' ? undefined : () => 'Report'}
+          >
+            <Link underline="none" onClick={() => handleExport({ getRowsToExport: getRowsFromCurrentPage })} sx={{m:2, color: 'black', fontSize:'12px'}}>Export table (xls.)</Link>
+          </StyledSelectReport>
+        </FormControl>
       </Box>
+
+      {/* <Box>
+        <GridToolbar />
+      </Box> */}
 
       {/* <TextField
         variant='standard'
