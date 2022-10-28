@@ -44,7 +44,7 @@ const filterBodyButton = css`
 const FieldTableButtonComponent = (props: buttonProps) => {
   return (
     <>
-      <Button variant="text" css={filterBodyButton} disabled>
+      <Button variant='text' css={filterBodyButton} disabled>
         {props.label}
       </Button>
     </>

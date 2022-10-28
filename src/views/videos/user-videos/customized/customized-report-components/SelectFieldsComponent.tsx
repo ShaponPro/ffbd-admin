@@ -609,7 +609,7 @@ const SelectFieldsComponent = () => {
 
   return (
     <>
-      <Grid container lg={12} md={12} sm={12} xs={12} css={fieldGrid}>
+      <Grid container item lg={12} md={12} sm={12} xs={12} css={fieldGrid}>
         <Grid container css={text1}>
           Select Fields
         </Grid>

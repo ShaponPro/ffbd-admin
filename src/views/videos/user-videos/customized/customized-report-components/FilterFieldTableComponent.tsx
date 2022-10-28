@@ -9,30 +9,42 @@ import FieldTableComponent from "./FieldTableComponent";
 const filterGrid = css`
   margin: 0px !important;
   padding: 0px !important;
-  width: 100% !important;
+  width: 20% !important;
   margin-right: 10px !important;
-  @media (min-width: 1200px) {
+  @media (min-width: 820px) {
     flex-basis: 0 !important;
   }
-  margin-bottom: 28px !important;
   margin-top: 30px !important;
   height: max-content;
+  @media (max-width: 820px) {
+    width: 100% !important;
+  }
 `;
 
 const fieldGrid = css`
+  width: 80% !important;
   margin: 0px !important;
   padding: 0px !important;
   margin-top: 30px !important;
+  @media (max-width: 820px) {
+    width: 100% !important;
+  }
+`;
+
+const parentGrid = css`
+  width: 100% !important;
+  margin: 0px !important;
+  padding: 0px !important;
 `;
 
 const FilterFieldTableComponent = () => {
   return (
     <>
-      <Grid container>
-        <Grid item xl={2} lg={2} md={12} sm={12} xs={12} css={filterGrid}>
+      <Grid container css={parentGrid}>
+        <Grid css={filterGrid}>
           <FilterTableComponent></FilterTableComponent>
         </Grid>
-        <Grid item xl={10} lg={10} md={12} sm={12} xs={12} css={fieldGrid}>
+        <Grid css={fieldGrid}>
           <FieldTableComponent></FieldTableComponent>
         </Grid>
       </Grid>

@@ -16,9 +16,7 @@ const filterButton = css`
   padding: 0px !important;
   padding: 10px !important;
   color: #161f29 !important;
-  margin-bottom: 2px !important;
   margin-right: 2px !important;
-  width: 100% !important;
   font-family: "Open Sans", sans-serif !important;
   font-style: normal;
   font-weight: 400;

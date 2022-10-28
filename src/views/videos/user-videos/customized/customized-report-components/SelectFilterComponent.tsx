@@ -103,7 +103,7 @@ const SelectFilterComponent = () => {
 
   return (
     <>
-      <Grid container lg={12} md={12} sm={12} xs={12} css={filterGrid}>
+      <Grid container item lg={12} md={12} sm={12} xs={12} css={filterGrid}>
         <Grid container css={text1}>
           Select Filters
         </Grid>

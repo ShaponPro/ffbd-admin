@@ -11,8 +11,7 @@ const footerButton = css`
   background: #f3f3f4;
   border-radius: 3px;
   padding: 10px 25px 10px 25px !important;
-  margin-right: 10px !important;
-  width: 100px;
+  width: 100% !important;
   height: 42px;
   font-family: "Open Sans", sans-serif !important;
   font-style: normal;
@@ -24,10 +23,23 @@ const footerButton = css`
   justify-content: flex-start;
 `;
 
+const buttonGrid = css`
+  width: 100px !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  margin-right: 10px !important;
+`;
+
+const generateButtonGrid = css`
+  width: 125px !important;
+  padding: 0px !important;
+  margin: 0px !important;
+`;
+
 const footerButtonGenerate = css`
   ${footerButton};
   color: #ffffff !important;
-  width: 125px !important;
+  width: 100% !important;
   background: #57ce66 !important;
   font-weight: 700 !important;
 `;
@@ -51,25 +63,29 @@ const FooterButtonComponent = () => {
   return (
     <>
       <Grid container css={buttonGroup}>
-        <Button
-          variant='text'
-          css={footerButton}
-          onClick={() => {
-            handleCancel();
-          }}
-        >
-          Cancel
-        </Button>
+        <Grid css={buttonGrid}>
+          <Button
+            variant='text'
+            css={footerButton}
+            onClick={() => {
+              handleCancel();
+            }}
+          >
+            Cancel
+          </Button>
+        </Grid>
 
-        <Button
-          variant='text'
-          css={footerButtonGenerate}
-          onClick={() => {
-            handleGenerate();
-          }}
-        >
-          Generate
-        </Button>
+        <Grid css={generateButtonGrid}>
+          <Button
+            variant='text'
+            css={footerButtonGenerate}
+            onClick={() => {
+              handleGenerate();
+            }}
+          >
+            Generate
+          </Button>
+        </Grid>
       </Grid>
     </>
   );

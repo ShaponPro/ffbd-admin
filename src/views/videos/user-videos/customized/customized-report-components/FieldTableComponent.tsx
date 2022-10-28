@@ -6,7 +6,7 @@ import { Button, Grid } from "@mui/material";
 import FieldTableColumnComponent from "./FieldTableColumnComponent";
 
 const fieldButton = css`
-  width: 100%;
+  width: 100% !important;
   margin: 0px !important;
   padding: 0px !important;
   padding: 10px !important;
@@ -24,9 +24,9 @@ const fieldButton = css`
 `;
 
 const headerButtonGrid = css`
+  width: 100% !important;
   padding: 0px !important;
   margin: 0px !important;
-  width: 100% !important;
 `;
 
 const fieldHeaderButton = css`

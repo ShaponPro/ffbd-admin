@@ -6,15 +6,13 @@ import { Button, Grid } from "@mui/material";
 import FilterTableButtonComponent from "./FilterTableButtonComponent";
 
 const buttonGrid = css`
+  width: 100% !important;
   padding: 0px !important;
   margin: 0px !important;
-  width: 100% !important;
-  // @media (max-width: 900px) {
-  //   width: 100% !important;
-  // }
 `;
 
 const filterTableButton = css`
+  width: 100% !important;
   margin: 0px !important;
   padding: 0px !important;
   padding: 10px !important;
@@ -22,7 +20,6 @@ const filterTableButton = css`
   background: rgba(22, 31, 41, 0.07);
   margin-bottom: 2px !important;
   margin-right: 2px !important;
-  width: 100% !important;
   font-family: "Open Sans", sans-serif !important;
   font-style: normal;
   font-weight: 400;
@@ -41,19 +38,16 @@ const filterTableHeaderButton = css`
 const filterTableHeaderGrid = css`
   padding: 0px !important;
   margin: 0px !important;
-  width: 100% !important;
 `;
 
 const filterTableBodyGrid = css`
   padding: 0px !important;
   margin: 0px !important;
-  width: 100% !important;
 `;
 
-const filterTableBodyButton = css`
-  padding: 0px !important;
-  margin: 0px !important;
-  width: 100% !important;
+const filterTableBodyButtonGrid = css`
+  ${buttonGrid};
+  margin-bottom: 2px !important;
   &:nth-of-type(odd) {
     background: rgba(22, 31, 41, 0.03);
   }
@@ -76,7 +70,7 @@ const FilterTableComponent = () => {
     <>
       {/* Selected Filters header Grid */}
 
-      <Grid md={12} css={filterTableHeaderGrid}>
+      <Grid css={filterTableHeaderGrid}>
         <Grid css={buttonGrid}>
           <Button variant='text' css={filterTableHeaderButton} disabled>
             Selected Filters
@@ -91,10 +85,10 @@ const FilterTableComponent = () => {
       </Grid>
 
       {/* Selected Filters Data Grid */}
-      <Grid md={12} css={filterTableBodyGrid}>
+      <Grid css={filterTableBodyGrid}>
         {selectedFiltersState.map(eachSelectedFiltersState => {
           return (
-            <Grid key={eachSelectedFiltersState.id} css={filterTableBodyButton}>
+            <Grid key={eachSelectedFiltersState.id} css={filterTableBodyButtonGrid}>
               <FilterTableButtonComponent
                 label={eachSelectedFiltersState.label}
                 selectedFiltersState={selectedFiltersState}
