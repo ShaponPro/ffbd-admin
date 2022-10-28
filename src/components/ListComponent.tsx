@@ -348,6 +348,7 @@ const ListComponent = () => {
             sortingMode="server"
             paginationMode="server"
             rowsPerPageOptions={[7, 10, 25, 50]}
+
             
             //onSortModelChange={handleSortModel}
             onPageChange={(newPage) => setPage(newPage)}
