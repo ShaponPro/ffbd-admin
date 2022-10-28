@@ -76,6 +76,13 @@ const tabs = [
   }
 ]
 
+const button =[
+  {
+    key: 'active',
+    title: 'Active'
+  }
+]
+
 const AnalyticsCongratulations = () => {
   /**
    * Handle on tab change
