@@ -26,7 +26,6 @@ type Props = {
   style?: React.CSSProperties
 }
 
-
 const TabbarComponent = (props: Props) => {
   // ** State
   const [active, setActive] = useState<string>('regular') // 

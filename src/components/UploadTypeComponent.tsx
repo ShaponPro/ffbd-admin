@@ -65,6 +65,7 @@ function UploadTypeComponent(props: props) {
       style={{
         background: '#57CE66',
         width: '100%',
+        maxWidth: '550px',
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
@@ -108,8 +109,8 @@ UploadTypeComponent.defaultProps = {
       title: 'On behalf of User'
     },
     {
-      key: 'board',
-      title: 'On behalf of Board'
+      key: 'brand',
+      title: 'On behalf of Brand'
     },
     {
       key: 'tutorial',

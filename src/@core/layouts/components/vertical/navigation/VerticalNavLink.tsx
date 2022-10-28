@@ -1,36 +1,41 @@
 // ** React Imports
-import { ElementType, ReactNode } from 'react'
+import {
+  ElementType,
+  ReactNode
+} from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
-// ** MUI Imports
-import Chip from '@mui/material/Chip'
-import ListItem from '@mui/material/ListItem'
-import Typography from '@mui/material/Typography'
-import Box, { BoxProps } from '@mui/material/Box'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import { styled, useTheme } from '@mui/material/styles'
-import ListItemButton, { ListItemButtonProps } from '@mui/material/ListItemButton'
-
-// ** Configs Import
-import themeConfig from 'src/configs/themeConfig'
-
 // ** Types
-import { NavLink, NavGroup } from 'src/@core/layouts/types'
 import { Settings } from 'src/@core/context/settingsContext'
-
-// ** Custom Components Imports
-import UserIcon from 'src/layouts/components/UserIcon'
-import Translations from 'src/layouts/components/Translations'
-import CanViewNavLink from 'src/layouts/components/acl/CanViewNavLink'
-
+import {
+  NavGroup,
+  NavLink
+} from 'src/@core/layouts/types'
 // ** Utils
 import { handleURLQueries } from 'src/@core/layouts/utils'
+// ** Configs Import
+import themeConfig from 'src/configs/themeConfig'
+// ** Custom Components Imports
+import CanViewNavLink from 'src/layouts/components/acl/CanViewNavLink'
+import Translations from 'src/layouts/components/Translations'
+import UserIcon from 'src/layouts/components/UserIcon'
+
+// ** MUI Imports
+import Box, { BoxProps } from '@mui/material/Box'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton, { ListItemButtonProps } from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import {
+  styled,
+  useTheme
+} from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 
 interface Props {
   parent?: boolean
+  children?: string
   item: NavLink
   navHover?: boolean
   settings: Settings
@@ -72,6 +77,7 @@ const MenuItemTextMetaWrapper = styled(Box)<BoxProps>({
 })
 
 const VerticalNavLink = ({
+  children,
   item,
   parent,
   navHover,
@@ -131,7 +137,7 @@ const VerticalNavLink = ({
   }
 
   return (
-    <CanViewNavLink navLink={item}>
+    <CanViewNavLink style={{ position: 'relative' }} navLink={item}>
       <ListItem
         disablePadding
         className='nav-link'
@@ -199,6 +205,7 @@ const VerticalNavLink = ({
               >
                 <Translations text={item.title} />
               </Typography>
+
               {item.badgeContent ? (
                 <Chip
                   size='small'
