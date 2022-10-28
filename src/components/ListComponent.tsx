@@ -15,10 +15,6 @@ import Typography from '@mui/material/Typography'
 import { Button } from '@mui/material'
 import usePagination from '@mui/material/usePagination'
 
-import { useQuery } from '@apollo/client'
-
-import { GET_VIDEO_LIST } from 'src/pages/videos/graphql/Queries'
-
 import { styled, TableHead } from '@mui/material'
 
 const StyledTableCell = styled(TableCell)(() => ({
@@ -128,22 +124,8 @@ function UsePagination() {
   )
 }
 
-export default function listComponent() {
-  const { error, loading, data } = useQuery(GET_VIDEO_LIST, {
-    variables: {
-      endIndex: 3,
-      startIndex: 1
-    }
-  })
+export default function listComponent({ data, columns }) {
 
-  console.log(data)
-
-  // check for errors
-  if (error) {
-    return <p>:( an error happened</p>
-  }
-
-  console.log('data', data)
 
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
@@ -200,11 +182,9 @@ export default function listComponent() {
           <Table aria-label='custom pagination table' sx={{ textAlign: 'center' }}>
             <TableHead sx={{ display: 'table-header-group' }}>
               <StyledTableRow style={{ height: 36 }}>
-                <StyledTableCell>Video ID</StyledTableCell>
-                <StyledTableCell>Thambnail</StyledTableCell>
-                <StyledTableCell>Video Title</StyledTableCell>
-                <StyledTableCell>Last Activity Time</StyledTableCell>
-                <StyledTableCell>Header 4</StyledTableCell>
+                {columns.map(col=>
+                  <StyledTableCell>{col.header}</StyledTableCell>
+                  )}
               </StyledTableRow>
             </TableHead>
             <TableBody>
@@ -224,13 +204,9 @@ export default function listComponent() {
                 <>
                   {data.allVideos.map(rowss => (
                     <StyledTableRow key={rowss._id}>
-                      <StyledTableCell>{rowss._id}</StyledTableCell>
-                      <StyledTableCell>
-                        <img height={120} width={80} src='/images/avatars/images1.jpg' alt='this is image' />
-                      </StyledTableCell>
-                      <StyledTableCell>{rowss.title}</StyledTableCell>
-                      <StyledTableCell>{rowss.activity_updated}</StyledTableCell>
-                      <StyledTableCell>{rowss.activity_updated}</StyledTableCell>
+                      {columns.map((col)=>(
+                        <StyledTableCell>{rowss[col.field]}</StyledTableCell>
+                      ))}
                     </StyledTableRow>
                   ))}
                 </>
@@ -297,7 +273,7 @@ export default function listComponent() {
         gridColumn='span 4'
         sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '15px' }}
       >
-        <Typography variant={'subtitle2'}>Showing 1 to 20 of 167,328 entries</Typography>
+        <Typography variant={'body2'}>Showing 1 to 20 of 167,328 entries</Typography>
       </Box>
       <Box
         gridColumn='span 8'

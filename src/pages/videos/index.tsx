@@ -65,6 +65,23 @@ const AnalyticsCongratulations = () => {
     console.log('key', key)
   }
 
+
+  const columns =[
+    {
+      field:"_id", header:"Video ID"
+    }, 
+    {
+      field:"title", header:"Video Title"
+    }, 
+    {
+      field:"activity_updated", header:"Last Activity Time"
+    }, 
+    {
+      field:"short_id", header:"Short ID"
+    }, 
+
+  ]
+
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>
@@ -86,7 +103,7 @@ const AnalyticsCongratulations = () => {
             <FilterComponent  title ='select' onChange = {filterChangeHandler}/>
           </Grid>
           <Grid item xs={12} sm={12}>
-            <ListComponent/>
+            <ListComponent data={data} columns={columns}/>
           </Grid>
         </Grid>
       </CardContent>
