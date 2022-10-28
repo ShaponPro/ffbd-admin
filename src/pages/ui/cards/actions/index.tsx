@@ -56,6 +56,7 @@ const CardActions = () => {
                     </TableCell>
                     <TableCell>Refresh your card content using refresh action.</TableCell>
                   </TableRow>
+
                   <TableRow sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>
                     <TableCell component='th' scope='row'>
                       Remove Card
@@ -65,6 +66,7 @@ const CardActions = () => {
                     </TableCell>
                     <TableCell>Remove card from page using remove card action</TableCell>
                   </TableRow>
+
                 </TableBody>
               </Table>
             </TableContainer>

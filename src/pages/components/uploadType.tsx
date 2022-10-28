@@ -1,19 +1,43 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 
 import UploadTypeComponent from 'src/components/UploadTypeComponent'
 
+const options = [
+  {
+    key: 'user',
+    title: 'On behalf of User'
+  },
+  {
+    key: 'brand',
+    title: 'On behalf of Brand'
+  },
+  {
+    key: 'tutorial',
+    title: 'Tutorial'
+  },
+  {
+    key: 'youtube_crawler',
+    title: 'Youtube Crawler'
+  }
+]
+
 const uploadType = () => {
 
-  // const [fields, setFields] = useState<object[]>('')
+  const [value, setValue] = useState<string>("user")
+
+  const handleChange = (value: string) => {
+    console.log('value', value)
+    setValue(value);
+  }
 
   return (
-      <div>
+      <div style={{width: '40%'}}>
         <UploadTypeComponent
-
-          placeholder='select item'
-          // title={['On behalf of User', 'On behalf of Board', 'Tutorial', 'Youtube Crawler']}
-          // style={{ display: 'flex' }}
+          selected={value}
+          onChange={handleChange}
+          options={options}
+          style={{}}
         />
       </div>
   )
