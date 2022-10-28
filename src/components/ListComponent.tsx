@@ -15,6 +15,10 @@ import Typography from '@mui/material/Typography'
 import { Button } from '@mui/material'
 import usePagination from '@mui/material/usePagination'
 
+import { useQuery } from '@apollo/client'
+
+import { GET_VIDEO_LIST } from 'src/pages/videos/graphql/Queries'
+
 import { styled, TableHead } from '@mui/material'
 
 const StyledTableCell = styled(TableCell)(() => ({
