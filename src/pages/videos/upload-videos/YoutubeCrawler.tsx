@@ -20,14 +20,16 @@ export default function YoutubeCrawler() {
             <Typography style={typographyStyle}>Upload Type</Typography>
           </Grid>
           <Grid item xs={8.5} sm={8.5} md={10.25}>
-            <TextInputField placeholder='Tutorial' disabled={true} style={{ width: '230px !important' }} />
+            <TextInputField placeholder='Youtube Crawler' disabled={true} style={{ width: '230px !important' }} />
           </Grid>
         </Grid>
       </Box>
-      <div style={{}}>
+      <div style={{display: 'flex',
+                  justifyContent: 'center',
+                  padding: '20px'}}>
         <SearchComponent
           style={{
-            width: '400px',
+            width: '500px',
             height: '52px',
             boxShadow: '0.5px 1px 5px rgba(22, 31, 41, 0.2)',
             borderRadius: '25px',
