@@ -40,15 +40,15 @@ const navigation = (): VerticalNavItemsType => {
         },
         {
           title: "User Videos",
-          path: "/ui/cards/advanced",
+          path: "/videos/list-videos/user-videos",
         },
         {
           title: "Brand Videos",
-          path: "/videos/",
+          path: "/videos/list-videos/brand-videos",
         },
         {
           title: "Tutorial",
-          path: "/ui/cards/actions",
+          path: "/videos/list-videos/tutorial",
         },
         {
           title: "Youtube Crawler",
@@ -60,7 +60,7 @@ const navigation = (): VerticalNavItemsType => {
         },
         {
           title: "Download Code",
-          path: "/uploadVideo",
+          path: "/videos/download-code",
         },
         {
           title: "Content Restriction",

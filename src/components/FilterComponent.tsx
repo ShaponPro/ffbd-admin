@@ -79,8 +79,8 @@ const userVideos = {
 
 type props = {
   title: string
-  userName: string
 
+  // userName: string
   // fields: object[];
   // onChange: (fields: object[]) => void;
   // style: React.CSSProperties;
@@ -121,7 +121,7 @@ export const FilterComponent = (props: props) => {
           </StyledGrid>
           <StyledGrid>
             <Typography variant='h4' display='flex' style={typographyStyle}>
-              Emgagement
+              Engagement
             </Typography>
             <FormControl sx={{ minWidth: 120 }} size='small'>
               <StyledSelect>
