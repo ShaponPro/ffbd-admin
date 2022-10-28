@@ -79,8 +79,8 @@ const userVideos = {
 
 type props = {
   title: string
-  userName: string
 
+  // userName: string
   // fields: object[];
   // onChange: (fields: object[]) => void;
   // style: React.CSSProperties;
