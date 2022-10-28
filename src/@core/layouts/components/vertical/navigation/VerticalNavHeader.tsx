@@ -13,7 +13,10 @@ import themeConfig from 'src/configs/themeConfig'
 // ** MUI Imports
 import Box, { BoxProps } from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
-import { styled, useTheme } from '@mui/material/styles'
+import {
+  styled,
+  useTheme
+} from '@mui/material/styles'
 import Typography, { TypographyProps } from '@mui/material/Typography'
 
 interface Props {
