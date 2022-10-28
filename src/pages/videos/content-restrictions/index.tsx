@@ -12,6 +12,10 @@ import FormControl from '@mui/material/FormControl'
 import Radio from '@mui/material/Radio'
 import Select from '@mui/material/Select'
 
+import { useQuery } from '@apollo/client'
+
+import { GET_VIDEO_LIST } from '../graphql/Queries'
+
 // ** Icons Imports
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import SearchIcon from '@mui/icons-material/Search'
@@ -91,6 +95,38 @@ const AnalyticsCongratulations = () => {
     console.log('key', key)
   }
 
+  const { error, loading, data } = useQuery(GET_VIDEO_LIST, {
+    variables:{ 
+      "endIndex": 10,
+      "startIndex": 1
+  }
+  });
+
+  console.log(data);
+
+  // check for errors
+  if (error) {
+    return <p>:( an error happened</p>;
+  }
+
+  console.log('data', data)
+
+  const columns =[
+    {
+      field:"_id", header:"Video ID"
+    }, 
+    {
+      field:"title", header:"Video Title"
+    }, 
+    {
+      field:"activity_updated", header:"Last Activity Time"
+    }, 
+    {
+      field:"short_id", header:"Short ID"
+    }, 
+
+  ]
+  
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>
@@ -212,7 +248,7 @@ const AnalyticsCongratulations = () => {
           </Grid>
           <br/>
           <Grid>
-            <ListComponent />
+            <ListComponent data={data} columns={columns}/>
           </Grid>
         </CardContent>
       </Card>

@@ -11,32 +11,14 @@ import Grid from '@mui/material/Grid'
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 
 // ** Components
-import TabbarComponent from 'src/components/TabbarComponent'
+
 import ListComponent from 'src/components/ListComponent'
 import {FilterComponent} from 'src/components/FilterComponent';
 
 import { useQuery } from '@apollo/client'
 
-import { GET_VIDEO_LIST } from './graphql/Queries'
+import { GET_VIDEO_LIST } from '../../graphql/Queries' 
 
-const tabs = [
-  {
-    key: "regular",
-    title: "Regular",
-  },
-  {
-    key: "monetization",
-    title: "Active Monetization",
-  },
-  {
-    key: "trending",
-    title: "Trending",
-  },
-  {
-    key: "customized",
-    title: "Customized",
-  },
-];
 
 const AnalyticsCongratulations = () => {
 
@@ -63,10 +45,6 @@ const AnalyticsCongratulations = () => {
     console.log('key', key)
   }
 
-  const tabChangeHandler = (key: string) =>{
-    console.log('key', key)
-  }
-
 
   const columns =[
     {
@@ -80,7 +58,16 @@ const AnalyticsCongratulations = () => {
     }, 
     {
       field:"short_id", header:"Short ID"
+    },
+    {
+      field:"likes_count", header:"Total Likes"
     }, 
+    {
+      field:"comments_count", header:"Total Comments"
+    },  
+    {
+      field:"views_count", header:"Total Views"
+    } ,
 
   ]
 
@@ -89,8 +76,8 @@ const AnalyticsCongratulations = () => {
       <Grid container spacing={6}>
         <Grid item xs={12} md={12}>
           <Typography variant='h5' sx={{ mb: 4.5 }}>
-              <Box component='span' sx={{ fontWeight: 'bold' }}>
-                User Videos
+              <Box component='span' sx={{ fontWeight: '700', fontSize:'36px' }}>
+                Tutorial
               </Box>
           </Typography>
         </Grid>
@@ -99,7 +86,20 @@ const AnalyticsCongratulations = () => {
       <CardContent sx={{ p: theme => `${theme.spacing(6.75, 7.5)} !important` }}>
         <Grid container spacing={6}>
           <Grid item xs={12} sm={12}>
-            <TabbarComponent options={tabs} activekey={"trending"} onChange={tabChangeHandler}/>
+            <Box style={{
+            display: 'flex',
+            gap: '10px',
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            padding: '13px 20px',
+            width: '100%',
+            height: '66px',
+            position: 'relative',
+            background: '#ECF8FF',
+            boxShadow: '1px 2px 3px rgba(22, 31, 41, 0.2)'
+          }}>
+            <Typography style={{textTransform:'none', fontSize:'16px', fontWeight:'600' }}>List Videos</Typography>
+          </Box>
           </Grid>
           <Grid item xs={12} sm={12}>
             <FilterComponent  title ='select' onChange = {filterChangeHandler}/>
