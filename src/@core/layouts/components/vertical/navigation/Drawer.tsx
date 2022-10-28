@@ -1,12 +1,12 @@
 // ** React Imports
 import { ReactNode } from 'react'
 
+// ** Type Import
+import { Settings } from 'src/@core/context/settingsContext'
+
 // ** MUI Imports
 import { styled, useTheme } from '@mui/material/styles'
 import MuiSwipeableDrawer, { SwipeableDrawerProps } from '@mui/material/SwipeableDrawer'
-
-// ** Type Import
-import { Settings } from 'src/@core/context/settingsContext'
 
 interface Props {
   hidden: boolean
@@ -29,7 +29,8 @@ const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>({
   },
   '& .MuiListItem-gutters': {
     paddingLeft: 4,
-    paddingRight: 4
+    paddingRight: 2,
+    paddingTop: 8
   },
   '& .MuiDrawer-paper': {
     left: 'unset',
@@ -64,7 +65,7 @@ const Drawer = (props: Props) => {
     if (skin === 'semi-dark' && theme.palette.mode === 'light') {
       return {
         '& .MuiTypography-root': {
-          color: `rgba(${theme.palette.customColors.dark}, 0.87)`
+          color: `rgba(${theme.palette.customColors.dark})`
         }
       }
     } else if (skin === 'semi-dark' && theme.palette.mode === 'dark') {

@@ -1,29 +1,30 @@
 // ** React Imports
 import { useState } from 'react'
 
-// ** MUI Imports
-import Fab from '@mui/material/Fab'
-import { styled } from '@mui/material/styles'
-import Box, { BoxProps } from '@mui/material/Box'
-
 // ** Icons Imports
 import ArrowUp from 'mdi-material-ui/ArrowUp'
 
-// ** Theme Config Import
-import themeConfig from 'src/configs/themeConfig'
+// ** Components
+import Customizer from 'src/@core/components/customizer'
+import ScrollToTop from 'src/@core/components/scroll-to-top'
 
 // ** Type Import
 import { LayoutProps } from 'src/@core/layouts/types'
 
-// ** Components
-import AppBar from './components/vertical/appBar'
-import Customizer from 'src/@core/components/customizer'
-import Navigation from './components/vertical/navigation'
-import Footer from './components/shared-components/footer'
-import ScrollToTop from 'src/@core/components/scroll-to-top'
-
 // ** Styled Component
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
+
+// ** Theme Config Import
+import themeConfig from 'src/configs/themeConfig'
+
+// ** MUI Imports
+import Box, { BoxProps } from '@mui/material/Box'
+import Fab from '@mui/material/Fab'
+import { styled } from '@mui/material/styles'
+
+import Footer from './components/shared-components/footer'
+import AppBar from './components/vertical/appBar'
+import Navigation from './components/vertical/navigation'
 
 const VerticalLayoutWrapper = styled('div')({
   height: '100%',
@@ -122,7 +123,7 @@ const VerticalLayout = (props: LayoutProps) => {
         scrollToTop(props)
       ) : (
         <ScrollToTop className='mui-fixed'>
-          <Fab color='primary' size='small' aria-label='scroll back to top'>
+          <Fab size='small' aria-label='scroll back to top'>
             <ArrowUp />
           </Fab>
         </ScrollToTop>
