@@ -25,10 +25,10 @@ import CanViewNavGroup from 'src/layouts/components/acl/CanViewNavGroup'
 import Translations from 'src/layouts/components/Translations'
 import UserIcon from 'src/layouts/components/UserIcon'
 
-import Box, { BoxProps } from '@mui/material/Box'
 // ** MUI Imports
+import { Collapse } from '@mui/material'
+import Box, { BoxProps } from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
-import Collapse from '@mui/material/Collapse'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
@@ -38,8 +38,9 @@ import {
 } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
-// ** Custom Components Imports
 import VerticalNavItems from './VerticalNavItems'
+
+// ** Custom Components Imports
 
 interface Props {
   item: NavGroup
@@ -341,6 +342,7 @@ const VerticalNavGroup = (props: Props) => {
               </Box>
             </MenuItemTextWrapper>
           </ListItemButton>
+
           <Collapse
             component='li'
             onClick={e => e.stopPropagation()}
@@ -348,6 +350,7 @@ const VerticalNavGroup = (props: Props) => {
             sx={{
               pl: 0,
               width: '100%',
+
               ...menuGroupCollapsedStyles,
               transition: 'all .25s ease-in-out'
             }}

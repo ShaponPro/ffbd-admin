@@ -1,6 +1,7 @@
 // ** Types
 import { Settings } from 'src/@core/context/settingsContext'
 import { NavSectionTitle } from 'src/@core/layouts/types'
+
 // ** Custom Components Imports
 import CanViewNavSectionTitle from 'src/layouts/components/acl/CanViewNavSectionTitle'
 import Translations from 'src/layouts/components/Translations'
@@ -110,7 +111,7 @@ const VerticalNavSectionTitle = (props: Props) => {
             </Typography>
           )}
         </Divider>
-      </ListSubheader>
+      </ListSubheader> 
     </CanViewNavSectionTitle>
   )
 }

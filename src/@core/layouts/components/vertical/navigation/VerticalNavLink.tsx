@@ -206,33 +206,6 @@ const VerticalNavLink = ({
                 <Translations text={item.title} />
               </Typography>
 
-              {navHover ? (
-                <Box
-                  style={{
-                    position: 'absolute',
-
-                    boxShadow: '5px 7px 50px rgba(22, 31, 41, 0.2) !important',
-                    borderRadius: '0px 20px 20px 0px',
-                    padding: '10px'
-                  }}
-                >
-                  <ul
-                    style={{
-                      backgroundColor: 'white',
-                      fontWeight: 400,
-                      fontSize: '6px !important',
-                      color: '#161F29'
-                    }}
-                  >
-                    {/* <li>{item.title}</li> */}
-                    <li>video</li>
-                    <li>video</li>
-                    <li>video</li>
-                    <li>video</li>
-                  </ul>
-                </Box>
-              ) : null}
-
               {item.badgeContent ? (
                 <Chip
                   size='small'

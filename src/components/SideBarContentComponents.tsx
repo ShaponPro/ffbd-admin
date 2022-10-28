@@ -5,6 +5,18 @@ import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
 import Stepper from '@mui/material/Stepper'
 
+// interface Props {
+//   item: NavGroup
+//   navHover: boolean
+//   parent?: NavGroup
+
+//   navVisible?: boolean
+//   groupActive: string[]
+//   collapsedNavWidth: number
+//   currentActiveGroup: string[]
+//   navigationBorderWidth: number
+//   isSubToSub?: NavGroup | undefined
+
 // steps label
 const steps = [
   {
@@ -23,6 +35,8 @@ const steps = [
 
 const SideBarContentComponents = () => {
   const [isHover, setIsHover] = useState<boolean>(false)
+
+  // const { item } = props
 
   // hover effect
 
@@ -80,7 +94,7 @@ const SideBarContentComponents = () => {
         </li>
         <Box>
           <Stepper orientation='vertical'>
-            {steps.map((step, index) => (
+            {steps.map(step => (
               <Step
                 key={step.label}
                 sx={{
@@ -93,7 +107,7 @@ const SideBarContentComponents = () => {
                     color: '#161F29',
                     fontSize: '1px !important'
 
-                    // Just text label (COMPLETED)
+                    // Just text label  (COMPLETED)
                   },
                   '& .MuiStepLabel-root .Mui-active': {
                     color: '#161F29' // circle color (ACTIVE)
