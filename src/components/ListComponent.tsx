@@ -20,16 +20,17 @@ import { styled, TableHead } from '@mui/material'
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
     background: 'rgba(22, 31, 41, 0.07)',
-    height: '36px',
     borderBottom: '2px solid white',
-    borderLeft: '2px solid white'
+    borderLeft: '2px solid white',
+    color: 'black',
+    textTransform: 'none',
+    height: '36px !important'
   },
+
   [`&.${tableCellClasses.body}`]: {
     fontSize: 12,
     border: '2px solid white'
   }
-
-  //border:'2px solid red'
 }))
 
 const StyledSelect = styled(Select)({
@@ -86,7 +87,6 @@ function UsePagination() {
       <List>
         {items.map(({ page, type, selected, ...item }, index) => {
           let children = null
-
           if (type === 'start-ellipsis' || type === 'end-ellipsis') {
             children = '…'
           } else if (type === 'page') {
@@ -125,8 +125,6 @@ function UsePagination() {
 }
 
 export default function listComponent({ data, columns }) {
-
-
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
   const [pageData, setPageData] = useState([])
@@ -150,41 +148,40 @@ export default function listComponent({ data, columns }) {
       gap={2}
       sx={{ background: '#F3F3F4', alignItems: 'center' }}
     >
-      <Box
-        gridColumn='span 2'
-        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '15px' }}
-      >
-        <Typography>Show</Typography>
-        <StyledSelect displayEmpty />
-        <Typography>entries</Typography>
-      </Box>
-      <Box gridColumn='span 4' sx={{ marginTop: '15px' }}>
-        <SearchComponent />
-      </Box>
-      <Box
-        gridColumn='span 6'
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-          marginRight: '30px',
-          marginTop: '15px'
-        }}
-      >
-        <StyledSelectReport displayEmpty>
-          <Button variant='text' sx={{ m: 3 }}>
-            Report
-          </Button>
-        </StyledSelectReport>
-      </Box>
-      <Box gridColumn='span 12' sx={{ margin: '15px' }}>
+      <Box gridColumn='span 12' sx={{ display: 'block', margin: '15px' }}>
+        <Box
+          gridColumn='span 12'
+          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', margin: '5px' }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+            <Typography>Show</Typography>
+            <StyledSelect displayEmpty />
+            <Typography>entries</Typography>
+            <SearchComponent style={{ marginLeft: '20px', width: '500px' }} />
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '10px'
+            }}
+          >
+            <StyledSelectReport displayEmpty>
+              <Button variant='text' sx={{ m: 3 }}>
+                Report
+              </Button>
+            </StyledSelectReport>
+          </Box>
+        </Box>
+
         <TableContainer component={Paper} sx={{ borderRadius: '0px' }}>
-          <Table aria-label='custom pagination table' sx={{ textAlign: 'center' }}>
-            <TableHead sx={{ display: 'table-header-group' }}>
-              <StyledTableRow style={{ height: 36 }}>
-                {columns.map(col=>
+          <Table sx={{ textAlign: 'center' }}>
+            <TableHead sx={{ display: 'table-header-group'}}>
+              <StyledTableRow>
+                {columns.map(col => (
                   <StyledTableCell>{col.header}</StyledTableCell>
-                  )}
+                ))}
               </StyledTableRow>
             </TableHead>
             <TableBody>
@@ -204,7 +201,7 @@ export default function listComponent({ data, columns }) {
                 <>
                   {data.allVideos.map(rowss => (
                     <StyledTableRow key={rowss._id}>
-                      {columns.map((col)=>(
+                      {columns.map(col => (
                         <StyledTableCell>{rowss[col.field]}</StyledTableCell>
                       ))}
                     </StyledTableRow>
@@ -268,51 +265,48 @@ export default function listComponent({ data, columns }) {
             </TableFooter> */}
           </Table>
         </TableContainer>
-      </Box>
-      <Box
-        gridColumn='span 4'
-        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '15px' }}
-      >
-        <Typography variant={'body2'}>Showing 1 to 20 of 167,328 entries</Typography>
-      </Box>
-      <Box
-        gridColumn='span 8'
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-          marginRight: '30px',
-          marginBottom: '15px'
-        }}
-      >
-        <UsePagination />
-        <span>
-          <input
-            type='text'
-            style={{
-              width: '119px',
-              height: '36px',
-              padding: '10px',
-              background: '#FFFFFF',
-              border: '1px solid black'
-            }}
-            placeholder='jump to page'
-          />
-          <button
-            style={{
-              background: '#009EFA',
-              border: 'none',
-              borderRadius: '3px',
-              width: '45px',
-              height: '36px',
-              padding: '10px',
-              color: 'white',
-              marginLeft: '10px'
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', margin: '5px' }}>
+          <Box gridColumn='span 4' sx={{ display: 'flex'}}>
+            <Typography variant={'body2'}>Showing 1 to 20 of 167,328 entries</Typography>
+          </Box>
+          <Box
+            gridColumn='span 8'
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end'
             }}
           >
-            Go
-          </button>
-        </span>{' '}
+            <UsePagination />
+            <span>
+              <input
+                type='text'
+                style={{
+                  width: '119px',
+                  height: '36px',
+                  padding: '10px',
+                  background: '#FFFFFF',
+                  border: '1px solid black'
+                }}
+                placeholder='jump to page'
+              />
+              <button
+                style={{
+                  background: '#009EFA',
+                  border: 'none',
+                  borderRadius: '3px',
+                  width: '45px',
+                  height: '36px',
+                  padding: '10px',
+                  color: 'white',
+                  marginLeft: '10px'
+                }}
+              >
+                Go
+              </button>
+            </span>{' '}
+          </Box>
+        </Box>
       </Box>
     </Box>
   )

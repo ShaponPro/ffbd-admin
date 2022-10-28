@@ -1,5 +1,8 @@
 // ** React Imports
-import { Fragment, useEffect } from 'react'
+import {
+  Fragment,
+  useEffect
+} from 'react'
 
 // ** Third Party Imports
 import clsx from 'clsx'
@@ -12,25 +15,32 @@ import { Settings } from 'src/@core/context/settingsContext'
 // ** Types
 import { NavGroup } from 'src/@core/layouts/types'
 // ** Utils
-import { hasActiveChild, removeChildren } from 'src/@core/layouts/utils'
+import {
+  hasActiveChild,
+  removeChildren
+} from 'src/@core/layouts/utils'
 // ** Configs Import
 import themeConfig from 'src/configs/themeConfig'
 import CanViewNavGroup from 'src/layouts/components/acl/CanViewNavGroup'
 import Translations from 'src/layouts/components/Translations'
 import UserIcon from 'src/layouts/components/UserIcon'
 
-import Box, { BoxProps } from '@mui/material/Box'
 // ** MUI Imports
+import { Collapse } from '@mui/material'
+import Box, { BoxProps } from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
-import Collapse from '@mui/material/Collapse'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import { styled, useTheme } from '@mui/material/styles'
+import {
+  styled,
+  useTheme
+} from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
-// ** Custom Components Imports
 import VerticalNavItems from './VerticalNavItems'
+
+// ** Custom Components Imports
 
 interface Props {
   item: NavGroup
@@ -332,13 +342,15 @@ const VerticalNavGroup = (props: Props) => {
               </Box>
             </MenuItemTextWrapper>
           </ListItemButton>
+
           <Collapse
-            component='ul'
+            component='li'
             onClick={e => e.stopPropagation()}
             in={groupActive.includes(item.title)}
             sx={{
               pl: 0,
               width: '100%',
+
               ...menuGroupCollapsedStyles,
               transition: 'all .25s ease-in-out'
             }}
@@ -346,9 +358,9 @@ const VerticalNavGroup = (props: Props) => {
             <VerticalNavItems
               {...props}
               parent={item}
+              navHover={navHover}
               navVisible={navVisible}
               verticalNavItems={item.children}
-              isSubToSub={parent && item.children ? item : undefined}
             />
           </Collapse>
         </ListItem>

@@ -1,10 +1,15 @@
 // ** Types Import
 import { Settings } from 'src/@core/context/settingsContext'
-import { NavLink, NavGroup, NavSectionTitle, VerticalNavItemsType } from 'src/@core/layouts/types'
+import {
+  NavGroup,
+  NavLink,
+  NavSectionTitle,
+  VerticalNavItemsType
+} from 'src/@core/layouts/types'
 
 // ** Custom Menu Components
-import VerticalNavLink from './VerticalNavLink'
 import VerticalNavGroup from './VerticalNavGroup'
+import VerticalNavLink from './VerticalNavLink'
 import VerticalNavSectionTitle from './VerticalNavSectionTitle'
 
 interface Props {
