@@ -10,7 +10,6 @@ type Props = {
   isActive?: boolean
 }
 
-
 const ButtonComponent = (props: Props) => {
   const [isActive , setIsActive] = useState(props.isActive);
 
@@ -74,7 +73,6 @@ const ButtonComponent = (props: Props) => {
         textTransform: 'capitalize'
       }
   
-
     if(type==='select-custom'){
       return {
         padding: '10px',
