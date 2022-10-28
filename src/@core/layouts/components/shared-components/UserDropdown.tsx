@@ -1,33 +1,35 @@
 // ** React Imports
-import { useState, SyntheticEvent, Fragment } from 'react'
-
-// ** Next Import
-import { useRouter } from 'next/router'
-
-// ** MUI Imports
-import Box from '@mui/material/Box'
-import Menu from '@mui/material/Menu'
-import Badge from '@mui/material/Badge'
-import Avatar from '@mui/material/Avatar'
-import Divider from '@mui/material/Divider'
-import MenuItem from '@mui/material/MenuItem'
-import { styled } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
+import {
+  Fragment,
+  SyntheticEvent,
+  useState
+} from 'react'
 
 // ** Icons Imports
+import AccountOutline from 'mdi-material-ui/AccountOutline'
 import CogOutline from 'mdi-material-ui/CogOutline'
 import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
 import EmailOutline from 'mdi-material-ui/EmailOutline'
-import LogoutVariant from 'mdi-material-ui/LogoutVariant'
-import AccountOutline from 'mdi-material-ui/AccountOutline'
-import MessageOutline from 'mdi-material-ui/MessageOutline'
 import HelpCircleOutline from 'mdi-material-ui/HelpCircleOutline'
-
+import LogoutVariant from 'mdi-material-ui/LogoutVariant'
+import MessageOutline from 'mdi-material-ui/MessageOutline'
+// ** Next Import
+import { useRouter } from 'next/router'
+// ** Type Imports
+import { Settings } from 'src/@core/context/settingsContext'
 // ** Context
 import { useAuth } from 'src/hooks/useAuth'
 
-// ** Type Imports
-import { Settings } from 'src/@core/context/settingsContext'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+// ** MUI Imports
+import Avatar from '@mui/material/Avatar'
+import Badge from '@mui/material/Badge'
+import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import { styled } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 
 interface Props {
   settings: Settings
@@ -88,22 +90,53 @@ const UserDropdown = (props: Props) => {
 
   return (
     <Fragment>
-      <Badge
-        overlap='circular'
-        onClick={handleDropdownOpen}
-        sx={{ ml: 2, cursor: 'pointer' }}
-        badgeContent={<BadgeContentSpan />}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right'
-        }}
-      >
-        <Avatar
-          alt='John Doe'
+      <Badge onClick={handleDropdownOpen} sx={{ ml: 2, cursor: 'pointer' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            background: '#FFFFFF',
+            border: '0.5px solid rgba(22, 31, 41, 0.25)',
+            borderRadius: '20px',
+            width: '136px',
+            alignItems: 'center',
+            padding: '4.5px 10px 4.5px 5px'
+          }}
+        >
+          <Box>
+            <Avatar
+              alt='walton'
+              onClick={handleDropdownOpen}
+              sx={{ width: 25, height: 25, borderRadius: '50px', boxShadow: '0px 1px 5px rgba(0, 0, 0, 0.15)' }}
+              src='https://i.ibb.co/smQmZNL/human-icon-22-1.png'
+            />
+          </Box>
+          <Box>
+            <Typography
+              sx={{
+                fontWeight: '600',
+                fontSize: '16px',
+                paddingLeft: '9PX',
+                color: '#161F29'
+              }}
+            >
+              Walton
+            </Typography>
+          </Box>
+          <Box>
+            <ArrowDropDownIcon
+              sx={{
+                marginTop: '5px'
+              }}
+            />
+          </Box>
+        </Box>
+        {/* <Avatar
+          alt='walton'
           onClick={handleDropdownOpen}
-          sx={{ width: 40, height: 40 }}
-          src='/images/avatars/1.png'
-        />
+          sx={{ width: 27, height: 27 }}
+          src='https://i.ibb.co/smQmZNL/human-icon-22-1.png'
+        /> */}
       </Badge>
       <Menu
         anchorEl={anchorEl}
