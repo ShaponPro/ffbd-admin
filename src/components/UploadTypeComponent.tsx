@@ -1,18 +1,37 @@
 // ** React Imports
-import * as React from 'react'
-import { useAutocomplete } from '@mui/base/AutocompleteUnstyled'
-import { styled } from '@mui/system'
+import React, { useState } from 'react'
 
-//**props define
-type props = {
-  title: string[]
-  placeholder: string
-  // default: object;
-  //selected: object;
-  // options: object[];
-  //onChange: (fields: object[]) => void;
-  //style?: React.CSSProperties
-}
+// ** MUI Imports
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import MenuItem from '@mui/material/MenuItem'
+import { styled } from '@mui/material/styles'
+import InputBase from '@mui/material/InputBase'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import MuiFormControl, { FormControlProps } from '@mui/material/FormControl'
+
+// Styled FormControl component
+const FormControl = styled(MuiFormControl)<FormControlProps>(({ theme }) => ({
+  '& .MuiFormLabel-root.Mui-focused': {
+    color: theme.palette.info.main
+  },
+  '& .MuiInputLabel-root': {
+    left: -14,
+    zIndex: 0
+  },
+  '& > .MuiInputBase-root': {
+    marginTop: theme.spacing(4),
+    '&.MuiInput-root:before, &.MuiInput-root:after': {
+      border: 0
+    }
+  },
+  '& .MuiInputBase-input': {
+    fontSize: 16,
+    borderRadius: 4,
+    position: 'relative',
+    padding: '10px 26px 10px 12px',
+  }
+}))
 
 //**styles
 const Label = styled('label')({
@@ -20,87 +39,86 @@ const Label = styled('label')({
   color: ' #FFFFFF',
   fontSize: '16px',
   paddingTop: '6px',
-  width: '99px'
+  width: '40%'
 })
 
-const Input = styled('input')(({ theme }) => ({
-  width: 230,
-  border: 'none',
-  height: '36px',
-  boxShadow: 'inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)',
-  backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
-  color: theme.palette.mode === 'light' ? '#000' : '#fff'
-}))
 
-const Listbox = styled('ul')(({ theme }) => ({
-  width: 230,
-  marginLeft: 110,
-  marginTop: 40,
-  padding: 0,
-  zIndex: 1,
-  position: 'absolute',
-  listStyle: 'none',
-  backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
-  overflow: 'auto',
-  maxHeight: 230,
-  border: '1px solid rgba(0,0,0,.25)',
-  '& li.Mui-focused': {
-    backgroundColor: '#f5f5f5',
-    color: 'black',
-    cursor: 'pointer'
-  },
-  '& li:active': {
-    backgroundColor: '#57CE66',
-    color: 'white'
-  }
-}))
-
-interface UploadType {
-  title: string
+//**props define
+type props = {
+  options?: object[];
+  selected?: string;
+  onChange?: (field: string) => void;
+  style?: React.CSSProperties
 }
 
-//**Video type
-const videoTypes = (): UploadType[] => [
-  { title: 'On behalf of User' },
-  { title: 'On behalf of Board' },
-  { title: 'Tutorial' },
-  { title: 'Youtube Crawler' }
-]
+function UploadTypeComponent(props: props) {
+  // ** State
+  const [value, setValue] = useState<string>(props.selected || "")
 
-export default function UploadTypeComponent(props: props) {
-  const { getRootProps, getInputLabelProps, getInputProps, getListboxProps, getOptionProps, groupedOptions } =
-    useAutocomplete({
-      id: 'use-autocomplete-demo',
-      options: videoTypes(),
-      getOptionLabel: option => option.title
-    })
+  const handleChange = (event: SelectChangeEvent) => {
+    setValue(event.target.value as string);
+    if(props.onChange) props.onChange(event.target.value as string);
+  }
 
   return (
-    <div
+    <Box
       style={{
         background: '#57CE66',
-        width: '419px',
-        height: '76px',
+        width: '100%',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
         gap: '10px',
         flexDirection: 'row',
         boxShadow: '1px 2px 25px rgba(87, 206, 102, 0.5)',
         borderRadius: '40px',
-        padding: '20px 20px'
+        padding: '15px 40px',
+        ...props.style
       }}
     >
-      <Label {...getInputLabelProps()}>Upload Type</Label>
-      <div {...getRootProps()}>
-        <Input {...getInputProps()} placeholder={props.placeholder} />
-      </div>
-      {groupedOptions.length > 0 ? (
-        <Listbox {...getListboxProps()}>
-          {(groupedOptions as UploadType[]).map((option, index) => (
-            <li key={index} style={{padding:'5px'}} {...getOptionProps({ option, index })}>{option.title}</li>
-          ))}
-        </Listbox>
-      ) : null}
-    </div>
+      <Label>
+        <Typography  variant="subtitle1" gutterBottom>
+          Upload Type
+        </Typography>
+      </Label>
+      <FormControl style={{width: '100%', display: 'flex', alignItems: 'center'}}>
+        <Select
+          value={value}
+          input={<InputBase />}
+          onChange={handleChange}
+          id='demo-customized-select'
+          labelId='demo-customized-select-label'
+          style={{width: '100%', backgroundColor: '#fff', maxHeight: '40px', margin: '0px', padding: '0px'}}
+        >
+          {props.options && props.options.length ? props.options.map((option, i) => (
+            <MenuItem key={i} value={option?.key||""}>{option?.key === props.selected ? (<em>{option?.title}</em>) : option?.title}</MenuItem>
+          )) : null}
+        </Select>
+      </FormControl>
+    </Box>
   )
+}
+
+export default UploadTypeComponent;
+
+UploadTypeComponent.defaultProps = {
+  options: [
+    {
+      key: 'user',
+      title: 'On behalf of User'
+    },
+    {
+      key: 'board',
+      title: 'On behalf of Board'
+    },
+    {
+      key: 'tutorial',
+      title: 'Tutorial'
+    },
+    {
+      key: 'youtube_crawler',
+      title: 'Youtube Crawler'
+    }
+  ],
+  selected: "user"
 }

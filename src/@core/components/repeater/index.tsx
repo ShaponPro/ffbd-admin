@@ -16,7 +16,9 @@ const Repeater = (props: RepeaterProps) => {
     items.push(children(i))
   }
 
-  return <Tag {...props}>{items}</Tag>
+  return
+
+  ;<Tag {...props}>{items}</Tag>
 }
 
 export default Repeater
