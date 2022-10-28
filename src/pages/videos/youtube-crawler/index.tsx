@@ -12,8 +12,9 @@ import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 import ListComponent from 'src/components/ListComponent'
 
 import {FilterComponent}  from 'src/components/FilterComponent'
+import data from 'src/@fake-db/components/data'
 
-const YoutubeCrawler = () => {
+const YoutubeCrawler = () => {        
 
   return (
     <ApexChartWrapper>
