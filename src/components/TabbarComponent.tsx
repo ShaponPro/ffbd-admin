@@ -41,7 +41,7 @@ const TabbarComponent = (props: Props) => {
   return (
     <TabContainer style={props.style}>
       {props.options.length ? props.options.map((item, i)=>(
-        <ButtonComponent type='tabButton' title={item.title} isActive={item.key === active} onClick={()=>onClickHandler(item.key)}/>
+        <ButtonComponent type='tabButton' title={item.title} path={item.path} isActive={item.key === active} onClick={()=>onClickHandler(item.key)}/>
       )) : null}
     </TabContainer>
   )
@@ -54,18 +54,22 @@ TabbarComponent.defaultProps = {
   {
     key: "regular",
     title: "Regular",
+    path: "/videos/list-videos/user-videos",
   },
   {
     key: "monetization",
     title: "Active Monetization",
+    path: "/videos/list-videos/user-videos",
   },
   {
     key: "trending",
     title: "Trending",
+    path: "/videos/list-videos/user-videos",
   },
   {
     key: "customized",
     title: "Customized",
+    path: "/pages/demopages",
   },
 ],
   activekey: "regular",
