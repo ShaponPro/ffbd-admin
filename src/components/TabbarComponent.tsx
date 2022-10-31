@@ -1,10 +1,10 @@
 // ** React Imports
-import { useState } from 'react';
+import { useState } from "react";
 
-import ButtonComponent from 'src/components/ButtonComponent';
+import ButtonComponent from "src/components/ButtonComponent";
 
 // ** MUI Imports
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 const TabContainer = styled.div({
   display: 'flex',
@@ -41,6 +41,7 @@ const TabbarComponent = (props: Props) => {
   return (
     <TabContainer style={props.style}>
       {props.options.length ? props.options.map((item, i)=>(
+        
         <ButtonComponent type='tabButton' title={item.title} isActive={item.key === active} onClick={()=>onClickHandler(item.key)}/>
       )) : null}
     </TabContainer>
@@ -54,6 +55,7 @@ TabbarComponent.defaultProps = {
   {
     key: "regular",
     title: "Regular",
+
   },
   {
     key: "monetization",
