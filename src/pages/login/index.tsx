@@ -166,7 +166,7 @@ const LoginPage = () => {
 
             <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
               <Box sx={{ textAlign: "center",mb:6}}>
-                <FormControl>
+                <FormControl  color='secondary'>
                   <Controller
                     name='email'
                     control={control}
@@ -195,7 +195,7 @@ const LoginPage = () => {
               </Box>
 
               <Box sx={{ textAlign: "center" }}>
-                <FormControl>
+                <FormControl color='secondary'>
                   <Controller
                     name='password'
                     control={control}
@@ -255,7 +255,7 @@ const LoginPage = () => {
               <Box sx={{ textAlign: "center", py: 5 }}>
                 <FormControlLabel
                   label='Remember Me'
-                  control={<Checkbox sx={{ color: "#FFFFFF" }} />}
+                  control={<Checkbox  color='secondary' sx={{ color: "#FFFFFF" }} />}
                   sx={{ "& .MuiFormControlLabel-label": { color: "#FFFFFF" } }}
                 />
               </Box>
