@@ -6,10 +6,10 @@ const DownloadCodeCodeList = () => {
   return (
     <>
       <Grid container>
-        <Grid lg={12}>
+        <Grid container lg={12}>
           <InputComponent></InputComponent>
         </Grid>
-        <Grid lg={12}>
+        <Grid container lg={12}>
           <ListComponent></ListComponent>
         </Grid>
       </Grid>
