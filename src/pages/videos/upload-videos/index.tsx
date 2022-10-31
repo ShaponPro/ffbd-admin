@@ -51,7 +51,7 @@ const uploadOptions = [
 ];
 
 const AnalyticsCongratulations = () => {
-    const [uploadType, setUploadType] = useState<string>("");
+    const [uploadType, setUploadType] = useState<string>("default");
     
 
     const [active, setActive] = useState<string>("upload"); //
@@ -68,6 +68,7 @@ const AnalyticsCongratulations = () => {
         setUploadType(key);
     };
 
+  
     return (
         <ApexChartWrapper>
             <Grid container spacing={6}>
@@ -108,11 +109,12 @@ const AnalyticsCongratulations = () => {
                             {active == "upload" && (
                                 <>
                                     {" "}
-                                    {uploadType === "" ? (
+                                    {uploadType === "default" ? (
                                         <UploadTypeComponent
                                             options={uploadOptions}
                                             selected={uploadType}
                                             onChange={uploadTypeChangeHandler}
+                                          
                                         />
                                     ) : uploadType === "user" ? (
                                         <OnBehalfUser />
@@ -120,9 +122,14 @@ const AnalyticsCongratulations = () => {
                                         <OnBehalfBrand />
                                     ) : uploadType === "tutorial" ? (
                                         <Tutorial />
-                                    ) : (
+                                    ) : uploadType === "youtube_crawler" ?(
                                         <YoutubeCrawler />
-                                    )}
+                                    ): (<UploadTypeComponent
+                                      options={uploadOptions}
+                                      selected={uploadType}
+                                      onChange={uploadTypeChangeHandler}
+                                      
+                                  />) }
                                 </>
                             )}
                             {active == "drafts" && <DraftVideos/>}
