@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 // ** React Imports
 import { useState } from "react";
 
@@ -24,6 +25,7 @@ type Props = {
   activekey: string;
   onChange?: (value: string) => void;
   style?: React.CSSProperties;
+  isActive?:boolean
 };
 
 const TabbarComponent = (props: Props) => {

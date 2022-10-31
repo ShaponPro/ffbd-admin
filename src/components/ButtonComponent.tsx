@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button } from '@mui/material'
 
 
@@ -11,7 +11,7 @@ type Props = {
 }
 
 const ButtonComponent = (props: Props) => {
-  const [isActive , setIsActive] = useState(props.isActive);
+  
 
   const styleButton = (type: string, isActive: boolean) => {
     if (type === 'tabButton')
@@ -182,11 +182,9 @@ const ButtonComponent = (props: Props) => {
   return (
     <div>
       <Button
-        style = {styleButton(props.type || '', isActive || false)}
-        onClick= {()=>{
-          setIsActive((pre)=>!pre);
-          if(props.onClick) props.onClick()
-        }}
+        style = {styleButton(props.type || '', props.isActive || false)}
+        onClick= {props.onClick
+        }
       >
           {props.title}
        

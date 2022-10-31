@@ -48,6 +48,7 @@ type props = {
   selected?: string;
   onChange?: (field: string) => void;
   style?: React.CSSProperties;
+  onClick?:(args: any) => void;
 };
 
 function UploadTypeComponent(props: props) {
