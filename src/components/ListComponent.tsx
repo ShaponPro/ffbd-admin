@@ -121,31 +121,18 @@ function UsePagination() {
   );
 }
 
-export default function ListComponent({ rowsData, columns }) {
+export default function ListComponent({ rowsData, columns }: {
+  rowsData: object[]; columns: object[];
+}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const [data, setData] = React.useState([]);
+  const data = rowsData;
 
-  React.useEffect(() => {
-    // fetch("https://swapi-deno.azurewebsites.net/api/starships") //alternative to swapi.dev
-    //   .then((response) => response.json())
-    //   .then((data) => setData(data));
-    /* eslint-disable  @typescript-eslint/no-use-before-define */
-    setData(rowsData);
-  }, []);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
-  const handleChangePage = (event: React.ChangeEvent<HTMLInputElement>, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
 
   return (
     <>
@@ -186,55 +173,55 @@ export default function ListComponent({ rowsData, columns }) {
               <TableHead sx={{ display: "table-header-group" }}>
                 <StyledTableRow>
                   {columns.map(col => (
-                    <StyledTableCell>{col.header}</StyledTableCell>
+                    <StyledTableCell>{col?.header || ""}</StyledTableCell>
                   ))}
                 </StyledTableRow>
               </TableHead>
               <TableBody>
                 {(rowsPerPage > 0 ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : data).map(
                   row => (
-                    <StyledTableRow key={row.videoID}>
+                    <StyledTableRow key={row?.videoID || ""}>
                       <StyledTableCell component='th' scope='row'>
-                        {row.videoID}
+                        {row?.videoID || ""}
                       </StyledTableCell>
                       <StyledTableCell>
                         <img height={120} width={80} src='/images/avatars/images1.jpg' alt='this is image' />
                       </StyledTableCell>
-                      <StyledTableCell>{row.videoTitle}</StyledTableCell>
-                      <StyledTableCell>{row.fileSize}</StyledTableCell>
-                      <StyledTableCell>{row.videoLength}</StyledTableCell>
-                      <StyledTableCell>{row.userName}</StyledTableCell>
-                      <StyledTableCell>{row.userID}</StyledTableCell>
-                      <StyledTableCell>{row.fanfareID}</StyledTableCell>
-                      <StyledTableCell>{row.userCreatedDate}</StyledTableCell>
-                      <StyledTableCell>{row.uploadData}</StyledTableCell>
-                      <StyledTableCell>{row.uploadDays}</StyledTableCell>
-                      <StyledTableCell>{row.uploadCountry}</StyledTableCell>
-                      <StyledTableCell>{row.uploadedIP}</StyledTableCell>
-                      <StyledTableCell>{row.deviceType}</StyledTableCell>
-                      <StyledTableCell>{row.videoLengthGroup}</StyledTableCell>
-                      <StyledTableCell>{row.totalViews}</StyledTableCell>
-                      <StyledTableCell>{row.totalWatchTime}</StyledTableCell>
-                      <StyledTableCell>{row.totalLikes}</StyledTableCell>
-                      <StyledTableCell>{row.totalComments}</StyledTableCell>
-                      <StyledTableCell>{row.totalShares}</StyledTableCell>
-                      <StyledTableCell>{row.downloads}</StyledTableCell>
-                      <StyledTableCell>{row.contestID}</StyledTableCell>
-                      <StyledTableCell>{row.contestTitle}</StyledTableCell>
-                      <StyledTableCell>{row.contestWinningPosition}</StyledTableCell>
-                      <StyledTableCell>{row.allTimeRankingScore}</StyledTableCell>
-                      <StyledTableCell>{row.trendingScore}</StyledTableCell>
-                      <StyledTableCell>{row.activeAwarenessDays}</StyledTableCell>
-                      <StyledTableCell>{row.activeProductdays}</StyledTableCell>
-                      <StyledTableCell>{row.totalMonitization}</StyledTableCell>
-                      <StyledTableCell>{row.activeDailyMonetization}</StyledTableCell>
-                      <StyledTableCell>{row.awarenessClick}</StyledTableCell>
-                      <StyledTableCell>{row.addReach}</StyledTableCell>
-                      <StyledTableCell>{row.trafficGeneration}</StyledTableCell>
-                      <StyledTableCell>{row.rightSellingStatus}</StyledTableCell>
-                      <StyledTableCell>{row.lastActivityDate}</StyledTableCell>
-                      <StyledTableCell>{row.lastActivityTime}</StyledTableCell>
-                      <StyledTableCell>{row.currentSatus}</StyledTableCell>
+                      <StyledTableCell>{row?.videoTitle || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.fileSize || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.videoLength || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.userName || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.userID || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.fanfareID || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.userCreatedDate || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.uploadData || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.uploadDays || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.uploadCountry || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.uploadedIP || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.deviceType || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.videoLengthGroup || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalViews || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalWatchTime || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalLikes || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalComments || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalShares || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.downloads || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.contestID || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.contestTitle || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.contestWinningPosition || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.allTimeRankingScore || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.trendingScore || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.activeAwarenessDays || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.activeProductdays || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalMonitization || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.activeDailyMonetization || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.awarenessClick || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.addReach || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.trafficGeneration || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.rightSellingStatus || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.lastActivityDate || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.lastActivityTime || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.currentSatus || ""}</StyledTableCell>
                     </StyledTableRow>
                   )
                 )}
