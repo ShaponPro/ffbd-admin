@@ -21,12 +21,12 @@ const UploadVideoDraftsComponent = () => {
     return (
         <>
             <Box sx={{ flexGrow: 1 }} css={outerBox}>
-                <SubMenuComponent
+                {/* <SubMenuComponent
                     isDraft={isDraft}
                     setIsDraft={setIsDraft}
-                ></SubMenuComponent>
+                ></SubMenuComponent> */}
 
-                {isDraft && <DraftComponent></DraftComponent>}
+                <DraftComponent></DraftComponent>
             </Box>
         </>
     );
