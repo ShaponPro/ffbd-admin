@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useState } from "react";
 
 import Link from "next/link";
@@ -39,6 +40,20 @@ type Props = {
   children: React.ReactNode;
 };
 const SideBarContentComponents = (props: Props) => {
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const handleNext = () => {
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+
   const [isHover, setIsHover] = useState<boolean>(false);
 
   // const { item } = props
@@ -95,7 +110,7 @@ const SideBarContentComponents = (props: Props) => {
             style={{
               fontWeight: 400,
               paddingBottom: "10px",
-              cursor: "pointer",
+
               paddingTop: "15px",
               color: "#161F29",
             }}
@@ -104,10 +119,10 @@ const SideBarContentComponents = (props: Props) => {
           </li>
         </Link>
         <Box>
-          <Stepper activeStep={0} orientation='vertical'>
-            <Link href='/videos/list-videos/user-videos'>
+          <Stepper activeStep={activeStep} orientation='vertical'>
+            <Link href='/videos'>
               <Step
-                sx={{ margin: "0px" }}
+                sx={{ margin: "0px", cursor: "pointer" }}
 
                 // sx={{
                 //   "& .MuiStepLabel-root .Mui-completed": {
@@ -145,17 +160,19 @@ const SideBarContentComponents = (props: Props) => {
               </Step>
             </Link>
             <Link href='/videos/list-videos/brand-videos'>
-              <Step sx={{ margin: "0px" }}>
-                <StepLabel>Brand Videos</StepLabel>
-              </Step>
+              <StepLabel>
+                <Step sx={{ margin: "0px", cursor: "pointer" }}>
+                  <StepLabel>Brand Videos</StepLabel>
+                </Step>
+              </StepLabel>
             </Link>
             <Link href='/videos/list-videos/tutorial'>
-              <Step sx={{ margin: "0px" }}>
+              <Step sx={{ margin: "0px", cursor: "pointer" }}>
                 <StepLabel>Tutorial</StepLabel>
               </Step>
             </Link>
             <Link href='/videos/youtube-crawler'>
-              <Step sx={{ margin: "0px" }}>
+              <Step sx={{ margin: "0px", cursor: "pointer" }}>
                 <StepLabel>Youtube Crawler</StepLabel>
               </Step>
             </Link>
