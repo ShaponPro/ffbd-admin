@@ -52,9 +52,9 @@ const uploadOptions = [
 
 const AnalyticsCongratulations = () => {
     const [uploadType, setUploadType] = useState<string>("");
-    const [isActive , setIsActive] = useState(tabs.isActive);
+    
 
-    const [active, setActive] = useState<string>(""); //
+    const [active, setActive] = useState<string>("upload"); //
 
     /**
      * Handle on tab change
@@ -125,7 +125,7 @@ const AnalyticsCongratulations = () => {
                                     )}
                                 </>
                             )}
-                            {active == "drafts" && <DraftVideos></DraftVideos>}
+                            {active == "drafts" && <DraftVideos/>}
                         </Grid>
                     </Grid>
                 </CardContent>

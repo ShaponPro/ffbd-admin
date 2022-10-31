@@ -145,7 +145,7 @@ function OnBehalfUser() {
         </Grid>
       </Box>
     </Box>
-    <Box sx={{ flexGrow: 1 }} style={{ padding: '20px', display: 'flex', gap: 10, justifyContent:'flex-end'}}>
+    <Box sx={{ flexGrow: 1 }} style={{ padding: '20px 0px', display: 'flex', gap: 10, justifyContent:'flex-end'}}>
       <ButtonComponent title='Drafts' type='drafts' style={{background:'#F3F3F4 !important'}}/>
       <ButtonComponent title='Publish' type='publish' />
     </Box>
