@@ -248,7 +248,7 @@ const AnalyticsCongratulations = () => {
           </Grid>
           <br/>
           <Grid>
-            <ListComponent data={data} columns={columns}/>
+            <ListComponent />
           </Grid>
         </CardContent>
       </Card>

@@ -84,7 +84,7 @@ const YoutubeCrawler = () => {
               <FilterComponent title ='select'/>
             </Grid>
             <Grid item xs={12} sm={12}>
-              <ListComponent data={data} columns={columns} />
+              <ListComponent />
             </Grid>
           </Grid>
         </CardContent>

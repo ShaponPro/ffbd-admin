@@ -3,6 +3,7 @@ import TextInputField from 'src/components/Textfield'
 import Box from '@mui/material/Box'
 import { Grid, InputAdornment, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import ButtonComponent from 'src/components/ButtonComponent'
 
 const typographyStyle = {
   fontSize: '16px',
@@ -14,6 +15,7 @@ const typographyStyle = {
 
 function OnBehalfBrand() {
   return (
+    <>
     <Box sx={{ flexGrow: 1 }} style={{ background: '#F3F3F4', padding: '0px 20px', display: 'grid' }}>
       <Box sx={{ width: '100%' }}>
         <Grid container rowSpacing={1}>
@@ -106,6 +108,11 @@ function OnBehalfBrand() {
         </Grid>
       </Box>
     </Box>
+    <Box sx={{ flexGrow: 1 }} style={{ padding: '20px', display: 'flex', gap: 10, justifyContent:'flex-end'}}>
+    <ButtonComponent title='Drafts' type='drafts' style={{background:'#F3F3F4 !important'}}/>
+    <ButtonComponent title='Publish' type='publish'/>
+  </Box>
+  </>
   )
 }
 

@@ -14,6 +14,9 @@ import UploadTypeComponent from 'src/components/UploadTypeComponent'
 
 import YoutubeCrawler from './YoutubeCrawler'
 import OnBehalfUser from './OnBehalfUser'
+import { useState } from 'react'
+import OnBehalfBrand from './OnBehalfBrand'
+import Tutorial from './Tutorial'
 
 
 
@@ -28,13 +31,37 @@ const tabs = [
     title: 'Drafts'
   }
 ]
+const uploadOptions = [
+  {
+    key: 'user',
+    title: 'On behalf of User'
+  },
+  {
+    key: 'brand',
+    title: 'On behalf of Brand'
+  },
+  {
+    key: 'tutorial',
+    title: 'Tutorial'
+  },
+  {
+    key: 'youtube_crawler',
+    title: 'Youtube Crawler'
+  }
+]
 
 const AnalyticsCongratulations = () => {
+  const [uploadType, setUploadType] = useState<string>("");
+
   /**
    * Handle on tab change
    */
   const tabChangeHandler = (key: string) => {
     console.log('key', key)
+  }
+
+  const uploadTypeChangeHandler = (key: string) => {
+    setUploadType(key)
   }
 
   return (
@@ -55,12 +82,18 @@ const AnalyticsCongratulations = () => {
               <TabbarComponent options={tabs} activekey={'upload'} onChange={tabChangeHandler} />
             </Grid>
             <Grid container direction='row' justifyContent='center' alignItems='center' item xs={12} sm={12}>
-              <UploadTypeComponent  />
+            {uploadType === "" ? (
+              
+              <UploadTypeComponent  options={uploadOptions} selected={uploadType} onChange={uploadTypeChangeHandler}/>
+            
+            ) : 
+            uploadType==="user" ?( <OnBehalfUser/> ) : 
+            uploadType==="brand" ? (<OnBehalfBrand/>):
+            uploadType==="tutorial" ? (<Tutorial/>) :
+            (<YoutubeCrawler/>)}
             </Grid>
-            <Grid item xs={12} sm={12}>
-              <YoutubeCrawler/>
-             <OnBehalfUser/>
-            </Grid>
+            
+            
           </Grid>
         </CardContent>
       </Card>

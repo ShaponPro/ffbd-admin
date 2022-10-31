@@ -3,6 +3,7 @@ import TextInputField from 'src/components/Textfield'
 import Box from '@mui/material/Box'
 import { Grid, InputAdornment, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import ButtonComponent from 'src/components/ButtonComponent'
 
 const typographyStyle = {
   fontSize: '16px',
@@ -14,6 +15,7 @@ const typographyStyle = {
 
 function Tutorial() {
   return (
+    <>
     <Box sx={{ flexGrow: 1 }} style={{ background: '#F3F3F4', padding: '20px 20px', display: 'grid' }}>
       <Box sx={{ width: '100%' }}>
         <Grid container rowSpacing={1}>
@@ -27,10 +29,10 @@ function Tutorial() {
           </Grid>
 
           <Grid container xs={12} sm={12} md={12}>
-            <Grid item xs={1.75}>
+            <Grid item xs={3.5} sm={3.5} md={1.75}>
               <Typography style={typographyStyle}>Select Business Area</Typography>
             </Grid>
-            <Grid item xs={10.25}>
+            <Grid item xs={8.5} sm={8.5} md={10.25}>
               <TextInputField
                 placeholder='Search and Filter'
                 endAdornment={
@@ -98,6 +100,11 @@ function Tutorial() {
         </Grid>
       </Box>
     </Box>
+    <Box sx={{ flexGrow: 1 }} style={{ padding: '20px', display: 'flex', gap: 10, justifyContent:'flex-end'}}>
+    <ButtonComponent title='Drafts' type='drafts' style={{background:'#F3F3F4 !important'}}/>
+    <ButtonComponent title='Publish' type='publish' />
+  </Box>
+  </>
   )
 }
 
