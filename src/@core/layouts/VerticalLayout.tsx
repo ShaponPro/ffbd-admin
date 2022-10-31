@@ -50,7 +50,7 @@ const ContentWrapper = styled("main")(({ theme }) => ({
 
 const VerticalLayout = (props: LayoutProps) => {
   // ** Props
-  const { hidden, settings, children, scrollToTop } = props;
+  const { hidden, settings, children, scrollToTop, groupActive, item } = props;
 
   // ** Vars
   const { skin, navHidden, contentWidth } = settings;
@@ -85,9 +85,7 @@ const VerticalLayout = (props: LayoutProps) => {
             {...props}
           />
         )}{" "}
-        <SideBarContentComponents>
-          {navHover ? <SideBarHover /> : null}
-        </SideBarContentComponents>
+        <SideBarContentComponents>{navHover ? <SideBarHover /> : null}</SideBarContentComponents>
         <MainContentWrapper className='layout-content-wrapper'>
           {/* AppBar Component */}
           <AppBar toggleNavVisibility={toggleNavVisibility} {...props} />

@@ -17,6 +17,7 @@ import OnBehalfUser from './OnBehalfUser'
 import { useState } from 'react'
 import OnBehalfBrand from './OnBehalfBrand'
 import Tutorial from './Tutorial'
+import DraftVideos from './DraftVideos'
 
 
 
@@ -53,11 +54,14 @@ const uploadOptions = [
 const AnalyticsCongratulations = () => {
   const [uploadType, setUploadType] = useState<string>("");
 
+  const [active, setActive] = useState<string>('') // 
+
   /**
    * Handle on tab change
    */
   const tabChangeHandler = (key: string) => {
     console.log('key', key)
+    setActive(key);
   }
 
   const uploadTypeChangeHandler = (key: string) => {
@@ -76,24 +80,35 @@ const AnalyticsCongratulations = () => {
         </Grid>
       </Grid>
       <Card sx={{ position: 'relative' }}>
-        <CardContent sx={{ p: theme => `${theme.spacing(9, 7.5,9,7.5)} !important` }}>
+        <CardContent sx={{ p: theme => `${theme.spacing(9, 7.5, 9, 7.5)} !important` }}>
           <Grid container spacing={6}>
             <Grid item xs={12} sm={12}>
-              <TabbarComponent options={tabs} activekey={'upload'} onChange={tabChangeHandler} />
+              <TabbarComponent options={tabs} activekey={active} onChange={tabChangeHandler} />
             </Grid>
             <Grid container direction='row' justifyContent='center' alignItems='center' item xs={12} sm={12}>
-            {uploadType === "" ? (
-              
-              <UploadTypeComponent  options={uploadOptions} selected={uploadType} onChange={uploadTypeChangeHandler}/>
-            
-            ) : 
-            uploadType==="user" ?( <OnBehalfUser/> ) : 
-            uploadType==="brand" ? (<OnBehalfBrand/>):
-            uploadType==="tutorial" ? (<Tutorial/>) :
-            (<YoutubeCrawler/>)}
+              {uploadType === "" ? (
+
+                <UploadTypeComponent options={uploadOptions} selected={uploadType} onChange={uploadTypeChangeHandler} />
+
+              ) :
+                uploadType === "user" ? (<OnBehalfUser />) :
+                  uploadType === "brand" ? (<OnBehalfBrand />) :
+                    uploadType === "tutorial" ? (<Tutorial />) :
+                      (<YoutubeCrawler />)}
             </Grid>
-            
-            
+
+
+
+            {active == "drafts" && <DraftVideos></DraftVideos>}
+
+            {active == "upload" && <> <Grid container direction='row' justifyContent='center' alignItems='center' item xs={12} sm={12}>
+              <UploadTypeComponent />
+            </Grid>
+              <Grid item xs={12} sm={12}>
+                <YoutubeCrawler />
+                <OnBehalfUser />
+              </Grid></>}
+
           </Grid>
         </CardContent>
       </Card>
