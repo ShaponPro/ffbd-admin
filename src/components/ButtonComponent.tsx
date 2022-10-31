@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@mui/material'
-import Typography from '@mui/material/Typography'
+
 
 type Props = {
   title: string
@@ -10,8 +10,8 @@ type Props = {
   isActive?: boolean
 }
 
-
 const ButtonComponent = (props: Props) => {
+  
 
   const styleButton = (type: string, isActive: boolean) => {
     if (type === 'tabButton')
@@ -73,7 +73,6 @@ const ButtonComponent = (props: Props) => {
         textTransform: 'capitalize'
       }
   
-
     if(type==='select-custom'){
       return {
         padding: '10px',
@@ -184,11 +183,11 @@ const ButtonComponent = (props: Props) => {
     <div>
       <Button
         style = {styleButton(props.type || '', props.isActive || false)}
-        onClick= {props.onClick}
+        onClick= {props.onClick
+        }
       >
-        <Typography variant="overline" display="block" style={props.isActive ? {color: "#fff",  textTransform: 'capitalize'} : {color: "#161F29", textTransform: 'capitalize'}}>
           {props.title}
-        </Typography>
+       
       </Button>
     </div>
   )

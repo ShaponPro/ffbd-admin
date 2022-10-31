@@ -1,365 +1,478 @@
-// ** React Imports
-import React, { ChangeEvent, useState, useCallback, useEffect } from 'react'
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
+import Select from "@mui/material/Select";
+import Typography from "@mui/material/Typography";
+import SearchComponent from "./SearchComponent";
+import { Button } from "@mui/material";
+import usePagination from "@mui/material/usePagination";
+import TableHead from '@mui/material/TableHead'
 
-// ** MUI Imports
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import { DataGrid, GridColumns, GridRenderCellParams } from '@mui/x-data-grid'
-
-// ** ThirdParty Components
-import axios from 'axios'
-
-// ** Custom Components
-
-import ServerSideToolbar from 'src/views/table/data-grid/ServerSideToolbar'
-
-// ** Types Imports
-import { DataGridRowType } from 'src/@fake-db/types'
-
-// ** Icons Imports
-
-import styled from '@emotion/styled'
-import MainGridFooter from 'src/views/table/data-grid/MainGridFooter'
-
-const StyledDataGrid = styled(DataGrid)(() => ({
-  background: '#F3F3F4',
-  margin: '20px',
-
-  //border: '2px solid black',
-  borderRadius: '0px',
-
-  //Column Table columnHeaders CSS
-  '& 	.MuiDataGrid-columnHeaders': {
-    //border: '2px solid red',
-    borderRadius: '0px',
-    background: 'rgba(22, 31, 41, 0.07)'
+const StyledTableCell = styled(TableCell)(() => ({
+  [`&.${tableCellClasses.head}`]: {
+    background: "rgba(22, 31, 41, 0.07)",
+    borderBottom: "2px solid white",
+    borderLeft: "2px solid white",
+    color: "black",
+    textTransform: "none",
   },
 
-  //Column Table rows
-  '& .MuiDataGrid-row': {
-    //border: '2px solid blue',
-    //height:'300px'
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 12,
+    border: "2px solid white",
+  },
+}));
+
+const StyledSelect = styled(Select)({
+  background: "white",
+  borderRadius: "0px",
+  height: "36px",
+  width: "80px",
+  margin: "3px",
+  boxShadow: "inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)",
+});
+
+const StyledTableRow = styled(TableRow)(() => ({
+  "&:nth-of-type(even)": {
+    background: "rgba(22, 31, 41, 0.07)",
+  },
+  "&:nth-of-type(odd)": {
+    //border: '2px solid black',
+    background: "rgba(22, 31, 41, 0.03)",
   },
 
-  //Column Table container CSS
-  '& .MuiDataGrid-main': {
-    //border: '2px solid blue',
-    margin: '20px',
-    borderRadius: '0px'
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    //border:'2px solid blue'
   },
+}));
 
-  //Column Footer Title CSS
-  '& .MuiDataGrid-footerContainer': {
-    //border: '2px solid yellow',
-    borderRadius: '0px'
+const StyledSelectReport = styled(Select)({
+  borderRadius: "20px",
+  background: "white",
+  height: "36px",
+  width: "126px",
+  boxShadow: "inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)",
+
+  "& .MuiSelect-select": {
+    transition: "0s !important",
   },
+});
 
-  //Column Header Title CSS
-  '& .MuiDataGrid-columnHeaderTitle': {
-    textTransform: 'none'
-  },
+const List = styled("ul")({
+  listStyle: "none",
+  padding: 0,
+  margin: 0,
+  display: "flex",
+});
 
-  //Column Header CSS
-  '& .MuiDataGrid-columnHeader': {
-    //border: '2px solid red',
-    borderRadius: '0px'
-  },
-
-  '& .MuiDataGrid-columnSeparator': {
-    visibility: 'hidden',
-    borderRadius: '0px'
-  },
-
-  '& .MuiDataGrid-virtualScrollerRenderZone': {
-    '& .MuiDataGrid-row': {
-      '&:nth-child(2n)': { backgroundColor: 'rgba(235, 235, 235, .7)' },
-      borderRadius: '0px'
-    },
-    borderRadius: '0px'
-  },
-
-  '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
-    border: '1px solid white',
-    borderRadius: '0px'
-  }
-
-  // virtualScrollerContent: {
-  //   height: '100% !important',
-  //   overflow: 'scroll'
-  // }
-}))
-
-type Props = {
-  placeholder?: string
-  value?: string
-  onChange?: (value: string) => void
-  style?: React.CSSProperties
-}
-
-type SortType = 'asc' | 'desc' | undefined | null
-
-const columns: GridColumns = [
-  {
-    flex: 1,
-    minWidth: 100,
-    field: 'videoId',
-    headerName: 'Video ID',
-    filterable: true,
-    sortable: false,
-    renderCell: (params: GridRenderCellParams) => {
-      const { row } = params
-
-      return (
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography noWrap variant='body2' sx={{ color: 'text.primary', fontWeight: 600 }}>
-              {row.videoId}
-            </Typography>
-          </Box>
-        </Box>
-      )
-    }
-  },
-  {
-    flex: 1,
-    minWidth: 200,
-    field: 'thumbnail',
-    headerName: 'Thumbnail',
-    sortable: false,
-    filterable: true,
-    renderCell: (params: GridRenderCellParams) => {
-      const { row } = params
-
-      return (
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          
-          </Box>
-        </Box>
-      )
-    }
-  },
-  {
-    flex: 1,
-    field: 'fileSize',
-    minWidth: 200,
-    headerName: 'File Size',
-    sortable: false,
-    renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.fileSize}
-      </Typography>
-    )
-  },
-  {
-    flex: 1,
-    field: 'videoLength',
-    minWidth: 200,
-    headerName: 'Video Length',
-    sortable: false,
-    renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.videoLength}
-      </Typography>
-    )
-  },
-  {
-    flex: 1,
-    field: 'userName',
-    minWidth: 200,
-    headerName: 'User Name',
-    sortable: false,
-    renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.userName}
-      </Typography>
-    )
-  },
-  {
-    flex: 1,
-    field: 'userId',
-    minWidth: 200,
-    headerName: 'User ID',
-    sortable: false,
-    renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.userId}
-      </Typography>
-    )
-  },
-  {
-    flex: 1,
-    field: 'fanfareId',
-    minWidth: 200,
-    headerName: 'Fanfare ID',
-    sortable: false,
-    renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.fanfareId}
-      </Typography>
-    )
-  },
-  {
-    flex: 1,
-    field: 'userCreatedDate',
-    minWidth: 200,
-    headerName: 'User Created Date',
-    sortable: false,
-    renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.userCreatedDate}
-      </Typography>
-    )
-  },
-  {
-    flex: 1,
-    field: 'uploadDate',
-    minWidth: 200,
-    headerName: 'Upload Date',
-    sortable: false,
-    renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.uploadDate}
-      </Typography>
-    )
-  },
-  {
-    flex: 1,
-    field: 'uploadTime',
-    minWidth: 200,
-    headerName: 'Upload Time',
-    sortable: false,
-    renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.uploadTime}
-      </Typography>
-    )
-  },
-  {
-    flex: 1,
-    field: 'uploadDays',
-    minWidth: 200,
-    headerName: 'Upload Days',
-    sortable: false,
-    renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.uploadDays}
-      </Typography>
-    )
-  },
-  {
-    flex: 1,
-    field: 'uploadedCountry',
-    minWidth: 200,
-    headerName: 'Uploaded Country',
-    sortable: false,
-    renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.uploadedCountry}
-      </Typography>
-    )
-  },
-  {
-    flex: 1,
-    field: 'uploadedIp',
-    minWidth: 200,
-    headerName: 'Uploaded IP',
-    sortable: false,
-    renderCell: (params: GridRenderCellParams) => (
-      <Typography variant='body2' sx={{ color: 'text.primary' }}>
-        {params.row.uploadedIp}
-      </Typography>
-    )
-  }
-]
-
-const ListComponent = (props: Props) => {
-  // ** State
-  const [page, setPage] = useState(0)
-  const [total, setTotal] = useState<number>(0)
-  const [sort, setSort] = useState<SortType>('asc')
-  const [pageSize, setPageSize] = useState<number>(7)
-  const [rows, setRows] = useState<DataGridRowType[]>([])
-  const [searchValue, setSearchValue] = useState<string>('')
-  const [sortColumn, setSortColumn] = useState<string>('full_name')
-
-  /**
-   * Handle OnChange event for search input
-   *
-   * @parms event ChangeEvent<HTMLInputElement>
-   *
-   * @returns void
-   */
-
-  function loadServerRows(currentPage: number, data: DataGridRowType[]) {
-    return data.slice(currentPage * pageSize, (currentPage + 1) * pageSize)
-  }
-
-  // const handleSortModel = (newModel: GridSortModel) => {
-  //   if (newModel.length) {
-  //     setSort(newModel[0].sort)
-  //     setSortColumn(newModel[0].field)
-  //     fetchTableData(newModel[0].sort, searchValue, newModel[0].field)
-  //   } else {
-  //     setSort('asc')
-  //     setSortColumn('full_name')
-  //   }
-  // }
-
-  const handleSearch = (value: string) => {
-    setSearchValue(value)
-    fetchTableData(sort, value, sortColumn)
-  }
-
-  const fetchTableData = useCallback(
-    async (sort: SortType, q: string, column: string) => {
-      await axios
-        .get('/api/table/data', {
-          params: {
-            q,
-            sort,
-            column
-          }
-        })
-        .then(res => {
-          setTotal(res.data.total)
-          setRows(loadServerRows(page, res.data.data))
-        })
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [page, pageSize]
-  )
-
-  useEffect(() => {
-    fetchTableData(sort, searchValue, sortColumn)
-  }, [fetchTableData, searchValue, sort, sortColumn])
+function UsePagination() {
+  const { items } = usePagination({
+    count: 10,
+  });
 
   return (
-    <StyledDataGrid
-      autoHeight
-      pagination
-      rows={rows}
-      disableSelectionOnClick
-      disableColumnMenu
-      rowCount={total}
-      columns={columns}
-      pageSize={pageSize}
-      sortingMode='server'
-      paginationMode='server'
-      rowsPerPageOptions={[7, 10, 25, 50]}
+    <nav>
+      <List>
+        {items.map(({ page, type, selected, ...item }, index) => {
+          let children = null;
+          if (type === "start-ellipsis" || type === "end-ellipsis") {
+            children = "…";
+          } else if (type === "page") {
+            children = (
+              <button
+                type='button'
+                style={{
+                  border: "none",
+                  outline: "none",
+                  background: "#F3F3F4",
+                  color: "#009EFA",
+                  fontWeight: selected ? "bold" : undefined,
+                }}
+                {...item}
+              >
+                {page}
+              </button>
+            );
+          } else {
+            children = (
+              <button
+                type='button'
+                {...item}
+                style={{ border: "none", outline: "none", color: "#009EFA", background: "#F3F3F4" }}
+              >
+                {type}
+              </button>
+            );
+          }
 
-      //onSortModelChange={handleSortModel}
-      onPageChange={newPage => setPage(newPage)}
-      components={{ Toolbar: ServerSideToolbar }}
-      onPageSizeChange={newPageSize => setPageSize(newPageSize)}
-      componentsProps={{
-        toolbar: {
-          value: searchValue,
-          clearSearch: () => handleSearch(''),
-          onChange: (event: ChangeEvent<HTMLInputElement>) => handleSearch(event.target.value)
-        }
-      }}
-    />
-  )
+          return <li key={index}>{children}</li>;
+        })}
+      </List>
+    </nav>
+  );
 }
-export default ListComponent
+
+export default function ListComponent({ rowsData, columns }: {
+  rowsData: object[]; columns: object[];
+}) {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const data = rowsData;
+
+
+  // Avoid a layout jump when reaching the last page with empty rows.
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
+
+
+  return (
+    <>
+      <Box
+        display='grid'
+        gridTemplateColumns='repeat(12, 1fr)'
+        gap={2}
+        sx={{ background: "#F3F3F4", alignItems: "center" }}
+      >
+        <Box gridColumn='span 12' sx={{ display: "block", margin: "15px" }}>
+          <Box
+            gridColumn='span 12'
+            sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "5px" }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+              <Typography>Show</Typography>
+              <StyledSelect displayEmpty />
+              <Typography>entries</Typography>
+              <SearchComponent style={{ marginLeft: "20px", width: "500px" }} />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "10px",
+              }}
+            >
+              <StyledSelectReport displayEmpty>
+                <Button variant='text' sx={{ m: 3 }}>
+                  Report
+                </Button>
+              </StyledSelectReport>
+            </Box>
+          </Box>
+          <TableContainer component={Paper} sx={{ borderRadius: "0px" }}>
+            <Table sx={{ textAlign: "center" }}>
+              <TableHead sx={{ display: "table-header-group" }}>
+                <StyledTableRow>
+                  {columns.map(col => (
+                    <StyledTableCell>{col?.header || ""}</StyledTableCell>
+                  ))}
+                </StyledTableRow>
+              </TableHead>
+              <TableBody>
+                {(rowsPerPage > 0 ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : data).map(
+                  row => (
+                    <StyledTableRow key={row?.videoID || ""}>
+                      <StyledTableCell component='th' scope='row'>
+                        {row?.videoID || ""}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <img height={120} width={80} src='/images/avatars/images1.jpg' alt='this is image' />
+                      </StyledTableCell>
+                      <StyledTableCell>{row?.videoTitle || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.fileSize || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.videoLength || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.userName || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.userID || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.fanfareID || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.userCreatedDate || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.uploadData || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.uploadDays || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.uploadCountry || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.uploadedIP || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.deviceType || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.videoLengthGroup || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalViews || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalWatchTime || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalLikes || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalComments || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalShares || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.downloads || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.contestID || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.contestTitle || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.contestWinningPosition || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.allTimeRankingScore || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.trendingScore || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.activeAwarenessDays || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.activeProductdays || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalMonitization || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.activeDailyMonetization || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.awarenessClick || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.addReach || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.trafficGeneration || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.rightSellingStatus || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.lastActivityDate || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.lastActivityTime || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.currentSatus || ""}</StyledTableCell>
+                    </StyledTableRow>
+                  )
+                )}
+
+                {emptyRows > 0 && (
+                  <TableRow style={{ height: 53 * emptyRows }}>
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "5px" }}>
+            <Box gridColumn='span 4' sx={{ display: "flex" }}>
+              <Typography variant={"body2"}>Showing 1 to 20 of 167,328 entries</Typography>
+            </Box>
+            <Box
+              gridColumn='span 8'
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+              }}
+            >
+              <UsePagination />
+              <span>
+                <input
+                  type='text'
+                  style={{
+                    width: "119px",
+                    height: "36px",
+                    padding: "10px",
+                    background: "#FFFFFF",
+                    border: "1px solid black",
+                  }}
+                  placeholder='jump to page'
+                />
+                <button
+                  style={{
+                    background: "#009EFA",
+                    border: "none",
+                    borderRadius: "3px",
+                    width: "45px",
+                    height: "36px",
+                    padding: "10px",
+                    color: "white",
+                    marginLeft: "10px",
+                  }}
+                >
+                  Go
+                </button>
+              </span>{" "}
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </>
+  );
+}
+
+ListComponent.defaultProps = {
+  rowsData: [
+    {
+      videoID: "62b956a760a6af7b2e98cae1",
+      thumbnail: "url",
+      videoTitle: "Beautiful Henna Design",
+      fileSize: 24.44,
+      videoLength: 0.40,
+      userName: "Nimul Islam",
+      userID: "124345579866",
+      fanfareID: "xyz2022",
+      userCreatedDate: "6/26/2021",
+      uploadData: "1:05:11 PM",
+      uploadDays: 410,
+      uploadCountry: "Bangladesh",
+      uploadedIP: "103.103.34.34",
+      deviceID: "d8c1a9b3ca05740d",
+      deviceType: "android",
+      videoLengthGroup: "31s-60s",
+      totalViews: 220,
+      totalWatchTime: 6160,
+      totalLikes: 50,
+      totalComments: 10,
+      totalShares: 15,
+      downloads: 55,
+      contestID: "VC123547",
+      contestTitle: "Talent's Wolrd",
+      contestWinningPosition: "1st",
+      allTimeRankingScore: 1700,
+      trendingScore: 415,
+      activeAwarenessDays: 0,
+      activeProductdays: 3,
+      totalMonitization: 5000,
+      activeDailyMonetization: 100,
+      addReach: 5000,
+      awarenessClick: 1000,
+      trafficGeneration: 1500,
+      rightSellingStatus: "Proccesing",
+      lastActivityDate: "6/27/2022",
+      lastActivityTime: "1:05:00 PM",
+      currentSatus: "Published",
+    }
+  ],
+  columns: [
+    {
+      field: "videoID",
+      header: "Video ID",
+    },
+    {
+      field: "thumbnail",
+      header: "Thumbnail",
+    },
+    {
+      field: "videoTitle",
+      header: "Video Title",
+    },
+    {
+      field: "fileSize",
+      header: "File Size(MB)",
+    },
+    {
+      field: "videoLength",
+      header: "Video Length",
+    },
+    {
+      field: "userName",
+      header: "User Name",
+    },
+    {
+      field: "userID",
+      header: "User ID",
+    },
+    {
+      field: "fanfareID",
+      header: "Fanfare ID",
+    },
+    {
+      field: "userCreatedDate",
+      header: "User Created Date",
+    },
+    {
+      field: "uploadData",
+      header: "Upload Data",
+    },
+    {
+      field: "uploadDays",
+      header: "Upload Days",
+    },
+    {
+      field: "uploadCountry",
+      header: "Upload Country",
+    },
+    {
+      field: "uploadedIP",
+      header: "Uploaded IP",
+    },
+    {
+      field: "deviceType",
+      header: "Device Type",
+    },
+    {
+      field: "videoLengthGroup",
+      header: "Video Length Group",
+    },
+    {
+      field: "totalViews",
+      header: "Total Views",
+    },
+    {
+      field: "totalWatchTime",
+      header: "Total Watch Time",
+    },
+    {
+      field: "totalLikes",
+      header: "Total Likes",
+    },
+    {
+      field: "totalComments",
+      header: "Total Comments",
+    },
+    {
+      field: "totalShares",
+      header: "Total Shares",
+    },
+    {
+      field: "downloads",
+      header: "Downloads",
+    },
+    {
+      field: "contestID",
+      header: "Contest ID",
+    },
+    {
+      field: "contestTitle",
+      header: "Contest Title",
+    },
+    {
+      field: "contestWinningPosition",
+      header: "Contest Winning Position",
+    },
+    {
+      field: "allTimeRankingScore",
+      header: "All Time Ranking Score",
+    },
+    {
+      field: "trendingScore",
+      header: "Tranding Score",
+    },
+    {
+      field: "activeAwarenessDays",
+      header: "Active Awareness Days",
+    },
+    {
+      field: "activeProductdays",
+      header: "Active Product Days",
+    },
+    {
+      field: "totalMonitization",
+      header: "Total Monetization (Till Yestarday)",
+    },
+    {
+      field: "activeDailyMonetization",
+      header: "Active Daily Monetization",
+    },
+    {
+      field: "addReach",
+      header: "ADD Reach",
+    },
+    {
+      field: "awarenessClick",
+      header: "Awareness Click",
+    },
+    {
+      field: "trafficGeneration",
+      header: "Traffic Generation",
+    },
+    {
+      field: "rightSellingStatus",
+      header: "Right Selling Status",
+    },
+    {
+      field: "lastActivityDate",
+      header: "Last Activity Date",
+    },
+    {
+      field: "lastActivityTime",
+      header: "Last Activity Time",
+    },
+    {
+      field: "currentSatus",
+      header: "Current Status",
+    }
+  ],
+}

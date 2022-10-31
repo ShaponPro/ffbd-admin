@@ -5,7 +5,7 @@ import {FilterComponent} from 'src/components/FilterComponent';
 const filter = () => {
     return (
         <div>
-            <FilterComponent  title ='select'/>
+            <FilterComponent  title='select' userName={''}/>
         </div>
     );
 };

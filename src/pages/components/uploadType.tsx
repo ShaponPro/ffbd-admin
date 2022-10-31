@@ -9,8 +9,8 @@ const options = [
     title: 'On behalf of User'
   },
   {
-    key: 'board',
-    title: 'On behalf of Board'
+    key: 'brand',
+    title: 'On behalf of Brand'
   },
   {
     key: 'tutorial',
