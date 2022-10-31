@@ -294,3 +294,198 @@ export default function ListComponent({ rowsData, columns }) {
     </>
   );
 }
+
+ListComponent.defaultProps = {
+  rowsData: [
+    {
+      videoID: "62b956a760a6af7b2e98cae1",
+      thumbnail: "url",
+      videoTitle: "Beautiful Henna Design",
+      fileSize: 24.44,
+      videoLength: 0.40,
+      userName: "Nimul Islam",
+      userID: "124345579866",
+      fanfareID: "xyz2022",
+      userCreatedDate: "6/26/2021",
+      uploadData: "1:05:11 PM",
+      uploadDays: 410,
+      uploadCountry: "Bangladesh",
+      uploadedIP: "103.103.34.34",
+      deviceID: "d8c1a9b3ca05740d",
+      deviceType: "android",
+      videoLengthGroup: "31s-60s",
+      totalViews: 220,
+      totalWatchTime: 6160,
+      totalLikes: 50,
+      totalComments: 10,
+      totalShares: 15,
+      downloads: 55,
+      contestID: "VC123547",
+      contestTitle: "Talent's Wolrd",
+      contestWinningPosition: "1st",
+      allTimeRankingScore: 1700,
+      trendingScore: 415,
+      activeAwarenessDays: 0,
+      activeProductdays: 3,
+      totalMonitization: 5000,
+      activeDailyMonetization: 100,
+      addReach: 5000,
+      awarenessClick: 1000,
+      trafficGeneration: 1500,
+      rightSellingStatus: "Proccesing",
+      lastActivityDate: "6/27/2022",
+      lastActivityTime: "1:05:00 PM",
+      currentSatus: "Published",
+    }
+  ],
+  columns: [
+    {
+      field: "videoID",
+      header: "Video ID",
+    },
+    {
+      field: "thumbnail",
+      header: "Thumbnail",
+    },
+    {
+      field: "videoTitle",
+      header: "Video Title",
+    },
+    {
+      field: "fileSize",
+      header: "File Size(MB)",
+    },
+    {
+      field: "videoLength",
+      header: "Video Length",
+    },
+    {
+      field: "userName",
+      header: "User Name",
+    },
+    {
+      field: "userID",
+      header: "User ID",
+    },
+    {
+      field: "fanfareID",
+      header: "Fanfare ID",
+    },
+    {
+      field: "userCreatedDate",
+      header: "User Created Date",
+    },
+    {
+      field: "uploadData",
+      header: "Upload Data",
+    },
+    {
+      field: "uploadDays",
+      header: "Upload Days",
+    },
+    {
+      field: "uploadCountry",
+      header: "Upload Country",
+    },
+    {
+      field: "uploadedIP",
+      header: "Uploaded IP",
+    },
+    {
+      field: "deviceType",
+      header: "Device Type",
+    },
+    {
+      field: "videoLengthGroup",
+      header: "Video Length Group",
+    },
+    {
+      field: "totalViews",
+      header: "Total Views",
+    },
+    {
+      field: "totalWatchTime",
+      header: "Total Watch Time",
+    },
+    {
+      field: "totalLikes",
+      header: "Total Likes",
+    },
+    {
+      field: "totalComments",
+      header: "Total Comments",
+    },
+    {
+      field: "totalShares",
+      header: "Total Shares",
+    },
+    {
+      field: "downloads",
+      header: "Downloads",
+    },
+    {
+      field: "contestID",
+      header: "Contest ID",
+    },
+    {
+      field: "contestTitle",
+      header: "Contest Title",
+    },
+    {
+      field: "contestWinningPosition",
+      header: "Contest Winning Position",
+    },
+    {
+      field: "allTimeRankingScore",
+      header: "All Time Ranking Score",
+    },
+    {
+      field: "trendingScore",
+      header: "Tranding Score",
+    },
+    {
+      field: "activeAwarenessDays",
+      header: "Active Awareness Days",
+    },
+    {
+      field: "activeProductdays",
+      header: "Active Product Days",
+    },
+    {
+      field: "totalMonitization",
+      header: "Total Monetization (Till Yestarday)",
+    },
+    {
+      field: "activeDailyMonetization",
+      header: "Active Daily Monetization",
+    },
+    {
+      field: "addReach",
+      header: "ADD Reach",
+    },
+    {
+      field: "awarenessClick",
+      header: "Awareness Click",
+    },
+    {
+      field: "trafficGeneration",
+      header: "Traffic Generation",
+    },
+    {
+      field: "rightSellingStatus",
+      header: "Right Selling Status",
+    },
+    {
+      field: "lastActivityDate",
+      header: "Last Activity Date",
+    },
+    {
+      field: "lastActivityTime",
+      header: "Last Activity Time",
+    },
+    {
+      field: "currentSatus",
+      header: "Current Status",
+    }
+  ],
+}
