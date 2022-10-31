@@ -33,7 +33,10 @@ const steps = [
   },
 ];
 
-const SideBarContentComponents = () => {
+type Props = {
+  children: React.ReactNode;
+}
+const SideBarContentComponents = (props: Props) => {
   const [isHover, setIsHover] = useState<boolean>(false);
 
   // const { item } = props
@@ -48,8 +51,13 @@ const SideBarContentComponents = () => {
   };
 
   return (
+    <div style={{
+      position: 'relative'
+    }}>
+      {props.children}
     <Box
       style={{
+        position: 'absolute',
         height: "1030px",
         width: "185px",
         background: "#FFFFFF",
@@ -157,6 +165,7 @@ const SideBarContentComponents = () => {
         </li>
       </ul>
     </Box>
+    </div>
   );
 };
 

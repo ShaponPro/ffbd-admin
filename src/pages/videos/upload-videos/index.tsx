@@ -52,7 +52,7 @@ const AnalyticsCongratulations = () => {
         <CardContent sx={{ p: theme => `${theme.spacing(9, 7.5,9,7.5)} !important` }}>
           <Grid container spacing={6}>
             <Grid item xs={12} sm={12}>
-              <TabbarComponent options={tabs} activekey={'drafts'} onChange={tabChangeHandler} />
+              <TabbarComponent options={tabs} activekey={'upload'} onChange={tabChangeHandler} />
             </Grid>
             <Grid container direction='row' justifyContent='center' alignItems='center' item xs={12} sm={12}>
               <UploadTypeComponent  />
