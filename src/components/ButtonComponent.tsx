@@ -183,10 +183,8 @@ const ButtonComponent = (props: Props) => {
     <div>
       <Button
         style = {styleButton(props.type || '', isActive || false)}
-        onClick= {()=>{
-          setIsActive((pre)=>!pre);
-          if(props.onClick) props.onClick()
-        }}
+        onClick= {props.onClick
+        }
       >
           {props.title}
        
