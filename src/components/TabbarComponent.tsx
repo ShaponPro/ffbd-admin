@@ -28,20 +28,21 @@ type Props = {
 
 const TabbarComponent = (props: Props) => {
   // ** State
-  const [active, setActive] = useState<string>('regular') // 
+  const [active, setActive] = useState<string>(props.activekey || 'regular') // 
 
   /**
    * Handle OnClick Button
    */
   const onClickHandler = (key: string) =>{
     setActive(key);
-    props.onChange(key);
+    // console.log('key :>> ', key);
+    if(props.onChange)props.onChange(key);
   }
 
   return (
     <TabContainer style={props.style}>
       {props.options.length ? props.options.map((item, i)=>(
-        <ButtonComponent type='tabButton' title={item.title} path={item.path} isActive={item.key === active} onClick={()=>onClickHandler(item.key)}/>
+        <ButtonComponent type='tabButton' title={item.title || ""} isActive={item.key === active} onClick={()=>onClickHandler(item.key || "")}/>
       )) : null}
     </TabContainer>
   )
