@@ -4,6 +4,7 @@ const SideBarHover = () => {
   return (
     <Box
       style={{
+        position: 'absolute',
         height: "360px",
         paddingRight: "50px",
         background: "#FFFFFF",
