@@ -73,7 +73,7 @@ const SideBarContentComponents = (props: Props) => {
         position: "relative",
         height: "1030px",
         width: "185px",
-        margin: 0,
+        marginTop: "0 !important",
         background: "#FFFFFF",
         boxShadow: "0px 5px 10px rgba(22, 31, 41, 0.1)",
         paddingRight: "1px",
