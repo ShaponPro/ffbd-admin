@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Box from "@mui/material/Box";
-import SubMenuComponent from "./SubMenuComponent";
 import FilterComponent from "./FilterComponent";
 
 const outerBox = css`
@@ -16,14 +15,10 @@ const outerBox = css`
 `;
 
 const UserVideosCustomizedComponent = () => {
-  const [isCustomized, setIsCustomized] = useState(false);
-
   return (
     <>
       <Box sx={{ flexGrow: 1 }} css={outerBox}>
-        <SubMenuComponent isCustomized={isCustomized} setIsCustomized={setIsCustomized}></SubMenuComponent>
-
-        {isCustomized && <FilterComponent></FilterComponent>}
+        <FilterComponent></FilterComponent>
       </Box>
     </>
   );

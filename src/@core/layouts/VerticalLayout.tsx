@@ -85,8 +85,9 @@ const VerticalLayout = (props: LayoutProps) => {
             {...props}
           />
         )}{" "}
-        {navHover ? <SideBarHover /> : null}
-        <SideBarContentComponents />
+        <SideBarContentComponents>
+          {navHover ? <SideBarHover /> : null}
+        </SideBarContentComponents>
         <MainContentWrapper className='layout-content-wrapper'>
           {/* AppBar Component */}
           <AppBar toggleNavVisibility={toggleNavVisibility} {...props} />
