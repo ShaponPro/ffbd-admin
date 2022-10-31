@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import InputComponent from "./downloadCodeCodeListComponents/InputComponent";
-import ListComponent from "./downloadCodeCodeListComponents/ListComponentCopy";
+import InputComponent from "./InputComponent";
+import ListComponent from "./ListComponentCopy";
 const DownloadCodeCodeList = () => {
   return (
     <>

@@ -10,7 +10,7 @@ import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 
 // ** Components
 import TabbarComponent from "../../../../src/components/TabbarComponent";
-import DownloadCodeCodeList from "src/views/videos/downloadCodeCodeList/index";
+import DownloadCodeCodeList from "src/views/videos/downloadCodeCodeList/downloadCodeCodeListComponents/index";
 import { useState } from "react";
 
 const tabs = [
