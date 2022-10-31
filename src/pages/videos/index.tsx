@@ -105,7 +105,7 @@ const AnalyticsCongratulations = () => {
         <CardContent sx={{ p: theme => `${theme.spacing(6.75, 7.5)} !important` }}>
           <Grid container spacing={6}>
             <Grid item xs={12} sm={12}>
-              <TabbarComponent options={tabs} activekey={"trending"} onChange={tabChangeHandler} />
+              <TabbarComponent options={tabs} activekey={"regular"} onChange={tabChangeHandler} />
             </Grid>
             {activeTab === "customized" ? (
               <>
