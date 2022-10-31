@@ -14,6 +14,7 @@ import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 import TabbarComponent from 'src/components/TabbarComponent'
 import ListComponent from 'src/components/ListComponent'
 import {FilterComponent} from 'src/components/FilterComponent';
+import { allData } from 'src/@fake-db/table/allData'
 
 import { useQuery } from '@apollo/client'
 
@@ -70,18 +71,116 @@ const AnalyticsCongratulations = () => {
 
   const columns =[
     {
-      field:"_id", header:"Video ID"
+      field:"videoID", header:"Video ID"
     }, 
     {
-      field:"title", header:"Video Title"
+      field:"thumbnail", header:"Thumbnail"
     }, 
     {
-      field:"activity_updated", header:"Last Activity Time"
+      field:"videoTitle", header:"Video Title"
     }, 
     {
-      field:"short_id", header:"Short ID"
+      field:"fileSize", header:"File Size(MB)"
     }, 
-
+    {
+      field:"videoLength", header:"Video Length"
+    }, 
+    {
+      field:"userName", header:"User Name"
+    }, 
+    {
+      field:"userID", header:"User ID"
+    }, 
+    {
+      field:"fanfareID", header:"Fanfare ID"
+    }, 
+    {
+      field:"userCreatedDate", header:"User Created Date"
+    }, 
+    {
+      field:"uploadData", header:"Upload Data"
+    }, 
+    {
+      field:"uploadDays", header:"Upload Days"
+    }, 
+    {
+      field:"uploadCountry", header:"Upload Country"
+    }, 
+    {
+      field:"uploadedIP", header:"Uploaded IP"
+    }, 
+    {
+      field:"deviceType", header:"Device Type"
+    }, 
+    {
+      field:"videoLengthGroup", header:"Video Length Group"
+    }, 
+    {
+      field:"totalViews", header:"Total Views"
+    }, 
+    {
+      field:"totalWatchTime", header:"Total Watch Time"
+    }, 
+    {
+      field:"totalLikes", header:"Total Likes"
+    }, 
+    {
+      field:"totalComments", header:"Total Comments"
+    }, 
+    {
+      field:"totalShares", header:"Total Shares"
+    }, 
+    {
+      field:"downloads", header:"Downloads"
+    }, 
+    {
+      field:"contestID", header:"Contest ID"
+    }, 
+    {
+      field:"contestTitle", header:"Contest Title"
+    }, 
+    {
+      field:"contestWinningPosition", header:"Contest Winning Position"
+    }, 
+    {
+      field:"allTimeRankingScore", header:"All Time Ranking Score"
+    }, 
+    {
+      field:"trendingScore", header:"Tranding Score"
+    }, 
+    {
+      field:"activeAwarenessDays", header:"Active Awareness Days"
+    }, 
+    {
+      field:"activeProductdays", header:"Active Product Days"
+    }, 
+    {
+      field:"totalMonitization", header:"Total Monetization (Till Yestarday)"
+    }, 
+    {
+      field:"activeDailyMonetization", header:"Active Daily Monetization"
+    }, 
+    {
+      field:"addReach", header:"ADD Reach"
+    }, 
+    {
+      field:"awarenessClick", header:"Awareness Click"
+    }, 
+    {
+      field:"trafficGeneration", header:"Traffic Generation"
+    }, 
+    {
+      field:"rightSellingStatus", header:"Right Selling Status"
+    }, 
+    {
+      field:"lastActivityDate", header:"Last Activity Date"
+    }, 
+    {
+      field:"lastActivityTime", header:"Last Activity Time"
+    }, 
+    {
+      field:"currentSatus", header:"Current Status"
+    }, 
   ]
 
   return (
@@ -105,7 +204,7 @@ const AnalyticsCongratulations = () => {
             <FilterComponent  title ='select' onChange = {filterChangeHandler}/>
           </Grid>
           <Grid item xs={12} sm={12}>
-            <ListComponent data={data} columns={columns}/>
+            <ListComponent rowsData={allData} columns={columns}/>
           </Grid>
         </Grid>
       </CardContent>
