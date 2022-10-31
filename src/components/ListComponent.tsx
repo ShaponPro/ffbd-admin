@@ -1,24 +1,20 @@
-import { useState } from "react";
-
-//import TableFooter from '@mui/material/TableFooter'
-//import TablePagination from '@mui/material/TablePagination'
-import {
-  Button,
-  styled,
-  TableHead,
-} from "@mui/material";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Select from "@mui/material/Select";
+import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
+import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
-import usePagination from "@mui/material/usePagination";
-
 import SearchComponent from "./SearchComponent";
+import { Button } from "@mui/material";
+import usePagination from "@mui/material/usePagination";
+import TableHead from '@mui/material/TableHead'
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
@@ -27,7 +23,6 @@ const StyledTableCell = styled(TableCell)(() => ({
     borderLeft: "2px solid white",
     color: "black",
     textTransform: "none",
-    height: "36px !important",
   },
 
   [`&.${tableCellClasses.body}`]: {
@@ -47,7 +42,6 @@ const StyledSelect = styled(Select)({
 
 const StyledTableRow = styled(TableRow)(() => ({
   "&:nth-of-type(even)": {
-    border: "2px solid white",
     background: "rgba(22, 31, 41, 0.07)",
   },
   "&:nth-of-type(odd)": {
@@ -127,190 +121,358 @@ function UsePagination() {
   );
 }
 
-export default function listComponent({ data, columns }) {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [pageData, setPageData] = useState([]);
+export default function ListComponent({ rowsData, columns }: {
+  rowsData: object[]; columns: object[];
+}) {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const data = rowsData;
+
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - pageData.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
-  const handleChangePage = (event: React.ChangeEvent<HTMLInputElement>, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
 
   return (
-    <Box
-      display='grid'
-      gridTemplateColumns='repeat(12, 1fr)'
-      gap={2}
-      sx={{ background: "#F3F3F4", alignItems: "center" }}
-    >
-      <Box gridColumn='span 12' sx={{ display: "block", margin: "15px" }}>
-        <Box
-          gridColumn='span 12'
-          sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "5px" }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-            <Typography>Show</Typography>
-            <StyledSelect displayEmpty />
-            <Typography>entries</Typography>
-            <SearchComponent style={{ marginLeft: "20px", width: "500px" }} />
-          </Box>
+    <>
+      <Box
+        display='grid'
+        gridTemplateColumns='repeat(12, 1fr)'
+        gap={2}
+        sx={{ background: "#F3F3F4", alignItems: "center" }}
+      >
+        <Box gridColumn='span 12' sx={{ display: "block", margin: "15px" }}>
           <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: "10px",
-            }}
+            gridColumn='span 12'
+            sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "5px" }}
           >
-            <StyledSelectReport displayEmpty>
-              <Button variant='text' sx={{ m: 3 }}>
-                Report
-              </Button>
-            </StyledSelectReport>
+            <Box sx={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+              <Typography>Show</Typography>
+              <StyledSelect displayEmpty />
+              <Typography>entries</Typography>
+              <SearchComponent style={{ marginLeft: "20px", width: "500px" }} />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "10px",
+              }}
+            >
+              <StyledSelectReport displayEmpty>
+                <Button variant='text' sx={{ m: 3 }}>
+                  Report
+                </Button>
+              </StyledSelectReport>
+            </Box>
           </Box>
-        </Box>
-
-        <TableContainer component={Paper} sx={{ borderRadius: "0px" }}>
-          <Table sx={{ textAlign: "center" }}>
-            <TableHead sx={{ display: "table-header-group" }}>
-              <StyledTableRow>
-                {columns.map(col => (
-                  <StyledTableCell>{col.header}</StyledTableCell>
-                ))}
-              </StyledTableRow>
-            </TableHead>
-            <TableBody>
-              {/* {(rowsPerPage > 0 ? pageData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : pageData).map(
-                row => (
-                  <StyledTableRow key={row.name}>
-                    <StyledTableCell component='th' scope='row'>
-                      {row.name}
-                    </StyledTableCell>
-                    <StyledTableCell>{row.model}</StyledTableCell>
-                    <StyledTableCell>{row.manufacturer}</StyledTableCell>
-                    <StyledTableCell>{row.length}</StyledTableCell>
-                  </StyledTableRow>
-                )
-              )} */}
-              {data && (
-                <>
-                  {data.allVideos.map(rowss => (
-                    <StyledTableRow key={rowss._id}>
-                      {columns.map(col => (
-                        <StyledTableCell>{rowss[col.field]}</StyledTableCell>
-                      ))}
-                    </StyledTableRow>
-                  ))}
-                </>
-              )}
-
-              {emptyRows > 0 && (
+          <TableContainer component={Paper} sx={{ borderRadius: "0px" }}>
+            <Table sx={{ textAlign: "center" }}>
+              <TableHead sx={{ display: "table-header-group" }}>
                 <StyledTableRow>
-                  <TableCell />
+                  {columns.map(col => (
+                    <StyledTableCell>{col?.header || ""}</StyledTableCell>
+                  ))}
                 </StyledTableRow>
-              )}
-            </TableBody>
+              </TableHead>
+              <TableBody>
+                {(rowsPerPage > 0 ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : data).map(
+                  row => (
+                    <StyledTableRow key={row?.videoID || ""}>
+                      <StyledTableCell component='th' scope='row'>
+                        {row?.videoID || ""}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <img height={120} width={80} src='/images/avatars/images1.jpg' alt='this is image' />
+                      </StyledTableCell>
+                      <StyledTableCell>{row?.videoTitle || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.fileSize || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.videoLength || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.userName || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.userID || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.fanfareID || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.userCreatedDate || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.uploadData || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.uploadDays || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.uploadCountry || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.uploadedIP || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.deviceType || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.videoLengthGroup || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalViews || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalWatchTime || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalLikes || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalComments || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalShares || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.downloads || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.contestID || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.contestTitle || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.contestWinningPosition || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.allTimeRankingScore || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.trendingScore || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.activeAwarenessDays || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.activeProductdays || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.totalMonitization || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.activeDailyMonetization || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.awarenessClick || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.addReach || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.trafficGeneration || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.rightSellingStatus || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.lastActivityDate || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.lastActivityTime || ""}</StyledTableCell>
+                      <StyledTableCell>{row?.currentSatus || ""}</StyledTableCell>
+                    </StyledTableRow>
+                  )
+                )}
 
-            {/* <TableFooter>
-              <StyledTableRow>
-                <TablePagination
-                  rowsPerPageOptions={[5, 10, 25]}
-                  count={pageData.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  SelectProps={{
-                    inputProps: {
-                      'aria-label': 'rows per page'
-                    }
+                {emptyRows > 0 && (
+                  <TableRow style={{ height: 53 * emptyRows }}>
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "5px" }}>
+            <Box gridColumn='span 4' sx={{ display: "flex" }}>
+              <Typography variant={"body2"}>Showing 1 to 20 of 167,328 entries</Typography>
+            </Box>
+            <Box
+              gridColumn='span 8'
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+              }}
+            >
+              <UsePagination />
+              <span>
+                <input
+                  type='text'
+                  style={{
+                    width: "119px",
+                    height: "36px",
+                    padding: "10px",
+                    background: "#FFFFFF",
+                    border: "1px solid black",
                   }}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                  //ActionsComponent={TablePaginationActions}
-                  //component={Box}
-                  labelDisplayedRows={({ page }) => {
-                    return `Page: ${page}`
-                  }}
-                  backIconButtonProps={{
-                    color: 'secondary'
-                  }}
-                  nextIconButtonProps={{ color: 'secondary' }}
-                  showFirstButton={true}
-                  showLastButton={true}
-                  labelRowsPerPage={<span>Shows:</span>}
-                  sx={{
-                    '.MuiTablePagination-toolbar': {
-                      //border: '2px solid red'
-                      background: '#F3F3F4',
-                      border: '2px solid red'
-                    },
-                    '.MuiTablePagination-selectLabel': {
-                      fontWeight: 'bold',
-                      color: 'black'
-
-                      //border:'2px solid red'
-                    },
-                    '.MuiTablePagination-select': {
-                      border: '1px solid black',
-                      background: 'white',
-                      boxShadow: 'inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)'
-                    }
-                  }}
+                  placeholder='jump to page'
                 />
-              </StyledTableRow>
-            </TableFooter> */}
-          </Table>
-        </TableContainer>
-        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "5px" }}>
-          <Box gridColumn='span 4' sx={{ display: "flex" }}>
-            <Typography variant={"body2"}>Showing 1 to 20 of 167,328 entries</Typography>
-          </Box>
-          <Box
-            gridColumn='span 8'
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-            }}
-          >
-            <UsePagination />
-            <span>
-              <input
-                type='text'
-                style={{
-                  width: "119px",
-                  height: "36px",
-                  padding: "10px",
-                  background: "#FFFFFF",
-                  border: "1px solid black",
-                }}
-                placeholder='jump to page'
-              />
-              <button
-                style={{
-                  background: "#009EFA",
-                  border: "none",
-                  borderRadius: "3px",
-                  width: "45px",
-                  height: "36px",
-                  padding: "10px",
-                  color: "white",
-                  marginLeft: "10px",
-                }}
-              >
-                Go
-              </button>
-            </span>{" "}
+                <button
+                  style={{
+                    background: "#009EFA",
+                    border: "none",
+                    borderRadius: "3px",
+                    width: "45px",
+                    height: "36px",
+                    padding: "10px",
+                    color: "white",
+                    marginLeft: "10px",
+                  }}
+                >
+                  Go
+                </button>
+              </span>{" "}
+            </Box>
           </Box>
         </Box>
       </Box>
-    </Box>
+    </>
   );
+}
+
+ListComponent.defaultProps = {
+  rowsData: [
+    {
+      videoID: "62b956a760a6af7b2e98cae1",
+      thumbnail: "url",
+      videoTitle: "Beautiful Henna Design",
+      fileSize: 24.44,
+      videoLength: 0.40,
+      userName: "Nimul Islam",
+      userID: "124345579866",
+      fanfareID: "xyz2022",
+      userCreatedDate: "6/26/2021",
+      uploadData: "1:05:11 PM",
+      uploadDays: 410,
+      uploadCountry: "Bangladesh",
+      uploadedIP: "103.103.34.34",
+      deviceID: "d8c1a9b3ca05740d",
+      deviceType: "android",
+      videoLengthGroup: "31s-60s",
+      totalViews: 220,
+      totalWatchTime: 6160,
+      totalLikes: 50,
+      totalComments: 10,
+      totalShares: 15,
+      downloads: 55,
+      contestID: "VC123547",
+      contestTitle: "Talent's Wolrd",
+      contestWinningPosition: "1st",
+      allTimeRankingScore: 1700,
+      trendingScore: 415,
+      activeAwarenessDays: 0,
+      activeProductdays: 3,
+      totalMonitization: 5000,
+      activeDailyMonetization: 100,
+      addReach: 5000,
+      awarenessClick: 1000,
+      trafficGeneration: 1500,
+      rightSellingStatus: "Proccesing",
+      lastActivityDate: "6/27/2022",
+      lastActivityTime: "1:05:00 PM",
+      currentSatus: "Published",
+    }
+  ],
+  columns: [
+    {
+      field: "videoID",
+      header: "Video ID",
+    },
+    {
+      field: "thumbnail",
+      header: "Thumbnail",
+    },
+    {
+      field: "videoTitle",
+      header: "Video Title",
+    },
+    {
+      field: "fileSize",
+      header: "File Size(MB)",
+    },
+    {
+      field: "videoLength",
+      header: "Video Length",
+    },
+    {
+      field: "userName",
+      header: "User Name",
+    },
+    {
+      field: "userID",
+      header: "User ID",
+    },
+    {
+      field: "fanfareID",
+      header: "Fanfare ID",
+    },
+    {
+      field: "userCreatedDate",
+      header: "User Created Date",
+    },
+    {
+      field: "uploadData",
+      header: "Upload Data",
+    },
+    {
+      field: "uploadDays",
+      header: "Upload Days",
+    },
+    {
+      field: "uploadCountry",
+      header: "Upload Country",
+    },
+    {
+      field: "uploadedIP",
+      header: "Uploaded IP",
+    },
+    {
+      field: "deviceType",
+      header: "Device Type",
+    },
+    {
+      field: "videoLengthGroup",
+      header: "Video Length Group",
+    },
+    {
+      field: "totalViews",
+      header: "Total Views",
+    },
+    {
+      field: "totalWatchTime",
+      header: "Total Watch Time",
+    },
+    {
+      field: "totalLikes",
+      header: "Total Likes",
+    },
+    {
+      field: "totalComments",
+      header: "Total Comments",
+    },
+    {
+      field: "totalShares",
+      header: "Total Shares",
+    },
+    {
+      field: "downloads",
+      header: "Downloads",
+    },
+    {
+      field: "contestID",
+      header: "Contest ID",
+    },
+    {
+      field: "contestTitle",
+      header: "Contest Title",
+    },
+    {
+      field: "contestWinningPosition",
+      header: "Contest Winning Position",
+    },
+    {
+      field: "allTimeRankingScore",
+      header: "All Time Ranking Score",
+    },
+    {
+      field: "trendingScore",
+      header: "Tranding Score",
+    },
+    {
+      field: "activeAwarenessDays",
+      header: "Active Awareness Days",
+    },
+    {
+      field: "activeProductdays",
+      header: "Active Product Days",
+    },
+    {
+      field: "totalMonitization",
+      header: "Total Monetization (Till Yestarday)",
+    },
+    {
+      field: "activeDailyMonetization",
+      header: "Active Daily Monetization",
+    },
+    {
+      field: "addReach",
+      header: "ADD Reach",
+    },
+    {
+      field: "awarenessClick",
+      header: "Awareness Click",
+    },
+    {
+      field: "trafficGeneration",
+      header: "Traffic Generation",
+    },
+    {
+      field: "rightSellingStatus",
+      header: "Right Selling Status",
+    },
+    {
+      field: "lastActivityDate",
+      header: "Last Activity Date",
+    },
+    {
+      field: "lastActivityTime",
+      header: "Last Activity Time",
+    },
+    {
+      field: "currentSatus",
+      header: "Current Status",
+    }
+  ],
 }

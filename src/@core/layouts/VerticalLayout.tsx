@@ -1,81 +1,78 @@
 // ** React Imports
-import { useState } from 'react'
+import { useState } from "react";
 
 // ** Icons Imports
-import ArrowUp from 'mdi-material-ui/ArrowUp'
-
+import ArrowUp from "mdi-material-ui/ArrowUp";
 // ** Components
-import Customizer from 'src/@core/components/customizer'
-import ScrollToTop from 'src/@core/components/scroll-to-top'
-
+import Customizer from "src/@core/components/customizer";
+import ScrollToTop from "src/@core/components/scroll-to-top";
 // ** Type Import
-import { LayoutProps } from 'src/@core/layouts/types'
-
+import { LayoutProps } from "src/@core/layouts/types";
 // ** Styled Component
-import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
-import SideBarContentComponents from 'src/components/SideBarContentComponents'
-
+import DatePickerWrapper from "src/@core/styles/libs/react-datepicker";
+import SideBarContentComponents from "src/components/SideBarContentComponents";
+import SideBarHover from "src/components/SideBarHover";
 // ** Theme Config Import
-import themeConfig from 'src/configs/themeConfig'
+import themeConfig from "src/configs/themeConfig";
 
 // ** MUI Imports
-import Box, { BoxProps } from '@mui/material/Box'
-import Fab from '@mui/material/Fab'
-import { styled } from '@mui/material/styles'
+import Box, { BoxProps } from "@mui/material/Box";
+import Fab from "@mui/material/Fab";
+import { styled } from "@mui/material/styles";
 
-import Footer from './components/shared-components/footer'
-import AppBar from './components/vertical/appBar'
-import Navigation from './components/vertical/navigation'
+import Footer from "./components/shared-components/footer";
+import AppBar from "./components/vertical/appBar";
+import Navigation from "./components/vertical/navigation";
 
-const VerticalLayoutWrapper = styled('div')({
-  height: '100%',
-  display: 'flex'
-})
+const VerticalLayoutWrapper = styled("div")({
+  height: "100%",
+  display: "flex",
+});
 
 const MainContentWrapper = styled(Box)<BoxProps>({
   flexGrow: 1,
   minWidth: 0,
-  display: 'flex',
-  minHeight: '100vh',
-  flexDirection: 'column'
-})
+  display: "flex",
+  minHeight: "100vh",
+  flexDirection: "column",
+});
 
-const ContentWrapper = styled('main')(({ theme }) => ({
+const ContentWrapper = styled("main")(({ theme }) => ({
   flexGrow: 1,
-  width: '100%',
+  width: "100%",
   padding: theme.spacing(6),
-  transition: 'padding .25s ease-in-out',
-  [theme.breakpoints.down('sm')]: {
+  transition: "padding .25s ease-in-out",
+  [theme.breakpoints.down("sm")]: {
     paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(4)
-  }
-}))
+    paddingRight: theme.spacing(4),
+  },
+}));
 
 const VerticalLayout = (props: LayoutProps) => {
   // ** Props
-  const { hidden, settings, children, scrollToTop } = props
+  const { hidden, settings, children, scrollToTop, groupActive, item } = props;
 
   // ** Vars
-  const { skin, navHidden, contentWidth } = settings
-  const { navigationSize, disableCustomizer, collapsedNavigationSize } = themeConfig
-  const navWidth = navigationSize
-  const navigationBorderWidth = skin === 'bordered' ? 1 : 0
-  const collapsedNavWidth = collapsedNavigationSize
+  const { skin, navHidden, contentWidth } = settings;
+  const { navigationSize, disableCustomizer, collapsedNavigationSize } = themeConfig;
+  const navWidth = navigationSize;
+  const navigationBorderWidth = skin === "bordered" ? 1 : 0;
+  const collapsedNavWidth = collapsedNavigationSize;
 
   // ** States
-  const [navHover, setNavHover] = useState<boolean>(false)
-  const [navVisible, setNavVisible] = useState<boolean>(false)
+  const [navHover, setNavHover] = useState<boolean>(false);
+  const [navVisible, setNavVisible] = useState<boolean>(false);
 
   // ** Toggle Functions
-  const toggleNavVisibility = () => setNavVisible(!navVisible)
+  const toggleNavVisibility = () => setNavVisible(!navVisible);
 
   return (
     <>
       <VerticalLayoutWrapper className='layout-wrapper'>
         {/* Navigation Menu */}
         {navHidden &&
-        themeConfig.layout === 'vertical' &&
-        !(navHidden && settings.lastLayout === 'horizontal') ? null : (
+        themeConfig.layout === "vertical" &&
+        !(navHidden && settings.lastLayout === "horizontal") ? null : (
           <Navigation
             navWidth={navWidth}
             navHover={navHover}
@@ -87,23 +84,8 @@ const VerticalLayout = (props: LayoutProps) => {
             navigationBorderWidth={navigationBorderWidth}
             {...props}
           />
-        )}{' '}
-        {navHover ? (
-          <Box>
-            <ul>
-              <li>Video Analytics</li>
-              <li>List Video</li>
-              <li>User Video</li>
-              <li>Brand Video</li>
-              <li>Tutorial</li>
-              <li>youTube Crawler </li>
-              <li>Upload a Video</li>
-              <li>Download a code</li>
-              <li>Upload a Video</li>
-            </ul>
-          </Box>
-        ) : null}
-        <SideBarContentComponents />
+        )}{" "}
+        <SideBarContentComponents>{navHover ? <SideBarHover /> : null}</SideBarContentComponents>
         <MainContentWrapper className='layout-content-wrapper'>
           {/* AppBar Component */}
           <AppBar toggleNavVisibility={toggleNavVisibility} {...props} />
@@ -112,11 +94,11 @@ const VerticalLayout = (props: LayoutProps) => {
           <ContentWrapper
             className='layout-page-content'
             sx={{
-              ...(contentWidth === 'boxed' && {
-                mx: 'auto',
-                '@media (min-width:1440px)': { maxWidth: 1440 },
-                '@media (min-width:1200px)': { maxWidth: '100%' }
-              })
+              ...(contentWidth === "boxed" && {
+                mx: "auto",
+                "@media (min-width:1440px)": { maxWidth: 1440 },
+                "@media (min-width:1200px)": { maxWidth: "100%" },
+              }),
             }}
           >
             {children}
@@ -145,9 +127,8 @@ const VerticalLayout = (props: LayoutProps) => {
           </Fab>
         </ScrollToTop>
       )}
-    
     </>
-  )
-}
+  );
+};
 
-export default VerticalLayout
+export default VerticalLayout;
