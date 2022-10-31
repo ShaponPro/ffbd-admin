@@ -20,7 +20,7 @@ import UserVideosCustomizedComponent from "./list-videos/customize/index";
 import { useQuery } from "@apollo/client";
 
 import { GET_VIDEO_LIST } from "./graphql/Queries";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const tabs = [
   {
@@ -41,9 +41,54 @@ const tabs = [
   },
 ];
 
+const row = {
+  videoID: "62b956a760a6af7b2e98cae1",
+  thumbnail: "url",
+  videoTitle: "Beautiful Henna Design",
+  fileSize: 24.44,
+  videoLength: 0.40,
+  userName: "Nimul Islam",
+  userID: "124345579866",
+  fanfareID: "xyz2022",
+  userCreatedDate: "6/26/2021",
+  uploadData: "1:05:11 PM",
+  uploadDays: 410,
+  uploadCountry: "Bangladesh",
+  uploadedIP: "103.103.34.34",
+  deviceID: "d8c1a9b3ca05740d",
+  deviceType: "android",
+  videoLengthGroup: "31s-60s",
+  totalViews: 220,
+  totalWatchTime: 6160,
+  totalLikes: 50,
+  totalComments: 10,
+  totalShares: 15,
+  downloads: 55,
+  contestID: "VC123547",
+  contestTitle: "Talent's Wolrd",
+  contestWinningPosition: "1st",
+  allTimeRankingScore: 1700,
+  trendingScore: 415,
+  activeAwarenessDays: 0,
+  activeProductdays: 3,
+  totalMonitization: 5000,
+  activeDailyMonetization: 100,
+  addReach: 5000,
+  awarenessClick: 1000,
+  trafficGeneration: 1500,
+  rightSellingStatus: "Proccesing",
+  lastActivityDate: "6/27/2022",
+  lastActivityTime: "1:05:00 PM",
+  currentSatus: "Published",
+}
+
 const AnalyticsCongratulations = () => {
   const [activeTab, setActiveTab] = useState<string>("");
+  const [videos, setVideos] = useState<object[]>([]);
 
+  /**
+   * Graph Ql Query
+   */
   const { error, loading, data } = useQuery(GET_VIDEO_LIST, {
     variables: {
       endIndex: 10,
@@ -51,14 +96,36 @@ const AnalyticsCongratulations = () => {
     },
   });
 
-  console.log(data);
 
   // check for errors
   if (error) {
     return <p>:( an error happened</p>;
   }
 
-  console.log("data", data);
+  console.log("data", loading,error, data);
+
+  const formatData = (data: object[]) => {
+    let newData = [row];
+    if(data.length > 0) {
+      newData = data.map((item, i) => {
+        return {
+          ...row,
+          ...item,
+          videoID: item?._id || row.videoID,
+          videoTitle: item?.title || row.videoTitle,
+        }
+      })
+    }
+    return newData;
+  }
+
+  useEffect(() => {
+    if(loading) return;
+    if(error) return;
+    if(data && data?.allVideos && data.allVideos.length){
+      setVideos(formatData(data.allVideos));
+    }
+  }, [data, loading])
 
   /**
    * Handle on tab change
@@ -252,7 +319,7 @@ const AnalyticsCongratulations = () => {
                   <FilterComponent title='select' onChange={filterChangeHandler} />
                 </Grid>
                 <Grid item xs={12} sm={12}>
-                  <ListComponent rowsData={allData} columns={columns} />
+                  <ListComponent rowsData={videos} columns={columns} />
                 </Grid>
               </>
             )}
