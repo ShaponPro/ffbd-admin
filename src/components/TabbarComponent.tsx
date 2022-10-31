@@ -55,22 +55,18 @@ TabbarComponent.defaultProps = {
   {
     key: "regular",
     title: "Regular",
-    path: "/videos/list-videos/user-videos",
   },
   {
     key: "monetization",
     title: "Active Monetization",
-    path: "/videos/list-videos/user-videos",
   },
   {
     key: "trending",
     title: "Trending",
-    path: "/videos/list-videos/user-videos",
   },
   {
     key: "customized",
     title: "Customized",
-    path: "/pages/demopages",
   },
 ],
   activekey: "regular",

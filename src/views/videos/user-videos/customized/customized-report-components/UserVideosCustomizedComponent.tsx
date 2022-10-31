@@ -16,14 +16,10 @@ const outerBox = css`
 `;
 
 const UserVideosCustomizedComponent = () => {
-  const [isCustomized, setIsCustomized] = useState(false);
-
   return (
     <>
       <Box sx={{ flexGrow: 1 }} css={outerBox}>
-        <SubMenuComponent isCustomized={isCustomized} setIsCustomized={setIsCustomized}></SubMenuComponent>
-
-        {isCustomized && <FilterComponent></FilterComponent>}
+        <FilterComponent></FilterComponent>
       </Box>
     </>
   );
