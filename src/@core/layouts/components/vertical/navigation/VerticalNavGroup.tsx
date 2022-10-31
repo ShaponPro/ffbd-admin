@@ -26,7 +26,6 @@ import Translations from "src/layouts/components/Translations";
 import UserIcon from "src/layouts/components/UserIcon";
 
 // ** MUI Imports
-import { Collapse } from "@mui/material";
 import Box, { BoxProps } from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import ListItem from "@mui/material/ListItem";
@@ -37,8 +36,6 @@ import {
   useTheme,
 } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-
-import VerticalNavItems from "./VerticalNavItems";
 
 // ** Custom Components Imports
 
@@ -192,7 +189,8 @@ const VerticalNavGroup = (props: Props) => {
   }, [navHover]);
 
   const IconTag = parent && !item.icon ? themeConfig.navSubItemIcon : item.icon;
-  console.log(item);
+
+  // console.log(item);
 
   const menuGroupCollapsedStyles = navCollapsed && !navHover ? { opacity: 0 } : { opacity: 1 };
 
@@ -344,7 +342,7 @@ const VerticalNavGroup = (props: Props) => {
             </MenuItemTextWrapper>
           </ListItemButton>
 
-          <Collapse
+          {/* <Collapse
             component='li'
             onClick={e => e.stopPropagation()}
             in={groupActive.includes(item.title)}
@@ -363,7 +361,7 @@ const VerticalNavGroup = (props: Props) => {
               navVisible={navVisible}
               verticalNavItems={item.children}
             />
-          </Collapse>
+          </Collapse> */}
         </ListItem>
       </Fragment>
     </CanViewNavGroup>
