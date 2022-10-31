@@ -53,8 +53,8 @@ const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
 }));
 
 const CustomButton = styled(Button)<ButtonProps>(({ theme }) => ({
-  width: " 270px",
-  height: "74px",
+  width: "250px",
+  height: "68px",
   marginBottom: "50px",
   background: "linear-gradient(360deg, #AE061A -64.72%, #FF5407 100%)",
   borderRadius: "5px",
@@ -179,7 +179,7 @@ const LoginPage = () => {
                           height: "74px",
                           borderRadius: "none",
                           color: "white",
-                          marginRight: "235px",
+                          marginRight: "300px",
                         }}
                         autoFocus
                         value={value}
@@ -208,7 +208,7 @@ const LoginPage = () => {
                           height: "74px",
                           borderRadius: "none",
                           color: "white",
-                          marginRight: "200px",
+                          marginRight: "260px",
                         }}
                         value={value}
                         onBlur={onBlur}
