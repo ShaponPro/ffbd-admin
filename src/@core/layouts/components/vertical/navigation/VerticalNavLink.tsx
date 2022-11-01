@@ -3,12 +3,10 @@ import {
   ElementType,
   ReactNode
 } from 'react'
-import Chip from '@mui/material/Chip';
 
 // ** Next Imports
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
 // ** Types
 import { Settings } from 'src/@core/context/settingsContext'
 import {
@@ -209,7 +207,7 @@ const VerticalNavLink = ({
               >
                 <Translations text={item.title} />
               </Typography>
-              // Badge content here
+              // Badge content
             </MenuItemTextMetaWrapper>
           </MenuNavLink>
         </Link>
