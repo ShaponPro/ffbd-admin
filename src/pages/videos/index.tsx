@@ -104,8 +104,6 @@ const AnalyticsCongratulations = () => {
 
   console.log("data", loading,error, data);
 
-  type formatData = () => void;
-
   const formatData = (data: object[]) => {
     let newData = [row];
     if(data.length > 0) {
