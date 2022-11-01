@@ -16,8 +16,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid, { GridProps } from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import BrandLogo from "public/images/logo/brandlogo.png";
-import CoverImage from "public/images/logo/coverImage.png";
+// import BrandLogo from "public/images/logo/brandlogo.png";
+// import CoverImage from "public/images/logo/coverImage.png";
 
 //** import Icon
 import SendIcon from "@mui/icons-material/Send";
@@ -193,7 +193,7 @@ const Register = () => {
               <b>Brand Logo*</b>
             </Typography>
             <CardContent>
-              <CardMedia component='img' sx={{ width: 120 }} image={BrandLogo.src} alt='Brand Logo' />
+              {/* <CardMedia component='img' sx={{ width: 120 }} image={BrandLogo.src} alt='Brand Logo' /> */}
               <Typography
                 variant='caption'
                 color='text.secondary'
@@ -349,7 +349,7 @@ const Register = () => {
               <b>Cover Image</b>
             </Typography>
             <CardContent>
-              <CardMedia component='img' sx={{ width: 200 }} image={CoverImage.src} alt='Brand Logo' />
+              {/* <CardMedia component='img' sx={{ width: 200 }} image={CoverImage.src} alt='Brand Logo' /> */}
               <Typography
                 variant='caption'
                 color='text.secondary'
