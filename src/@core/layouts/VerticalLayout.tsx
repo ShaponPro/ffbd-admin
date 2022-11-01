@@ -51,7 +51,7 @@ const ContentWrapper = styled("main")(({ theme }) => ({
 
 const VerticalLayout = (props: LayoutProps) => {
   // ** Props
-  const { hidden, settings, children, scrollToTop, groupActive, item } = props;
+  const { hidden, settings, children, scrollToTop } = props;
 
   // ** Vars
   const { skin, navHidden, contentWidth } = settings;
