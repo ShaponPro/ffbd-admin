@@ -67,7 +67,7 @@ const AnalyticsCongratulations = () => {
                 }}
               >
                 <Box className='actions-left'>
-                  <CalendarMonthIcon />
+                  <CalendarMonthIcon sx={{paddingTop:'5px'}}/>
                 </Box>
                 <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
                   <ArrowDropDownIcon />
