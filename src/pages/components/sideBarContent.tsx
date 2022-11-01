@@ -3,7 +3,9 @@ import SideBarContentComponents from 'src/components/SideBarContentComponents'
 const sideBarContent = () => {
   return (
     <div>
-      <SideBarContentComponents />
+      <SideBarContentComponents>
+        <h4>Side Bar Content on hover</h4>
+      </SideBarContentComponents>
     </div>
   )
 }
