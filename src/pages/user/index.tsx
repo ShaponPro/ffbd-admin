@@ -53,7 +53,7 @@ const AnalyticsCongratulations = () => {
             <Grid item xs={8} sm={12} sx={{ width: '400px' }}>
               <SearchComponent />
             </Grid>
-            <Grid item xs={4} sm={12}>
+            <Grid item xs={4} sm={12} placeholder='Select Date' >
               <Box
                 sx={{
                   display: 'flex',
@@ -64,11 +64,13 @@ const AnalyticsCongratulations = () => {
                   width: '200px',
                   height: '36px',
                   padding:'10px',
+                  cursor:'pointer'
                 }}
               >
                 <Box className='actions-left'>
                   <CalendarMonthIcon sx={{paddingTop:'5px'}}/>
                 </Box>
+                
                 <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
                   <ArrowDropDownIcon />
                 </Box>
