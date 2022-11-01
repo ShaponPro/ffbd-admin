@@ -103,7 +103,11 @@ const AnalyticsCongratulations = () => {
           </Box>
           </Grid>
           <Grid item xs={12} sm={12}>
+<<<<<<< HEAD
             <FilterComponent/>
+=======
+            <FilterComponent />
+>>>>>>> 83a9e19 (Bugfix: 10 + errors fixed)
           </Grid>
           <Grid item xs={12} sm={12}>
             <ListComponent />
