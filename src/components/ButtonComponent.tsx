@@ -13,7 +13,7 @@ type Props = {
 const ButtonComponent = (props: Props) => {
   
 
-  const styleButton = (type: string, isActive: boolean) => {
+  const styleButton = (type: string, isActive: boolean) : React.CSSProperties => {
     if (type === 'tabButton')
       return {
         width: '200px',
