@@ -96,7 +96,7 @@ export default function TextInputField(props: inputProps) {
           />
         )}
 
-        <FormHelperText style={{ textAlign: 'right' }}>{props.helperText}</FormHelperText>
+        <FormHelperText style={{ textAlign: 'right',color: 'rgba(48, 48, 48, 0.5)', fontSize:'12px', fontWeight:'400' }}>{props.helperText}</FormHelperText>
       </FormControl>
     </Box>
   )

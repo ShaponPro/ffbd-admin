@@ -1,65 +1,65 @@
 // ** React Import
-import { ReactNode } from 'react'
+import { ReactNode } from "react";
 
 // ** Icons
-import Close from 'mdi-material-ui/Close'
+import Close from "mdi-material-ui/Close";
 // ** Next Import
-import Link from 'next/link'
+import Link from "next/link";
 // ** Type Import
-import { Settings } from 'src/@core/context/settingsContext'
+import { Settings } from "src/@core/context/settingsContext";
 // ** Configs
-import themeConfig from 'src/configs/themeConfig'
+import themeConfig from "src/configs/themeConfig";
 
 // ** MUI Imports
-import Box, { BoxProps } from '@mui/material/Box'
-import IconButton from '@mui/material/IconButton'
+import Box, { BoxProps } from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
 import {
   styled,
-  useTheme
-} from '@mui/material/styles'
-import Typography, { TypographyProps } from '@mui/material/Typography'
+  useTheme,
+} from "@mui/material/styles";
+import Typography, { TypographyProps } from "@mui/material/Typography";
 
 interface Props {
-  hidden: boolean
-  navHover: boolean
-  settings: Settings
-  collapsedNavWidth: number
-  menuLockedIcon?: ReactNode
-  menuUnlockedIcon?: ReactNode
-  navigationBorderWidth: number
-  toggleNavVisibility: () => void
-  saveSettings: (values: Settings) => void
-  verticalNavMenuBranding?: (props?: any) => ReactNode
+  hidden: boolean;
+  navHover: boolean;
+  settings: Settings;
+  collapsedNavWidth: number;
+  menuLockedIcon?: ReactNode;
+  menuUnlockedIcon?: ReactNode;
+  navigationBorderWidth: number;
+  toggleNavVisibility: () => void;
+  saveSettings: (values: Settings) => void;
+  verticalNavMenuBranding?: (props?: any) => ReactNode;
 }
 
 // ** Styled Components
 const MenuHeaderWrapper = styled(Box)<BoxProps>(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
+  display: "flex",
+  alignItems: "center",
   paddingRight: theme.spacing(4),
-  justifyContent: 'space-between',
-  transition: 'padding .25s ease-in-out',
-  minHeight: theme.mixins.toolbar.minHeight
-}))
+  justifyContent: "space-between",
+  transition: "padding .25s ease-in-out",
+  minHeight: theme.mixins.toolbar.minHeight,
+}));
 
 const HeaderTitle = styled(Typography)<TypographyProps>({
   fontWeight: 300,
   lineHeight: 1.2,
-  color: 'white',
-  transition: 'opacity .25s ease-in-out, margin .25s ease-in-out'
-})
+  color: "white",
+  transition: "opacity .25s ease-in-out, margin .25s ease-in-out",
+});
 const HeaderAdmin = styled(Typography)<TypographyProps>({
   fontWeight: 100,
   lineHeight: 1.2,
-  color: 'white',
-  transition: 'opacity .25s ease-in-out, margin .25s ease-in-out'
-})
+  color: "white",
+  transition: "opacity .25s ease-in-out, margin .25s ease-in-out",
+});
 
-const StyledLink = styled('a')({
-  display: 'flex',
-  alignItems: 'center',
-  textDecoration: 'none'
-})
+const StyledLink = styled("a")({
+  display: "flex",
+  alignItems: "center",
+  textDecoration: "none",
+});
 
 const VerticalNavHeader = (props: Props) => {
   // ** Props
@@ -73,68 +73,68 @@ const VerticalNavHeader = (props: Props) => {
     navigationBorderWidth,
     menuLockedIcon: userMenuLockedIcon,
     menuUnlockedIcon: userMenuUnlockedIcon,
-    verticalNavMenuBranding: userVerticalNavMenuBranding
-  } = props
+    verticalNavMenuBranding: userVerticalNavMenuBranding,
+  } = props;
 
   // ** Hooks & Vars
-  const theme = useTheme()
-  const { skin, direction, navCollapsed } = settings
-  const menuCollapsedStyles = navCollapsed && !navHover ? { opacity: 0 } : { opacity: 1 }
+  const theme = useTheme();
+  const { skin, direction, navCollapsed } = settings;
+  const menuCollapsedStyles = navCollapsed && !navHover ? { opacity: 0 } : { opacity: 1 };
 
   const svgFillSecondary = () => {
-    if (skin === 'semi-dark' && theme.palette.mode === 'light') {
-      return `rgba(${theme.palette.customColors.dark}, 0.68)`
-    } else if (skin === 'semi-dark' && theme.palette.mode === 'dark') {
-      return `rgba(${theme.palette.customColors.light}, 0.68)`
+    if (skin === "semi-dark" && theme.palette.mode === "light") {
+      return `rgba(${theme.palette.customColors.dark}, 0.68)`;
+    } else if (skin === "semi-dark" && theme.palette.mode === "dark") {
+      return `rgba(${theme.palette.customColors.light}, 0.68)`;
     } else {
-      return theme.palette.text.secondary
+      return theme.palette.text.secondary;
     }
-  }
+  };
   const svgFillDisabled = () => {
-    if (skin === 'semi-dark' && theme.palette.mode === 'light') {
-      return `rgba(${theme.palette.customColors.dark}, 0.38)`
-    } else if (skin === 'semi-dark' && theme.palette.mode === 'dark') {
-      return `rgba(${theme.palette.customColors.light}, 0.38)`
+    if (skin === "semi-dark" && theme.palette.mode === "light") {
+      return `rgba(${theme.palette.customColors.dark}, 0.38)`;
+    } else if (skin === "semi-dark" && theme.palette.mode === "dark") {
+      return `rgba(${theme.palette.customColors.light}, 0.38)`;
     } else {
-      return theme.palette.text.disabled
+      return theme.palette.text.disabled;
     }
-  }
+  };
 
   const menuHeaderPaddingLeft = () => {
     if (navCollapsed && !navHover) {
       if (userVerticalNavMenuBranding) {
-        return 0
+        return 0;
       } else {
-        return (collapsedNavWidth - navigationBorderWidth - 40) / 8
+        return (collapsedNavWidth - navigationBorderWidth - 40) / 8;
       }
     } else {
-      return 5.5
+      return 5.5;
     }
-  }
+  };
 
   const svgRotationDeg = () => {
     if (navCollapsed) {
-      if (direction === 'rtl') {
+      if (direction === "rtl") {
         if (navHover) {
-          return 0
+          return 0;
         } else {
-          return 180
+          return 180;
         }
       } else {
         if (navHover) {
-          return 180
+          return 180;
         } else {
-          return 0
+          return 0;
         }
       }
     } else {
-      if (direction === 'rtl') {
-        return 180
+      if (direction === "rtl") {
+        return 180;
       } else {
-        return 0
+        return 0;
       }
     }
-  }
+  };
 
   return (
     <>
@@ -145,17 +145,17 @@ const VerticalNavHeader = (props: Props) => {
           <Link href='/home' passHref>
             <StyledLink>
               <img
-                style={{ marginTop: '30px', marginRight: '5px', borderRadius: '30px' }}
+                style={{ marginTop: "30px", marginRight: "5px", borderRadius: "30px" }}
                 width='32px'
                 height='32px'
                 src='https://i.ibb.co/CVKtcqp/human-icon-22-1-3.png'
                 alt=''
               />
               <HeaderTitle
-                style={{ marginTop: '30px', fontSize: '5px !important', fontWeight: '200px' }}
+                style={{ marginTop: "30px", fontSize: "5px !important", fontWeight: "200px" }}
                 sx={{
                   ...menuCollapsedStyles,
-                  ...(navCollapsed && !navHover ? {} : { ml: 2, fontSize: '16px', fontWeight: 700 })
+                  ...(navCollapsed && !navHover ? {} : { ml: 2, fontSize: "16px", fontWeight: 700 }),
                 }}
               >
                 {themeConfig.templateName}
@@ -169,7 +169,7 @@ const VerticalNavHeader = (props: Props) => {
             disableRipple
             disableFocusRipple
             onClick={toggleNavVisibility}
-            sx={{ p: 0, backgroundColor: 'transparent !important' }}
+            sx={{ p: 0, backgroundColor: "transparent !important" }}
           >
             <Close fontSize='small' />
           </IconButton>
@@ -178,7 +178,7 @@ const VerticalNavHeader = (props: Props) => {
             disableRipple
             disableFocusRipple
             onClick={() => saveSettings({ ...settings, navCollapsed: !navCollapsed })}
-            sx={{ p: 0, color: 'text.primary', backgroundColor: 'transparent !important' }}
+            sx={{ p: 0, color: "text.primary", backgroundColor: "transparent !important" }}
           >
             {userMenuLockedIcon && userMenuUnlockedIcon ? (
               navCollapsed ? (
@@ -196,7 +196,7 @@ const VerticalNavHeader = (props: Props) => {
                 xmlns='http://www.w3.org/2000/svg'
                 sx={{
                   transform: `rotate(${svgRotationDeg()}deg)`,
-                  transition: 'transform .25s ease-in-out .35s'
+                  transition: "transform .25s ease-in-out .35s",
                 }}
               >
                 <path
@@ -213,16 +213,16 @@ const VerticalNavHeader = (props: Props) => {
         )}
       </MenuHeaderWrapper>
       <HeaderAdmin
-        style={{ marginBottom: '49px' }}
+        style={{ marginBottom: "49px" }}
         sx={{
           ...menuCollapsedStyles,
-          ...(navCollapsed && !navHover ? {} : { ml: 17, fontSize: '12px', fontWeight: 400 })
+          ...(navCollapsed && !navHover ? {} : { ml: 17, fontSize: "12px", fontWeight: 400 }),
         }}
       >
         {themeConfig.templateTitle}
       </HeaderAdmin>
     </>
-  )
-}
+  );
+};
 
-export default VerticalNavHeader
+export default VerticalNavHeader;
