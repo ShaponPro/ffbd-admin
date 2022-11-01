@@ -4,6 +4,7 @@ import { useState } from "react";
 import { InputBase, InputAdornment, Typography, Radio } from "@mui/material";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
 
 // ** Icons Imports
 import SearchIcon from "@mui/icons-material/Search";
@@ -69,16 +70,16 @@ const userVideos = {
 
 //**props
 
-type props = {
-    title: string;
+// type props = {
+//     title: string;
 
-    // userName: string
-    // fields: object[];
-    // onChange: (fields: object[]) => void;
-    // style: React.CSSProperties;
-};
+//     // userName: string
+//     // fields: object[];
+//     // onChange: (fields: object[]) => void;
+//     // style: React.CSSProperties;
+// };
 
-export const FilterComponent = (props: props) => {
+export const FilterComponent = () => {
     const [videoState, setVideoState] = useState<object>(userVideos);
 
     /* Handle all Changes */
@@ -128,6 +129,16 @@ export const FilterComponent = (props: props) => {
                             Engagement
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
+                            <InputLabel
+                                shrink={false}
+                                sx={{
+                                    color: "rgba(22, 31, 41, 0.25)",
+                                    fontWeight: "400",
+                                    fontSize: "12px",
+                                }}
+                            >
+                                Select Item
+                            </InputLabel>
                             <StyledSelect>
                                 <Grid
                                     sx={{
@@ -189,6 +200,16 @@ export const FilterComponent = (props: props) => {
                             Current Status
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
+                            <InputLabel
+                                shrink={false}
+                                sx={{
+                                    color: "rgba(22, 31, 41, 0.25)",
+                                    fontWeight: "400",
+                                    fontSize: "12px",
+                                }}
+                            >
+                                Select Item
+                            </InputLabel>
                             <StyledSelect>
                                 <Grid
                                     sx={{
@@ -282,6 +303,16 @@ export const FilterComponent = (props: props) => {
                             AD & Monetization
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
+                            <InputLabel
+                                shrink={false}
+                                sx={{
+                                    color: "rgba(22, 31, 41, 0.25)",
+                                    fontWeight: "400",
+                                    fontSize: "12px",
+                                }}
+                            >
+                                Select Item
+                            </InputLabel>
                             <StyledSelect>
                                 <Grid
                                     sx={{
@@ -343,6 +374,16 @@ export const FilterComponent = (props: props) => {
                             Right Selling Status
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
+                            <InputLabel
+                                shrink={false}
+                                sx={{
+                                    color: "rgba(22, 31, 41, 0.25)",
+                                    fontWeight: "400",
+                                    fontSize: "12px",
+                                }}
+                            >
+                                Select Item
+                            </InputLabel>
                             <StyledSelect>
                                 <Grid
                                     sx={{
@@ -406,6 +447,16 @@ export const FilterComponent = (props: props) => {
                             Upload Peried{" "}
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
+                            <InputLabel
+                                shrink={false}
+                                sx={{
+                                    color: "rgba(22, 31, 41, 0.25)",
+                                    fontWeight: "400",
+                                    fontSize: "12px",
+                                }}
+                            >
+                                Select Item
+                            </InputLabel>
                             <StyledSelect>
                                 <label style={radioBtnContainerStyle}>
                                     Today
@@ -472,6 +523,16 @@ export const FilterComponent = (props: props) => {
                             Video Length Group
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
+                            <InputLabel
+                                shrink={false}
+                                sx={{
+                                    color: "rgba(22, 31, 41, 0.25)",
+                                    fontWeight: "400",
+                                    fontSize: "12px",
+                                }}
+                            >
+                                Select Item
+                            </InputLabel>
                             <StyledSelect>
                                 <Grid
                                     sx={{
