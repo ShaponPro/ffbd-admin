@@ -116,7 +116,6 @@ const AnalyticsCongratulations = () => {
         }
       })
     }
-    return newData;
   }
 
   useEffect(() => {

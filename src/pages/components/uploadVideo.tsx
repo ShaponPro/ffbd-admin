@@ -9,12 +9,7 @@ const uploadVideo = () => {
 
   return (
       <div>
-        <UploadTypeComponent
-          placeholder='select item'
-          title={['On behalf of User', 'On behalf of Board', 'Tutorial', 'Youtube Crawler']}
-          style={{ display: 'flex' }}
-          // onChange={(fields: object[]) => setFields(fields)}
-        />
+        <UploadTypeComponent/>
       </div>
   )
 }

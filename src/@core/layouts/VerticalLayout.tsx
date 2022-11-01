@@ -27,6 +27,7 @@ import Navigation from "./components/vertical/navigation";
 const VerticalLayoutWrapper = styled("div")({
   height: "100%",
   display: "flex",
+  marginTop: "0px !important",
 });
 
 const MainContentWrapper = styled(Box)<BoxProps>({
@@ -50,7 +51,7 @@ const ContentWrapper = styled("main")(({ theme }) => ({
 
 const VerticalLayout = (props: LayoutProps) => {
   // ** Props
-  const { hidden, settings, children, scrollToTop, groupActive, item } = props;
+  const { hidden, settings, children, scrollToTop } = props;
 
   // ** Vars
   const { skin, navHidden, contentWidth } = settings;
@@ -68,6 +69,9 @@ const VerticalLayout = (props: LayoutProps) => {
 
   return (
     <>
+      {/* AppBar Component */}
+      <AppBar toggleNavVisibility={toggleNavVisibility} {...props} />
+
       <VerticalLayoutWrapper className='layout-wrapper'>
         {/* Navigation Menu */}
         {navHidden &&
@@ -87,9 +91,6 @@ const VerticalLayout = (props: LayoutProps) => {
         )}{" "}
         <SideBarContentComponents>{navHover ? <SideBarHover /> : null}</SideBarContentComponents>
         <MainContentWrapper className='layout-content-wrapper'>
-          {/* AppBar Component */}
-          <AppBar toggleNavVisibility={toggleNavVisibility} {...props} />
-
           {/* Content */}
           <ContentWrapper
             className='layout-page-content'

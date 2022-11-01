@@ -12,6 +12,7 @@ import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 import TabbarComponent from "../../../../src/components/TabbarComponent";
 import DownloadCodeCodeList from "src/views/videos/downloadCodeCodeList/downloadCodeCodeListComponents/index";
 import { useState } from "react";
+import DownloadCodeGenerateCode from "src/views/videos/downloadCodeCodeList/downloadCodeGenerateCodeComponents/index";
 
 const tabs = [
   {
@@ -53,6 +54,9 @@ const AnalyticsCongratulations = () => {
             </Grid>
 
             {active == "codeList" && <DownloadCodeCodeList></DownloadCodeCodeList>}
+
+            {active == "generateCode" && <DownloadCodeGenerateCode></DownloadCodeGenerateCode>}
+
           </Grid>
         </CardContent>
       </Card>

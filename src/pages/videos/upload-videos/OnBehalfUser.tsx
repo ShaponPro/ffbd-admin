@@ -24,7 +24,7 @@ function OnBehalfUser() {
               <Typography style={typographyStyle}>Upload Type</Typography>
             </Grid>
             <Grid item xs={8.5} sm={8.5} md={10.25}>
-              <TextInputField placeholder='On Behalf of User' disabled={true} style={{ width: '230px !important' }} />
+              <TextInputField title='small' defaultValue='On Behalf of User' disabled={true} style={{ width: '230px !important' }} />
             </Grid>
           </Grid>
 
@@ -58,7 +58,7 @@ function OnBehalfUser() {
             </Grid>
             <Grid item xs={8.5}>
               <TextInputField
-                title='StyledField'
+                
                 type='file'
                 helperText='Recommended video format mp4, avi & length max 7 minutes'
               />
@@ -111,7 +111,6 @@ function OnBehalfUser() {
             </Grid>
             <Grid item xs={8.5}>
               <TextInputField
-                title='StyledField'
                 placeholder='Select Item'
                 helperText='Only one contest can be selected'
                 select={true}
@@ -123,7 +122,7 @@ function OnBehalfUser() {
               <Typography style={typographyStyle}>Tag People</Typography>
             </Grid>
             <Grid item xs={8.5}>
-              <TextInputField title='StyledField' placeholder='Select Item' select={true} />
+              <TextInputField  placeholder='Select Item' select={true} />
             </Grid>
           </Grid>
           <Grid container xs={12} sm={12} md={6}>
@@ -131,7 +130,7 @@ function OnBehalfUser() {
               <Typography style={typographyStyle}>Tag Location</Typography>
             </Grid>
             <Grid item xs={8.5}>
-              <TextInputField title='StyledField' placeholder='Select Item' select={true} />
+              <TextInputField  placeholder='Select Item' select={true} />
             </Grid>
           </Grid>
           <Grid container xs={12} sm={12} md={6}>

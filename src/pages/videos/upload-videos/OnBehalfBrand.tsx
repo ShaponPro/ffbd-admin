@@ -24,7 +24,7 @@ function OnBehalfBrand() {
               <Typography style={typographyStyle}>Upload Type</Typography>
             </Grid>
             <Grid item xs={8.5} sm={8.5} md={10.25}>
-              <TextInputField placeholder='On Behalf of Brand' disabled={true} style={{ width: '230px !important' }} />
+              <TextInputField title='small' defaultValue='On Behalf of Brand' disabled={true} style={{ width: '230px !important' }} />
             </Grid>
           </Grid>
 
@@ -58,7 +58,6 @@ function OnBehalfBrand() {
             </Grid>
             <Grid item xs={8.5}>
               <TextInputField
-                title='StyledField'
                 type='file'
                 helperText='Recommended video format mp4, avi & length max 7 minutes'
               />

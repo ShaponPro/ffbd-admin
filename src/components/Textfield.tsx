@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import * as React from 'react'
 import FormControl from '@mui/material/FormControl'
 import Box from '@mui/material/Box'
@@ -8,7 +8,7 @@ import styled from '@emotion/styled'
 import { useState } from 'react'
 
 type inputProps = {
-  title?: 'StyledField'
+  title?: 'small'
   placeholder?: string
   type?: string
   endAdornment?: any
@@ -24,6 +24,8 @@ type inputProps = {
   fieldSize?: string
   options?: object[]
   children?: any
+  defaultValue?: string
+  
 }
 
 
@@ -33,12 +35,12 @@ export default function TextInputField(props: inputProps) {
   //   if(fieldSize==='')
   // }
 
-  const [disabled , setDisabled] = useState(props.disabled);
+  const [title] = useState(props.title);
 
   const StyledField = styled(TextField)({
     border: '0 !important',
   
-    width: disabled ? '230px' : '100%' ,
+    width: title==='small' ? '230px' : '100%' ,
     height: '36px',
     background: '#FFFFFF',
     outline: 'none !important',
@@ -50,7 +52,7 @@ export default function TextInputField(props: inputProps) {
   const StyledFields = styled(OutlinedInput)({
     border: '0 !important',
     padding: '10px',
-    width: disabled ? '230px' : '100%' ,
+    width: title==='small' ? '230px' : '100%' ,
     height: '36px',
     background: '#FFFFFF',
     outline: 'none !important',
@@ -79,24 +81,27 @@ export default function TextInputField(props: inputProps) {
             type={props.type}
             placeholder={props.placeholder}
             disabled={props.disabled}
-            size='small'
             select={props.select}
-            
+            size='small'
+            title={props.title}
+            defaultValue={props.defaultValue}
           >
             {props.children}
           </StyledField>
         ) : (
           <StyledFields
-            size='small'
+            
             type={props.type}
             placeholder={props.placeholder}
             disabled={props.disabled}
             endAdornment={props.endAdornment}
-            
+            size='small'
+            title={props.title}
+            defaultValue={props.defaultValue}
           />
         )}
 
-        <FormHelperText style={{ textAlign: 'right' }}>{props.helperText}</FormHelperText>
+        <FormHelperText style={{ textAlign: 'right',color: 'rgba(48, 48, 48, 0.5)', fontSize:'12px', fontWeight:'400' }}>{props.helperText}</FormHelperText>
       </FormControl>
     </Box>
   )
