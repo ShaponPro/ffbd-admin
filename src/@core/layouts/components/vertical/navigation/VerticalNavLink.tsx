@@ -168,6 +168,7 @@ const VerticalNavLink = ({
                           )} !important`,
                 }}
             >
+<<<<<<< HEAD
                 <Link
                     passHref
                     href={item.path === undefined ? "/" : `${item.path}`}
@@ -236,6 +237,22 @@ const VerticalNavLink = ({
                                 />
                             </ListItemIcon>
                         )}
+=======
+              <Typography
+                {...((themeConfig.menuTextTruncate || (!themeConfig.menuTextTruncate && navCollapsed && !navHover)) && {
+                  noWrap: true
+                })}
+              >
+                <Translations text={item.title} />
+              </Typography>
+            </MenuItemTextMetaWrapper>
+          </MenuNavLink>
+        </Link>
+      </ListItem>
+    </CanViewNavLink>
+  )
+}
+>>>>>>> 5980556 (Bugfix: badge content remove)
 
                         <MenuItemTextMetaWrapper
                             sx={{
