@@ -15,6 +15,7 @@ import usePagination from "@mui/material/usePagination";
 import TableHead from "@mui/material/TableHead";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import Grid from "@mui/material/Grid";
+import MenuItem from "@mui/material/MenuItem";
 
 // ** Components
 import SearchComponent from "./SearchComponent";
@@ -42,6 +43,11 @@ const StyledSelect = styled(Select)({
     width: "80px",
     margin: "3px",
     boxShadow: "inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)",
+});
+
+const StyledMenuItem= styled(MenuItem)({
+border:'2px solid red', 
+margin:'5px'
 });
 
 const StyledGrid = styled(Grid)({
@@ -142,18 +148,12 @@ export default function ListComponent({
     rowsData: object[];
     columns: object[];
 }) {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const data = rowsData;
 
-    // Avoid a layout jump when reaching the last page with empty rows.
-    const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
-
     return (
-        <Box maxWidth={"xl"} sx={{background:'#F3F3F4'}}>
-            <Grid sx={{padding:'10px'}}>
+        <Box maxWidth={"xl"} sx={{ background: "#F3F3F4" }}>
+            <Grid sx={{ padding: "10px" }}>
                 <StyledGrid>
                     <Grid
                         lg={2}
@@ -164,7 +164,11 @@ export default function ListComponent({
                         }}
                     >
                         <Typography>Show</Typography>
-                        <StyledSelect displayEmpty />
+                        <StyledSelect>
+                            <StyledMenuItem value={10}>10</StyledMenuItem>
+                            <StyledMenuItem value={20}>20</StyledMenuItem>
+                            <StyledMenuItem value={30}>30</StyledMenuItem>
+                        </StyledSelect>
                         <Typography>entries</Typography>
                     </Grid>
                     <Grid
@@ -199,23 +203,22 @@ export default function ListComponent({
                         sx={{ borderRadius: "0px" }}
                     >
                         <Table sx={{ textAlign: "center" }}>
-                            <TableHead sx={{ display: "table-header-group" }}>
+                            <TableHead
+                                sx={{
+                                    display: "table-header-group",
+                                    whiteSpace: "nowrap",
+                                }}
+                            >
                                 <StyledTableRow>
-                                    {columns.map((col) => (
-                                        <StyledTableCell>
+                                    {columns.map((col: any) => (
+                                        <StyledTableCell key={col.videoID}>
                                             {col?.header || ""}
                                         </StyledTableCell>
                                     ))}
                                 </StyledTableRow>
                             </TableHead>
                             <TableBody>
-                                {(rowsPerPage > 0
-                                    ? data.slice(
-                                          page * rowsPerPage,
-                                          page * rowsPerPage + rowsPerPage
-                                      )
-                                    : data
-                                ).map((row) => (
+                                {data.map((row: any) => (
                                     <StyledTableRow key={row?.videoID || ""}>
                                         <StyledTableCell
                                             component="th"
@@ -338,14 +341,6 @@ export default function ListComponent({
                                         </StyledTableCell>
                                     </StyledTableRow>
                                 ))}
-
-                                {emptyRows > 0 && (
-                                    <TableRow
-                                        style={{ height: 53 * emptyRows }}
-                                    >
-                                        <TableCell colSpan={6} />
-                                    </TableRow>
-                                )}
                             </TableBody>
                         </Table>
                     </TableContainer>
@@ -378,10 +373,10 @@ export default function ListComponent({
                         lg={2}
                         xs={12}
                         sx={{
-                            display: "flex",
                             alignItems: "center",
                             justifyContent: "flex-end",
                         }}
+                        display={{ lg: "flex", xs: "none" }}
                     >
                         <span>
                             <input
