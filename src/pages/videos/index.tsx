@@ -104,18 +104,19 @@ const AnalyticsCongratulations = () => {
 
   console.log("data", loading,error, data);
 
-  const formatData = (data: object[]) => {
+  const formatData = (data: any): object[] => {
     let newData = [row];
     if(data.length > 0) {
-      newData = data.map((item: any, i) => {
+      newData = data.map((item: any) => {
         return {
           ...row,
           ...item,
-          videoID: item?._id || row.videoID,
-          videoTitle: item?.title || row.videoTitle,
+          videoID: item?._id ?? row.videoID,
+          videoTitle: item?.title ?? row.videoTitle,
         }
       })
     }
+    return newData;
   }
 
   useEffect(() => {
@@ -315,7 +316,7 @@ const AnalyticsCongratulations = () => {
             ) : (
               <>
                 <Grid item xs={12} sm={12}>
-                  <FilterComponent title='select' onChange={filterChangeHandler} />
+                  <FilterComponent />
                 </Grid>
                 <Grid item xs={12} sm={12}>
                   <ListComponent rowsData={videos} columns={columns} />
