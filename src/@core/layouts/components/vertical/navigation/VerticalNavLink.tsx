@@ -34,6 +34,7 @@ import {
   useTheme
 } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
+import { Chip } from 'mdi-material-ui'
 
 interface Props {
   parent?: boolean
@@ -208,15 +209,7 @@ const VerticalNavLink = ({
               >
                 <Translations text={item.title} />
               </Typography>
-
-              {item.badgeContent ? (
-                <Chip
-                  size='small'
-                  label={item.badgeContent}
-                  color={item.badgeColor || 'primary'}
-                  sx={{ ml: 1.5, '& .MuiChip-label': { px: 2.5, lineHeight: 1.385, textTransform: 'capitalize' } }}
-                />
-              ) : null}
+              // Badge content here
             </MenuItemTextMetaWrapper>
           </MenuNavLink>
         </Link>
