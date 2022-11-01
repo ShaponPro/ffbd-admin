@@ -6,6 +6,7 @@ import ButtonComponent from "src/components/ButtonComponent";
 
 // ** MUI Imports
 import styled from "@emotion/styled";
+import { string } from "yup";
 
 const TabContainer = styled.div({
   display: "flex",
@@ -19,9 +20,12 @@ const TabContainer = styled.div({
   background: "#ECF8FF",
   boxShadow: "1px 2px 3px rgba(22, 31, 41, 0.2)",
 });
-
+interface Item {
+  key: string;
+  title: string;
+}
 type Props = {
-  options: object[];
+  options: Item[];
   activekey: string;
   onChange?: (value: string) => void;
   style?: React.CSSProperties;
@@ -48,8 +52,8 @@ const TabbarComponent = (props: Props) => {
         ? props.options.map((item, i) => (
             <ButtonComponent
               type='tabButton'
-              title={item.title || ""}
-              isActive={item.key === active}
+              title={item?.title || ""}
+              isActive={item?.key === active}
               onClick={() => onClickHandler(item.key || "")}
             />
           ))

@@ -182,7 +182,7 @@ const ButtonComponent = (props: Props) => {
   return (
     <div>
       <Button
-        style = {styleButton(props.type || '', props.isActive || false)}
+        style = {styleButton(props.type || '', props.isActive || false) || {}}
         onClick= {props.onClick
         }
       >
