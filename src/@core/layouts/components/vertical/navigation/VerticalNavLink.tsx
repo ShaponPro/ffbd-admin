@@ -136,8 +136,9 @@ const VerticalNavLink = ({
     }
   }
 
+  // style={{ position: 'relative' }}
   return (
-    <CanViewNavLink style={{ position: 'relative' }} navLink={item}>
+    <CanViewNavLink  navLink={item}>
       <ListItem
         disablePadding
         className='nav-link'
