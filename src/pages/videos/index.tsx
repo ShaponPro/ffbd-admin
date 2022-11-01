@@ -104,10 +104,12 @@ const AnalyticsCongratulations = () => {
 
   console.log("data", loading,error, data);
 
+  type formatData = () => void;
+
   const formatData = (data: object[]) => {
     let newData = [row];
     if(data.length > 0) {
-      newData = data.map((item, i) => {
+      newData = data.map((item: any, i) => {
         return {
           ...row,
           ...item,
@@ -124,7 +126,7 @@ const AnalyticsCongratulations = () => {
     if(data && data?.allVideos && data.allVideos.length){
       setVideos(formatData(data.allVideos));
     }
-  }, [data, loading])
+  }, [loading, error, data])
 
   /**
    * Handle on tab change
