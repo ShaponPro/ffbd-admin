@@ -132,7 +132,7 @@ export const ContestResultFilter = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Likes
+                                        Select All
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -144,7 +144,7 @@ export const ContestResultFilter = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Comments
+                                        Fixed
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -156,7 +156,7 @@ export const ContestResultFilter = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Shares
+                                        Weekly
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -168,7 +168,31 @@ export const ContestResultFilter = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Download
+                                       Biweekly
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Monthly
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Quarterly
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -195,6 +219,66 @@ export const ContestResultFilter = () => {
                                 Select Item
                             </InputLabel>
                             <StyledSelect>
+                            <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Select All
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        N/A
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Continuous
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                       Pending
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Processing
+                                    </label>
+                                    <Radio />
+                                </Grid>
                                 <Grid
                                     sx={{
                                         display: "flex",
@@ -204,54 +288,6 @@ export const ContestResultFilter = () => {
                                 >
                                     <label style={radioBtnContainerStyle}>
                                         Published
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        Failed
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        Uploading
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        Suspended
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        Deleted
                                     </label>
                                     <Radio />
                                 </Grid>
