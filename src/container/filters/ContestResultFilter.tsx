@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // ** MUI Imports
-import { InputBase, InputAdornment, Typography, Radio } from "@mui/material";
+import { InputBase,Typography, Radio } from "@mui/material";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -68,17 +68,6 @@ const userVideos = {
     musicCreator: "",
 };
 
-//**props
-
-// type props = {
-//     title: string;
-
-//     // userName: string
-//     // fields: object[];
-//     // onChange: (fields: object[]) => void;
-//     // style: React.CSSProperties;
-// };
-
 export const ContestResultFilter = () => {
     const [videoState, setVideoState] = useState<object>(userVideos);
 
@@ -89,11 +78,6 @@ export const ContestResultFilter = () => {
 
         console.log(videoState);
 
-        // setUserName({userName: e.target.value})
-
-        //post req
-        // axios
-        //post
     };
 
     /* Handle all Changes End */
@@ -101,14 +85,14 @@ export const ContestResultFilter = () => {
     return (
         <div className="demo-space-x">
             <Grid container spacing={2}>
-                <Grid item lg={3} xs={12}>
+                <Grid item lg={6} xs={12}>
                     <StyledGrid>
                         <Typography
                             variant="h4"
                             display="flex"
                             style={typographyStyle}
                         >
-                            User Id/Name
+                            Contest Name
                         </Typography>
                         <Item style={itemStyle}>
                             <InputBase
@@ -126,7 +110,7 @@ export const ContestResultFilter = () => {
                             display="flex"
                             style={typographyStyle}
                         >
-                            Engagement
+                           Reward Nature
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
                             <InputLabel
@@ -197,7 +181,7 @@ export const ContestResultFilter = () => {
                             display="flex"
                             style={typographyStyle}
                         >
-                            Current Status
+                            Result Publishing Status
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
                             <InputLabel
@@ -275,14 +259,15 @@ export const ContestResultFilter = () => {
                         </FormControl>
                     </StyledGrid>
                 </Grid>
-                <Grid item lg={3} xs={12}>
+                <Grid item lg={6} xs={12}>
+
                     <StyledGrid>
                         <Typography
                             variant="h4"
                             display="flex"
                             style={typographyStyle}
                         >
-                            AD & Monetization
+                           Contest Status
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
                             <InputLabel
@@ -347,15 +332,14 @@ export const ContestResultFilter = () => {
                             </StyledSelect>
                         </FormControl>
                     </StyledGrid>
-                </Grid>
-                <Grid item lg={3} xs={12}>
+
                     <StyledGrid>
                         <Typography
                             variant="h4"
                             display="flex"
                             style={typographyStyle}
                         >
-                            Upload Peried{" "}
+                            Contest End Period{" "}
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
                             <InputLabel
@@ -404,9 +388,7 @@ export const ContestResultFilter = () => {
                         </FormControl>
                     </StyledGrid>
                 </Grid>
-                <Grid item lg={3} xs={12}>
 
-                </Grid>
             </Grid>
         </div>
     );
