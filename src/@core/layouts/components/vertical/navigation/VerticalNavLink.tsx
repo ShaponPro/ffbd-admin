@@ -207,7 +207,6 @@ const VerticalNavLink = ({
               >
                 <Translations text={item.title} />
               </Typography>
-              // Badge content
             </MenuItemTextMetaWrapper>
           </MenuNavLink>
         </Link>
