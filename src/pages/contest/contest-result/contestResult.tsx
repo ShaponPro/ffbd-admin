@@ -56,25 +56,26 @@ const ContestResult = () => {
             </Grid>
 
             <Card sx={{ position: "relative" }}>
-                <CardContent sx={{ p: (theme) => `${theme.spacing(6.75, 7.5)} !important`,}}>
+                <CardContent sx={{ p: (theme) => `${theme.spacing(6.75, 7.5)} !important`}}>
                     <Grid item xs={12} sx={{ mb: 5 }}>
                         <TabbarComponent options={tabs} activekey={'videoContest'} onChange={tabChangeHandler} />
                     </Grid>
 
                     <Box sx={{ width: '100%' }}>
                        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        <Grid item xs={6}  sx={{ width: '100%', background: "#F3F3F4" ,borderRadius:'5px' }}>
+                        <Grid item xs={6}  sx={{ width: '100%', background: "#F3F3F4" ,borderRadius:'5px'}}>
                             
                           <Grid item xs={12} sm={12}>
                             <ContestResultFilter/>
                           </Grid>
 
-                          <Grid item xs={12} sm={12}>
+                          <Grid item xs={12} sm={12} sx={{ paddingRight:'10px'}}>
                             <ContestResultList/>
                           </Grid>
                         </Grid>
 
                         <Grid item xs={6}  sx={{ width: '100%' }}>
+                        <h1>Contest Info</h1>
                         <h1>Contest Info</h1>
                        </Grid>
                       </Grid>

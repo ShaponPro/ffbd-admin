@@ -187,7 +187,7 @@ export default function ContestResultList({
                         </StyledSelectReport>
                     </Grid>
                 </StyledGrid>
-                <Grid xs={12} md={12} sx={{ margin: "10px", width: "100% " }}>
+                <Grid xs={12} md={12} sx={{ padding: "10px", width: "100% " }}>
                     <TableContainer
                         component={Paper}
                         sx={{ borderRadius: "0px", width: "100% " }}
