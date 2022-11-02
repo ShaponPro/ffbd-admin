@@ -1,6 +1,7 @@
 // ** MUI Imports
 import { Typography } from '@mui/material'
 import ButtonComponent from 'src/components/ButtonComponent'
+import SendIcon from '@mui/icons-material/SendOutlined';
 
 const Home = () => {
   return (
@@ -159,6 +160,65 @@ const Home = () => {
           <ButtonComponent title='default' />
           <ButtonComponent title='default' />
           <ButtonComponent title='default' />
+        </div>
+      </div>
+      <div>
+        <Typography>
+          {' '}
+          This is the is the Button for the Publish and Submit.Give title as the Name of the Button.import this{' '}
+          <code>&lt;ButtonComponent type='publish' title='Publish' endIcon={<SendIcon/>} ...props&gt;</code> from 'src/components/ButtonComponent'
+        </Typography>
+        <div
+          style={{
+            display: 'flex',
+            gap: '10px',
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            padding: '13px 20px',
+            width: '100%',
+            height: '66px',
+            position: 'relative',
+            background: '#ECF8FF',
+            boxShadow: '1px 2px 3px rgba(22, 31, 41, 0.2)'
+          }}
+        >
+          <ButtonComponent type='publish' title='Publish' startIcon={<SendIcon/>} />
+          <ButtonComponent type='publish' title='Submit' startIcon={<SendIcon/>} />
+          <ButtonComponent type='publish' title='Publish' endIcon={<SendIcon/>} />
+          <ButtonComponent type='publish' title='Publish' />
+          <ButtonComponent type='publish' title='Publish' />
+        </div>
+      </div>
+
+      <div>
+        <Typography>
+          {' '}
+          This is the is the Button for the age type  .Give title as the Name of the Button.import this{' '}
+          <code>&lt;ButtonComponent type='age' title='18-24' isActive={true} ...props&gt;</code> from 'src/components/ButtonComponent'
+        </Typography>
+        <div
+          style={{
+            display: 'flex',
+            gap: '10px',
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            padding: '13px 20px',
+            width: '100%',
+            height: '66px',
+            position: 'relative',
+            background: '#ECF8FF',
+            boxShadow: '1px 2px 3px rgba(22, 31, 41, 0.2)'
+          }}
+        >
+          <ButtonComponent type='age' title='Front End' isActive={true} />
+          <ButtonComponent type='age' title='Back End'  />
+          <ButtonComponent type='age' title='Publish' />
+          <ButtonComponent type='age' title='Men' isActive={true}/>
+          <ButtonComponent type='age' title='Women' />
+          <ButtonComponent type='age' title='18-24' />
+          <ButtonComponent type='age' title='Below 18' isActive={true}/>
+          <ButtonComponent type='age' title='25-36' />
+          <ButtonComponent type='age' title='Men' />
         </div>
       </div>
     </div>

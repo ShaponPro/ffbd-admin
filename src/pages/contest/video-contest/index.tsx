@@ -1,3 +1,4 @@
+
 // ** MUI Imports
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -11,10 +12,29 @@ import { InputAdornment } from "@mui/material";
 // ** Styled Component Import
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 import ButtonComponent from "src/components/ButtonComponent";
+import { useState } from "react";
+
+
+//** Props */
+
+
 
 // ** Components
 
 //import { useState } from "react";
+
+
+
+const options =[
+    {
+      key: "front",
+      title: "Front End",
+    },
+    {
+      key: "back",
+      title: "Back End",
+    }];
+
 
 // ** Styles
 const typographyStyle = {
@@ -27,6 +47,19 @@ const typographyStyle = {
 
 const AnalyticsCongratulations = () => {
     // const [active, setActive] = useState<string>("upload"); //
+    // ** State
+    const [active, setActive] = useState<string>("front");
+    
+
+    /**
+     * Handle OnClick Button
+     */
+    const onClickHandler = (key: string) => {
+        setActive(key);
+
+        // console.log('key :>> ', key);
+        // if (props.onChange) props.onChange(key);
+    };
 
     /**
      * Handle on tab change
@@ -143,19 +176,47 @@ const AnalyticsCongratulations = () => {
                                                 md={10.25}
                                                 style={{
                                                     display: "flex",
-                                                    justifyContent: "flex-start",
-                                                    gap: 4
-                                                    
+                                                    justifyContent:
+                                                        "flex-start",
+                                                    gap: 4,
                                                 }}
                                             >
-                                                <ButtonComponent
-                                                    type=""
-                                                    title="Front End"
-                                                />
-                                                <ButtonComponent
-                                                    type=""
-                                                    title="Back End"
-                                                />
+                                                {options.length
+                                                    ? options.map(
+                                                          (option) => (
+                                                              <ButtonComponent
+                                                              type="age"
+                                                              style={{background: option?.key ===
+                                                                active? '#57CE66' : '#F3F3F4',
+                                                                boxShadow: option?.key ===
+                                                                active? '0px 0px 0px 0px' : '0px 2px 5px rgba(0, 0, 0, 0.1), inset 1px 2px 3px rgba(0, 0, 0, 0.25)',
+                                                                width: '95px ',
+                                                                height: '36 px ',
+                                                                borderRadius: '2px',
+                                                                color: option?.key ===
+                                                                active? '#FFFFFF' : '#161F29',
+                                                            }}
+                                                              key={option.key}
+                                                                  
+                                                                  title={
+                                                                      option?.title ||
+                                                                      ""
+                                                                  }
+                                                                  isActive={
+                                                                      option?.key ===
+                                                                      active
+                                                                  }
+                                                                  onClick={() =>
+                                                                      onClickHandler(
+                                                                          option.key ||
+                                                                              ""
+                                                                      )
+                                                                  }
+                                                              />
+                                                          )
+                                                      )
+                                                    : null}
+
                                             </Grid>
                                             <Grid
                                                 item
@@ -165,11 +226,9 @@ const AnalyticsCongratulations = () => {
                                                 style={{
                                                     display: "flex",
                                                     justifyContent: "flex-end",
-                                                    gap: 4
-                                                    
+                                                    gap: 4,
                                                 }}
                                             >
-                                                
                                                 <ButtonComponent
                                                     type="proceed"
                                                     title="Proceed"

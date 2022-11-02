@@ -8,6 +8,8 @@ type Props = {
   style?: React.CSSProperties
   onClick?: (args: any) => void;
   isActive?: boolean
+  startIcon ?: any 
+  endIcon ?: any
 }
 
 const ButtonComponent = (props: Props) => {
@@ -132,6 +134,37 @@ const ButtonComponent = (props: Props) => {
         textTransform: 'capitalize'
       }
     }
+    if(type==='age')
+    {
+      return{
+        padding: '10px',
+                
+          
+          
+          fontFamily: 'Open Sans',
+          fontSize: '14px',
+          fontWeight: isActive? '700' : '400',
+          
+          
+          textTransform: 'capitalize'
+      }
+    }
+
+    if(type== 'publish')
+    {
+      return{
+        width: '125px',
+        height: '42px',
+        padding: '10px 20px',
+        borderRadius: '3px',
+        fontFamily: 'Open Sans',
+        fontSize: '16px',
+        fontWeight: '700',
+        background: '#57CE66',
+        color: '#FFFFFF',
+        textTransform: 'capitalize'
+      }
+    }
     if(type === 'apply'){
       return{
         padding: '5px 20px',
@@ -160,18 +193,16 @@ const ButtonComponent = (props: Props) => {
         textTransform: 'capitalize',
         color:'#161F29'
       }
-    }
-
-    else{
+    }else{
       return{
         width: '100px',
-        height: '36px',
+        height: '42px',
         padding: '12px 20px',
         borderRadius: '2px',
         fontFamily: 'Open Sans',
-        fontSize: '12px',
-        fontWeight: '600',
-        background: '#009EFA',
+        fontSize: '14px',
+        fontWeight: '700',
+        background: '#57CE66',
         boxShadow: '0.5px 1px 3px rgba(22, 31, 41, 0.2)',
         color: '#FFFFFF',
         textTransform: 'capitalize'
@@ -182,9 +213,10 @@ const ButtonComponent = (props: Props) => {
   return (
     <div>
       <Button
-        style = {styleButton(props.type || '', props.isActive || false) || {}}
-        onClick= {props.onClick
-        }
+        style= {{...styleButton(props.type || '', props.isActive || false), ...props.style}}
+        onClick= {props.onClick}
+        startIcon={props.startIcon}
+        endIcon ={props.endIcon}
       >
           {props.title}
        
