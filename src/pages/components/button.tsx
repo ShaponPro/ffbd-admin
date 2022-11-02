@@ -221,6 +221,32 @@ const Home = () => {
           <ButtonComponent type='age' title='Men' />
         </div>
       </div>
+      <div>
+        <Typography>
+          {' '}
+          If you want to customiz a the button component.import this{' '}
+          <code>&lt;ButtonComponent type='customizable' title='customizable' style=''...props&gt;</code> from 'src/components/ButtonComponent'
+        </Typography>
+        <div
+          style={{
+            display: 'flex',
+            gap: '10px',
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            padding: '13px 20px',
+            width: '100%',
+            height: '66px',
+            position: 'relative',
+            background: '#ECF8FF',
+            boxShadow: '1px 2px 3px rgba(22, 31, 41, 0.2)'
+          }}
+        >
+          <ButtonComponent type='customizable' title='customizable'  />
+          <ButtonComponent type='customizable' title='customizable'  />
+          <ButtonComponent type='customizable' title='customizable' />
+          
+        </div>
+      </div>
     </div>
   )
 }

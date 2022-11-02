@@ -138,14 +138,15 @@ const ButtonComponent = (props: Props) => {
     {
       return{
         padding: '10px',
-                
-          
-          
+          width: '100px',
+          height: '42px',      
+          background: isActive? '#57CE66' : '#F3F3F4',
+          borderRadius:'2px',
           fontFamily: 'Open Sans',
           fontSize: '14px',
           fontWeight: isActive? '700' : '400',
-          
-          
+          color: isActive? '#FFFFFF' : '#161F29',
+          boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1), inset 1px 2px 3px rgba(0, 0, 0, 0.25)',
           textTransform: 'capitalize'
       }
     }
@@ -193,7 +194,13 @@ const ButtonComponent = (props: Props) => {
         textTransform: 'capitalize',
         color:'#161F29'
       }
-    }else{
+    }
+    if(type==='customizable'){
+      return{
+        fontFamily: 'Open Sans',
+      }
+    }
+    else{
       return{
         width: '100px',
         height: '42px',
