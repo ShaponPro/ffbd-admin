@@ -12,11 +12,20 @@ import {
     FormControlLabel,
     InputLabel,
     MenuItem,
+    ToggleButton,
+    TextField,
+    OutlinedInput,
 } from "@mui/material";
-import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-
+import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
+import CircleIcon from "@mui/icons-material/Circle";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs, { Dayjs } from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 // ** Icons Imports
 import SearchIcon from "@mui/icons-material/Search";
 import Grid from "@mui/material/Grid";
@@ -25,6 +34,8 @@ import { styled } from "@mui/material/styles";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import ButtonComponentCopy from "./ButtonComponentCopy";
+import select from "src/@core/theme/overrides/select";
 
 const typographyStyle = {
     fontSize: "11px",
@@ -147,7 +158,6 @@ const menuItemStyle = css`
     color: #161f29;
     padding: 0px !important;
     margin: 0px !important;
-    // background-color: red;
     margin-bottom: 2px !important;
     font-family: "Open Sans", sans-serif !important;
     font-style: normal;
@@ -157,14 +167,163 @@ const menuItemStyle = css`
     padding-top: 10px !important;
     padding-left: 10px !important;
     padding-bottom: 10px !important;
+    &:hover {
+        background-color: #f3f3f4;
+    }
 `;
 
-export const FilterComponent = (props: props) => {
-    const [age, setAge] = React.useState("");
+const dateRangeStyle = css`
+    align-items: center;
+`;
 
-    const handleChange = (event: SelectChangeEvent) => {
-        setAge(event.target.value as string);
+const buttonGridStyle = css`
+    padding-left: 10px;
+    margin-bottom: 15px;
+    margin-top: 14px;
+`;
+
+const buttonGrid = css`
+    margin-right: 20px;
+`;
+
+const selectStyle = css`
+    .MuiOutlinedInput-notchedOutline {
+        border: none !important;
+        padding: 0px !important;
+    }
+
+    .MuiInputBase-input {
+        color: grey;
+        padding: 0 !important;
+        font-family: "Open Sans", sans-serif !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        font-size: 12px !important;
+    }
+`;
+
+const multiSelectStyle = css`
+    ${selectStyle};
+    .MuiButtonBase-root{
+        display: none !important;
+    }
+`;
+
+const dateInputField = css`
+    .MuiInputBase-input {
+        padding: 0 !important;
+
+        font-size: 12px !important;
+    }
+`;
+
+const dateTextField = css`
+    .MuiButtonBase-root {
+        padding: 0px !important;
+        color: white;
+    }
+
+    .MuiInputBase-input {
+        font-family: "Open Sans", sans-serif !important;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: #161f29;
+        width: 62px !important;
+    }
+    .MuiInputBase-adornedEnd {
+        padding: 0px !important;
+    }
+`;
+const selectLabelStyle = css`
+    font-family: "Open Sans", sans-serif !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(22, 31, 41, 0.25);
+`;
+
+const lengths = ["Upto 30s", "31s-60s", "61s-180s", "181s-300s", "Above 300s"];
+
+export const FilterComponent = (props: props) => {
+    // Period select change
+    const [selectPeriod, setSelectPeriod] = React.useState("");
+    const handleChangeSelectPeriod = (event: SelectChangeEvent) => {
+        setSelectPeriod(event.target.value as string);
     };
+
+    // Period Radio button
+    const [period, setPeriod] = React.useState(false);
+    const handleRadioClickPeriod = () => {
+        setPeriod((period) => {
+            return !period;
+        });
+    };
+
+    const [videoLength, setVideoLength] = React.useState<string[]>([]);
+    const [videoLengthRadio, setVideoLengthRadio] = React.useState(false);
+    const [videoLengthRadioState, setVideoLengthRadioState] = React.useState([
+        {
+            id: 0,
+            length: "Upto 30s",
+            isClicked: false,
+        },
+        {
+            id: 1,
+            length: "31s-60s",
+            isClicked: false,
+        },
+        {
+            id: 2,
+            length: "61s-180s",
+            isClicked: false,
+        },
+        {
+            id: 3,
+            length: "181s-300s",
+            isClicked: false,
+        },
+        {
+            id: 3,
+            length: "Above 300s",
+            isClicked: false,
+        },
+    ]);
+
+    const handleRadioClickLength = () => {
+        setVideoLengthRadio((videoLengthRadio) => {
+            return !videoLengthRadio;
+        });
+    };
+
+    // Length select change
+    const handleChangeVideoLength = (
+        event: SelectChangeEvent<typeof videoLength>
+    ) => {
+        const {
+            target: { value },
+        } = event;
+
+        setVideoLength(
+            // On autofill we get a stringified value.
+            typeof value === "string" ? value.split(",") : value
+        );
+    };
+
+    const [selectedValue, setSelectedValue] = React.useState("a");
+
+    const [selected, setSelected] = React.useState(false);
+
+    const [value, setValue] = React.useState<Dayjs | null>(dayjs("2022-04-07"));
+
+    // const handleChangeRadioLength = (event: SelectChangeEvent) => {
+    //     setAge(event.target.value as string);
+    //     setAge((age) => {
+    //         return !age;
+    //     });
+    // };
 
     const [videoState, setVideoState] = useState<object>(userVideos);
 
@@ -216,18 +375,36 @@ export const FilterComponent = (props: props) => {
                     <Grid css={textGrid}>Upload Period</Grid>
                     <Grid css={itemStyle}>
                         <FormControl fullWidth>
-                            {/* <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={age}
-                                label="Age"
-                                onChange={handleChange}
-                            > */}
-                            <Grid css={periodTabHeader}>Date Range</Grid>
-                            <Grid>
+                            <InputLabel
+                                id="periodSelectId"
+                                css={selectLabelStyle}
+                            >
+                                Select Date
+                            </InputLabel>
+                            <Select
+                                labelId="periodSelectId"
+                                id="periodSelectId"
+                                value={selectPeriod}
+                                label="period"
+                                onChange={handleChangeSelectPeriod}
+                                css={selectStyle}
+                                sx={{
+                                    borderRadius: "0px!important",
+                                    padding: "0px!important",
+                                    margin: "0px!important",
+                                    paddingLeft: "10px !important",
+                                    paddingTop: "10px !important",
+                                    paddingBottom: "10px !important",
+                                    height: "36px",
+                                    width: "233.75px",
+                                }}
+                            >
+                                <Grid css={periodTabHeader}>Date Range</Grid>
+
                                 <MenuItem value={"today"} css={menuItemStyle}>
                                     Today
                                 </MenuItem>
+
                                 <MenuItem
                                     value={"last7days"}
                                     css={menuItemStyle}
@@ -258,8 +435,209 @@ export const FilterComponent = (props: props) => {
                                 >
                                     Last 90 Days
                                 </MenuItem>
-                            </Grid>
-                            <Grid css={periodTabHeader}>Custom Range</Grid>
+
+                                <Grid container css={dateRangeStyle}>
+                                    <Grid css={periodTabHeader}>
+                                        Custom Range
+                                    </Grid>
+                                    <Grid>
+                                        <Radio
+                                            checked={period}
+                                            onClick={() =>
+                                                handleRadioClickPeriod()
+                                            }
+                                            value="a"
+                                            name="radioperiod"
+                                            inputProps={{
+                                                "aria-label": "A",
+                                            }}
+                                            icon={
+                                                <CircleOutlinedIcon
+                                                    sx={{
+                                                        color: "#161F29",
+                                                    }}
+                                                ></CircleOutlinedIcon>
+                                            }
+                                            checkedIcon={
+                                                <CheckCircleIcon
+                                                    sx={{
+                                                        color: "#57ce66!important",
+                                                    }}
+                                                ></CheckCircleIcon>
+                                            }
+                                        />
+                                    </Grid>
+                                </Grid>
+                                {period == true && (
+                                    <Grid container width={"233.75px"}>
+                                        <Grid container width={"233.75px"}>
+                                            <Grid paddingLeft={"10px"}>
+                                                <LocalizationProvider
+                                                    dateAdapter={AdapterDayjs}
+                                                >
+                                                    <DatePicker
+                                                        InputAdornmentProps={
+                                                            <></>
+                                                        }
+                                                        openTo="year"
+                                                        views={[
+                                                            "year",
+                                                            "month",
+                                                            "day",
+                                                        ]}
+                                                        label="From"
+                                                        value={value}
+                                                        onChange={(
+                                                            newValue
+                                                        ) => {
+                                                            setValue(newValue);
+                                                        }}
+                                                        renderInput={(
+                                                            params
+                                                        ) => (
+                                                            <TextField
+                                                                {...params}
+                                                                helperText={
+                                                                    null
+                                                                }
+                                                                css={
+                                                                    dateTextField
+                                                                }
+                                                            />
+                                                        )}
+                                                        css={dateInputField}
+                                                    />
+                                                </LocalizationProvider>
+                                            </Grid>
+
+                                            <Grid paddingLeft={"10px"}>
+                                                <LocalizationProvider
+                                                    dateAdapter={AdapterDayjs}
+                                                >
+                                                    <DatePicker
+                                                        InputAdornmentProps={
+                                                            <></>
+                                                        }
+                                                        openTo="year"
+                                                        views={[
+                                                            "year",
+                                                            "month",
+                                                            "day",
+                                                        ]}
+                                                        label="To"
+                                                        value={value}
+                                                        onChange={(
+                                                            newValue
+                                                        ) => {
+                                                            setValue(newValue);
+                                                        }}
+                                                        renderInput={(
+                                                            params
+                                                        ) => (
+                                                            <TextField
+                                                                {...params}
+                                                                helperText={
+                                                                    null
+                                                                }
+                                                                css={
+                                                                    dateTextField
+                                                                }
+                                                            />
+                                                        )}
+                                                        css={dateInputField}
+                                                    />
+                                                </LocalizationProvider>
+                                            </Grid>
+                                        </Grid>
+
+                                        <Grid container css={buttonGridStyle}>
+                                            <Grid css={buttonGrid}>
+                                                <ButtonComponentCopy
+                                                    type="cancel"
+                                                    title="cancel"
+                                                ></ButtonComponentCopy>
+                                            </Grid>
+                                            <Grid>
+                                                <ButtonComponentCopy
+                                                    type="apply"
+                                                    title="apply"
+                                                ></ButtonComponentCopy>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                )}
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                </Grid>
+
+                <Grid css={textNFieldStyle}>
+                    <Grid css={textGrid}>Video Length Group</Grid>
+                    <Grid css={itemStyle}>
+                        <FormControl fullWidth>
+                            <InputLabel
+                                id="lengthSelectId"
+                                css={selectLabelStyle}
+                            >
+                                Select Item
+                            </InputLabel>
+                            <Select
+                                css={multiSelectStyle}
+                                sx={{
+                                    borderRadius: "0px!important",
+                                    padding: "0px!important",
+                                    margin: "0px!important",
+                                    paddingLeft: "10px !important",
+                                    paddingTop: "10px !important",
+                                    paddingBottom: "10px !important",
+                                    height: "36px",
+                                    width: "233.75px",
+                                }}
+                                labelId="lengthSelectId"
+                                id="lengthSelectId"
+                                multiple
+                                value={videoLength}
+                                onChange={handleChangeVideoLength}
+                                input={<OutlinedInput label="videoLength" />}
+                            >
+                                {lengths.map((length) => (
+                                    <MenuItem
+                                        key={length}
+                                        value={length}
+                                        css={menuItemStyle}
+                                        onClick={() => console.log(length)}
+                                    >
+                                        {length}
+
+                                        <Radio
+                                            id={length}
+                                            checked={videoLengthRadio}
+                                            onClick={() =>
+                                                handleRadioClickLength()
+                                            }
+                                            value="a"
+                                            name="radio-buttons"
+                                            inputProps={{
+                                                "aria-label": "A",
+                                            }}
+                                            icon={
+                                                <CircleOutlinedIcon
+                                                    sx={{
+                                                        color: "#161F29",
+                                                    }}
+                                                ></CircleOutlinedIcon>
+                                            }
+                                            checkedIcon={
+                                                <CheckCircleIcon
+                                                    sx={{
+                                                        color: "#57ce66!important",
+                                                    }}
+                                                ></CheckCircleIcon>
+                                            }
+                                        />
+                                    </MenuItem>
+                                ))}
+                            </Select>
                         </FormControl>
                     </Grid>
                 </Grid>
