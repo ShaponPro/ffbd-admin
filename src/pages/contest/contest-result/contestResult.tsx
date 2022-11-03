@@ -1,5 +1,5 @@
 // ** MUI Imports
-import Box from "@mui/material/Box";
+import Box,{BoxProps} from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
@@ -13,12 +13,27 @@ import Grid from "@mui/material/Grid";
 // ** MUI IconImports
 
 // ** Styled Component Import
+import { styled, useTheme } from '@mui/material/styles'
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 
 // ** Components
 import TabbarComponent from "src/components/TabbarComponent";
 import { ContestResultFilter } from "src/container/filters/ContestResultFilter";
 import ContestResultList from "src/container/lists/ContestResultList"
+import ButtonGroupComponent from "src/components/ButtonGroupComponent";
+
+//**Style ***/
+const VoteBox = styled(Box)<BoxProps>(({ theme }) => ({
+  color: "red", 
+  background:"#EBE8FC",                      
+  borderRadius:"5px",
+  padding: "10px",
+  height: "100px",
+  alignItems: "center",
+  display:"flex",                      
+  justifyContent:"center",
+  fontWeight: "700"
+}))
 
 const tabs = [
   {
@@ -75,8 +90,8 @@ const ContestResult = () => {
                         </Grid>
 
                         <Grid item xs={6}  sx={{ width: '100%' }}>
-                        <h1>Contest Info</h1>
-                        <h1>Contest Info</h1>
+                        <ButtonGroupComponent/>
+                        <VoteBox>You can Vote only 3 Videos</VoteBox>
                        </Grid>
                       </Grid>
                     </Box>
