@@ -20,7 +20,7 @@ import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 import TabbarComponent from "src/components/TabbarComponent";
 import { ContestResultFilter } from "src/container/filters/ContestResultFilter";
 import ContestResultList from "src/container/lists/ContestResultList"
-import ButtonGroupComponent from "src/components/ButtonGroupComponent";
+// import ButtonGroupComponent from "src/components/ButtonGroupComponent";
 
 //**Style ***/
 const VoteBox = styled(Box)<BoxProps>(({ theme }) => ({
@@ -90,7 +90,7 @@ const ContestResult = () => {
                         </Grid>
 
                         <Grid item xs={6}  sx={{ width: '100%' }}>
-                        <ButtonGroupComponent/>
+                        {/* <ButtonGroupComponent/> */}
                         <VoteBox>You can Vote only 3 Videos</VoteBox>
                        </Grid>
                       </Grid>
