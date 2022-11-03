@@ -20,6 +20,7 @@ const CustomButton = styled(Button)<ButtonProps>(({ theme }) => ({
     fontSize: "14px",
     borderRadius: "5px",
     textTransform: "capitalize",
+    boxShadow:"none"
 }));
 
 const ButtonGroupComponent = () => {
