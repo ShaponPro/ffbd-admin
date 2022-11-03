@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button } from '@mui/material'
 
-
 type Props = {
   title: string
   type?: string
@@ -12,7 +11,6 @@ type Props = {
 
 const ButtonComponent = (props: Props) => {
   
-
   const styleButton = (type: string, isActive: boolean) : React.CSSProperties => {
     if (type === 'tabButton')
       return {
