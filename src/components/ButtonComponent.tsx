@@ -93,7 +93,7 @@ const ButtonComponent = (props: Props) => {
           padding: '10px',
           width: '307px',
           height: '39px',      
-          background: isActive? '#ECF8FF' : '#F3F3F4',
+          background: isActive? '#EBE8FC' : '#FFFFFF',
           
           fontFamily: 'Open Sans',
           fontSize: '14px',
