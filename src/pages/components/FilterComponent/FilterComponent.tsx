@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-// ** MUI Imports
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+
 import {
     InputBase,
     Radio,
@@ -12,28 +14,15 @@ import {
 import FormControl from "@mui/material/FormControl";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
-import CircleIcon from "@mui/icons-material/Circle";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs, { Dayjs } from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-// ** Icons Imports
-import SearchIcon from "@mui/icons-material/Search";
 import Grid from "@mui/material/Grid";
 
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import ButtonComponentCopy from "./ButtonComponentCopy";
-import select from "src/@core/theme/overrides/select";
-
-const userVideos = {
-    userName: "",
-    uploadedCountry: "",
-    videoContest: "",
-    musicCreator: "",
-};
 
 type props = {
     title: string;
@@ -42,14 +31,11 @@ type props = {
 
 const parentGrid = css`
     margin-top: 20px;
-    // margin-bottom: 2rem;
 `;
 
 const textNFieldStyle = css`
     display: flex;
     align-items: baseline;
-    // margin-right: 20px !important;
-    // margin-bottom: 20px !important;
 `;
 
 const textGrid = css`
@@ -103,17 +89,13 @@ const periodTabHeader = css`
     font-weight: 700;
     font-size: 12px;
     line-height: 16px;
-    // background-color: black;
     margin-bottom: 2px !important;
-    padding-top: 10px;
     padding-left: 10px;
     padding-bottom: 10px;
 `;
 
 const menuItemStyle = css`
     color: #161f29;
-    padding: 0px !important;
-    margin: 0px !important;
     margin-bottom: 2px !important;
     font-family: "Open Sans", sans-serif !important;
     font-style: normal;
@@ -145,21 +127,38 @@ const buttonGrid = css`
 const selectStyle = css`
     .MuiOutlinedInput-notchedOutline {
         border: none !important;
-        padding: 0px !important;
     }
 
     .MuiInputBase-input {
         color: grey;
-        padding: 0 !important;
         font-family: "Open Sans", sans-serif !important;
         font-style: normal !important;
         font-weight: 400 !important;
         font-size: 12px !important;
     }
+
+    .MuiPaper-root .MuiMenu-paper .MuiPopover-paper {
+        padding: 0px !important;
+        width: 233.75px !important;
+    }
+
+    .MuiSelect-select {
+        padding: 0 !important;
+        padding-left: 10px !important;
+    }
 `;
 
 const multiSelectStyle = css`
     ${selectStyle};
+
+    #videoLengthSelect,
+    #engagementSelect,
+    #monetizationSelect,
+    #currentStatusSelect,
+    #rightSellingSelect {
+        display: flex !important;
+    }
+
     .MuiButtonBase-root {
         display: none !important;
     }
@@ -168,8 +167,6 @@ const multiSelectStyle = css`
 const dateInputField = css`
     .MuiInputBase-input {
         padding: 0 !important;
-
-        font-size: 12px !important;
     }
 `;
 
@@ -186,7 +183,6 @@ const dateTextField = css`
         font-size: 12px;
         line-height: 16px;
         color: #161f29;
-        width: 100% !important;
     }
     .MuiInputBase-adornedEnd {
         padding: 0px !important;
@@ -204,16 +200,53 @@ const selectLabelStyle = css`
     color: rgba(22, 31, 41, 0.25);
 `;
 
-const lengths = ["Upto 30s", "31s-60s", "61s-180s", "181s-300s", "Above 300s"];
+const lengths = [
+    "Upto 30s",
+    "31s - 60s",
+    "61s - 180s",
+    "181s - 300s",
+    "Above 300s",
+];
+
+const engagements = ["Likes", "Comments", "Shares", "Downloads"];
+
+const monetizations = [
+    "Awareness AD",
+    "Product Added",
+    "Active Awareness",
+    "Active Product ",
+];
+
+const currentStatuses = [
+    "Published",
+    "Failed",
+    "Uploading",
+    "Suspended",
+    "Deleted",
+];
+
+const rightSellings = ["Free", "Sold", "Processing", "Claimed"];
 
 export const FilterComponent = (props: props) => {
-    // Period select change
-    const [selectPeriod, setSelectPeriod] = React.useState("");
-    const handleChangeSelectPeriod = (event: SelectChangeEvent) => {
-        setSelectPeriod(event.target.value as string);
+    // User ID/Name handler
+    const [userIDorName, setUserIDorName] = useState("");
+    const onChangeUserIDorNameHandler = (e: any) => {
+        setUserIDorName(e.target.value);
     };
 
-    // Period Radio button
+    // Country handler
+    const [country, setCountry] = useState("");
+    const onChangeCountryHandler = (e: any) => {
+        setCountry(e.target.value);
+    };
+
+    // Upload period handler
+    const [uploadPeriod, setUploadPeriod] = useState("");
+    const handleChangeUploadPeriod = (event: SelectChangeEvent) => {
+        setUploadPeriod(event.target.value as string);
+    };
+
+    // Radio toggle for upload period
     const [period, setPeriod] = React.useState(false);
     const handleRadioClickPeriod = () => {
         setPeriod((period) => {
@@ -221,94 +254,247 @@ export const FilterComponent = (props: props) => {
         });
     };
 
+    // Video length handler
     const [videoLength, setVideoLength] = React.useState<string[]>([]);
-    const [videoLengthRadio, setVideoLengthRadio] = React.useState(false);
-    const [videoLengthRadioState, setVideoLengthRadioState] = React.useState([
-        {
-            id: 0,
-            length: "Upto 30s",
-            isClicked: false,
-        },
-        {
-            id: 1,
-            length: "31s-60s",
-            isClicked: false,
-        },
-        {
-            id: 2,
-            length: "61s-180s",
-            isClicked: false,
-        },
-        {
-            id: 3,
-            length: "181s-300s",
-            isClicked: false,
-        },
-        {
-            id: 3,
-            length: "Above 300s",
-            isClicked: false,
-        },
-    ]);
-
-    const handleRadioClickLength = () => {
-        setVideoLengthRadio((videoLengthRadio) => {
-            return !videoLengthRadio;
-        });
-    };
-
-    // Length select change
     const handleChangeVideoLength = (
         event: SelectChangeEvent<typeof videoLength>
     ) => {
         const {
             target: { value },
         } = event;
-
         setVideoLength(
             // On autofill we get a stringified value.
             typeof value === "string" ? value.split(",") : value
         );
     };
 
-    const [selectedValue, setSelectedValue] = React.useState("a");
+    // Radio for video length
+    const [videoLengthRadio, setVideoLengthRadio] = React.useState([
+        false,
+        false,
+        false,
+        false,
+        false,
+    ]);
+    const handleLengthMenuClick = (lengthIndex: any) => {
+        const updatedVideoLengthRadio = videoLengthRadio.map(
+            (eachVideoLength, videoLengthIndex) => {
+                if (videoLengthIndex == lengthIndex) {
+                    return !eachVideoLength;
+                } else {
+                    return eachVideoLength;
+                }
+            }
+        );
 
-    const [selected, setSelected] = React.useState(false);
+        setVideoLengthRadio(updatedVideoLengthRadio);
+    };
+
+    // Engagement handler
+    const [engagement, setEngagement] = React.useState<string[]>([]);
+    const handleChangeEngagement = (
+        event: SelectChangeEvent<typeof engagement>
+    ) => {
+        const {
+            target: { value },
+        } = event;
+        setEngagement(
+            // On autofill we get a stringified value.
+            typeof value === "string" ? value.split(",") : value
+        );
+    };
+
+    // Radio for engagement
+    const [engagementRadio, setEngagementRadio] = React.useState([
+        false,
+        false,
+        false,
+        false,
+        false,
+    ]);
+    const handleEngagementMenuClick = (engagementIndex: any) => {
+        const updatedEngagementRadio = engagementRadio.map(
+            (eachEngagement, index) => {
+                if (index == engagementIndex) {
+                    return !eachEngagement;
+                } else {
+                    return eachEngagement;
+                }
+            }
+        );
+
+        setEngagementRadio(updatedEngagementRadio);
+    };
+
+    // Monetization handler
+    const [monetization, setMonetization] = React.useState<string[]>([]);
+    const handleChangeMonetization = (
+        event: SelectChangeEvent<typeof monetization>
+    ) => {
+        const {
+            target: { value },
+        } = event;
+        setMonetization(
+            // On autofill we get a stringified value.
+            typeof value === "string" ? value.split(",") : value
+        );
+    };
+
+    // Radio for monetization
+    const [monetizationRadio, setMonetizationRadio] = React.useState([
+        false,
+        false,
+        false,
+        false,
+        false,
+    ]);
+    const handleMonetizationMenuClick = (monetizationIndex: any) => {
+        const updatedMonetizationRadio = monetizationRadio.map(
+            (eachMonetization, index) => {
+                if (index == monetizationIndex) {
+                    return !eachMonetization;
+                } else {
+                    return eachMonetization;
+                }
+            }
+        );
+
+        setMonetizationRadio(updatedMonetizationRadio);
+    };
+
+    // Video contest handler
+    const [videoContest, setVideoContest] = useState("");
+    const onChangeVideoContestHandler = (e: any) => {
+        setVideoContest(e.target.value);
+    };
+
+    // Music Creator handler
+    const [musicCreator, setMusicCreator] = useState("");
+    const onChangeMusicCreatorHandler = (e: any) => {
+        setMusicCreator(e.target.value);
+    };
+
+    // Current Status handler
+    const [currentStatus, setCurrentStatus] = React.useState<string[]>([]);
+    const handleChangeCurrentStatus = (
+        event: SelectChangeEvent<typeof monetization>
+    ) => {
+        const {
+            target: { value },
+        } = event;
+        setCurrentStatus(
+            // On autofill we get a stringified value.
+            typeof value === "string" ? value.split(",") : value
+        );
+    };
+
+    // Radio for current status
+    const [currentStatusRadio, setCurrentStatusRadio] = React.useState([
+        false,
+        false,
+        false,
+        false,
+        false,
+    ]);
+    const handleCurrentStatusMenuClick = (currentStatusIndex: any) => {
+        const updatedCurrentStatusRadio = currentStatusRadio.map(
+            (eachCurrentStatus, index) => {
+                if (index == currentStatusIndex) {
+                    return !eachCurrentStatus;
+                } else {
+                    return eachCurrentStatus;
+                }
+            }
+        );
+
+        setCurrentStatusRadio(updatedCurrentStatusRadio);
+    };
+
+    // Right Selling handler
+    const [rightSelling, setRightSelling] = React.useState<string[]>([]);
+    const handleChangeRightSelling = (
+        event: SelectChangeEvent<typeof rightSelling>
+    ) => {
+        const {
+            target: { value },
+        } = event;
+        setRightSelling(
+            // On autofill we get a stringified value.
+            typeof value === "string" ? value.split(",") : value
+        );
+    };
+
+    // Radio for Right Selling
+    const [rightSellingRadio, setRightSellingRadio] = React.useState([
+        false,
+        false,
+        false,
+        false,
+        false,
+    ]);
+    const handleRightSellingMenuClick = (rightSellingIndex: any) => {
+        const updatedRightSellingRadio = rightSellingRadio.map(
+            (eachRightSelling, index) => {
+                if (index == rightSellingIndex) {
+                    return !eachRightSelling;
+                } else {
+                    return eachRightSelling;
+                }
+            }
+        );
+
+        setRightSellingRadio(updatedRightSellingRadio);
+    };
+
+    // const [videoLengthRadioState, setVideoLengthRadioState] = React.useState([
+    //     {
+    //         id: 0,
+    //         length: "Upto 30s",
+    //         isClicked: false,
+    //     },
+    //     {
+    //         id: 1,
+    //         length: "31s-60s",
+    //         isClicked: false,
+    //     },
+    //     {
+    //         id: 2,
+    //         length: "61s-180s",
+    //         isClicked: false,
+    //     },
+    //     {
+    //         id: 3,
+    //         length: "181s-300s",
+    //         isClicked: false,
+    //     },
+    //     {
+    //         id: 3,
+    //         length: "Above 300s",
+    //         isClicked: false,
+    //     },
+    // ]);
 
     const [value, setValue] = React.useState<Dayjs | null>(dayjs("2022-04-07"));
 
-    // const handleChangeRadioLength = (event: SelectChangeEvent) => {
-    //     setAge(event.target.value as string);
-    //     setAge((age) => {
-    //         return !age;
-    //     });
-    // };
-
-    const [videoState, setVideoState] = useState<object>(userVideos);
-
-    const onChangeHandler = (e: any) => {
-        console.log("e", e);
-        setVideoState({ ...videoState, [e.target.name]: e.target.value });
-
-        console.log(videoState);
-    };
-
     return (
         <>
-            <Grid container lg={12} css={parentGrid} width={"100%"}>
-                <Grid container lg={12} width={"100%"}>
+            <Grid container item lg={12} css={parentGrid} width={"100%"}>
+                <Grid container item lg={12} width={"100%"}>
                     <Grid
+                        item
                         lg={4}
                         css={textNFieldStyle}
                         width={"100%"}
                         marginBottom={"20px"}
+                        paddingRight={"10px"}
                     >
                         <Grid css={textGrid}>User ID/Name</Grid>
                         <Grid css={itemStyle} width={"100%"}>
                             <InputBase
                                 placeholder="Search and Filter"
-                                onChange={onChangeHandler}
-                                name="userName"
+                                onChange={onChangeUserIDorNameHandler}
+                                name="userIDorName"
+                                value={userIDorName}
                                 css={placeHolderStyle}
                             ></InputBase>
 
@@ -320,17 +506,20 @@ export const FilterComponent = (props: props) => {
                     </Grid>
 
                     <Grid
+                        item
                         lg={4}
                         css={textNFieldStyle}
                         width={"100%"}
                         marginBottom={"20px"}
+                        paddingRight={"10px"}
                     >
                         <Grid css={textGrid}>Uploaded Country</Grid>
                         <Grid css={itemStyle} width={"100%"}>
                             <InputBase
                                 placeholder="Search and Filter"
-                                onChange={onChangeHandler}
-                                name="userName"
+                                name="country"
+                                value={country}
+                                onChange={onChangeCountryHandler}
                                 css={placeHolderStyle}
                             ></InputBase>
 
@@ -342,6 +531,7 @@ export const FilterComponent = (props: props) => {
                     </Grid>
 
                     <Grid
+                        item
                         lg={4}
                         css={textNFieldStyle}
                         width={"100%"}
@@ -351,22 +541,19 @@ export const FilterComponent = (props: props) => {
                         <Grid css={itemStyle} width={"100%"}>
                             <FormControl fullWidth>
                                 <InputLabel
-                                    id="periodSelectId"
+                                    id="uploadPeriod"
                                     css={selectLabelStyle}
                                 >
                                     Select Date
                                 </InputLabel>
                                 <Select
-                                    labelId="periodSelectId"
-                                    id="periodSelectId"
-                                    value={selectPeriod}
-                                    label="period"
-                                    onChange={handleChangeSelectPeriod}
+                                    labelId="uploadPeriod"
+                                    id="uploadPeriodSelect"
+                                    value={uploadPeriod}
+                                    label="uploadPeriod"
+                                    onChange={handleChangeUploadPeriod}
                                     css={selectStyle}
                                     sx={{
-                                        borderRadius: "0px!important",
-                                        padding: "0px!important",
-                                        margin: "0px!important",
                                         height: "36px",
                                     }}
                                 >
@@ -382,37 +569,45 @@ export const FilterComponent = (props: props) => {
                                     </MenuItem>
 
                                     <MenuItem
-                                        value={"last7days"}
+                                        value={"last 7 days"}
                                         css={menuItemStyle}
                                     >
                                         Last 7 Days
                                     </MenuItem>
+
                                     <MenuItem
-                                        value={"last15days"}
+                                        value={"last 15 days"}
                                         css={menuItemStyle}
                                     >
                                         Last 15 Days
                                     </MenuItem>
+
                                     <MenuItem
-                                        value={"last30days"}
+                                        value={"last 30 days"}
                                         css={menuItemStyle}
                                     >
                                         Last 30 Days
                                     </MenuItem>
+
                                     <MenuItem
-                                        value={"last60days"}
+                                        value={"last 60 days"}
                                         css={menuItemStyle}
                                     >
                                         Last 60 Days
                                     </MenuItem>
+
                                     <MenuItem
-                                        value={"last90days"}
+                                        value={"last 90 days"}
                                         css={menuItemStyle}
                                     >
                                         Last 90 Days
                                     </MenuItem>
 
-                                    <Grid container css={dateRangeStyle}>
+                                    <Grid
+                                        container
+                                        css={dateRangeStyle}
+                                        alignItems={"baseline!important"}
+                                    >
                                         <Grid css={periodTabHeader}>
                                             Custom Range
                                         </Grid>
@@ -423,7 +618,7 @@ export const FilterComponent = (props: props) => {
                                                     handleRadioClickPeriod()
                                                 }
                                                 value="a"
-                                                name="radioperiod"
+                                                name="radio-period"
                                                 inputProps={{
                                                     "aria-label": "A",
                                                 }}
@@ -444,114 +639,397 @@ export const FilterComponent = (props: props) => {
                                             />
                                         </Grid>
                                     </Grid>
-                                    {period == true && (
-                                        <Grid container>
-                                            <Grid container>
-                                                <Grid paddingLeft={"10px"}>
-                                                    <LocalizationProvider
-                                                        dateAdapter={
-                                                            AdapterDayjs
-                                                        }
+                                    <Grid
+                                        container
+                                        width={"233.75px!important"}
+                                    >
+                                        {period == true && (
+                                            <>
+                                                <Grid container>
+                                                    <Grid
+                                                        width={"50%"}
+                                                        paddingLeft={"10px"}
+                                                        paddingRight={"5px"}
                                                     >
-                                                        <DatePicker
-                                                            InputAdornmentProps={
-                                                                <></>
+                                                        <LocalizationProvider
+                                                            dateAdapter={
+                                                                AdapterDayjs
                                                             }
-                                                            openTo="year"
-                                                            views={[
-                                                                "year",
-                                                                "month",
-                                                                "day",
-                                                            ]}
-                                                            label="From"
-                                                            value={value}
-                                                            onChange={(
-                                                                newValue
-                                                            ) => {
-                                                                setValue(
+                                                        >
+                                                            <DatePicker
+                                                                InputAdornmentProps={
+                                                                    <></>
+                                                                }
+                                                                openTo="year"
+                                                                views={[
+                                                                    "year",
+                                                                    "month",
+                                                                    "day",
+                                                                ]}
+                                                                label="From"
+                                                                value={value}
+                                                                onChange={(
                                                                     newValue
-                                                                );
-                                                            }}
-                                                            renderInput={(
-                                                                params
-                                                            ) => (
-                                                                <TextField
-                                                                    {...params}
-                                                                    helperText={
-                                                                        null
-                                                                    }
-                                                                    css={
-                                                                        dateTextField
-                                                                    }
-                                                                />
-                                                            )}
-                                                            css={dateInputField}
-                                                        />
-                                                    </LocalizationProvider>
+                                                                ) => {
+                                                                    setValue(
+                                                                        newValue
+                                                                    );
+                                                                }}
+                                                                renderInput={(
+                                                                    params
+                                                                ) => (
+                                                                    <TextField
+                                                                        {...params}
+                                                                        helperText={
+                                                                            null
+                                                                        }
+                                                                        css={
+                                                                            dateTextField
+                                                                        }
+                                                                    />
+                                                                )}
+                                                                css={
+                                                                    dateInputField
+                                                                }
+                                                            />
+                                                        </LocalizationProvider>
+                                                    </Grid>
+
+                                                    <Grid
+                                                        width={"50%"}
+                                                        paddingLeft={"5px"}
+                                                        paddingRight={"10px"}
+                                                    >
+                                                        <LocalizationProvider
+                                                            dateAdapter={
+                                                                AdapterDayjs
+                                                            }
+                                                        >
+                                                            <DatePicker
+                                                                InputAdornmentProps={
+                                                                    <></>
+                                                                }
+                                                                openTo="year"
+                                                                views={[
+                                                                    "year",
+                                                                    "month",
+                                                                    "day",
+                                                                ]}
+                                                                label="To"
+                                                                value={value}
+                                                                onChange={(
+                                                                    newValue
+                                                                ) => {
+                                                                    setValue(
+                                                                        newValue
+                                                                    );
+                                                                }}
+                                                                renderInput={(
+                                                                    params
+                                                                ) => (
+                                                                    <TextField
+                                                                        {...params}
+                                                                        helperText={
+                                                                            null
+                                                                        }
+                                                                        css={
+                                                                            dateTextField
+                                                                        }
+                                                                    />
+                                                                )}
+                                                                css={
+                                                                    dateInputField
+                                                                }
+                                                            />
+                                                        </LocalizationProvider>
+                                                    </Grid>
                                                 </Grid>
 
-                                                <Grid paddingLeft={"10px"}>
-                                                    <LocalizationProvider
-                                                        dateAdapter={
-                                                            AdapterDayjs
-                                                        }
-                                                    >
-                                                        <DatePicker
-                                                            InputAdornmentProps={
-                                                                <></>
-                                                            }
-                                                            openTo="year"
-                                                            views={[
-                                                                "year",
-                                                                "month",
-                                                                "day",
-                                                            ]}
-                                                            label="To"
-                                                            value={value}
-                                                            onChange={(
-                                                                newValue
-                                                            ) => {
-                                                                setValue(
-                                                                    newValue
-                                                                );
-                                                            }}
-                                                            renderInput={(
-                                                                params
-                                                            ) => (
-                                                                <TextField
-                                                                    {...params}
-                                                                    helperText={
-                                                                        null
-                                                                    }
-                                                                    css={
-                                                                        dateTextField
-                                                                    }
-                                                                />
-                                                            )}
-                                                            css={dateInputField}
-                                                        />
-                                                    </LocalizationProvider>
+                                                <Grid
+                                                    container
+                                                    css={buttonGridStyle}
+                                                >
+                                                    <Grid css={buttonGrid}>
+                                                        <ButtonComponentCopy
+                                                            type="cancel"
+                                                            title="cancel"
+                                                        ></ButtonComponentCopy>
+                                                    </Grid>
+                                                    <Grid>
+                                                        <ButtonComponentCopy
+                                                            type="apply"
+                                                            title="apply"
+                                                        ></ButtonComponentCopy>
+                                                    </Grid>
                                                 </Grid>
-                                            </Grid>
+                                            </>
+                                        )}
+                                    </Grid>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    </Grid>
+                </Grid>
 
+                <Grid container item lg={12} width={"100%"}>
+                    <Grid
+                        item
+                        lg={4}
+                        css={textNFieldStyle}
+                        width={"100%"}
+                        marginBottom={"20px"}
+                        paddingRight={"10px"}
+                    >
+                        <Grid css={textGrid}>Video Length Group</Grid>
+                        <Grid css={itemStyle} width={"100%"}>
+                            <FormControl fullWidth>
+                                <InputLabel
+                                    id="videoLength"
+                                    css={selectLabelStyle}
+                                >
+                                    Select Item
+                                </InputLabel>
+                                <Select
+                                    css={multiSelectStyle}
+                                    sx={{
+                                        height: "36px",
+                                    }}
+                                    labelId="videoLength"
+                                    id="videoLengthSelect"
+                                    multiple
+                                    value={videoLength}
+                                    onChange={handleChangeVideoLength}
+                                    input={
+                                        <OutlinedInput label="videoLength" />
+                                    }
+                                >
+                                    {lengths.map((length, lengthIndex) => (
+                                        <MenuItem
+                                            key={length}
+                                            value={length}
+                                            css={menuItemStyle}
+                                            onClick={() =>
+                                                handleLengthMenuClick(
+                                                    lengthIndex
+                                                )
+                                            }
+                                        >
                                             <Grid
                                                 container
-                                                css={buttonGridStyle}
+                                                alignItems={"center"}
+                                                justifyContent={"space-between"}
                                             >
-                                                <Grid css={buttonGrid}>
-                                                    <ButtonComponentCopy
-                                                        type="cancel"
-                                                        title="cancel"
-                                                    ></ButtonComponentCopy>
-                                                </Grid>
+                                                <Grid>{length}</Grid>
                                                 <Grid>
-                                                    <ButtonComponentCopy
-                                                        type="apply"
-                                                        title="apply"
-                                                    ></ButtonComponentCopy>
+                                                    <Radio
+                                                        id={length}
+                                                        checked={
+                                                            videoLengthRadio[
+                                                                lengthIndex
+                                                            ]
+                                                        }
+                                                        value="a"
+                                                        name="radio-buttons"
+                                                        inputProps={{
+                                                            "aria-label": "A",
+                                                        }}
+                                                        icon={
+                                                            <CircleOutlinedIcon
+                                                                sx={{
+                                                                    color: "#161F29",
+                                                                }}
+                                                            ></CircleOutlinedIcon>
+                                                        }
+                                                        checkedIcon={
+                                                            <CheckCircleIcon
+                                                                sx={{
+                                                                    color: "#57ce66!important",
+                                                                }}
+                                                            ></CheckCircleIcon>
+                                                        }
+                                                    />
                                                 </Grid>
                                             </Grid>
-                                        </Grid>
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    </Grid>
+
+                    <Grid
+                        item
+                        lg={4}
+                        css={textNFieldStyle}
+                        width={"100%"}
+                        marginBottom={"20px"}
+                        paddingRight={"10px"}
+                    >
+                        <Grid css={textGrid}>Engagement</Grid>
+                        <Grid css={itemStyle} width={"100%"}>
+                            <FormControl fullWidth>
+                                <InputLabel
+                                    id="engagement"
+                                    css={selectLabelStyle}
+                                >
+                                    Select Item
+                                </InputLabel>
+                                <Select
+                                    css={multiSelectStyle}
+                                    sx={{
+                                        height: "36px",
+                                    }}
+                                    labelId="engagement"
+                                    id="engagementSelect"
+                                    multiple
+                                    value={engagement}
+                                    onChange={handleChangeEngagement}
+                                    input={
+                                        <OutlinedInput label="videoLength" />
+                                    }
+                                >
+                                    {engagements.map(
+                                        (engagement, engagementIndex) => (
+                                            <MenuItem
+                                                key={engagement}
+                                                value={engagement}
+                                                css={menuItemStyle}
+                                                onClick={() =>
+                                                    handleEngagementMenuClick(
+                                                        engagementIndex
+                                                    )
+                                                }
+                                            >
+                                                <Grid
+                                                    container
+                                                    alignItems={"center"}
+                                                    justifyContent={
+                                                        "space-between"
+                                                    }
+                                                >
+                                                    <Grid>{engagement}</Grid>
+                                                    <Grid>
+                                                        <Radio
+                                                            id={engagement}
+                                                            checked={
+                                                                engagementRadio[
+                                                                    engagementIndex
+                                                                ]
+                                                            }
+                                                            value="a"
+                                                            name="radio-buttons"
+                                                            inputProps={{
+                                                                "aria-label":
+                                                                    "A",
+                                                            }}
+                                                            icon={
+                                                                <CircleOutlinedIcon
+                                                                    sx={{
+                                                                        color: "#161F29",
+                                                                    }}
+                                                                ></CircleOutlinedIcon>
+                                                            }
+                                                            checkedIcon={
+                                                                <CheckCircleIcon
+                                                                    sx={{
+                                                                        color: "#57ce66!important",
+                                                                    }}
+                                                                ></CheckCircleIcon>
+                                                            }
+                                                        />
+                                                    </Grid>
+                                                </Grid>
+                                            </MenuItem>
+                                        )
+                                    )}
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    </Grid>
+
+                    <Grid
+                        item
+                        lg={4}
+                        css={textNFieldStyle}
+                        width={"100%"}
+                        marginBottom={"20px"}
+                    >
+                        <Grid css={textGrid}>AD & Monetization</Grid>
+                        <Grid css={itemStyle} width={"100%"}>
+                            <FormControl fullWidth>
+                                <InputLabel
+                                    id="monetization"
+                                    css={selectLabelStyle}
+                                >
+                                    Select Item
+                                </InputLabel>
+                                <Select
+                                    css={multiSelectStyle}
+                                    sx={{
+                                        height: "36px",
+                                    }}
+                                    labelId="monetization"
+                                    id="monetizationSelect"
+                                    multiple
+                                    value={monetization}
+                                    onChange={handleChangeMonetization}
+                                    input={
+                                        <OutlinedInput label="monetization" />
+                                    }
+                                >
+                                    {monetizations.map(
+                                        (monetization, monetizationIndex) => (
+                                            <MenuItem
+                                                key={monetization}
+                                                value={monetization}
+                                                css={menuItemStyle}
+                                                onClick={() =>
+                                                    handleMonetizationMenuClick(
+                                                        monetizationIndex
+                                                    )
+                                                }
+                                            >
+                                                <Grid
+                                                    container
+                                                    alignItems={"center"}
+                                                    justifyContent={
+                                                        "space-between"
+                                                    }
+                                                >
+                                                    <Grid>{monetization}</Grid>
+                                                    <Grid>
+                                                        <Radio
+                                                            id={monetization}
+                                                            checked={
+                                                                monetizationRadio[
+                                                                    monetizationIndex
+                                                                ]
+                                                            }
+                                                            value="a"
+                                                            name="radio-buttons"
+                                                            inputProps={{
+                                                                "aria-label":
+                                                                    "A",
+                                                            }}
+                                                            icon={
+                                                                <CircleOutlinedIcon
+                                                                    sx={{
+                                                                        color: "#161F29",
+                                                                    }}
+                                                                ></CircleOutlinedIcon>
+                                                            }
+                                                            checkedIcon={
+                                                                <CheckCircleIcon
+                                                                    sx={{
+                                                                        color: "#57ce66!important",
+                                                                    }}
+                                                                ></CheckCircleIcon>
+                                                            }
+                                                        />
+                                                    </Grid>
+                                                </Grid>
+                                            </MenuItem>
+                                        )
                                     )}
                                 </Select>
                             </FormControl>
@@ -559,75 +1037,237 @@ export const FilterComponent = (props: props) => {
                     </Grid>
                 </Grid>
 
-                {/* <Grid lg={4} css={textNFieldStyle}>
-                    <Grid css={textGrid}>Video Length Group</Grid>
-                    <Grid css={itemStyle} width={"100%"}>
-                        <FormControl fullWidth>
-                            <InputLabel
-                                id="lengthSelectId"
-                                css={selectLabelStyle}
-                            >
-                                Select Item
-                            </InputLabel>
-                            <Select
-                                css={multiSelectStyle}
-                                sx={{
-                                    borderRadius: "0px!important",
-                                    padding: "0px!important",
-                                    margin: "0px!important",
-                                    paddingLeft: "10px !important",
-                                    paddingTop: "10px !important",
-                                    paddingBottom: "10px !important",
-                                    height: "36px",
-                                }}
-                                labelId="lengthSelectId"
-                                id="lengthSelectId"
-                                multiple
-                                value={videoLength}
-                                onChange={handleChangeVideoLength}
-                                input={<OutlinedInput label="videoLength" />}
-                            >
-                                {lengths.map((length) => (
-                                    <MenuItem
-                                        key={length}
-                                        value={length}
-                                        css={menuItemStyle}
-                                        onClick={() => console.log(length)}
-                                    >
-                                        {length}
+                <Grid container item lg={12} width={"100%"}>
+                    <Grid
+                        item
+                        lg={4}
+                        css={textNFieldStyle}
+                        width={"100%"}
+                        marginBottom={"20px"}
+                        paddingRight={"10px"}
+                    >
+                        <Grid css={textGrid}>Video Contest</Grid>
+                        <Grid css={itemStyle} width={"100%"}>
+                            <InputBase
+                                placeholder="Search and Filter"
+                                onChange={onChangeVideoContestHandler}
+                                name="videoContest"
+                                value={videoContest}
+                                css={placeHolderStyle}
+                            ></InputBase>
 
-                                        <Radio
-                                            id={length}
-                                            checked={videoLengthRadio}
-                                            onClick={() =>
-                                                handleRadioClickLength()
-                                            }
-                                            value="a"
-                                            name="radio-buttons"
-                                            inputProps={{
-                                                "aria-label": "A",
-                                            }}
-                                            icon={
-                                                <CircleOutlinedIcon
-                                                    sx={{
-                                                        color: "#161F29",
-                                                    }}
-                                                ></CircleOutlinedIcon>
-                                            }
-                                            checkedIcon={
-                                                <CheckCircleIcon
-                                                    sx={{
-                                                        color: "#57ce66!important",
-                                                    }}
-                                                ></CheckCircleIcon>
-                                            }
-                                        />
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
+                            <SearchOutlinedIcon
+                                css={searchIconStyle}
+                                sx={{ color: "#161F2980" }}
+                            ></SearchOutlinedIcon>
+                        </Grid>
                     </Grid>
-                </Grid> */}
+
+                    <Grid
+                        item
+                        lg={4}
+                        css={textNFieldStyle}
+                        width={"100%"}
+                        marginBottom={"20px"}
+                        paddingRight={"10px"}
+                    >
+                        <Grid css={textGrid}>Music Creator</Grid>
+                        <Grid css={itemStyle} width={"100%"}>
+                            <InputBase
+                                placeholder="Search and Filter"
+                                onChange={onChangeMusicCreatorHandler}
+                                name="musicCreator"
+                                value={musicCreator}
+                                css={placeHolderStyle}
+                            ></InputBase>
+
+                            <SearchOutlinedIcon
+                                css={searchIconStyle}
+                                sx={{ color: "#161F2980" }}
+                            ></SearchOutlinedIcon>
+                        </Grid>
+                    </Grid>
+
+                    <Grid
+                        item
+                        lg={4}
+                        css={textNFieldStyle}
+                        width={"100%"}
+                        marginBottom={"20px"}
+                    >
+                        <Grid css={textGrid}>Current Status</Grid>
+                        <Grid css={itemStyle} width={"100%"}>
+                            <FormControl fullWidth>
+                                <InputLabel
+                                    id="currentStatus"
+                                    css={selectLabelStyle}
+                                >
+                                    Select Item
+                                </InputLabel>
+                                <Select
+                                    css={multiSelectStyle}
+                                    sx={{
+                                        height: "36px",
+                                    }}
+                                    labelId="currentStatus"
+                                    id="currentStatusSelect"
+                                    multiple
+                                    value={currentStatus}
+                                    onChange={handleChangeCurrentStatus}
+                                    input={
+                                        <OutlinedInput label="currentStatus" />
+                                    }
+                                >
+                                    {currentStatuses.map(
+                                        (currentStatus, currentStatusIndex) => (
+                                            <MenuItem
+                                                key={currentStatus}
+                                                value={currentStatus}
+                                                css={menuItemStyle}
+                                                onClick={() =>
+                                                    handleCurrentStatusMenuClick(
+                                                        currentStatusIndex
+                                                    )
+                                                }
+                                            >
+                                                <Grid
+                                                    container
+                                                    alignItems={"center"}
+                                                    justifyContent={
+                                                        "space-between"
+                                                    }
+                                                >
+                                                    <Grid>{currentStatus}</Grid>
+                                                    <Grid>
+                                                        <Radio
+                                                            id={currentStatus}
+                                                            checked={
+                                                                currentStatusRadio[
+                                                                    currentStatusIndex
+                                                                ]
+                                                            }
+                                                            value="a"
+                                                            name="radio-buttons"
+                                                            inputProps={{
+                                                                "aria-label":
+                                                                    "A",
+                                                            }}
+                                                            icon={
+                                                                <CircleOutlinedIcon
+                                                                    sx={{
+                                                                        color: "#161F29",
+                                                                    }}
+                                                                ></CircleOutlinedIcon>
+                                                            }
+                                                            checkedIcon={
+                                                                <CheckCircleIcon
+                                                                    sx={{
+                                                                        color: "#57ce66!important",
+                                                                    }}
+                                                                ></CheckCircleIcon>
+                                                            }
+                                                        />
+                                                    </Grid>
+                                                </Grid>
+                                            </MenuItem>
+                                        )
+                                    )}
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid container item lg={12} width={"100%"}>
+                    <Grid
+                        item
+                        lg={4}
+                        css={textNFieldStyle}
+                        width={"100%"}
+                        marginBottom={"20px"}
+                    >
+                        <Grid css={textGrid}>Right Selling Status</Grid>
+                        <Grid css={itemStyle} width={"100%"}>
+                            <FormControl fullWidth>
+                                <InputLabel
+                                    id="rightSelling"
+                                    css={selectLabelStyle}
+                                >
+                                    Select Item
+                                </InputLabel>
+                                <Select
+                                    css={multiSelectStyle}
+                                    sx={{
+                                        height: "36px",
+                                    }}
+                                    labelId="rightSelling"
+                                    id="rightSellingSelect"
+                                    multiple
+                                    value={rightSelling}
+                                    onChange={handleChangeRightSelling}
+                                    input={
+                                        <OutlinedInput label="rightSelling" />
+                                    }
+                                >
+                                    {rightSellings.map(
+                                        (rightSelling, rightSellingIndex) => (
+                                            <MenuItem
+                                                key={rightSelling}
+                                                value={rightSelling}
+                                                css={menuItemStyle}
+                                                onClick={() =>
+                                                    handleRightSellingMenuClick(
+                                                        rightSellingIndex
+                                                    )
+                                                }
+                                            >
+                                                <Grid
+                                                    container
+                                                    alignItems={"center"}
+                                                    justifyContent={
+                                                        "space-between"
+                                                    }
+                                                >
+                                                    <Grid>{rightSelling}</Grid>
+                                                    <Grid>
+                                                        <Radio
+                                                            id={rightSelling}
+                                                            checked={
+                                                                rightSellingRadio[
+                                                                    rightSellingIndex
+                                                                ]
+                                                            }
+                                                            value="a"
+                                                            name="radio-buttons"
+                                                            inputProps={{
+                                                                "aria-label":
+                                                                    "A",
+                                                            }}
+                                                            icon={
+                                                                <CircleOutlinedIcon
+                                                                    sx={{
+                                                                        color: "#161F29",
+                                                                    }}
+                                                                ></CircleOutlinedIcon>
+                                                            }
+                                                            checkedIcon={
+                                                                <CheckCircleIcon
+                                                                    sx={{
+                                                                        color: "#57ce66!important",
+                                                                    }}
+                                                                ></CheckCircleIcon>
+                                                            }
+                                                        />
+                                                    </Grid>
+                                                </Grid>
+                                            </MenuItem>
+                                        )
+                                    )}
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </Grid>
         </>
     );
