@@ -18,7 +18,8 @@ import Grid from "@mui/material/Grid";
 import MenuItem from "@mui/material/MenuItem";
 
 // ** Components
-import SearchComponent from "./SearchComponent";
+import SearchComponent from "src/components/SearchComponent";
+import ButtonComponent from "src/components/ButtonComponent";
 
 //styled Component
 const StyledTableCell = styled(TableCell)(() => ({
@@ -45,8 +46,9 @@ const StyledSelect = styled(Select)({
     boxShadow: "inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)",
 });
 
-const StyledMenuItem= styled(MenuItem)({
-margin:'5px'
+const StyledMenuItem = styled(MenuItem)({
+    border: "2px solid red",
+    margin: "5px",
 });
 
 const StyledGrid = styled(Grid)({
@@ -85,6 +87,13 @@ const List = styled("ul")({
     listStyle: "none",
     padding: 0,
     margin: 0,
+    display: "flex",
+});
+
+const ButtonGrid = styled(Grid)({
+    margin: "5px",
+    fontSize: "12px",
+    whiteSpace: "nowrap",
     display: "flex",
 });
 
@@ -140,15 +149,25 @@ function UsePagination() {
     );
 }
 
-export default function ListComponent({
+type Item = {
+    type: string; title: string;
+}
+export default function ManageContestList({
     rowsData,
     columns,
+    actions,
+    actionHandler
 }: {
     rowsData: object[];
     columns: object[];
+    actions: object[];
+    actionHandler: (type: string, id: string)=>void;
 }) {
-
     const data = rowsData;
+
+    // const actionHandler2=((type: string, id: string)=>{
+    //     console.log("View Contest clicked")
+    // })
 
     return (
         <Box maxWidth={"xl"} sx={{ background: "#F3F3F4" }}>
@@ -218,125 +237,132 @@ export default function ListComponent({
                             </TableHead>
                             <TableBody>
                                 {data.map((row: any) => (
-                                    <StyledTableRow key={row?.videoID || ""}>
+                                    <StyledTableRow key={row?.contestID || ""}>
                                         <StyledTableCell
                                             component="th"
                                             scope="row"
                                         >
-                                            {row?.videoID || ""}
+                                            {row?.contestID || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {row?.contestName || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             <img
                                                 height={120}
                                                 width={80}
-                                                src="/images/avatars/images1.jpg"
+                                                src={row?.coverPhoto}
                                                 alt="this is image"
                                             />
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.videoTitle || ""}
+                                            {row?.hashTag || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.fileSize || ""}
+                                            {row?.brandTag || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.videoLength || ""}
+                                            {row?.publishingBrandName || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.userName || ""}
+                                            {row?.targetUserLavel || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.userID || ""}
+                                            {row?.targetLocation || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.fanfareID || ""}
+                                            {row?.rewardNature || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.userCreatedDate || ""}
+                                            {row?.rewardPeriod || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.uploadData || ""}
+                                            {row?.numberofRewards || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.uploadDays || ""}
+                                            {row?.typeofGift || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.uploadCountry || ""}
+                                            {row?.totalValueReward || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.uploadedIP || ""}
+                                            {row?.netPayment || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.deviceType || ""}
+                                            {row?.paymentChannel || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.videoLengthGroup || ""}
+                                            {row?.totalParticipants || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.totalViews || ""}
+                                            {row?.totalVideos || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.totalWatchTime || ""}
+                                            {row?.totalReach || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.totalLikes || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.totalComments || ""}
+                                            {row?.totalClick || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             {row?.totalShares || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.downloads || ""}
+                                            {row?.totalFollow || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.contestID || ""}
+                                            {row?.totalVideosViews || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.contestTitle || ""}
+                                            {row?.totalWatchTime || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.contestWinningPosition || ""}
+                                            {row?.resultPublishingStatus || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.allTimeRankingScore || ""}
+                                            {row?.giftDisbursmentStatus || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.trendingScore || ""}
+                                            {row?.contestTrandingRanking || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.activeAwarenessDays || ""}
+                                            {row?.activeBoostingRanking || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.activeProductdays || ""}
+                                            {row?.allTimeContestRanking || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.totalMonitization || ""}
+                                            {row?.publishType || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.activeDailyMonetization || ""}
+                                            {row?.contestStatus || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.awarenessClick || ""}
+                                            {row?.contestStartDate || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.addReach || ""}
+                                            {row?.ContestEndDate || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.trafficGeneration || ""}
+                                            {row?.uploadedBy || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.rightSellingStatus || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.lastActivityDate || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.lastActivityTime || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.currentSatus || ""}
+
+                                                {(actions && actions.length) ? actions.map((item: Item | {}, i: number) => {
+                                                    return (
+                                                        <>
+                                                            <ButtonGrid key={i}>
+                                                                <ButtonComponent
+                                                                    type={item?.type || ""}
+                                                                    title={item?.title || ""}
+                                                                    onClick={()=> {
+                                                                        if(actionHandler) actionHandler(item?.type||"no type", row?.contestID);
+                                                                    }}
+                                                                />
+                                                            </ButtonGrid>
+                                                        </>
+                                                    );
+                                                }) : null}
+
                                         </StyledTableCell>
                                     </StyledTableRow>
                                 ))}
@@ -411,197 +437,195 @@ export default function ListComponent({
     );
 }
 
-ListComponent.defaultProps = {
+ManageContestList.defaultProps = {
     rowsData: [
         {
-            videoID: "62b956a760a6af7b2e98cae1",
-            thumbnail: "url",
-            videoTitle: "Beautiful Henna Design",
-            fileSize: 24.44,
-            videoLength: 0.4,
-            userName: "Nimul Islam",
-            userID: "124345579866",
-            fanfareID: "xyz2022",
-            userCreatedDate: "6/26/2021",
-            uploadData: "1:05:11 PM",
-            uploadDays: 410,
-            uploadCountry: "Bangladesh",
-            uploadedIP: "103.103.34.34",
-            deviceID: "d8c1a9b3ca05740d",
-            deviceType: "android",
-            videoLengthGroup: "31s-60s",
-            totalViews: 220,
-            totalWatchTime: 6160,
-            totalLikes: 50,
-            totalComments: 10,
+            contestID: "62b956a760a6af7b2e98cae1",
+            contestName: "xyz2022",
+            coverPhoto: "https://i.postimg.cc/c1f434Wn/images1.jpg",
+            hashTag: "#0000",
+            brandTag: "<0000",
+            publishingBrandName: "Brand Name",
+            targetUserLavel: "Lavel 1",
+            targetLocation: "Dhaka",
+            rewardNature: "Fixed",
+            rewardPeriod: "-",
+            numberofRewards: "00",
+            typeofGift: "-",
+            totalValueReward: "00",
+            netPayment: "android",
+            paymentChannel: "31s-60s",
+            totalParticipants: 220,
+            totalVideos: 6160,
+            totalReach: 50,
+            totalClick: 10,
             totalShares: 15,
-            downloads: 55,
-            contestID: "VC123547",
-            contestTitle: "Talent's Wolrd",
-            contestWinningPosition: "1st",
-            allTimeRankingScore: 1700,
-            trendingScore: 415,
-            activeAwarenessDays: 0,
-            activeProductdays: 3,
-            totalMonitization: 5000,
-            activeDailyMonetization: 100,
-            addReach: 5000,
-            awarenessClick: 1000,
-            trafficGeneration: 1500,
-            rightSellingStatus: "Proccesing",
-            lastActivityDate: "6/27/2022",
-            lastActivityTime: "1:05:00 PM",
-            currentSatus: "Published",
+            totalFollow: 55,
+            totalVideosViews: "VC123547",
+            totalWatchTime: "Talent's Wolrd",
+            resultPublishingStatus: "1st",
+            giftDisbursmentStatus: 1700,
+            contestTrandingRanking: 415,
+            activeBoostingRanking: 0,
+            allTimeContestRanking: 0,
+            publishType: 3,
+            contestStatus: 5000,
+            contestStartDate: 100,
+            ContestEndDate: 5000,
+            uploadedBy: 1000,
         },
     ],
     columns: [
         {
-            field: "videoID",
-            header: "Video ID",
+            field: "contestID",
+            header: "Contest ID",
         },
         {
-            field: "thumbnail",
-            header: "Thumbnail",
+            field: "contestName",
+            header: "Contest Name",
         },
         {
-            field: "videoTitle",
-            header: "Video Title",
+            field: "coverPhoto",
+            header: "Cover Photo",
         },
         {
-            field: "fileSize",
-            header: "File Size(MB)",
+            field: "hashTag",
+            header: "Hashtag",
         },
         {
-            field: "videoLength",
-            header: "Video Length",
+            field: "brandTag",
+            header: "Brandtag",
         },
         {
-            field: "userName",
-            header: "User Name",
+            field: "publishingBrandName",
+            header: "Publishing Brand Name",
         },
         {
-            field: "userID",
-            header: "User ID",
+            field: "targetUserLavel",
+            header: "Target User Level",
         },
         {
-            field: "fanfareID",
-            header: "Fanfare ID",
+            field: "targetLocation",
+            header: "Target Location",
         },
         {
-            field: "userCreatedDate",
-            header: "User Created Date",
+            field: "rewardNature",
+            header: "Reward Nature",
         },
         {
-            field: "uploadData",
-            header: "Upload Data",
+            field: "rewardPeriod",
+            header: "Reward Period",
         },
         {
-            field: "uploadDays",
-            header: "Upload Days",
+            field: "numberofRewards",
+            header: "Number of Reward",
         },
         {
-            field: "uploadCountry",
-            header: "Upload Country",
+            field: "typeofGift",
+            header: "Type of Gift",
         },
         {
-            field: "uploadedIP",
-            header: "Uploaded IP",
+            field: "totalValueReward",
+            header: "Total Value of Reward",
         },
         {
-            field: "deviceType",
-            header: "Device Type",
+            field: "netPayment",
+            header: "Net Payment",
         },
         {
-            field: "videoLengthGroup",
-            header: "Video Length Group",
+            field: "paymentChannel",
+            header: "Payment Channel",
         },
         {
-            field: "totalViews",
-            header: "Total Views",
+            field: "totalParticipants",
+            header: "Total Participants",
+        },
+        {
+            field: "totalVideos",
+            header: "Total Videos",
+        },
+        {
+            field: "totalReach",
+            header: "Total Reach",
+        },
+        {
+            field: "totalClick",
+            header: "Total Click",
+        },
+        {
+            field: "totalShare",
+            header: "Total Share",
+        },
+        {
+            field: "totalFollow",
+            header: "Total Follow/ Favourites",
+        },
+        {
+            field: "totalVideosViews",
+            header: "Total Video Views",
         },
         {
             field: "totalWatchTime",
             header: "Total Watch Time",
         },
         {
-            field: "totalLikes",
-            header: "Total Likes",
+            field: "resultPublishingStatus",
+            header: "Result Publishing Status",
         },
         {
-            field: "totalComments",
-            header: "Total Comments",
+            field: "giftDisbursmentStatus",
+            header: "Gift Disbursment Status",
         },
         {
-            field: "totalShares",
-            header: "Total Shares",
+            field: "contestTrandingRanking",
+            header: "Contest Tranding Ranking",
         },
         {
-            field: "downloads",
-            header: "Downloads",
+            field: "activeBoostingRanking",
+            header: "Active Boosting Ranking",
         },
         {
-            field: "contestID",
-            header: "Contest ID",
+            field: "allTimeContestRanking",
+            header: "All Time Contest Ranking",
         },
         {
-            field: "contestTitle",
-            header: "Contest Title",
+            field: "publishType",
+            header: "Publish Type",
         },
         {
-            field: "contestWinningPosition",
-            header: "Contest Winning Position",
+            field: "contestStatus",
+            header: "Contest Status",
         },
         {
-            field: "allTimeRankingScore",
-            header: "All Time Ranking Score",
+            field: "contestStartDate",
+            header: "Contest Strat Date",
         },
         {
-            field: "trendingScore",
-            header: "Tranding Score",
+            field: "ContestEndDate",
+            header: "Contest End Date",
         },
         {
-            field: "activeAwarenessDays",
-            header: "Active Awareness Days",
+            field: "uploadedBy",
+            header: "Uploaded By",
         },
         {
-            field: "activeProductdays",
-            header: "Active Product Days",
-        },
-        {
-            field: "totalMonitization",
-            header: "Total Monetization (Till Yestarday)",
-        },
-        {
-            field: "activeDailyMonetization",
-            header: "Active Daily Monetization",
-        },
-        {
-            field: "addReach",
-            header: "ADD Reach",
-        },
-        {
-            field: "awarenessClick",
-            header: "Awareness Click",
-        },
-        {
-            field: "trafficGeneration",
-            header: "Traffic Generation",
-        },
-        {
-            field: "rightSellingStatus",
-            header: "Right Selling Status",
-        },
-        {
-            field: "lastActivityDate",
-            header: "Last Activity Date",
-        },
-        {
-            field: "lastActivityTime",
-            header: "Last Activity Time",
-        },
-        {
-            field: "currentSatus",
-            header: "Current Status",
+            field: "action",
+            header: "Action",
         },
     ],
+    actions: [
+        {
+            type: "action",
+            title: "View Contest"
+        },
+        {
+            type: "action",
+            title: "View Summary"
+        },
+        {
+            type: "aply",
+            title: "More Action"
+        },
+    ],
+    actionHandler: (type: string, id: string)=>console.log('type, id', type, id)
 };
