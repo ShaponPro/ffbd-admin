@@ -1,10 +1,11 @@
+import { Skin } from 'src/@core/layouts/types'
+
 // ** Type Imports
 import { PaletteMode } from '@mui/material'
-import { Skin } from 'src/@core/layouts/types'
 
 const DefaultPalette = (mode: PaletteMode, skin: Skin) => {
   // ** Vars
-  const lightColor = '76, 78, 100'
+  const lightColor = '#161F29'
   const darkColor = '234, 234, 255'
   const mainColor = mode === 'light' ? lightColor : darkColor
 
@@ -23,8 +24,8 @@ const DefaultPalette = (mode: PaletteMode, skin: Skin) => {
       dark: darkColor,
       main: mainColor,
       light: lightColor,
-      darkBg: '#282A42',
-      lightBg: '#F7F7F9',
+      darkBg: '#161F29',
+      lightBg: '#161F29',
       bodyBg: mode === 'light' ? '#F7F7F9' : '#282A42', // Same as palette.background.default but doesn't consider bordered skin
       tooltipBg: mode === 'light' ? '#262732' : '#464A65',
       tableHeaderBg: mode === 'light' ? '#F5F5F7' : '#3A3E5B'
@@ -35,7 +36,7 @@ const DefaultPalette = (mode: PaletteMode, skin: Skin) => {
     },
     mode: mode,
     primary: {
-      light: '#787EFF',
+      light: '#161F29',
       main: '#666CFF',
       dark: '#5A5FE0',
       contrastText: '#FFF'
