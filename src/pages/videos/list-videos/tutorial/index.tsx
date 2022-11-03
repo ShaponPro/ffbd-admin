@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -35,41 +35,44 @@ const AnalyticsCongratulations = () => {
   if (error) {
     return <p>:( an error happened</p>;
   }
+  if(loading){
+    return <p>Data Loading</p>
+  }
 
   console.log('data', data)
 
    /**
    * Handle on tab change
    */
-  const filterChangeHandler = (key: string) =>{
-    console.log('key', key)
-  }
+  // const filterChangeHandler = (key: string) =>{
+  //   console.log('key', key)
+  // }
 
 
-  const columns =[
-    {
-      field:"_id", header:"Video ID"
-    }, 
-    {
-      field:"title", header:"Video Title"
-    }, 
-    {
-      field:"activity_updated", header:"Last Activity Time"
-    }, 
-    {
-      field:"short_id", header:"Short ID"
-    },
-    {
-      field:"likes_count", header:"Total Likes"
-    }, 
-    {
-      field:"comments_count", header:"Total Comments"
-    },  
-    {
-      field:"views_count", header:"Total Views"
-    } ,
+  // const columns =[
+  //   {
+  //     field:"_id", header:"Video ID"
+  //   }, 
+  //   {
+  //     field:"title", header:"Video Title"
+  //   }, 
+  //   {
+  //     field:"activity_updated", header:"Last Activity Time"
+  //   }, 
+  //   {
+  //     field:"short_id", header:"Short ID"
+  //   },
+  //   {
+  //     field:"likes_count", header:"Total Likes"
+  //   }, 
+  //   {
+  //     field:"comments_count", header:"Total Comments"
+  //   },  
+  //   {
+  //     field:"views_count", header:"Total Views"
+  //   } ,
 
-  ]
+  // ]
 
   return (
     <ApexChartWrapper>
@@ -102,7 +105,7 @@ const AnalyticsCongratulations = () => {
           </Box>
           </Grid>
           <Grid item xs={12} sm={12}>
-            <FilterComponent  title ='select' onChange = {filterChangeHandler}/>
+            <FilterComponent/>
           </Grid>
           <Grid item xs={12} sm={12}>
             <ListComponent />
