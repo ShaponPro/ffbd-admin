@@ -20,7 +20,7 @@ import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 import TabbarComponent from "src/components/TabbarComponent";
 import { ContestResultFilter } from "src/container/filters/ContestResultFilter";
 import ContestResultList from "src/container/lists/ContestResultList"
-// import ButtonGroupComponent from "src/components/ButtonGroupComponent";
+import ButtonGroupComponent from "src/components/ButtonGroupComponent";
 
 //**Style ***/
 const VoteBox = styled(Box)<BoxProps>(({ theme }) => ({
@@ -77,20 +77,18 @@ const ContestResult = () => {
                     </Grid>
 
                     <Box sx={{ width: '100%' }}>
-                       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        <Grid item xs={6}  sx={{ width: '100%', background: "#F3F3F4" ,borderRadius:'5px'}}>
-                            
+                       <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }}>
+                        <Grid item xs={12} md={6} sx={{ width: '100%', background: "#F3F3F4" ,borderRadius:'5px'}}> 
                           <Grid item xs={12} sm={12}>
                             <ContestResultFilter/>
                           </Grid>
-
                           <Grid item xs={12} sm={12} sx={{ paddingRight:'10px'}}>
                             <ContestResultList/>
                           </Grid>
                         </Grid>
 
-                        <Grid item xs={6}  sx={{ width: '100%' }}>
-                        {/* <ButtonGroupComponent/> */}
+                        <Grid item xs={12} md={6} sx={{ width: '100%' ,background:"#EBF9ED"}}>
+                        <ButtonGroupComponent/>
                         <VoteBox>You can Vote only 3 Videos</VoteBox>
                        </Grid>
                       </Grid>
