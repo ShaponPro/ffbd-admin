@@ -8,11 +8,11 @@ import TableRow from '@mui/material/TableRow';
 import styled from "@emotion/styled";
 
 function createData(
-  name: string,
+  title: string,
   tableValue: any,
 
 ) {
-  return { name, tableValue};
+  return { title, tableValue};
 }
 
 const rows = [
@@ -67,11 +67,11 @@ export default function ListTableComponent() {
         <TableBody>
           {rows.map((row) => (
             <StyledTableRow
-              key={row.name}
+              key={row.title}
               sx={{ ' &:last-child th': { border: 0 } }}
             >
               <StyledTableCell sx={{fontWeight:700}} component="th" scope="row">
-                {row.name}
+                {row.title}
               </StyledTableCell>
               <StyledTableCell align="left">{row.tableValue}</StyledTableCell>
             </StyledTableRow>
