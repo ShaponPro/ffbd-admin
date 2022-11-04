@@ -18,10 +18,11 @@ import MenuItem from "@mui/material/MenuItem";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Switch from "@mui/material/Switch";
-import Checkbox from '@mui/material/Checkbox';
+import Checkbox from "@mui/material/Checkbox";
 
 // ** Components
 import SearchComponent from "src/components/SearchComponent";
+import Link from "next/link";
 
 //styled Component
 const StyledTableCell = styled(TableCell)(() => ({
@@ -84,23 +85,8 @@ const StyledSelectReport = styled(Select)({
         transition: "0s !important",
     },
 });
-const StyledSwitch = styled(Switch)({});
-const HeadClick = styled(Grid)({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-});
-const ArrowClick = styled(Grid)({
-    background: "#FFFFFF",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    margin: "5px",
-});
 
-const label = { inputProps: { "aria-label": "Switch demo" } };
-
-export default function ManageCampaignList({
+export default function InnAppOfferList({
     rowsData,
     columns,
 }: {
@@ -209,12 +195,7 @@ export default function ManageCampaignList({
                                 <StyledTableRow>
                                     {columns.map((col: any) => (
                                         <StyledTableCell key={col.videoID}>
-                                            <HeadClick>
-                                                <Grid>{col?.header || ""}</Grid>{" "}
-                                                <ArrowClick>
-                                                    <ArrowDropDownIcon />
-                                                </ArrowClick>
-                                            </HeadClick>
+                                            {col?.header || ""}
                                         </StyledTableCell>
                                     ))}
                                 </StyledTableRow>
@@ -223,92 +204,52 @@ export default function ManageCampaignList({
                                 {data.map((row: any) => (
                                     <StyledTableRow key={row?.videoID || ""}>
                                         <StyledTableCell>
-                                            <Checkbox
-                                                {...label}
-                                                defaultChecked
-                                                sx={{
-                                                    "& .MuiSvgIcon-root": {
-                                                        fontSize: 28,
-                                                    },
-                                                }}
-                                            />
-                                        </StyledTableCell>
-                                        <StyledTableCell
-                                            component="th"
-                                            scope="row"
-                                        >
-                                            <StyledSwitch
-                                                {...label}
-                                                defaultChecked
-                                            />
+                                            {row?.slNo || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.brand || ""}
+                                            {row?.title || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.campaignID || ""}
+                                            {row?.noOfAction || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.campaignName || ""}
+                                            {row?.reward || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            <img
-                                                height={40}
-                                                width={90}
-                                                src={row?.thumbnail || ""}
-                                                alt="this is image"
-                                            />
+                                            {row?.dailyTime || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {row?.startDate || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {row?.endDate || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             {row?.status || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.event || ""}
+                                            {row?.publishedOn || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.campaignObjective || ""}
+                                            {row?.lastEdit || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.amountSpent || ""}
+                                            <Link>{row?.publishBy || ""}</Link>
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.costPerResult || ""}
+                                            {row?.country || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.starts || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.ends || ""}
+                                            {row?.zone || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             {row?.lastEdits || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.videoView || ""}
+                                            {row?.area || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.reach || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.impression || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.engagement || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.followers || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.click || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.contents || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.participents || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.invoice || ""}
+                                            {row?.action || ""}
                                         </StyledTableCell>
                                     </StyledTableRow>
                                 ))}
@@ -321,126 +262,90 @@ export default function ManageCampaignList({
     );
 }
 
-ManageCampaignList.defaultProps = {
+InnAppOfferList.defaultProps = {
     rowsData: [
         {
-            selectRow: "selectRow",
-            onOff: "-",
-            brand: "Walton",
-            campaignID: "5689023D",
-            campaignName: "Walton Premio-01",
-            thumbnail: "https://i.postimg.cc/c1f434Wn/images1.jpg",
+            slNo: 1,
+            title: "Loyality Program",
+            noOfAction: 2,
+            reward: "20 F:Points",
+            dailyTime: "3 Hour",
+            startDate: "1/8/2022",
+            endDate: "1/9/2022",
             status: "Active",
-            event: "Awareness Boosting",
-            campaignObjective: "Direct Awareness",
-            amountSpent: 3000,
-            costPerResult: "30.33",
-            starts: "1:05:11",
-            ends: "1:05:11",
-            lastEdits: "01.07.22",
-            videoView: "-",
-            reach: 88000,
-            impression: 134000,
-            engagement: "-",
-            followers: "-",
-            click: "-",
-            contents: "-",
-            participents: "-",
-            invoice: "19354",
+            publishedOn: "1/8/2022",
+            lastEdit: "1/8/2022",
+            publishBy: "siam@fanfare.com.bd",
+            country: "Bangladesh",
+            zone: "Dhaka South",
+            area: "-",
+            action: "Button",
         },
     ],
     columns: [
         {
-            field: "selectRow",
-            header: '',
+            field: "slNo",
+            header: "Sl. No",
         },
         {
-            field: "onOff",
-            header: "on/off",
+            field: "title",
+            header: "Title",
         },
         {
-            field: "brand",
-            header: "Brand",
+            field: "noOfAction",
+            header: "No. of Action",
         },
         {
-            field: "campaignID",
-            header: "Campaign/Contest ID",
+            field: "reward",
+            header: "Reward",
         },
         {
-            field: "campaignName",
-            header: "Campaign/Contest Name",
+            field: "dailyTime",
+            header: "Daily Time",
         },
         {
-            field: "thumbnail",
-            header: "Thumbnail",
+            field: "startDate",
+            header: "Start Date",
+        },
+        {
+            field: "endDate",
+            header: "End Date",
         },
         {
             field: "status",
             header: "Status",
         },
         {
-            field: "event",
-            header: "Event",
+            field: "publishedOn",
+            header: "Published on",
         },
         {
-            field: "campaignObjective",
-            header: "Campaign Objective",
+            field: "lastEdit",
+            header: "Last Edit",
         },
         {
-            field: "amountSpent",
-            header: "Amount Spent (BDT)",
+            field: "publishBy",
+            header: "Publish by",
         },
         {
-            field: "costPerResult",
-            header: "Cost Per Result",
+            field: "country",
+            header: "Country",
         },
         {
-            field: "starts",
-            header: "Starts",
-        },
-        {
-            field: "ends",
-            header: "Ends",
+            field: "zone",
+            header: "Zone",
         },
         {
             field: "lastEdits",
             header: "Last Edits",
         },
         {
-            field: "videoView",
-            header: "Video View",
+            field: "area",
+            header: "Area",
         },
         {
-            field: "reach",
-            header: "Reach",
-        },
-        {
-            field: "impression",
-            header: "Impression",
-        },
-        {
-            field: "engagement",
-            header: "Engagement",
-        },
-        {
-            field: "followers",
-            header: "Followers",
-        },
-        {
-            field: "click",
-            header: "Click",
-        },
-        {
-            field: "contents",
-            header: "Contents",
-        },
-        {
-            field: "participents",
-            header: "Participents",
-        },
-        {
-            field: "invoice",
-            header: "Invoice",
+            field: "action",
+            header: "Action",
         },
     ],
 };
