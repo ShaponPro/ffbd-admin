@@ -22,7 +22,7 @@ import Checkbox from "@mui/material/Checkbox";
 
 // ** Components
 import SearchComponent from "src/components/SearchComponent";
-import Link from "next/link";
+import ButtonComponent from "src/components/ButtonComponent";
 
 //styled Component
 const StyledTableCell = styled(TableCell)(() => ({
@@ -86,12 +86,23 @@ const StyledSelectReport = styled(Select)({
     },
 });
 
+const ButtonGrid = styled(Grid)({
+    margin: "5px",
+    fontSize: "12px",
+    whiteSpace: "nowrap",
+    display: "flex",
+});
+
 export default function InnAppOfferList({
     rowsData,
     columns,
+    actions,
+    actionHandler
 }: {
     rowsData: object[];
     columns: object[];
+    actions: object[];
+    actionHandler: (type: string, id: string)=>void;
 }) {
     const data = rowsData;
 
@@ -234,7 +245,9 @@ export default function InnAppOfferList({
                                             {row?.lastEdit || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            <Link>{row?.publishBy || ""}</Link>
+                                            <a href={row?.publishBy || ""}>
+                                                {row?.publishBy || ""}
+                                            </a>
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             {row?.country || ""}
@@ -249,7 +262,43 @@ export default function InnAppOfferList({
                                             {row?.area || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.action || ""}
+                                            {actions && actions.length
+                                                ? actions.map(
+                                                      (
+                                                          item: Item | {},
+                                                          i: number
+                                                      ) => {
+                                                          return (
+                                                              <>
+                                                                  <ButtonGrid
+                                                                      key={i}
+                                                                  >
+                                                                      <ButtonComponent
+                                                                          type={
+                                                                              item?.type ||
+                                                                              ""
+                                                                          }
+                                                                          title={
+                                                                              item?.title ||
+                                                                              ""
+                                                                          }
+                                                                          onClick={() => {
+                                                                              if (
+                                                                                  actionHandler
+                                                                              )
+                                                                                  actionHandler(
+                                                                                      item?.type ||
+                                                                                          "no type",
+                                                                                      row?.contestID
+                                                                                  );
+                                                                          }}
+                                                                      />
+                                                                  </ButtonGrid>
+                                                              </>
+                                                          );
+                                                      }
+                                                  )
+                                                : null}
                                         </StyledTableCell>
                                     </StyledTableRow>
                                 ))}
@@ -276,6 +325,23 @@ InnAppOfferList.defaultProps = {
             publishedOn: "1/8/2022",
             lastEdit: "1/8/2022",
             publishBy: "siam@fanfare.com.bd",
+            country: "Bangladesh",
+            zone: "Dhaka South",
+            area: "-",
+            action: "Button",
+        },
+        {
+            slNo: 2,
+            title: "Refer Win",
+            noOfAction: 1,
+            reward: "20 F:Points",
+            dailyTime: "3 Hour",
+            startDate: "1/8/2022",
+            endDate: "1/9/2022",
+            status: "Active",
+            publishedOn: "1/8/2022",
+            lastEdit: "1/8/2022",
+            publishBy: "monir@fanfare.com.bd",
             country: "Bangladesh",
             zone: "Dhaka South",
             area: "-",
@@ -348,4 +414,11 @@ InnAppOfferList.defaultProps = {
             header: "Action",
         },
     ],
+    actions: [
+        {
+            type: "action",
+            title: "View Contest"
+        },
+    ],
+    actionHandler: (type: string, id: string)=>console.log('type, id', type, id)
 };

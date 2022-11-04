@@ -13,7 +13,7 @@ import Grid from "@mui/material/Grid";
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 
 // ** Components
-import InnAppOfferList from "src/container/inappofferlist/InAppOfferList";
+import InnAppOfferList from "src/container/list/InAppOfferList";
 import ListComponent from "src/components/ListComponent";
 import { FilterComponent } from "src/components/FilterComponent";
 
@@ -121,11 +121,20 @@ const AnalyticsCongratulations = () => {
                             />
                         </Grid>
                     </Grid>
+                    {active == "manageOffer" && (
                     <Grid container spacing={6}>
                         <Grid item xs={12} sm={12}>
                             <InnAppOfferList />
                         </Grid>
                     </Grid>
+                    )}
+                    {active == "createOffer" && (
+                    <Grid container spacing={6}>
+                        <Grid item xs={12} sm={12}>
+                            this is others
+                        </Grid>
+                    </Grid>
+                    )}
                 </CardContent>
             </Card>
         </ApexChartWrapper>
