@@ -91,7 +91,7 @@ const ContestResult = () => {
                         <Grid item xs={12} md={6} sx={{ width: '100%' ,background:"#EBF9ED"}}>
                         <ButtonGroupComponent/>
                         <VoteBox>You can Vote only 3 Videos</VoteBox>
-                         <ListTableComponent/>
+                         {/* <ListTableComponent/> */}
                        </Grid>
                       </Grid>
                     </Box>
