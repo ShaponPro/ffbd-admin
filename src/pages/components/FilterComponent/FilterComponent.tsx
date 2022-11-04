@@ -95,6 +95,7 @@ const periodTabHeader = css`
 `;
 
 const menuItemStyle = css`
+height: 36px;
     color: #161f29;
     margin-bottom: 2px !important;
     font-family: "Open Sans", sans-serif !important;
@@ -107,6 +108,10 @@ const menuItemStyle = css`
     padding-bottom: 10px !important;
     &:hover {
         background-color: #f3f3f4;
+    }
+
+    .MuiButtonBase-root .MuiMenuItem-root .Mui-selected {
+        flex-direction: column !important;
     }
 `;
 
@@ -138,8 +143,7 @@ const selectStyle = css`
     }
 
     .MuiPaper-root .MuiMenu-paper .MuiPopover-paper {
-        padding: 0px !important;
-        width: 233.75px !important;
+        // padding: 0px !important;
     }
 
     .MuiSelect-select {
@@ -150,7 +154,6 @@ const selectStyle = css`
 
 const multiSelectStyle = css`
     ${selectStyle};
-
     #videoLengthSelect,
     #engagementSelect,
     #monetizationSelect,
@@ -159,8 +162,16 @@ const multiSelectStyle = css`
         display: flex !important;
     }
 
+    .MuiSelect-select {
+        // width: 70%;
+    }
+
     .MuiButtonBase-root {
         display: none !important;
+    }
+
+    .MuiMenuItem-root{
+        // height: 36px;
     }
 `;
 
@@ -168,15 +179,20 @@ const dateInputField = css`
     .MuiInputBase-input {
         padding: 0 !important;
     }
+
+    .MuiInputAdornment-root .MuiInputAdornment-positionEnd {
+    }
 `;
 
 const dateTextField = css`
     .MuiButtonBase-root {
         padding: 0px !important;
-        color: white;
+        color: #161f29;
+        font-size: 12px;
     }
 
     .MuiInputBase-input {
+        padding-left: 8px;
         font-family: "Open Sans", sans-serif !important;
         font-style: normal;
         font-weight: 400;
@@ -186,6 +202,11 @@ const dateTextField = css`
     }
     .MuiInputBase-adornedEnd {
         padding: 0px !important;
+        padding-right: 12px !important;
+    }
+
+    .MuiSvgIcon-root {
+        font-size: 20px !important;
     }
 `;
 
@@ -446,34 +467,6 @@ export const FilterComponent = (props: props) => {
         setRightSellingRadio(updatedRightSellingRadio);
     };
 
-    // const [videoLengthRadioState, setVideoLengthRadioState] = React.useState([
-    //     {
-    //         id: 0,
-    //         length: "Upto 30s",
-    //         isClicked: false,
-    //     },
-    //     {
-    //         id: 1,
-    //         length: "31s-60s",
-    //         isClicked: false,
-    //     },
-    //     {
-    //         id: 2,
-    //         length: "61s-180s",
-    //         isClicked: false,
-    //     },
-    //     {
-    //         id: 3,
-    //         length: "181s-300s",
-    //         isClicked: false,
-    //     },
-    //     {
-    //         id: 3,
-    //         length: "Above 300s",
-    //         isClicked: false,
-    //     },
-    // ]);
-
     const [value, setValue] = React.useState<Dayjs | null>(dayjs("2022-04-07"));
 
     return (
@@ -483,13 +476,16 @@ export const FilterComponent = (props: props) => {
                     <Grid
                         item
                         lg={4}
+                        display={"flex"}
                         css={textNFieldStyle}
                         width={"100%"}
                         marginBottom={"20px"}
                         paddingRight={"10px"}
                     >
-                        <Grid css={textGrid}>User ID/Name</Grid>
-                        <Grid css={itemStyle} width={"100%"}>
+                        <Grid item css={textGrid}>
+                            User ID/Name
+                        </Grid>
+                        <Grid item css={itemStyle} width={"100%"}>
                             <InputBase
                                 placeholder="Search and Filter"
                                 onChange={onChangeUserIDorNameHandler}
@@ -538,7 +534,11 @@ export const FilterComponent = (props: props) => {
                         marginBottom={"20px"}
                     >
                         <Grid css={textGrid}>Upload Period</Grid>
-                        <Grid css={itemStyle} width={"100%"}>
+                        <Grid
+                            css={itemStyle}
+                            width={"100%"}
+                            overflow={"hidden"}
+                        >
                             <FormControl fullWidth>
                                 <InputLabel
                                     id="uploadPeriod"
@@ -657,9 +657,6 @@ export const FilterComponent = (props: props) => {
                                                             }
                                                         >
                                                             <DatePicker
-                                                                InputAdornmentProps={
-                                                                    <></>
-                                                                }
                                                                 openTo="year"
                                                                 views={[
                                                                     "year",
@@ -706,9 +703,6 @@ export const FilterComponent = (props: props) => {
                                                             }
                                                         >
                                                             <DatePicker
-                                                                InputAdornmentProps={
-                                                                    <></>
-                                                                }
                                                                 openTo="year"
                                                                 views={[
                                                                     "year",
@@ -781,7 +775,11 @@ export const FilterComponent = (props: props) => {
                         paddingRight={"10px"}
                     >
                         <Grid css={textGrid}>Video Length Group</Grid>
-                        <Grid css={itemStyle} width={"100%"}>
+                        <Grid
+                            css={itemStyle}
+                            width={"100%"}
+                            overflow={"hidden"}
+                        >
                             <FormControl fullWidth>
                                 <InputLabel
                                     id="videoLength"
@@ -828,7 +826,6 @@ export const FilterComponent = (props: props) => {
                                                                 lengthIndex
                                                             ]
                                                         }
-                                                        value="a"
                                                         name="radio-buttons"
                                                         inputProps={{
                                                             "aria-label": "A",
@@ -866,7 +863,11 @@ export const FilterComponent = (props: props) => {
                         paddingRight={"10px"}
                     >
                         <Grid css={textGrid}>Engagement</Grid>
-                        <Grid css={itemStyle} width={"100%"}>
+                        <Grid
+                            css={itemStyle}
+                            width={"100%"}
+                            overflow={"hidden"}
+                        >
                             <FormControl fullWidth>
                                 <InputLabel
                                     id="engagement"
@@ -955,7 +956,11 @@ export const FilterComponent = (props: props) => {
                         marginBottom={"20px"}
                     >
                         <Grid css={textGrid}>AD & Monetization</Grid>
-                        <Grid css={itemStyle} width={"100%"}>
+                        <Grid
+                            css={itemStyle}
+                            width={"100%"}
+                            overflow={"hidden"}
+                        >
                             <FormControl fullWidth>
                                 <InputLabel
                                     id="monetization"
@@ -1096,7 +1101,11 @@ export const FilterComponent = (props: props) => {
                         marginBottom={"20px"}
                     >
                         <Grid css={textGrid}>Current Status</Grid>
-                        <Grid css={itemStyle} width={"100%"}>
+                        <Grid
+                            css={itemStyle}
+                            width={"100%"}
+                            overflow={"hidden"}
+                        >
                             <FormControl fullWidth>
                                 <InputLabel
                                     id="currentStatus"
@@ -1187,7 +1196,11 @@ export const FilterComponent = (props: props) => {
                         marginBottom={"20px"}
                     >
                         <Grid css={textGrid}>Right Selling Status</Grid>
-                        <Grid css={itemStyle} width={"100%"}>
+                        <Grid
+                            css={itemStyle}
+                            width={"100%"}
+                            overflow={"hidden"}
+                        >
                             <FormControl fullWidth>
                                 <InputLabel
                                     id="rightSelling"
