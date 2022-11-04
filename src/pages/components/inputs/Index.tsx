@@ -1,57 +1,13 @@
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
-import { FilterComponent } from "./FilterComponent";
-import { FilterComponentCopy } from "./FilterComponentCopy";
-import TextFieldComponent from "../inputs/TextFieldComponent";
+import TextFieldComponent from "./TextFieldComponent";
 
-const newFilterComponent = () => {
-    const [userVideosTextState, setUserVideosText] = useState([
-        {
-            id: 0,
-            text: "User ID/Name",
-        },
-        {
-            id: 1,
-            text: "Uploaded Country",
-        },
-        {
-            id: 2,
-            text: "Upload Period",
-        },
-        {
-            id: 3,
-            text: "Video Length Group",
-        },
-        {
-            id: 4,
-            text: "Engagement",
-        },
-        {
-            id: 5,
-            text: "AD & Monetization",
-        },
-
-        {
-            id: 6,
-            text: "Video Contest",
-        },
-
-        {
-            id: 7,
-            text: "Music Creator",
-        },
-
-        {
-            id: 8,
-            text: "Current Status",
-        },
-
-        {
-            id: 9,
-            text: "Right Selling Status",
-        },
-    ]);
+const Index = () => {
+    const [textFieldState, setTextFieldState] = useState("");
+    const onChangeTextField = (e: any) => {
+        setTextFieldState(e.target.value);
+    };
 
     return (
         <>
@@ -91,6 +47,7 @@ const newFilterComponent = () => {
                                         boxShadow:
                                             "1px 2px 3px rgba(22, 31, 41, 0.2)",
                                     }}
+                                    marginBottom={"20px"}
                                 >
                                     <Typography
                                         style={{
@@ -103,12 +60,13 @@ const newFilterComponent = () => {
                                     </Typography>
                                 </Box>
 
-                                {/* New FilterComponent */}
-                                <FilterComponent
-                                    userVideosTextState={userVideosTextState}
-                                ></FilterComponent>
-
-                                <TextFieldComponent></TextFieldComponent>
+                                {/* View Text Field Component */}
+                                <TextFieldComponent
+                                    placeholder="Search and Filter"
+                                    name={"key"}
+                                    value={textFieldState}
+                                    onChange={onChangeTextField}
+                                ></TextFieldComponent>
                             </Grid>
                         </Grid>
                     </CardContent>
@@ -118,4 +76,4 @@ const newFilterComponent = () => {
     );
 };
 
-export default newFilterComponent;
+export default Index;

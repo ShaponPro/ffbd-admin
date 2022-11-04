@@ -95,7 +95,7 @@ const periodTabHeader = css`
 `;
 
 const menuItemStyle = css`
-height: 36px;
+    height: 36px;
     color: #161f29;
     margin-bottom: 2px !important;
     font-family: "Open Sans", sans-serif !important;
@@ -170,7 +170,7 @@ const multiSelectStyle = css`
         display: none !important;
     }
 
-    .MuiMenuItem-root{
+    .MuiMenuItem-root {
         // height: 36px;
     }
 `;
@@ -244,6 +244,17 @@ const currentStatuses = [
     "Uploading",
     "Suspended",
     "Deleted",
+];
+
+const fields = [
+    {
+        title: "vlnfiojvod",
+        type: "text",
+    },
+    {
+        title: "bfgh",
+        type: "select",
+    },
 ];
 
 const rightSellings = ["Free", "Sold", "Processing", "Claimed"];
