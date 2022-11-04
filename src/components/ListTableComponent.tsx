@@ -62,7 +62,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 export default function ListTableComponent() {
   return (
-    <TableContainer sx={{backgroundColor: "#EBF9ED"}}>
+    <TableContainer >
       <Table sx={{ minWidth: 400 }} aria-label="simple table">
         <TableBody>
           {rows.map((row) => (

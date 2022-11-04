@@ -21,6 +21,7 @@ import TabbarComponent from "src/components/TabbarComponent";
 import { ContestResultFilter } from "src/container/filters/ContestResultFilter";
 import ContestResultList from "src/container/lists/ContestResultList"
 import ButtonGroupComponent from "src/components/ButtonGroupComponent";
+import ListTableComponent from "src/components/ListTableComponent";
 
 //**Style ***/
 const VoteBox = styled(Box)<BoxProps>(({ theme }) => ({
@@ -90,6 +91,7 @@ const ContestResult = () => {
                         <Grid item xs={12} md={6} sx={{ width: '100%' ,background:"#EBF9ED"}}>
                         <ButtonGroupComponent/>
                         <VoteBox>You can Vote only 3 Videos</VoteBox>
+                         <ListTableComponent/>
                        </Grid>
                       </Grid>
                     </Box>
