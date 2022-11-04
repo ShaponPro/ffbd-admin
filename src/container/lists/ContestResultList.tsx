@@ -151,42 +151,81 @@ export default function ContestResultList({
 
     return (
         <Box maxWidth={"xl"} sx={{ background: "white", borderRadius: "5px" }}>
-            <Grid sx={{ padding: "10px" }}>
-                <StyledGrid>
-                    <Grid
-                        xs={12}
-                        md={12}
-                        sx={{ display: "flex", alignItems: "center" }}
-                    >
-                        <Typography>Show</Typography>
-                        <StyledSelect>
-                            <StyledMenuItem value={10}>10</StyledMenuItem>
-                            <StyledMenuItem value={20}>20</StyledMenuItem>
-                            <StyledMenuItem value={30}>30</StyledMenuItem>
-                        </StyledSelect>
-                        <Typography>entries</Typography>
+            <Grid sx={{ padding: "10px" ,pt:5}}>
+                <Grid
+                    style={{
+                        paddingTop: "36px",
+                        paddingBottom: "20px",
+                    }}
+                    container
+                    columns={12}
+                    rowSpacing={{ xs: 10 }}
+                >
+                    <Grid xs={12} md={4}>
+                        <Box
+                            style={{
+                                display: "flex",
+                                textAlign: "center",
+                                paddingLeft: "10px",
+                            }}
+                        >
+                            <Box
+                                style={{
+                                    paddingRight: "6px",
+                                    paddingTop: "5px",
+                                }}
+                            >
+                                <Typography>Show</Typography>
+                            </Box>
+                            <Box>
+                                <StyledSelect placeholder="29">
+                                    <StyledMenuItem value={10}>
+                                        10
+                                    </StyledMenuItem>
+                                    <StyledMenuItem value={20}>
+                                        20
+                                    </StyledMenuItem>
+                                    <StyledMenuItem value={30}>
+                                        30
+                                    </StyledMenuItem>
+                                    <StyledMenuItem value={'all'}>
+                                        All
+                                    </StyledMenuItem>
+                                </StyledSelect>
+                            </Box>
+                            <Box
+                                style={{
+                                    paddingLeft: "6px",
+                                    paddingTop: "5px",
+                                }}
+                            >
+                                <Typography>entries</Typography>
+                            </Box>
+                        </Box>
                     </Grid>
-                    <Grid
-                        xs={12}
-                        sx={{ display: "flex", alignItems: "center" }}
-                    >
-                        <SearchComponent />
+
+                    <Grid xs={12} md={4}>
+                        <Box>
+                            <SearchComponent />
+                        </Box>
                     </Grid>
-                    <Grid
-                        xs={12}
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "flex-end",
-                        }}
-                    >
-                        <StyledSelectReport displayEmpty>
-                            <Button variant="text" sx={{ m: 3 }}>
-                                Report
-                            </Button>
-                        </StyledSelectReport>
+                    <Grid xs={12} md={4}>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "flex-end",
+                            }}
+                        >
+                            <StyledSelectReport displayEmpty>
+                                <Button variant="text" sx={{ m: 3 }}>
+                                    Report
+                                </Button>
+                            </StyledSelectReport>
+                        </Box>
                     </Grid>
-                </StyledGrid>
+                </Grid>
+
                 <Grid xs={12} md={12} sx={{ padding: "10px", width: "100% " }}>
                     <TableContainer
                         component={Paper}

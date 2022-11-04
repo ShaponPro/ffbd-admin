@@ -126,7 +126,7 @@ export const ContestResultFilter = () => {
                                 Select Item
                             </InputLabel>
                             <StyledSelect>
-                                <Grid
+                                <Grid 
                                     sx={{
                                         display: "flex",
                                         alignItems: "center",
