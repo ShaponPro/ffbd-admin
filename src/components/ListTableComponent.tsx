@@ -1,37 +1,56 @@
 // ** MUI Imports
-import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
-import { DataGrid } from '@mui/x-data-grid'
-import CardHeader from '@mui/material/CardHeader'
+import * as React from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableRow from '@mui/material/TableRow';
+import styled from "@emotion/styled";
 
-// ** Data Import
-import { rows } from 'src/@fake-db/table/static-data'
+function createData(
+  name: string,
+  tableValue: any,
 
-const columns = [
-  {
-    flex: 0.25,
-    field: 'id',
-    minWidth: 200,
-    headerName: 'ID'
-  },
-  {
-    flex: 0.25,
-    minWidth: 200,
-    field: 'full_name',
-    headerName: 'Name'
-  },
-
-]
-
-const TableBasic = () => {
-  return (
-    <Card>
-      <CardHeader title='Basic' />
-      <Box sx={{ height: 500 }}>
-        <DataGrid columns={columns} rows={rows.slice(0, 10)} />
-      </Box>
-    </Card>
-  )
+) {
+  return { name, tableValue};
 }
 
-export default TableBasic
+const rows = [
+  createData('Contest Type', ' - '),
+  createData('Contest ID',  ' - '),
+  createData('Contest Name',  ' - '),
+  createData('Cover Image',  ' - '),
+  createData('Short Description',  ' - '),
+];
+
+//**Style */
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(even)": {
+        background: "rgba(22, 31, 41, 0.03)",
+    },
+    "&:nth-of-type(odd)": {
+        backgroundColor: "rgba(22, 31, 41, 0.07);",
+    },
+}));
+
+export default function ListTableComponent() {
+  return (
+    <TableContainer >
+      <Table sx={{ minWidth: 300 }} aria-label="simple table">
+        <TableBody>
+          {rows.map((row) => (
+            <StyledTableRow
+              key={row.name}
+              sx={{ ' &:last-child th': { border: 0 } }}
+            >
+              <TableCell sx={{fontWeight:700}} component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell >{row.tableValue}</TableCell>
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
