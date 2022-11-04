@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // ** MUI Imports
-import { InputBase,Typography, Radio } from "@mui/material";
+import { InputBase, Typography, Radio } from "@mui/material";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -77,7 +77,6 @@ export const ContestResultFilter = () => {
         setVideoState({ ...videoState, [e.target.name]: e.target.value });
 
         console.log(videoState);
-
     };
 
     /* Handle all Changes End */
@@ -85,7 +84,7 @@ export const ContestResultFilter = () => {
     return (
         <div className="demo-space-x">
             <Grid container spacing={2}>
-                <Grid item lg={6} xs={12}>
+                <Grid item lg={4} md={6} xs={12}>
                     <StyledGrid>
                         <Typography
                             variant="h4"
@@ -104,13 +103,16 @@ export const ContestResultFilter = () => {
                             <SearchIcon />
                         </Item>
                     </StyledGrid>
+                </Grid>
+
+                <Grid item lg={4} md={6} xs={12}>
                     <StyledGrid>
                         <Typography
                             variant="h4"
                             display="flex"
                             style={typographyStyle}
                         >
-                           Reward Nature
+                            Reward Nature
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
                             <InputLabel
@@ -168,7 +170,7 @@ export const ContestResultFilter = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                       Biweekly
+                                        Biweekly
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -199,6 +201,9 @@ export const ContestResultFilter = () => {
                             </StyledSelect>
                         </FormControl>
                     </StyledGrid>
+                </Grid>
+
+                <Grid item lg={4} md={6} xs={12}>
                     <StyledGrid>
                         <Typography
                             variant="h4"
@@ -219,7 +224,7 @@ export const ContestResultFilter = () => {
                                 Select Item
                             </InputLabel>
                             <StyledSelect>
-                            <Grid
+                                <Grid
                                     sx={{
                                         display: "flex",
                                         alignItems: "center",
@@ -263,7 +268,7 @@ export const ContestResultFilter = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                       Pending
+                                        Pending
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -295,15 +300,15 @@ export const ContestResultFilter = () => {
                         </FormControl>
                     </StyledGrid>
                 </Grid>
-                <Grid item lg={6} xs={12}>
 
+                <Grid item lg={4} md={6} xs={12}>
                     <StyledGrid>
                         <Typography
                             variant="h4"
                             display="flex"
                             style={typographyStyle}
                         >
-                           Contest Status
+                            Contest Status
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
                             <InputLabel
@@ -385,7 +390,7 @@ export const ContestResultFilter = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                    Closed Result
+                                        Closed Result
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -397,7 +402,7 @@ export const ContestResultFilter = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                    Suspended
+                                        Suspended
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -409,7 +414,7 @@ export const ContestResultFilter = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                    Rejected
+                                        Rejected
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -421,14 +426,15 @@ export const ContestResultFilter = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                   Draft
+                                        Draft
                                     </label>
                                     <Radio />
                                 </Grid>
                             </StyledSelect>
                         </FormControl>
                     </StyledGrid>
-
+                </Grid>
+                <Grid item lg={4} md={6} xs={12}>
                     <StyledGrid>
                         <Typography
                             variant="h4"
@@ -484,7 +490,6 @@ export const ContestResultFilter = () => {
                         </FormControl>
                     </StyledGrid>
                 </Grid>
-
             </Grid>
         </div>
     );
