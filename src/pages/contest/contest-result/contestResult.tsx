@@ -5,13 +5,6 @@ import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 
-// // ** State import
-// import { useQuery } from "@apollo/client";
-// import { useEffect, useState } from "react";
-// import { GET_VIDEO_LIST } from "src/pages/videos/graphql/Queries";
-
-// ** MUI IconImports
-
 // ** Styled Component Import
 import { styled, useTheme } from '@mui/material/styles'
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
