@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     FormControl,
     Grid,
@@ -146,12 +146,15 @@ const buttonGrid = css`
 type Props = {
     placeholder: string;
     label: string;
-    value: string;
     menuItems: Array<{ id: number; title: string }>;
-    onChange: (e: any) => void;
 };
 
 const SelectFieldComponent = (props: Props) => {
+    const [selectValue, setSelectValue] = useState("");
+    const onChangeSelect = (e: any) => {
+        setSelectValue(e.target.value);
+    };
+
     const [fromDateValue, setFromDateValue] = React.useState<Dayjs | null>(
         dayjs("2022-04-07")
     );
@@ -178,9 +181,9 @@ const SelectFieldComponent = (props: Props) => {
                     <Select
                         labelId="uploadPeriod"
                         id="uploadPeriodSelect"
-                        value={props.value}
+                        value={selectValue}
                         label={props.label}
-                        onChange={props.onChange}
+                        onChange={onChangeSelect}
                         css={selectStyle}
                         sx={{
                             height: "36px",

@@ -1,5 +1,5 @@
 import { Grid, InputBase } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
@@ -35,19 +35,23 @@ const searchIconStyle = css`
 type Props = {
     placeholder: string;
     name: string;
-    value: string;
-    onChange: (e: any) => void;
+    menuItems: Array<any>;
 };
 
 const TextFieldComponent = (props: Props) => {
+    const [textFieldState, setTextFieldState] = useState("");
+    const onChangeTextField = (e: any) => {
+        setTextFieldState(e.target.value);
+    };
+
     return (
         <>
             <Grid item css={textFieldGridStyle} width={"100%"}>
                 <InputBase
                     placeholder={props.placeholder}
-                    onChange={props.onChange}
+                    onChange={onChangeTextField}
                     name={props.name}
-                    value={props.value}
+                    value={textFieldState}
                     css={placeHolderStyle}
                 ></InputBase>
 

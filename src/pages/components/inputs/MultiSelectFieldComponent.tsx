@@ -6,6 +6,7 @@ import {
     OutlinedInput,
     Radio,
     Select,
+    SelectChangeEvent,
 } from "@mui/material";
 import React from "react";
 
@@ -105,12 +106,25 @@ const menuItemStyle = css`
 type Props = {
     placeholder: string;
     label: string;
-    value: string[];
     menuItems: Array<{ id: number; title: string }>;
-    onChange: (e: any) => void;
 };
 
 const MultiSelectFieldComponent = (props: Props) => {
+    const [multiSelectState, setMultiSelectState] = React.useState<string[]>(
+        []
+    );
+
+    const handleChangeMultiSelect = (
+        event: SelectChangeEvent<typeof multiSelectState>
+    ) => {
+        const {
+            target: { value },
+        } = event;
+        setMultiSelectState(
+            typeof value === "string" ? value.split(",") : value
+        );
+    };
+
     const menuItemLength = props.menuItems.length;
 
     // Radio state for multi select field
@@ -149,8 +163,8 @@ const MultiSelectFieldComponent = (props: Props) => {
                         labelId="videoLength"
                         id="videoLengthSelect"
                         multiple
-                        value={props.value}
-                        onChange={props.onChange}
+                        value={multiSelectState}
+                        onChange={handleChangeMultiSelect}
                         input={<OutlinedInput label={props.label} />}
                     >
                         {props.menuItems.map(
