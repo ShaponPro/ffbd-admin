@@ -3,43 +3,43 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-import Grid, { GridProps } from '@mui/material/Grid'
+import Grid from '@mui/material/Grid'
 
 // ** Styled Component Import
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 
 // ** Components
-import TabbarComponent from 'src/components/TabbarComponent'
-import ListComponent from 'src/components/ListComponent'
-import {FilterComponent} from 'src/components/FilterComponent';
+// import TabbarComponent from 'src/components/TabbarComponent'
+// import ListComponent from 'src/components/ListComponent'
+// import {FilterComponent} from 'src/components/FilterComponent';
 
-const tabs = [
-  {
-    key: "regular",
-    title: "Regular",
-  },
-  {
-    key: "monetization",
-    title: "Active Monetization",
-  },
-  {
-    key: "trending",
-    title: "Trending",
-  },
-  {
-    key: "customized",
-    title: "Customized",
-  },
-];
+// const tabs = [
+//   {
+//     key: "regular",
+//     title: "Regular",
+//   },
+//   {
+//     key: "monetization",
+//     title: "Active Monetization",
+//   },
+//   {
+//     key: "trending",
+//     title: "Trending",
+//   },
+//   {
+//     key: "customized",
+//     title: "Customized",
+//   },
+// ];
 
-const AnalyticsCongratulations = () => {
+const DashboardPage = () => {
 
    /**
    * Handle on tab change
    */
-  const tabChangeHandler = (key: string) =>{
-    console.log('key', key)
-  }
+  // const tabChangeHandler = (key: string) =>{
+  //   console.log('key', key)
+  // }
 
   return (
     <ApexChartWrapper>
@@ -70,4 +70,4 @@ const AnalyticsCongratulations = () => {
   )
 }
 
-export default AnalyticsCongratulations
+export default DashboardPage

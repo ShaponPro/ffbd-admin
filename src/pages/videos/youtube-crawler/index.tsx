@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid'
 
 import { useQuery } from '@apollo/client'
 
-import { GET_VIDEO_LIST } from '../graphql/Queries'
+import { GET_VIDEO_LIST } from '../../../graphql/Queries'
 
 // ** Styled Component Import
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'

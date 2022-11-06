@@ -22,7 +22,7 @@ const options = [
   }
 ]
 
-const uploadType = () => {
+const UploadType = () => {
 
   const [value, setValue] = useState<string>("user")
 
@@ -43,4 +43,4 @@ const uploadType = () => {
   )
 }
 
-export default uploadType
+export default UploadType
