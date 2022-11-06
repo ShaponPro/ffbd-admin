@@ -1,10 +1,11 @@
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
+import MultiSelectFieldComponent from "./MultiSelectFieldComponent";
 import SelectFieldComponent from "./SelectFieldComponent";
 import TextFieldComponent from "./TextFieldComponent";
 
-const upLoadPeriodMenuItems = [
+const menuItems = [
     {
         id: 0,
         title: "Today",
@@ -42,6 +43,22 @@ const Index = () => {
     const [selectValue, setSelectValue] = useState("");
     const handleChangeSelect = (event: SelectChangeEvent) => {
         setSelectValue(event.target.value as string);
+    };
+
+    // Multi Select handler
+    const [multiSelectValue, setMultiSelectValue] = React.useState<string[]>(
+        []
+    );
+    const handleChangeMultiSelect = (
+        event: SelectChangeEvent<typeof multiSelectValue>
+    ) => {
+        const {
+            target: { value },
+        } = event;
+        setMultiSelectValue(
+            // On autofill we get a stringified value.
+            typeof value === "string" ? value.split(",") : value
+        );
     };
 
     return (
@@ -106,14 +123,25 @@ const Index = () => {
                                 </Grid>
 
                                 {/* View Select Field Component */}
-                                <Grid>
+                                <Grid marginBottom={"20px"}>
                                     <SelectFieldComponent
                                         placeholder="Select Item"
                                         label="uploadPeriod"
                                         value={selectValue}
                                         onChange={handleChangeSelect}
-                                        menuItems={upLoadPeriodMenuItems}
+                                        menuItems={menuItems}
                                     ></SelectFieldComponent>
+                                </Grid>
+
+                                {/* View Multi Select Field Component */}
+                                <Grid>
+                                    <MultiSelectFieldComponent
+                                        placeholder="Select Item"
+                                        label="videoLength"
+                                        value={multiSelectValue}
+                                        onChange={handleChangeMultiSelect}
+                                        menuItems={menuItems}
+                                    ></MultiSelectFieldComponent>
                                 </Grid>
                             </Grid>
                         </Grid>

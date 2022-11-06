@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 
 import SelectFieldComponent from "../inputs/SelectFieldComponent";
 import TextFieldComponent from "../inputs/TextFieldComponent";
+import MultiSelectFieldComponent from "../inputs/MultiSelectFieldComponent";
 
 type props = {
     title: string;
@@ -178,6 +179,48 @@ const upLoadPeriodMenuItems = [
     },
 ];
 
+const videoLengthMenuItems = [
+    {
+        id: 0,
+        title: "Upto 30s",
+    },
+    {
+        id: 1,
+        title: "31s - 60s",
+    },
+    {
+        id: 2,
+        title: "61s - 180s",
+    },
+    {
+        id: 3,
+        title: "181s - 300s",
+    },
+    {
+        id: 4,
+        title: "Above 300s",
+    },
+];
+
+const engagementMenuItems = [
+    {
+        id: 0,
+        title: "Likes",
+    },
+    {
+        id: 1,
+        title: "Comments",
+    },
+    {
+        id: 2,
+        title: "Shares",
+    },
+    {
+        id: 3,
+        title: "Downloads",
+    },
+];
+
 const rightSellings = ["Free", "Sold", "Processing", "Claimed"];
 
 const DynamicFilterComponent = (props: props) => {
@@ -211,28 +254,6 @@ const DynamicFilterComponent = (props: props) => {
             // On autofill we get a stringified value.
             typeof value === "string" ? value.split(",") : value
         );
-    };
-
-    // Radio for video length
-    const [videoLengthRadio, setVideoLengthRadio] = React.useState([
-        false,
-        false,
-        false,
-        false,
-        false,
-    ]);
-    const handleLengthMenuClick = (lengthIndex: any) => {
-        const updatedVideoLengthRadio = videoLengthRadio.map(
-            (eachVideoLength, videoLengthIndex) => {
-                if (videoLengthIndex == lengthIndex) {
-                    return !eachVideoLength;
-                } else {
-                    return eachVideoLength;
-                }
-            }
-        );
-
-        setVideoLengthRadio(updatedVideoLengthRadio);
     };
 
     // Engagement handler
@@ -458,72 +479,14 @@ const DynamicFilterComponent = (props: props) => {
                     paddingRight={"10px"}
                 >
                     <Grid css={textGrid}>Video Length Group</Grid>
-                    <Grid css={itemStyle} width={"100%"} overflow={"hidden"}>
-                        <FormControl fullWidth>
-                            <InputLabel id="videoLength" css={selectLabelStyle}>
-                                Select Item
-                            </InputLabel>
-                            <Select
-                                css={multiSelectStyle}
-                                sx={{
-                                    height: "36px",
-                                }}
-                                labelId="videoLength"
-                                id="videoLengthSelect"
-                                multiple
-                                value={videoLength}
-                                onChange={handleChangeVideoLength}
-                                input={<OutlinedInput label="videoLength" />}
-                            >
-                                {lengths.map((length, lengthIndex) => (
-                                    <MenuItem
-                                        key={length}
-                                        value={length}
-                                        css={menuItemStyle}
-                                        onClick={() =>
-                                            handleLengthMenuClick(lengthIndex)
-                                        }
-                                    >
-                                        <Grid
-                                            container
-                                            alignItems={"center"}
-                                            justifyContent={"space-between"}
-                                        >
-                                            <Grid>{length}</Grid>
-                                            <Grid>
-                                                <Radio
-                                                    id={length}
-                                                    checked={
-                                                        videoLengthRadio[
-                                                            lengthIndex
-                                                        ]
-                                                    }
-                                                    name="radio-buttons"
-                                                    inputProps={{
-                                                        "aria-label": "A",
-                                                    }}
-                                                    icon={
-                                                        <CircleOutlinedIcon
-                                                            sx={{
-                                                                color: "#161F29",
-                                                            }}
-                                                        ></CircleOutlinedIcon>
-                                                    }
-                                                    checkedIcon={
-                                                        <CheckCircleIcon
-                                                            sx={{
-                                                                color: "#57ce66!important",
-                                                            }}
-                                                        ></CheckCircleIcon>
-                                                    }
-                                                />
-                                            </Grid>
-                                        </Grid>
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Grid>
+
+                    <MultiSelectFieldComponent
+                        placeholder="Select Item"
+                        label="videoLength"
+                        value={videoLength}
+                        onChange={handleChangeVideoLength}
+                        menuItems={videoLengthMenuItems}
+                    ></MultiSelectFieldComponent>
                 </Grid>
 
                 <Grid
@@ -535,77 +498,13 @@ const DynamicFilterComponent = (props: props) => {
                     paddingRight={"10px"}
                 >
                     <Grid css={textGrid}>Engagement</Grid>
-                    <Grid css={itemStyle} width={"100%"} overflow={"hidden"}>
-                        <FormControl fullWidth>
-                            <InputLabel id="engagement" css={selectLabelStyle}>
-                                Select Item
-                            </InputLabel>
-                            <Select
-                                css={multiSelectStyle}
-                                sx={{
-                                    height: "36px",
-                                }}
-                                labelId="engagement"
-                                id="engagementSelect"
-                                multiple
-                                value={engagement}
-                                onChange={handleChangeEngagement}
-                                input={<OutlinedInput label="videoLength" />}
-                            >
-                                {engagements.map(
-                                    (engagement, engagementIndex) => (
-                                        <MenuItem
-                                            key={engagement}
-                                            value={engagement}
-                                            css={menuItemStyle}
-                                            onClick={() =>
-                                                handleEngagementMenuClick(
-                                                    engagementIndex
-                                                )
-                                            }
-                                        >
-                                            <Grid
-                                                container
-                                                alignItems={"center"}
-                                                justifyContent={"space-between"}
-                                            >
-                                                <Grid>{engagement}</Grid>
-                                                <Grid>
-                                                    <Radio
-                                                        id={engagement}
-                                                        checked={
-                                                            engagementRadio[
-                                                                engagementIndex
-                                                            ]
-                                                        }
-                                                        value="a"
-                                                        name="radio-buttons"
-                                                        inputProps={{
-                                                            "aria-label": "A",
-                                                        }}
-                                                        icon={
-                                                            <CircleOutlinedIcon
-                                                                sx={{
-                                                                    color: "#161F29",
-                                                                }}
-                                                            ></CircleOutlinedIcon>
-                                                        }
-                                                        checkedIcon={
-                                                            <CheckCircleIcon
-                                                                sx={{
-                                                                    color: "#57ce66!important",
-                                                                }}
-                                                            ></CheckCircleIcon>
-                                                        }
-                                                    />
-                                                </Grid>
-                                            </Grid>
-                                        </MenuItem>
-                                    )
-                                )}
-                            </Select>
-                        </FormControl>
-                    </Grid>
+                    <MultiSelectFieldComponent
+                        placeholder="Select Item"
+                        label="videoLength"
+                        value={engagement}
+                        onChange={handleChangeEngagement}
+                        menuItems={engagementMenuItems}
+                    ></MultiSelectFieldComponent>
                 </Grid>
 
                 <Grid
