@@ -1,12 +1,47 @@
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
+import SelectFieldComponent from "./SelectFieldComponent";
 import TextFieldComponent from "./TextFieldComponent";
 
+const upLoadPeriodMenuItems = [
+    {
+        id: 0,
+        title: "Today",
+    },
+    {
+        id: 1,
+        title: "Last 7 Days",
+    },
+    {
+        id: 2,
+        title: "Last 15 Days",
+    },
+    {
+        id: 3,
+        title: "Last 30 Days",
+    },
+    {
+        id: 4,
+        title: "Last 60 Days",
+    },
+    {
+        id: 5,
+        title: "Last 90 Days",
+    },
+];
+
 const Index = () => {
+    // text field handler
     const [textFieldState, setTextFieldState] = useState("");
     const onChangeTextField = (e: any) => {
         setTextFieldState(e.target.value);
+    };
+
+    // select handler
+    const [selectValue, setSelectValue] = useState("");
+    const handleChangeSelect = (event: SelectChangeEvent) => {
+        setSelectValue(event.target.value as string);
     };
 
     return (
@@ -61,12 +96,25 @@ const Index = () => {
                                 </Box>
 
                                 {/* View Text Field Component */}
-                                <TextFieldComponent
-                                    placeholder="Search and Filter"
-                                    name={"key"}
-                                    value={textFieldState}
-                                    onChange={onChangeTextField}
-                                ></TextFieldComponent>
+                                <Grid marginBottom={"20px"}>
+                                    <TextFieldComponent
+                                        placeholder="Search and Filter"
+                                        name={"key"}
+                                        value={textFieldState}
+                                        onChange={onChangeTextField}
+                                    ></TextFieldComponent>
+                                </Grid>
+
+                                {/* View Select Field Component */}
+                                <Grid>
+                                    <SelectFieldComponent
+                                        placeholder="Select Item"
+                                        label="uploadPeriod"
+                                        value={selectValue}
+                                        onChange={handleChangeSelect}
+                                        menuItems={upLoadPeriodMenuItems}
+                                    ></SelectFieldComponent>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </CardContent>

@@ -3,26 +3,14 @@ import React, { useState } from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import {
-    InputBase,
-    Radio,
-    InputLabel,
-    MenuItem,
-    TextField,
-    OutlinedInput,
-} from "@mui/material";
+import { Radio, InputLabel, MenuItem, OutlinedInput } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import dayjs, { Dayjs } from "dayjs";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Grid from "@mui/material/Grid";
 
-import ButtonComponentCopy from "./ButtonComponentCopy";
+import SelectFieldComponent from "../inputs/SelectFieldComponent";
 import TextFieldComponent from "../inputs/TextFieldComponent";
 
 type props = {
@@ -60,41 +48,6 @@ const itemStyle = css`
     justify-content: space-between;
 `;
 
-const placeHolderStyle = css`
-    padding: 0 !important;
-    margin: 0 !important;
-    color: grey;
-    .MuiInputBase-input {
-        padding: 0 !important;
-        padding-left: 10px !important;
-        padding-bottom: 10px !important;
-        padding-top: 10px !important;
-        font-family: "Open Sans", sans-serif !important;
-        font-style: normal !important;
-        font-weight: 400 !important;
-        font-size: 12px !important;
-    }
-`;
-
-const searchIconStyle = css`
-    padding: 0 !important;
-    margin: 0 !important;
-    margin-top: 6px !important;
-    margin-right: 10px !important;
-`;
-
-const periodTabHeader = css`
-    color: #161f29;
-    font-family: "Open Sans", sans-serif !important;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 16px;
-    margin-bottom: 2px !important;
-    padding-left: 10px;
-    padding-bottom: 10px;
-`;
-
 const menuItemStyle = css`
     height: 36px;
     color: #161f29;
@@ -114,20 +67,6 @@ const menuItemStyle = css`
     .MuiButtonBase-root .MuiMenuItem-root .Mui-selected {
         flex-direction: column !important;
     }
-`;
-
-const dateRangeStyle = css`
-    align-items: center;
-`;
-
-const buttonGridStyle = css`
-    padding-left: 10px;
-    margin-bottom: 15px;
-    margin-top: 14px;
-`;
-
-const buttonGrid = css`
-    margin-right: 20px;
 `;
 
 const selectStyle = css`
@@ -176,41 +115,6 @@ const multiSelectStyle = css`
     }
 `;
 
-const dateInputField = css`
-    .MuiInputBase-input {
-        padding: 0 !important;
-    }
-
-    .MuiInputAdornment-root .MuiInputAdornment-positionEnd {
-    }
-`;
-
-const dateTextField = css`
-    .MuiButtonBase-root {
-        padding: 0px !important;
-        color: #161f29;
-        font-size: 12px;
-    }
-
-    .MuiInputBase-input {
-        padding-left: 8px;
-        font-family: "Open Sans", sans-serif !important;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 16px;
-        color: #161f29;
-    }
-    .MuiInputBase-adornedEnd {
-        padding: 0px !important;
-        padding-right: 12px !important;
-    }
-
-    .MuiSvgIcon-root {
-        font-size: 20px !important;
-    }
-`;
-
 const selectLabelStyle = css`
     position: absolute;
     top: -5px;
@@ -247,9 +151,36 @@ const currentStatuses = [
     "Deleted",
 ];
 
+const upLoadPeriodMenuItems = [
+    {
+        id: 0,
+        title: "Today",
+    },
+    {
+        id: 1,
+        title: "Last 7 Days",
+    },
+    {
+        id: 2,
+        title: "Last 15 Days",
+    },
+    {
+        id: 3,
+        title: "Last 30 Days",
+    },
+    {
+        id: 4,
+        title: "Last 60 Days",
+    },
+    {
+        id: 5,
+        title: "Last 90 Days",
+    },
+];
+
 const rightSellings = ["Free", "Sold", "Processing", "Claimed"];
 
-const dynamicFilterComponent = (props: props) => {
+const DynamicFilterComponent = (props: props) => {
     // User ID/Name handler
     const [userIDorName, setUserIDorName] = useState("");
     const onChangeUserIDorNameHandler = (e: any) => {
@@ -263,17 +194,9 @@ const dynamicFilterComponent = (props: props) => {
     };
 
     // Upload period handler
-    const [uploadPeriod, setUploadPeriod] = useState("");
-    const handleChangeUploadPeriod = (event: SelectChangeEvent) => {
-        setUploadPeriod(event.target.value as string);
-    };
-
-    // Radio toggle for upload period
-    const [period, setPeriod] = React.useState(false);
-    const handleRadioClickPeriod = () => {
-        setPeriod((period) => {
-            return !period;
-        });
+    const [selectValue, setSelectValue] = useState("");
+    const handleChangeSelect = (event: SelectChangeEvent) => {
+        setSelectValue(event.target.value as string);
     };
 
     // Video length handler
@@ -468,14 +391,6 @@ const dynamicFilterComponent = (props: props) => {
         setRightSellingRadio(updatedRightSellingRadio);
     };
 
-    const [value, setValue] = React.useState<Dayjs | null>(dayjs("2022-04-07"));
-
-    // const [textFieldState, setTextFieldState] = useState("");
-    // const onChangeTextField = (e: any) => {
-    //     console.log(e.target.name, e.target.value);
-    //     setTextFieldState(e.target.value);
-    // };
-
     return (
         <>
             <Grid container item lg={12} css={parentGrid} width={"100%"}>
@@ -524,218 +439,14 @@ const dynamicFilterComponent = (props: props) => {
                     marginBottom={"20px"}
                 >
                     <Grid css={textGrid}>Upload Period</Grid>
-                    <Grid css={itemStyle} width={"100%"} overflow={"hidden"}>
-                        <FormControl fullWidth>
-                            <InputLabel
-                                id="uploadPeriod"
-                                css={selectLabelStyle}
-                            >
-                                Select Date
-                            </InputLabel>
-                            <Select
-                                labelId="uploadPeriod"
-                                id="uploadPeriodSelect"
-                                value={uploadPeriod}
-                                label="uploadPeriod"
-                                onChange={handleChangeUploadPeriod}
-                                css={selectStyle}
-                                sx={{
-                                    height: "36px",
-                                }}
-                            >
-                                <Grid css={periodTabHeader}>Date Range</Grid>
 
-                                <MenuItem value={"today"} css={menuItemStyle}>
-                                    Today
-                                </MenuItem>
-
-                                <MenuItem
-                                    value={"last 7 days"}
-                                    css={menuItemStyle}
-                                >
-                                    Last 7 Days
-                                </MenuItem>
-
-                                <MenuItem
-                                    value={"last 15 days"}
-                                    css={menuItemStyle}
-                                >
-                                    Last 15 Days
-                                </MenuItem>
-
-                                <MenuItem
-                                    value={"last 30 days"}
-                                    css={menuItemStyle}
-                                >
-                                    Last 30 Days
-                                </MenuItem>
-
-                                <MenuItem
-                                    value={"last 60 days"}
-                                    css={menuItemStyle}
-                                >
-                                    Last 60 Days
-                                </MenuItem>
-
-                                <MenuItem
-                                    value={"last 90 days"}
-                                    css={menuItemStyle}
-                                >
-                                    Last 90 Days
-                                </MenuItem>
-
-                                <Grid
-                                    container
-                                    css={dateRangeStyle}
-                                    alignItems={"baseline!important"}
-                                >
-                                    <Grid css={periodTabHeader}>
-                                        Custom Range
-                                    </Grid>
-                                    <Grid>
-                                        <Radio
-                                            checked={period}
-                                            onClick={() =>
-                                                handleRadioClickPeriod()
-                                            }
-                                            value="a"
-                                            name="radio-period"
-                                            inputProps={{
-                                                "aria-label": "A",
-                                            }}
-                                            icon={
-                                                <CircleOutlinedIcon
-                                                    sx={{
-                                                        color: "#161F29",
-                                                    }}
-                                                ></CircleOutlinedIcon>
-                                            }
-                                            checkedIcon={
-                                                <CheckCircleIcon
-                                                    sx={{
-                                                        color: "#57ce66!important",
-                                                    }}
-                                                ></CheckCircleIcon>
-                                            }
-                                        />
-                                    </Grid>
-                                </Grid>
-                                <Grid container width={"233.75px!important"}>
-                                    {period == true && (
-                                        <>
-                                            <Grid container>
-                                                <Grid
-                                                    width={"50%"}
-                                                    paddingLeft={"10px"}
-                                                    paddingRight={"5px"}
-                                                >
-                                                    <LocalizationProvider
-                                                        dateAdapter={
-                                                            AdapterDayjs
-                                                        }
-                                                    >
-                                                        <DatePicker
-                                                            openTo="year"
-                                                            views={[
-                                                                "year",
-                                                                "month",
-                                                                "day",
-                                                            ]}
-                                                            label="From"
-                                                            value={value}
-                                                            onChange={(
-                                                                newValue
-                                                            ) => {
-                                                                setValue(
-                                                                    newValue
-                                                                );
-                                                            }}
-                                                            renderInput={(
-                                                                params
-                                                            ) => (
-                                                                <TextField
-                                                                    {...params}
-                                                                    helperText={
-                                                                        null
-                                                                    }
-                                                                    css={
-                                                                        dateTextField
-                                                                    }
-                                                                />
-                                                            )}
-                                                            css={dateInputField}
-                                                        />
-                                                    </LocalizationProvider>
-                                                </Grid>
-
-                                                <Grid
-                                                    width={"50%"}
-                                                    paddingLeft={"5px"}
-                                                    paddingRight={"10px"}
-                                                >
-                                                    <LocalizationProvider
-                                                        dateAdapter={
-                                                            AdapterDayjs
-                                                        }
-                                                    >
-                                                        <DatePicker
-                                                            openTo="year"
-                                                            views={[
-                                                                "year",
-                                                                "month",
-                                                                "day",
-                                                            ]}
-                                                            label="To"
-                                                            value={value}
-                                                            onChange={(
-                                                                newValue
-                                                            ) => {
-                                                                setValue(
-                                                                    newValue
-                                                                );
-                                                            }}
-                                                            renderInput={(
-                                                                params
-                                                            ) => (
-                                                                <TextField
-                                                                    {...params}
-                                                                    helperText={
-                                                                        null
-                                                                    }
-                                                                    css={
-                                                                        dateTextField
-                                                                    }
-                                                                />
-                                                            )}
-                                                            css={dateInputField}
-                                                        />
-                                                    </LocalizationProvider>
-                                                </Grid>
-                                            </Grid>
-
-                                            <Grid
-                                                container
-                                                css={buttonGridStyle}
-                                            >
-                                                <Grid css={buttonGrid}>
-                                                    <ButtonComponentCopy
-                                                        type="cancel"
-                                                        title="cancel"
-                                                    ></ButtonComponentCopy>
-                                                </Grid>
-                                                <Grid>
-                                                    <ButtonComponentCopy
-                                                        type="apply"
-                                                        title="apply"
-                                                    ></ButtonComponentCopy>
-                                                </Grid>
-                                            </Grid>
-                                        </>
-                                    )}
-                                </Grid>
-                            </Select>
-                        </FormControl>
-                    </Grid>
+                    <SelectFieldComponent
+                        placeholder="Select Item"
+                        label="uploadPeriod"
+                        value={selectValue}
+                        onChange={handleChangeSelect}
+                        menuItems={upLoadPeriodMenuItems}
+                    ></SelectFieldComponent>
                 </Grid>
 
                 <Grid
@@ -1187,4 +898,4 @@ const dynamicFilterComponent = (props: props) => {
     );
 };
 
-export default dynamicFilterComponent;
+export default DynamicFilterComponent;
