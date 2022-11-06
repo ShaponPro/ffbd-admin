@@ -27,7 +27,8 @@ const VoteBox = styled(Box)<BoxProps>(({ theme }) => ({
   alignItems: "center",
   display:"flex",                      
   justifyContent:"center",
-  fontWeight: "700"
+  fontWeight: "700",
+  marginBottom: "20px"
 }))
 
 const VoteBoxComponent = ({title}: {
