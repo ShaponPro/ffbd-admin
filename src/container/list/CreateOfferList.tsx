@@ -8,19 +8,28 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import TableHead from "@mui/material/TableHead";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import Grid from "@mui/material/Grid";
-import MenuItem from "@mui/material/MenuItem";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 // ** Components
-import SearchComponent from "src/components/SearchComponent";
+import TextInputField from "src/components/Textfield";
 import ButtonComponent from "src/components/ButtonComponent";
+
+const tagType = [
+    {
+        key: "brand",
+        title: "Brand Tag",
+    },
+    {
+        key: "hash",
+        title: "Hash Tag",
+    },
+];
 
 //styled Component
 const StyledTableCell = styled(TableCell)(() => ({
@@ -30,27 +39,18 @@ const StyledTableCell = styled(TableCell)(() => ({
         borderLeft: "2px solid white",
         color: "black",
         textTransform: "none",
+        textAlign:"center"
     },
 
     [`&.${tableCellClasses.body}`]: {
         fontSize: 12,
         border: "2px solid white",
         whiteSpace: "nowrap",
+        textAlign:"center"
     },
 }));
 
-const StyledSelect = styled(Select)({
-    background: "white",
-    borderRadius: "0px",
-    height: "36px",
-    width: "80px",
-    margin: "3px",
-    boxShadow: "inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)",
-});
 
-const StyledMenuItem = styled(MenuItem)({
-    margin: "5px",
-});
 
 const StyledGrid = styled(Grid)({
     display: "flex",
@@ -72,17 +72,6 @@ const StyledTableRow = styled(TableRow)(() => ({
     },
 }));
 
-const StyledSelectReport = styled(Select)({
-    borderRadius: "20px",
-    background: "white",
-    height: "36px",
-    width: "126px",
-    boxShadow: "inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)",
-
-    "& .MuiSelect-select": {
-        transition: "0s !important",
-    },
-});
 
 const ButtonGrid = styled(Grid)({
     margin: "5px",
@@ -91,16 +80,16 @@ const ButtonGrid = styled(Grid)({
     display: "flex",
 });
 
-export default function InnAppOfferList({
+export default function CreateOfferList({
     rowsData,
     columns,
     actions,
-    actionHandler
+    actionHandler,
 }: {
     rowsData: object[];
     columns: object[];
     actions: object[];
-    actionHandler: (type: string, id: string)=>void;
+    actionHandler: (type: string, id: string) => void;
 }) {
     const data = rowsData;
 
@@ -116,13 +105,7 @@ export default function InnAppOfferList({
                             alignItems: "center",
                         }}
                     >
-                        <Typography>Show</Typography>
-                        <StyledSelect>
-                            <StyledMenuItem value={10}>10</StyledMenuItem>
-                            <StyledMenuItem value={20}>20</StyledMenuItem>
-                            <StyledMenuItem value={30}>30</StyledMenuItem>
-                        </StyledSelect>
-                        <Typography>entries</Typography>
+                        <Typography>Activities</Typography>
                     </Grid>
                     <Grid
                         lg={3}
@@ -132,46 +115,25 @@ export default function InnAppOfferList({
                             alignItems: "center",
                         }}
                     >
-                        <SearchComponent />
+                        <TextInputField
+                            options={tagType}
+                            title="small"
+                            select={true}
+                            placeholder="Select Item"
+                        />
                     </Grid>
                     <Grid
-                        lg={2}
+                        lg={4}
                         xs={12}
                         sx={{
                             display: "flex",
                             alignItems: "center",
+                            gap: "10px",
                         }}
                     >
-                        <Box
-                            sx={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                                border: "1px solid rgba(22, 31, 41, 0.5)",
-                                borderRadius: "20px",
-                                height: "36px",
-                                padding: "10px",
-                            }}
-                        >
-                            <Box className="actions-left">
-                                <CalendarMonthIcon />
-                            </Box>
-                            <Typography
-                                sx={{
-                                    color: "rgba(22, 31, 41, 0.25)",
-                                    fontWeight: "400",
-                                    fontSize: "12px",
-                                }}
-                            >
-                                Select Date
-                            </Typography>
-                            <Box
-                                className="actions-right"
-                                sx={{ display: "flex", alignItems: "center" }}
-                            >
-                                <ArrowDropDownIcon />
-                            </Box>
-                        </Box>
+                        <Typography>Goal</Typography>
+                        <TextInputField placeholder="Type" />
+                        <Typography>Numbers</Typography>
                     </Grid>
                     <Grid
                         lg={5}
@@ -182,11 +144,24 @@ export default function InnAppOfferList({
                             justifyContent: "flex-end",
                         }}
                     >
-                        <StyledSelectReport displayEmpty>
-                            <Button variant="text" sx={{ m: 3 }}>
-                                Report
-                            </Button>
-                        </StyledSelectReport>
+                        <Button
+
+                            //onClick={handleClickOpen}
+                            style={{
+                                background: "#009EFA",
+                                boxShadow:
+                                    "0.5px 1px 3px rgba(22, 31, 41, 0.2)",
+                                borderRadius: "2px",
+                                color: " #FFFFFF",
+                                fontWeight: "700",
+                                fontSize: "14px",
+                                gap: "10px",
+                                padding:"12px 30px"
+                            }}
+                        >
+                            <AddCircleIcon />
+                            Add
+                        </Button>
                     </Grid>
                 </StyledGrid>
                 <Grid sx={{ margin: "10px" }}>
@@ -211,53 +186,15 @@ export default function InnAppOfferList({
                             </TableHead>
                             <TableBody>
                                 {data.map((row: any) => (
-                                    <StyledTableRow key={row?.videoID || ""}>
-                                        <StyledTableCell>
+                                    <StyledTableRow key={row?.field || ""}>
+                                        <StyledTableCell width={10}>
                                             {row?.slNo || ""}
                                         </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.title || ""}
+                                        <StyledTableCell width={679}>
+                                            {row?.ActivitiesName || ""}
                                         </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.noOfAction || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.reward || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.dailyTime || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.startDate || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.endDate || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.status || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.publishedOn || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.lastEdit || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            <a href={row?.publishBy || ""}>
-                                                {row?.publishBy || ""}
-                                            </a>
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.country || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.zone || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.lastEdits || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.area || ""}
+                                        <StyledTableCell width={500}>
+                                            {row?.goal || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             {actions && actions.length
@@ -309,41 +246,17 @@ export default function InnAppOfferList({
     );
 }
 
-InnAppOfferList.defaultProps = {
+CreateOfferList.defaultProps = {
     rowsData: [
         {
             slNo: 1,
-            title: "Loyality Program",
-            noOfAction: 2,
-            reward: "20 F:Points",
-            dailyTime: "3 Hour",
-            startDate: "1/8/2022",
-            endDate: "1/9/2022",
-            status: "Active",
-            publishedOn: "1/8/2022",
-            lastEdit: "1/8/2022",
-            publishBy: "siam@fanfare.com.bd",
-            country: "Bangladesh",
-            zone: "Dhaka South",
-            area: "-",
-            action: "Button",
+            ActivitiesName: "Video View",
+            goal: "Number",
         },
         {
             slNo: 2,
-            title: "Refer Win",
-            noOfAction: 1,
-            reward: "20 F:Points",
-            dailyTime: "3 Hour",
-            startDate: "1/8/2022",
-            endDate: "1/9/2022",
-            status: "Active",
-            publishedOn: "1/8/2022",
-            lastEdit: "1/8/2022",
-            publishBy: "monir@fanfare.com.bd",
-            country: "Bangladesh",
-            zone: "Dhaka South",
-            area: "-",
-            action: "Button",
+            ActivitiesName: "Refer Friend",
+            goal: "People",
         },
     ],
     columns: [
@@ -352,60 +265,12 @@ InnAppOfferList.defaultProps = {
             header: "Sl. No",
         },
         {
-            field: "title",
-            header: "Title",
+            field: "ActivitiesName",
+            header: "Activities Name",
         },
         {
-            field: "noOfAction",
-            header: "No. of Action",
-        },
-        {
-            field: "reward",
-            header: "Reward",
-        },
-        {
-            field: "dailyTime",
-            header: "Daily Time",
-        },
-        {
-            field: "startDate",
-            header: "Start Date",
-        },
-        {
-            field: "endDate",
-            header: "End Date",
-        },
-        {
-            field: "status",
-            header: "Status",
-        },
-        {
-            field: "publishedOn",
-            header: "Published on",
-        },
-        {
-            field: "lastEdit",
-            header: "Last Edit",
-        },
-        {
-            field: "publishBy",
-            header: "Publish by",
-        },
-        {
-            field: "country",
-            header: "Country",
-        },
-        {
-            field: "zone",
-            header: "Zone",
-        },
-        {
-            field: "lastEdits",
-            header: "Last Edits",
-        },
-        {
-            field: "area",
-            header: "Area",
+            field: "goal",
+            header: "Goal",
         },
         {
             field: "action",
@@ -415,12 +280,9 @@ InnAppOfferList.defaultProps = {
     actions: [
         {
             type: "action",
-            title: "View Contest"
-        },
-        {
-            type: "aply",
-            title: "View Contest"
+            title: "Delete",
         },
     ],
-    actionHandler: (type: string, id: string)=>console.log('type, id', type, id)
+    actionHandler: (type: string, id: string) =>
+        console.log("type, id", type, id),
 };
