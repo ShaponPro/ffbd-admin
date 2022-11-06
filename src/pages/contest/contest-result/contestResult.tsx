@@ -202,6 +202,14 @@ const buttonTabs= [
                           </>
                         ) : null}
 
+                          {/* performance  tab */}
+                          {active == "performance" ?  (
+                          <>
+                          <VoteBoxComponent title="You can Vote only 3 Videos"/>
+                          <ListTableComponent/>
+                          </>
+                        ) : null}
+
                        </Grid>
                       </Grid>
                     </Box>
