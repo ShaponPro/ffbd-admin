@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
+import { Box, Card, CardContent, Grid, SelectChangeEvent, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 import MultiSelectFieldComponent from "./MultiSelectFieldComponent";
@@ -56,6 +56,7 @@ const Index = () => {
             target: { value },
         } = event;
         setMultiSelectValue(
+            
             // On autofill we get a stringified value.
             typeof value === "string" ? value.split(",") : value
         );

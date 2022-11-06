@@ -3,11 +3,7 @@ import React, { useState } from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import { Radio, InputLabel, MenuItem, OutlinedInput } from "@mui/material";
-import FormControl from "@mui/material/FormControl";
-import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { SelectChangeEvent } from "@mui/material/Select";
 import Grid from "@mui/material/Grid";
 
 import SelectFieldComponent from "../inputs/SelectFieldComponent";
@@ -38,119 +34,6 @@ const textGrid = css`
     line-height: 19px;
     margin-right: 10px;
 `;
-
-const itemStyle = css`
-    background: #ffffff;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: flex;
-    flex-direction: row;
-    box-shadow: inset 1px 1.5px 5px rgba(22, 31, 41, 0.2) !important;
-    justify-content: space-between;
-`;
-
-const menuItemStyle = css`
-    height: 36px;
-    color: #161f29;
-    margin-bottom: 2px !important;
-    font-family: "Open Sans", sans-serif !important;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
-    padding-top: 10px !important;
-    padding-left: 10px !important;
-    padding-bottom: 10px !important;
-    &:hover {
-        background-color: #f3f3f4;
-    }
-
-    .MuiButtonBase-root .MuiMenuItem-root .Mui-selected {
-        flex-direction: column !important;
-    }
-`;
-
-const selectStyle = css`
-    .MuiOutlinedInput-notchedOutline {
-        border: none !important;
-    }
-
-    .MuiInputBase-input {
-        color: grey;
-        font-family: "Open Sans", sans-serif !important;
-        font-style: normal !important;
-        font-weight: 400 !important;
-        font-size: 12px !important;
-    }
-
-    .MuiPaper-root .MuiMenu-paper .MuiPopover-paper {
-        // padding: 0px !important;
-    }
-
-    .MuiSelect-select {
-        padding: 0 !important;
-        padding-left: 10px !important;
-    }
-`;
-
-const multiSelectStyle = css`
-    ${selectStyle};
-    #videoLengthSelect,
-    #engagementSelect,
-    #monetizationSelect,
-    #currentStatusSelect,
-    #rightSellingSelect {
-        display: flex !important;
-    }
-
-    .MuiSelect-select {
-        // width: 70%;
-    }
-
-    .MuiButtonBase-root {
-        display: none !important;
-    }
-
-    .MuiMenuItem-root {
-        // height: 36px;
-    }
-`;
-
-const selectLabelStyle = css`
-    position: absolute;
-    top: -5px;
-    font-family: "Open Sans", sans-serif !important;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
-    color: rgba(22, 31, 41, 0.25);
-`;
-
-const lengths = [
-    "Upto 30s",
-    "31s - 60s",
-    "61s - 180s",
-    "181s - 300s",
-    "Above 300s",
-];
-
-const engagements = ["Likes", "Comments", "Shares", "Downloads"];
-
-const monetizations = [
-    "Awareness AD",
-    "Product Added",
-    "Active Awareness",
-    "Active Product ",
-];
-
-const currentStatuses = [
-    "Published",
-    "Failed",
-    "Uploading",
-    "Suspended",
-    "Deleted",
-];
 
 const upLoadPeriodMenuItems = [
     {
@@ -221,7 +104,66 @@ const engagementMenuItems = [
     },
 ];
 
-const rightSellings = ["Free", "Sold", "Processing", "Claimed"];
+const monetizationMenuItems = [
+    {
+        id: 0,
+        title: "Awareness AD",
+    },
+    {
+        id: 1,
+        title: "Product Added",
+    },
+    {
+        id: 2,
+        title: "Active Awareness",
+    },
+    {
+        id: 3,
+        title: "Active Product",
+    },
+];
+
+const currentStatusMenuItems = [
+    {
+        id: 0,
+        title: "Published",
+    },
+    {
+        id: 1,
+        title: "Failed",
+    },
+    {
+        id: 2,
+        title: "Uploading",
+    },
+    {
+        id: 3,
+        title: "Suspended",
+    },
+    {
+        id: 4,
+        title: "Deleted",
+    },
+];
+
+const rightSellingMenuItems = [
+    {
+        id: 0,
+        title: "Free",
+    },
+    {
+        id: 1,
+        title: "Sold",
+    },
+    {
+        id: 2,
+        title: "Processing",
+    },
+    {
+        id: 3,
+        title: "Claimed",
+    },
+];
 
 const DynamicFilterComponent = (props: props) => {
     // User ID/Name handler
@@ -270,28 +212,6 @@ const DynamicFilterComponent = (props: props) => {
         );
     };
 
-    // Radio for engagement
-    const [engagementRadio, setEngagementRadio] = React.useState([
-        false,
-        false,
-        false,
-        false,
-        false,
-    ]);
-    const handleEngagementMenuClick = (engagementIndex: any) => {
-        const updatedEngagementRadio = engagementRadio.map(
-            (eachEngagement, index) => {
-                if (index == engagementIndex) {
-                    return !eachEngagement;
-                } else {
-                    return eachEngagement;
-                }
-            }
-        );
-
-        setEngagementRadio(updatedEngagementRadio);
-    };
-
     // Monetization handler
     const [monetization, setMonetization] = React.useState<string[]>([]);
     const handleChangeMonetization = (
@@ -304,28 +224,6 @@ const DynamicFilterComponent = (props: props) => {
             // On autofill we get a stringified value.
             typeof value === "string" ? value.split(",") : value
         );
-    };
-
-    // Radio for monetization
-    const [monetizationRadio, setMonetizationRadio] = React.useState([
-        false,
-        false,
-        false,
-        false,
-        false,
-    ]);
-    const handleMonetizationMenuClick = (monetizationIndex: any) => {
-        const updatedMonetizationRadio = monetizationRadio.map(
-            (eachMonetization, index) => {
-                if (index == monetizationIndex) {
-                    return !eachMonetization;
-                } else {
-                    return eachMonetization;
-                }
-            }
-        );
-
-        setMonetizationRadio(updatedMonetizationRadio);
     };
 
     // Video contest handler
@@ -354,28 +252,6 @@ const DynamicFilterComponent = (props: props) => {
         );
     };
 
-    // Radio for current status
-    const [currentStatusRadio, setCurrentStatusRadio] = React.useState([
-        false,
-        false,
-        false,
-        false,
-        false,
-    ]);
-    const handleCurrentStatusMenuClick = (currentStatusIndex: any) => {
-        const updatedCurrentStatusRadio = currentStatusRadio.map(
-            (eachCurrentStatus, index) => {
-                if (index == currentStatusIndex) {
-                    return !eachCurrentStatus;
-                } else {
-                    return eachCurrentStatus;
-                }
-            }
-        );
-
-        setCurrentStatusRadio(updatedCurrentStatusRadio);
-    };
-
     // Right Selling handler
     const [rightSelling, setRightSelling] = React.useState<string[]>([]);
     const handleChangeRightSelling = (
@@ -388,28 +264,6 @@ const DynamicFilterComponent = (props: props) => {
             // On autofill we get a stringified value.
             typeof value === "string" ? value.split(",") : value
         );
-    };
-
-    // Radio for Right Selling
-    const [rightSellingRadio, setRightSellingRadio] = React.useState([
-        false,
-        false,
-        false,
-        false,
-        false,
-    ]);
-    const handleRightSellingMenuClick = (rightSellingIndex: any) => {
-        const updatedRightSellingRadio = rightSellingRadio.map(
-            (eachRightSelling, index) => {
-                if (index == rightSellingIndex) {
-                    return !eachRightSelling;
-                } else {
-                    return eachRightSelling;
-                }
-            }
-        );
-
-        setRightSellingRadio(updatedRightSellingRadio);
     };
 
     return (
@@ -515,80 +369,13 @@ const DynamicFilterComponent = (props: props) => {
                     marginBottom={"20px"}
                 >
                     <Grid css={textGrid}>AD & Monetization</Grid>
-                    <Grid css={itemStyle} width={"100%"} overflow={"hidden"}>
-                        <FormControl fullWidth>
-                            <InputLabel
-                                id="monetization"
-                                css={selectLabelStyle}
-                            >
-                                Select Item
-                            </InputLabel>
-                            <Select
-                                css={multiSelectStyle}
-                                sx={{
-                                    height: "36px",
-                                }}
-                                labelId="monetization"
-                                id="monetizationSelect"
-                                multiple
-                                value={monetization}
-                                onChange={handleChangeMonetization}
-                                input={<OutlinedInput label="monetization" />}
-                            >
-                                {monetizations.map(
-                                    (monetization, monetizationIndex) => (
-                                        <MenuItem
-                                            key={monetization}
-                                            value={monetization}
-                                            css={menuItemStyle}
-                                            onClick={() =>
-                                                handleMonetizationMenuClick(
-                                                    monetizationIndex
-                                                )
-                                            }
-                                        >
-                                            <Grid
-                                                container
-                                                alignItems={"center"}
-                                                justifyContent={"space-between"}
-                                            >
-                                                <Grid>{monetization}</Grid>
-                                                <Grid>
-                                                    <Radio
-                                                        id={monetization}
-                                                        checked={
-                                                            monetizationRadio[
-                                                                monetizationIndex
-                                                            ]
-                                                        }
-                                                        value="a"
-                                                        name="radio-buttons"
-                                                        inputProps={{
-                                                            "aria-label": "A",
-                                                        }}
-                                                        icon={
-                                                            <CircleOutlinedIcon
-                                                                sx={{
-                                                                    color: "#161F29",
-                                                                }}
-                                                            ></CircleOutlinedIcon>
-                                                        }
-                                                        checkedIcon={
-                                                            <CheckCircleIcon
-                                                                sx={{
-                                                                    color: "#57ce66!important",
-                                                                }}
-                                                            ></CheckCircleIcon>
-                                                        }
-                                                    />
-                                                </Grid>
-                                            </Grid>
-                                        </MenuItem>
-                                    )
-                                )}
-                            </Select>
-                        </FormControl>
-                    </Grid>
+                    <MultiSelectFieldComponent
+                        placeholder="Select Item"
+                        label="videoLength"
+                        value={monetization}
+                        onChange={handleChangeMonetization}
+                        menuItems={monetizationMenuItems}
+                    ></MultiSelectFieldComponent>
                 </Grid>
 
                 <Grid
@@ -633,80 +420,13 @@ const DynamicFilterComponent = (props: props) => {
                     marginBottom={"20px"}
                 >
                     <Grid css={textGrid}>Current Status</Grid>
-                    <Grid css={itemStyle} width={"100%"} overflow={"hidden"}>
-                        <FormControl fullWidth>
-                            <InputLabel
-                                id="currentStatus"
-                                css={selectLabelStyle}
-                            >
-                                Select Item
-                            </InputLabel>
-                            <Select
-                                css={multiSelectStyle}
-                                sx={{
-                                    height: "36px",
-                                }}
-                                labelId="currentStatus"
-                                id="currentStatusSelect"
-                                multiple
-                                value={currentStatus}
-                                onChange={handleChangeCurrentStatus}
-                                input={<OutlinedInput label="currentStatus" />}
-                            >
-                                {currentStatuses.map(
-                                    (currentStatus, currentStatusIndex) => (
-                                        <MenuItem
-                                            key={currentStatus}
-                                            value={currentStatus}
-                                            css={menuItemStyle}
-                                            onClick={() =>
-                                                handleCurrentStatusMenuClick(
-                                                    currentStatusIndex
-                                                )
-                                            }
-                                        >
-                                            <Grid
-                                                container
-                                                alignItems={"center"}
-                                                justifyContent={"space-between"}
-                                            >
-                                                <Grid>{currentStatus}</Grid>
-                                                <Grid>
-                                                    <Radio
-                                                        id={currentStatus}
-                                                        checked={
-                                                            currentStatusRadio[
-                                                                currentStatusIndex
-                                                            ]
-                                                        }
-                                                        value="a"
-                                                        name="radio-buttons"
-                                                        inputProps={{
-                                                            "aria-label": "A",
-                                                        }}
-                                                        icon={
-                                                            <CircleOutlinedIcon
-                                                                sx={{
-                                                                    color: "#161F29",
-                                                                }}
-                                                            ></CircleOutlinedIcon>
-                                                        }
-                                                        checkedIcon={
-                                                            <CheckCircleIcon
-                                                                sx={{
-                                                                    color: "#57ce66!important",
-                                                                }}
-                                                            ></CheckCircleIcon>
-                                                        }
-                                                    />
-                                                </Grid>
-                                            </Grid>
-                                        </MenuItem>
-                                    )
-                                )}
-                            </Select>
-                        </FormControl>
-                    </Grid>
+                    <MultiSelectFieldComponent
+                        placeholder="Select Item"
+                        label="videoLength"
+                        value={currentStatus}
+                        onChange={handleChangeCurrentStatus}
+                        menuItems={currentStatusMenuItems}
+                    ></MultiSelectFieldComponent>
                 </Grid>
 
                 <Grid
@@ -717,80 +437,13 @@ const DynamicFilterComponent = (props: props) => {
                     marginBottom={"20px"}
                 >
                     <Grid css={textGrid}>Right Selling Status</Grid>
-                    <Grid css={itemStyle} width={"100%"} overflow={"hidden"}>
-                        <FormControl fullWidth>
-                            <InputLabel
-                                id="rightSelling"
-                                css={selectLabelStyle}
-                            >
-                                Select Item
-                            </InputLabel>
-                            <Select
-                                css={multiSelectStyle}
-                                sx={{
-                                    height: "36px",
-                                }}
-                                labelId="rightSelling"
-                                id="rightSellingSelect"
-                                multiple
-                                value={rightSelling}
-                                onChange={handleChangeRightSelling}
-                                input={<OutlinedInput label="rightSelling" />}
-                            >
-                                {rightSellings.map(
-                                    (rightSelling, rightSellingIndex) => (
-                                        <MenuItem
-                                            key={rightSelling}
-                                            value={rightSelling}
-                                            css={menuItemStyle}
-                                            onClick={() =>
-                                                handleRightSellingMenuClick(
-                                                    rightSellingIndex
-                                                )
-                                            }
-                                        >
-                                            <Grid
-                                                container
-                                                alignItems={"center"}
-                                                justifyContent={"space-between"}
-                                            >
-                                                <Grid>{rightSelling}</Grid>
-                                                <Grid>
-                                                    <Radio
-                                                        id={rightSelling}
-                                                        checked={
-                                                            rightSellingRadio[
-                                                                rightSellingIndex
-                                                            ]
-                                                        }
-                                                        value="a"
-                                                        name="radio-buttons"
-                                                        inputProps={{
-                                                            "aria-label": "A",
-                                                        }}
-                                                        icon={
-                                                            <CircleOutlinedIcon
-                                                                sx={{
-                                                                    color: "#161F29",
-                                                                }}
-                                                            ></CircleOutlinedIcon>
-                                                        }
-                                                        checkedIcon={
-                                                            <CheckCircleIcon
-                                                                sx={{
-                                                                    color: "#57ce66!important",
-                                                                }}
-                                                            ></CheckCircleIcon>
-                                                        }
-                                                    />
-                                                </Grid>
-                                            </Grid>
-                                        </MenuItem>
-                                    )
-                                )}
-                            </Select>
-                        </FormControl>
-                    </Grid>
+                    <MultiSelectFieldComponent
+                        placeholder="Select Item"
+                        label="videoLength"
+                        value={rightSelling}
+                        onChange={handleChangeRightSelling}
+                        menuItems={rightSellingMenuItems}
+                    ></MultiSelectFieldComponent>
                 </Grid>
             </Grid>
         </>
