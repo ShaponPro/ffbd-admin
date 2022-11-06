@@ -1,4 +1,5 @@
 // ** MUI Imports
+import { useState } from "react";
 import Box,{BoxProps} from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
@@ -29,6 +30,18 @@ const VoteBox = styled(Box)<BoxProps>(({ theme }) => ({
   fontWeight: "700"
 }))
 
+interface Item {
+  key: string;
+  title: string;
+}
+type Props = {
+  options: Item[];
+  activeKey: string;
+  onChange?: (value: string) => void;
+  style?: React.CSSProperties;
+  isActive?:boolean
+};
+
 const tabs = [
   {
       key: "videoContest",
@@ -45,7 +58,7 @@ const tabs = [
   },
 ];
 
-const ContestResult = () => {
+const ContestResult = (props: Props) => {
   
   /**
    * Handle on tab change
@@ -54,6 +67,86 @@ const ContestResult = () => {
     console.log('key', key)
   }
   
+const buttonTabs= [
+  {
+    key: "contestInfo",
+    title: "Contest Info",
+    isActive: true,
+  },
+  {
+    key: "rewards",
+    title: "Rewards",
+    isActive: false,
+  },
+  {
+    key: "performance",
+    title: "Performance",
+    isActive: false,
+  },
+  {
+    key: "participants",
+    title: "Participants",
+    isActive: false,
+  },
+    {
+      key: "videos",
+      title: "Videos",
+      isActive: false,
+    },
+    {
+      key: "potentialList",
+      title: "Potential List",
+      isActive: false,
+    },
+    {
+      key: "votedRanking",
+      title: "Voted Ranking",
+      isActive: false,
+    },
+    {
+      key: "irrelevantList",
+      title: "Irrelevant List",
+      isActive: false,
+    },
+    ,
+    {
+      key: "shortlist",
+      title: "Shortlist",
+      isActive: false,
+    },
+    ,
+    {
+      key: "preResultFinalWheel",
+      title: "Pre-Result/Final Wheel",
+      isActive: false,
+    },
+    ,
+    {
+      key: "result",
+      title: "Result",
+      isActive: false,
+    },
+    ,
+    {
+      key: "disburseGift",
+      title: "Disburse Gift",
+      isActive: false,
+    },
+]
+
+  // ** State
+  
+  const [active, setActive] = useState<string>(props.activeKey || "contestInfo"); //
+
+  /**
+   * Handle OnClick Button
+   */
+  const onClickHandler = (key: string) => {
+    setActive(key);
+
+    if (props.onChange) props.onChange(key);
+  };
+
     return (
         <ApexChartWrapper>
             <Grid item xs={12}>
@@ -82,9 +175,10 @@ const ContestResult = () => {
                         </Grid>
 
                         <Grid item xs={12} md={6} sx={{ width: '100%' ,background:"#EBF9ED"}}>
-                        <ButtonGroupComponent/>
+                        <ButtonGroupComponent  options={buttonTabs} activeKey={'contestInfo'} onChange={onClickHandler} />
                         <VoteBox>You can Vote only 3 Videos</VoteBox>
-                         <ListTableComponent/>
+                        {active == "contestInfo" &&  <ListTableComponent/>}
+                        
                        </Grid>
                       </Grid>
                     </Box>
