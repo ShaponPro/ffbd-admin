@@ -41,7 +41,7 @@ const rows = [
 ];
 
 //**Style */
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
+const StyledTableRow = styled(TableRow)(({ }) => ({
     "&:nth-of-type(even)": {
         background: "rgba(22, 31, 41, 0.03)",
     },
@@ -51,7 +51,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border:"2px solid rgba(22, 31, 41, 0.03)"
 }));
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const StyledTableCell = styled(TableCell)(({ }) => ({
     [`&.${tableCellClasses.body}`]: {
         fontSize: "12px",
         fontWeight: 700,
@@ -68,7 +68,6 @@ export default function ListTableComponent() {
           {rows.map((row) => (
             <StyledTableRow
               key={row.title}
-              sx={{ ' &:last-child th': { border: 0 } }}
             >
               <StyledTableCell sx={{fontWeight:700}} component="th" scope="row">
                 {row.title}

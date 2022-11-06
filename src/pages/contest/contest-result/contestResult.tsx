@@ -7,7 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 
 // ** Styled Component Import
-import { styled, useTheme } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 
 // ** Components
@@ -18,7 +18,7 @@ import ButtonGroupComponent from "src/components/ButtonGroupComponent";
 import ListTableComponent from "src/components/ListTableComponent";
 
 //**Style ***/
-const VoteBox = styled(Box)<BoxProps>(({ theme }) => ({
+const VoteBox = styled(Box)<BoxProps>(({ }) => ({
   color: "red", 
   background:"#EBE8FC",                      
   borderRadius:"5px",
@@ -49,6 +49,7 @@ type Props = {
   isActive?:boolean
 };
 
+//Tab props
 const tabs = [
   {
       key: "videoContest",
@@ -73,7 +74,8 @@ const ContestResult = (props: Props) => {
    const tabChangeHandler = (key: string) => {
     console.log('key', key)
   }
-  
+
+ //Group Buttons props 
 const buttonTabs= [
   {
     key: "contestInfo",
@@ -231,6 +233,16 @@ const subParticipateTab =[
       }
     ]
 
+ //Table Props
+
+ function createData(
+  title: string,
+  tableValue: any,
+
+) {
+  return { title, tableValue};
+}
+ 
   // ** State
   
   const [active, setActive] = useState<string>(props.activeKey || "contestInfo"); //
@@ -278,8 +290,8 @@ const subParticipateTab =[
                         {active == "contestInfo" ?  (
                           <>
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ListTableComponent/>
-                          {/* <ListTableComponent/> */}
+                          <ListTableComponent />
+
                           </>
                         ) : null}
                         
@@ -287,8 +299,8 @@ const subParticipateTab =[
                         {active == "rewards" ?  (
                           <>
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ListTableComponent column={2}/>
-                          {/* <ListTableComponent/> */}
+                          <ListTableComponent />
+                         
                           </>
                         ) : null}
 
@@ -296,7 +308,7 @@ const subParticipateTab =[
                           {active == "performance" ?  (
                           <>
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ListTableComponent/>
+                          <ListTableComponent />
                           </>
                         ) : null}
 
@@ -305,7 +317,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subParticipateTab} activeKey={'videoUploader1'} onChange={onClickHandler} />
                           <VoteBoxComponent title="Total .....Participants under the contest"/>
-                          <ListTableComponent/>
+                          <ContestResultList/>
                           </>
                         ) : null}
 
