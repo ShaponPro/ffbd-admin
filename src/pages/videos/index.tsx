@@ -19,7 +19,7 @@ import UserVideosCustomizedComponent from "./list-videos/customize/index";
 
 import { useQuery } from "@apollo/client";
 
-import { GET_VIDEO_LIST } from "./graphql/Queries";
+import { GET_VIDEO_LIST } from "../../graphql/Queries";
 import { useEffect, useState } from "react";
 
 const tabs = [

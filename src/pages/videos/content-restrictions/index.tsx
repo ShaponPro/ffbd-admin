@@ -14,7 +14,7 @@ import Select from '@mui/material/Select'
 
 import { useQuery } from '@apollo/client'
 
-import { GET_VIDEO_LIST } from '../graphql/Queries'
+import { GET_VIDEO_LIST } from '../../../graphql/Queries'
 
 // ** Icons Imports
 import AddCircleIcon from '@mui/icons-material/AddCircle'

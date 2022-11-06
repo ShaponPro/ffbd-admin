@@ -1,9 +1,6 @@
-import React from 'react'
-// import { useState } from 'react'
-
 import UploadTypeComponent from 'src/components/UploadTypeComponent'
 
-const uploadVideo = () => {
+const UploadVideo = () => {
 
   // const [fields, setFields] = useState<object[]>('')
 
@@ -14,4 +11,4 @@ const uploadVideo = () => {
   )
 }
 
-export default uploadVideo
+export default UploadVideo
