@@ -30,6 +30,12 @@ const VoteBox = styled(Box)<BoxProps>(({ theme }) => ({
   fontWeight: "700"
 }))
 
+const VoteBoxComponent = ({title}: {
+  title: string;
+}) =>(
+  <VoteBox>{title}</VoteBox>
+)
+
 interface Item {
   key: string;
   title: string;
@@ -176,9 +182,26 @@ const buttonTabs= [
 
                         <Grid item xs={12} md={6} sx={{ width: '100%' ,background:"#EBF9ED"}}>
                         <ButtonGroupComponent  options={buttonTabs} activeKey={'contestInfo'} onChange={onClickHandler} />
-                        <VoteBox>You can Vote only 3 Videos</VoteBox>
-                        {active == "contestInfo" &&  <ListTableComponent/>}
                         
+                        {/* contest info tab */}
+                        {active == "contestInfo" ?  (
+                          <>
+                          <VoteBoxComponent title="You can Vote only 3 Videos"/>
+                          <ListTableComponent/>
+                          {/* <ListTableComponent/> */}
+                          </>
+                        ) : null}
+                        
+                        {/* contest rewards tab */}
+                        {active == "rewards" ?  (
+                          <>
+                          <ButtonGroupComponent  options={buttonTabs} activeKey={'rewards'} onChange={onClickHandler} />
+                          <VoteBoxComponent title="You can Vote only 3 Videos"/>
+                          <ListTableComponent column={2}/>
+                          {/* <ListTableComponent/> */}
+                          </>
+                        ) : null}
+
                        </Grid>
                       </Grid>
                     </Box>
