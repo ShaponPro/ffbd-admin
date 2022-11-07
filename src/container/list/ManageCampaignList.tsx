@@ -18,10 +18,11 @@ import MenuItem from "@mui/material/MenuItem";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Switch from "@mui/material/Switch";
-import Checkbox from '@mui/material/Checkbox';
+import Checkbox from "@mui/material/Checkbox";
 
 // ** Components
 import SearchComponent from "src/components/SearchComponent";
+import ArrowButtonComponent from "./ArrowButtonComponent";
 
 //styled Component
 const StyledTableCell = styled(TableCell)(() => ({
@@ -73,6 +74,14 @@ const StyledTableRow = styled(TableRow)(() => ({
     },
 }));
 
+const ArrowClick = styled(Grid)({
+    background: "#FFFFFF",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    margin: "5px",
+});
+
 const StyledSelectReport = styled(Select)({
     borderRadius: "20px",
     background: "white",
@@ -90,22 +99,17 @@ const HeadClick = styled(Grid)({
     alignItems: "center",
     justifyContent: "space-between",
 });
-const ArrowClick = styled(Grid)({
-    background: "#FFFFFF",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    margin: "5px",
-});
 
 const label = { inputProps: { "aria-label": "Switch demo" } };
 
 export default function ManageCampaignList({
     rowsData,
     columns,
+    options,
 }: {
     rowsData: object[];
     columns: object[];
+    options: object[];
 }) {
     const data = rowsData;
 
@@ -208,11 +212,13 @@ export default function ManageCampaignList({
                             >
                                 <StyledTableRow>
                                     {columns.map((col: any) => (
-                                        <StyledTableCell key={col.videoID}>
+                                        <StyledTableCell key={col.field}>
                                             <HeadClick>
-                                                <Grid>{col?.header || ""}</Grid>{" "}
+                                                <Grid>{col?.header || ""}</Grid>
                                                 <ArrowClick>
-                                                    <ArrowDropDownIcon />
+                                                    <ArrowButtonComponent
+                                                        activekey={col.field}
+                                                    />
                                                 </ArrowClick>
                                             </HeadClick>
                                         </StyledTableCell>
@@ -352,7 +358,7 @@ ManageCampaignList.defaultProps = {
     columns: [
         {
             field: "selectRow",
-            header: '',
+            header: "",
         },
         {
             field: "onOff",
