@@ -320,7 +320,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subVideosTab} activeKey={'quality'} onChange={onClickHandler} />
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           </>
                         ) : null}
 
@@ -328,7 +328,7 @@ const subParticipateTab =[
                           {active == "potentialList" ?  (
                           <>
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           </>
                         ) : null}
 
@@ -337,7 +337,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subVotRankingTab} activeKey={'myVotes'} onChange={onClickHandler} />
                           <VoteBoxComponent title="You can View Only your Voted Videos"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           </>
                         ) : null}
 
@@ -345,7 +345,7 @@ const subParticipateTab =[
                         {active == "irrelevantList" ?  (
                           <>
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           </>
                         ) : null}
 
@@ -354,7 +354,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subShortlistTab} activeKey={'qualityVideos'} onChange={onClickHandler} />
                           <VoteBoxComponent title="Only Judge can Vote only 3 Videos"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           </>
                         ) : null}
                         
@@ -363,7 +363,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subPreResultTab} activeKey={'videoShortList'} onChange={onClickHandler} />
                           <VoteBoxComponent title="Visible Only Shortlisted Videos"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           
                           </>
                         ) : null}
