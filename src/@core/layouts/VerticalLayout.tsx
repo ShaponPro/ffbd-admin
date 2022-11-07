@@ -82,6 +82,7 @@ const VerticalLayout = (props: LayoutProps) => {
 
     // ** States
     const [navHover, setNavHover] = useState<boolean>(false);
+    console.log(navHover)
     const [navVisible, setNavVisible] = useState<boolean>(false);
 
     console.log("@#@#@#navHover :>> ", navHover, selectedItem);
@@ -115,6 +116,7 @@ const VerticalLayout = (props: LayoutProps) => {
                         {...props}
                     />
                 )}{" "}
+
                 {isSidebarVisible ? (
                     <SideBarContentComponents selectedItem={selectedItem}>
                         {navHover ? (

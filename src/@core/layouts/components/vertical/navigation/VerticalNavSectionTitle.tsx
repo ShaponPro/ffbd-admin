@@ -2,15 +2,18 @@
 import { Settings } from "src/@core/context/settingsContext";
 import { NavSectionTitle } from "src/@core/layouts/types";
 // ** Custom Components Imports
-import CanViewNavSectionTitle from "src/layouts/components/acl/CanViewNavSectionTitle";
+import CanViewNavSectionTitle
+    from "src/layouts/components/acl/CanViewNavSectionTitle";
 import Translations from "src/layouts/components/Translations";
 
 // ** MUI Imports
 import Divider from "@mui/material/Divider";
-import MuiListSubheader, { ListSubheaderProps } from "@mui/material/ListSubheader";
+import MuiListSubheader, {
+    ListSubheaderProps,
+} from "@mui/material/ListSubheader";
 import {
-  styled,
-  useTheme,
+    styled,
+    useTheme,
 } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
@@ -39,6 +42,7 @@ const ListSubheader = styled((props: ListSubheaderProps) => <MuiListSubheader co
 const VerticalNavSectionTitle = (props: Props) => {
   // ** Props
   const { item, navHover, settings, collapsedNavWidth, navigationBorderWidth } = props;
+  console.log(navHover)
 
   // ** Hook
   const theme = useTheme();
@@ -114,5 +118,6 @@ const VerticalNavSectionTitle = (props: Props) => {
     </CanViewNavSectionTitle>
   );
 };
+
 
 export default VerticalNavSectionTitle;

@@ -36,12 +36,14 @@ const steps = [
 type Props = {
     children: React.ReactNode;
     selectedItem: object | undefined;
+    groupActive: string[]
 };
 const SideBarContentComponents = (props: Props) => {
     const [catagory, setCatagory] = useState([]);
 
     const [activeStep, setActiveStep] = React.useState(0);
-    console.log("props.selectedItem :>> ", props.selectedItem.children);
+
+    // console.log("props.selectedItem :>> ", props.selectedItem.children);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -80,24 +82,32 @@ const SideBarContentComponents = (props: Props) => {
                 paddingRight: "1px",
             }}
         >
-            {props.selectedItem.children.map((fff) => {
-                return (
-                    <>
-                        <ul
+
+
+<ul
                             style={{
                                 paddingTop: "25px",
+                                paddingBottom:'20px',
                                 fontWeight: 700,
                                 fontSize: "16px",
                             }}
                         >
-                            <Link href="/videos/analytics">
+     {props.selectedItem.title}
+            {props.selectedItem.children.map((fff) => {
+                return (
+                    <>
+                       
+                     
+                            <Link href={fff.path}>
                                 <li
                                     style={{
-                                        backgroundColor: isHover
+                                        backgroundColor: isHover 
                                             ? "#F3F3F4"
                                             : "#FFFFFF",
 
                                         cursor: "pointer",
+
+                                        paddingTop: "30px",
 
                                         // paddingTop: "30px",
                                         fontWeight: 400,
@@ -110,11 +120,11 @@ const SideBarContentComponents = (props: Props) => {
                                     {fff.title}
                                 </li>
                             </Link>
-                        </ul>
+                        
                     </>
                 );
             })}
-
+</ul>
             {/* <ul
                 style={{
                     paddingTop: "25px",
