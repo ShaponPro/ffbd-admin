@@ -49,10 +49,6 @@ const selectStyle = css`
         font-size: 12px !important;
     }
 
-    .MuiPaper-root .MuiMenu-paper .MuiPopover-paper {
-        // padding: 0px !important;
-    }
-
     .MuiSelect-select {
         padding: 0 !important;
         padding-left: 10px !important;
@@ -69,16 +65,8 @@ const multiSelectStyle = css`
         display: flex !important;
     }
 
-    .MuiSelect-select {
-        // width: 70%;
-    }
-
     .MuiButtonBase-root {
         display: none !important;
-    }
-
-    .MuiMenuItem-root {
-        // height: 36px;
     }
 `;
 
@@ -106,6 +94,7 @@ const menuItemStyle = css`
 type Props = {
     placeholder: string;
     label: string;
+    name: string;
     menuItems: Array<{ id: number; title: string }>;
 };
 
@@ -156,6 +145,8 @@ const MultiSelectFieldComponent = (props: Props) => {
                         {props.placeholder}
                     </InputLabel>
                     <Select
+                        name={props.name}
+                        label={props.label}
                         css={multiSelectStyle}
                         sx={{
                             height: "36px",

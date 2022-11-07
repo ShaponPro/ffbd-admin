@@ -19,7 +19,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs, { Dayjs } from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import ButtonComponentCopy from "../FilterComponent/ButtonComponentCopy";
+import ButtonComponent from "src/components/ButtonComponent";
 
 const textFieldGridStyle = css`
     background: #ffffff;
@@ -38,10 +38,6 @@ const selectStyle = css`
         font-style: normal !important;
         font-weight: 400 !important;
         font-size: 12px !important;
-    }
-
-    .MuiPaper-root .MuiMenu-paper .MuiPopover-paper {
-        // padding: 0px !important;
     }
 
     .MuiSelect-select {
@@ -146,6 +142,7 @@ const buttonGrid = css`
 type Props = {
     placeholder: string;
     label: string;
+    name: string;
     menuItems: Array<{ id: number; title: string }>;
 };
 
@@ -181,6 +178,7 @@ const SelectFieldComponent = (props: Props) => {
                     <Select
                         labelId="uploadPeriod"
                         id="uploadPeriodSelect"
+                        name={props.name}
                         value={selectValue}
                         label={props.label}
                         onChange={onChangeSelect}
@@ -318,16 +316,16 @@ const SelectFieldComponent = (props: Props) => {
                                     {/* button grid */}
                                     <Grid container css={buttonGridStyle}>
                                         <Grid css={buttonGrid}>
-                                            <ButtonComponentCopy
+                                            <ButtonComponent
                                                 type="cancel"
                                                 title="cancel"
-                                            ></ButtonComponentCopy>
+                                            ></ButtonComponent>
                                         </Grid>
                                         <Grid>
-                                            <ButtonComponentCopy
+                                            <ButtonComponent
                                                 type="apply"
                                                 title="apply"
-                                            ></ButtonComponentCopy>
+                                            ></ButtonComponent>
                                         </Grid>
                                     </Grid>
                                 </>

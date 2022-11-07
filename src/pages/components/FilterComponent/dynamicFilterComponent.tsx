@@ -68,7 +68,8 @@ const DynamicFilterComponent = (props: Props) => {
                             {eachItem.type == "select" && (
                                 <SelectFieldComponent
                                     placeholder="Select Item"
-                                    label="uploadPeriod"
+                                    label={eachItem.title}
+                                    name={eachItem.title}
                                     menuItems={eachItem.menuItems}
                                 ></SelectFieldComponent>
                             )}
@@ -76,7 +77,8 @@ const DynamicFilterComponent = (props: Props) => {
                             {eachItem.type == "multiselect" && (
                                 <MultiSelectFieldComponent
                                     placeholder="Select Item"
-                                    label="videoLength"
+                                    label={eachItem.title}
+                                    name={eachItem.title}
                                     menuItems={eachItem.menuItems}
                                 ></MultiSelectFieldComponent>
                             )}
