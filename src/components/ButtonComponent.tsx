@@ -198,7 +198,6 @@ const ButtonComponent = (props: Props) => {
     if(type==='customizable'){
       return{
         fontFamily: 'Open Sans',
-        textTransform:'capitalize'
       }
     }
     else{
