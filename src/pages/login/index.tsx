@@ -53,8 +53,8 @@ const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
 }));
 
 const CustomButton = styled(Button)<ButtonProps>(({ theme }) => ({
-  width: " 270px",
-  height: "74px",
+  width: "250px",
+  height: "68px",
   marginBottom: "50px",
   background: "linear-gradient(360deg, #AE061A -64.72%, #FF5407 100%)",
   borderRadius: "5px",
@@ -166,7 +166,7 @@ const LoginPage = () => {
 
             <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
               <Box sx={{ textAlign: "center",mb:6}}>
-                <FormControl>
+                <FormControl  color='secondary'>
                   <Controller
                     name='email'
                     control={control}
@@ -179,7 +179,7 @@ const LoginPage = () => {
                           height: "74px",
                           borderRadius: "none",
                           color: "white",
-                          marginRight: "235px",
+                          marginRight: "300px",
                         }}
                         autoFocus
                         value={value}
@@ -195,7 +195,7 @@ const LoginPage = () => {
               </Box>
 
               <Box sx={{ textAlign: "center" }}>
-                <FormControl>
+                <FormControl color='secondary'>
                   <Controller
                     name='password'
                     control={control}
@@ -208,7 +208,7 @@ const LoginPage = () => {
                           height: "74px",
                           borderRadius: "none",
                           color: "white",
-                          marginRight: "200px",
+                          marginRight: "260px",
                         }}
                         value={value}
                         onBlur={onBlur}
@@ -255,7 +255,7 @@ const LoginPage = () => {
               <Box sx={{ textAlign: "center", py: 5 }}>
                 <FormControlLabel
                   label='Remember Me'
-                  control={<Checkbox sx={{ color: "#FFFFFF" }} />}
+                  control={<Checkbox  color='secondary' sx={{ color: "#FFFFFF" }} />}
                   sx={{ "& .MuiFormControlLabel-label": { color: "#FFFFFF" } }}
                 />
               </Box>

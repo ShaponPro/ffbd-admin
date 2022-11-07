@@ -20,7 +20,7 @@ export default function YoutubeCrawler() {
             <Typography style={typographyStyle}>Upload Type</Typography>
           </Grid>
           <Grid item xs={8.5} sm={8.5} md={10.25}>
-            <TextInputField placeholder='Youtube Crawler' disabled={true} style={{ width: '230px !important' }} />
+            <TextInputField title='small' defaultValue='Youtube Crawler' disabled={true}  />
           </Grid>
         </Grid>
       </Box>

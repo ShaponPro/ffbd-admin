@@ -42,12 +42,18 @@ const Label = styled("label")({
   width: "40%",
 });
 
+interface Item {
+  key: string;
+  title: string;
+}
+
 //**props define
 type props = {
-  options?: object[];
+  options?: Item[];
   selected?: string;
   onChange?: (field: string) => void;
   style?: React.CSSProperties;
+  onClick?:(args: any) => void;
 };
 
 function UploadTypeComponent(props: props) {

@@ -229,6 +229,7 @@ const VerticalNavGroup = (props: Props) => {
         },
         "&.Mui-selected": {
           backgroundColor: `rgba(${theme.palette.customColors.dark}, 0.08)`,
+
           "&:hover": {
             backgroundColor: `rgba(${theme.palette.customColors.dark}, 0.08)`,
           },

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // ** MUI Imports
-import { InputBase, InputAdornment, Typography, Radio } from "@mui/material";
+import { InputBase, Typography, Radio } from "@mui/material";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -68,18 +68,7 @@ const userVideos = {
     musicCreator: "",
 };
 
-//**props
-
-// type props = {
-//     title: string;
-
-//     // userName: string
-//     // fields: object[];
-//     // onChange: (fields: object[]) => void;
-//     // style: React.CSSProperties;
-// };
-
-export const FilterComponent = () => {
+export const ContestResultFilter = () => {
     const [videoState, setVideoState] = useState<object>(userVideos);
 
     /* Handle all Changes */
@@ -88,12 +77,6 @@ export const FilterComponent = () => {
         setVideoState({ ...videoState, [e.target.name]: e.target.value });
 
         console.log(videoState);
-
-        // setUserName({userName: e.target.value})
-
-        //post req
-        // axios
-        //post
     };
 
     /* Handle all Changes End */
@@ -101,14 +84,14 @@ export const FilterComponent = () => {
     return (
         <div className="demo-space-x">
             <Grid container spacing={2}>
-                <Grid item lg={3} xs={12}>
+                <Grid item lg={4} md={6} xs={12}>
                     <StyledGrid>
                         <Typography
                             variant="h4"
                             display="flex"
                             style={typographyStyle}
                         >
-                            User Id/Name
+                            Contest Name
                         </Typography>
                         <Item style={itemStyle}>
                             <InputBase
@@ -120,13 +103,16 @@ export const FilterComponent = () => {
                             <SearchIcon />
                         </Item>
                     </StyledGrid>
+                </Grid>
+
+                <Grid item lg={4} md={6} xs={12}>
                     <StyledGrid>
                         <Typography
                             variant="h4"
                             display="flex"
                             style={typographyStyle}
                         >
-                            Engagement
+                            Reward Nature
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
                             <InputLabel
@@ -140,7 +126,7 @@ export const FilterComponent = () => {
                                 Select Item
                             </InputLabel>
                             <StyledSelect>
-                                <Grid
+                                <Grid 
                                     sx={{
                                         display: "flex",
                                         alignItems: "center",
@@ -148,7 +134,7 @@ export const FilterComponent = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Likes
+                                        Select All
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -160,7 +146,7 @@ export const FilterComponent = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Comments
+                                        Fixed
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -172,7 +158,7 @@ export const FilterComponent = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Shares
+                                        Weekly
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -184,42 +170,7 @@ export const FilterComponent = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Download
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                            </StyledSelect>
-                        </FormControl>
-                    </StyledGrid>
-                    <StyledGrid>
-                        <Typography
-                            variant="h4"
-                            display="flex"
-                            style={typographyStyle}
-                        >
-                            Current Status
-                        </Typography>
-                        <FormControl sx={{ minWidth: 120 }} size="small">
-                            <InputLabel
-                                shrink={false}
-                                sx={{
-                                    color: "rgba(22, 31, 41, 0.25)",
-                                    fontWeight: "400",
-                                    fontSize: "12px",
-                                }}
-                            >
-                                Select Item
-                            </InputLabel>
-                            <StyledSelect>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        Published
+                                        Biweekly
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -231,7 +182,7 @@ export const FilterComponent = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Failed
+                                        Monthly
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -243,31 +194,7 @@ export const FilterComponent = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Uploading
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        Suspended
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        Deleted
+                                        Quarterly
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -275,32 +202,15 @@ export const FilterComponent = () => {
                         </FormControl>
                     </StyledGrid>
                 </Grid>
-                <Grid item lg={3} xs={12}>
+
+                <Grid item lg={4} md={6} xs={12}>
                     <StyledGrid>
                         <Typography
                             variant="h4"
                             display="flex"
                             style={typographyStyle}
                         >
-                            Uploaded Country
-                        </Typography>
-                        <Item style={itemStyle}>
-                            <InputBase
-                                placeholder="Search and Filter"
-                                style={{ fontSize: "10px" }}
-                                onChange={onChangeHandler}
-                                name="uploadedCountry"
-                            />
-                            <SearchIcon />
-                        </Item>
-                    </StyledGrid>
-                    <StyledGrid>
-                        <Typography
-                            variant="h4"
-                            display="flex"
-                            style={typographyStyle}
-                        >
-                            AD & Monetization
+                            Result Publishing Status
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
                             <InputLabel
@@ -322,7 +232,7 @@ export const FilterComponent = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Awareness AD
+                                        Select All
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -334,7 +244,7 @@ export const FilterComponent = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Product Added
+                                        N/A
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -346,7 +256,7 @@ export const FilterComponent = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Active Awarness
+                                        Continuous
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -358,54 +268,7 @@ export const FilterComponent = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Active Product
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                            </StyledSelect>
-                        </FormControl>
-                    </StyledGrid>
-                    <StyledGrid>
-                        <Typography
-                            variant="h4"
-                            display="flex"
-                            style={typographyStyle}
-                        >
-                            Right Selling Status
-                        </Typography>
-                        <FormControl sx={{ minWidth: 120 }} size="small">
-                            <InputLabel
-                                shrink={false}
-                                sx={{
-                                    color: "rgba(22, 31, 41, 0.25)",
-                                    fontWeight: "400",
-                                    fontSize: "12px",
-                                }}
-                            >
-                                Select Item
-                            </InputLabel>
-                            <StyledSelect>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        Free
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        Sold
+                                        Pending
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -429,7 +292,7 @@ export const FilterComponent = () => {
                                     }}
                                 >
                                     <label style={radioBtnContainerStyle}>
-                                        Claimed
+                                        Published
                                     </label>
                                     <Radio />
                                 </Grid>
@@ -437,14 +300,148 @@ export const FilterComponent = () => {
                         </FormControl>
                     </StyledGrid>
                 </Grid>
-                <Grid item lg={3} xs={12}>
+
+                <Grid item lg={4} md={6} xs={12}>
                     <StyledGrid>
                         <Typography
                             variant="h4"
                             display="flex"
                             style={typographyStyle}
                         >
-                            Upload Peried{" "}
+                            Contest Status
+                        </Typography>
+                        <FormControl sx={{ minWidth: 120 }} size="small">
+                            <InputLabel
+                                shrink={false}
+                                sx={{
+                                    color: "rgba(22, 31, 41, 0.25)",
+                                    fontWeight: "400",
+                                    fontSize: "12px",
+                                }}
+                            >
+                                Select Item
+                            </InputLabel>
+                            <StyledSelect>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Select All
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Upcoming
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Pending Approval
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Running/Live
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Closed without Result
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Closed Result
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Suspended
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Rejected
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <label style={radioBtnContainerStyle}>
+                                        Draft
+                                    </label>
+                                    <Radio />
+                                </Grid>
+                            </StyledSelect>
+                        </FormControl>
+                    </StyledGrid>
+                </Grid>
+                <Grid item lg={4} md={6} xs={12}>
+                    <StyledGrid>
+                        <Typography
+                            variant="h4"
+                            display="flex"
+                            style={typographyStyle}
+                        >
+                            Contest End Period{" "}
                         </Typography>
                         <FormControl sx={{ minWidth: 120 }} size="small">
                             <InputLabel
@@ -491,119 +488,6 @@ export const FilterComponent = () => {
                                 </Grid>
                             </StyledSelect>
                         </FormControl>
-                    </StyledGrid>
-                    <StyledGrid>
-                        <Typography
-                            variant="h4"
-                            display="flex"
-                            style={typographyStyle}
-                        >
-                            Video Contest
-                        </Typography>
-                        <Item style={itemStyle}>
-                            <InputBase
-                                placeholder="Search and Filter"
-                                style={{ fontSize: "10px" }}
-                                onChange={onChangeHandler}
-                                name="videoContest"
-                            />
-                            <InputAdornment position="end">
-                                <SearchIcon />
-                            </InputAdornment>
-                        </Item>
-                    </StyledGrid>
-                </Grid>
-                <Grid item lg={3} xs={12}>
-                    <StyledGrid>
-                        <Typography
-                            variant="h4"
-                            display="flex"
-                            style={typographyStyle}
-                        >
-                            Video Length Group
-                        </Typography>
-                        <FormControl sx={{ minWidth: 120 }} size="small">
-                            <InputLabel
-                                shrink={false}
-                                sx={{
-                                    color: "rgba(22, 31, 41, 0.25)",
-                                    fontWeight: "400",
-                                    fontSize: "12px",
-                                }}
-                            >
-                                Select Item
-                            </InputLabel>
-                            <StyledSelect>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        Upto 30s
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        31s-60s
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        61s-180s
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                                <Grid
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    <label style={radioBtnContainerStyle}>
-                                        181s-300s
-                                    </label>
-                                    <Radio />
-                                </Grid>
-                            </StyledSelect>
-                        </FormControl>
-                    </StyledGrid>
-                    <StyledGrid>
-                        <Typography
-                            variant="h4"
-                            display="flex"
-                            style={typographyStyle}
-                        >
-                            Music Creator
-                        </Typography>
-                        <Item style={itemStyle}>
-                            <InputBase
-                                placeholder="Search and Filter"
-                                style={{ fontSize: "10px" }}
-                                onChange={onChangeHandler}
-                                name="musicCreator"
-                            />
-                            <InputAdornment position="end">
-                                <SearchIcon />
-                            </InputAdornment>
-                        </Item>
                     </StyledGrid>
                 </Grid>
             </Grid>

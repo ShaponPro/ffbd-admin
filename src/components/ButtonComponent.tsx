@@ -1,19 +1,19 @@
 import React from 'react'
 import { Button } from '@mui/material'
 
-
 type Props = {
   title: string
   type?: string
   style?: React.CSSProperties
   onClick?: (args: any) => void;
   isActive?: boolean
+  startIcon ?: any 
+  endIcon ?: any
 }
 
 const ButtonComponent = (props: Props) => {
   
-
-  const styleButton = (type: string, isActive: boolean) => {
+  const styleButton = (type: string, isActive: boolean) : React.CSSProperties => {
     if (type === 'tabButton')
       return {
         width: '200px',
@@ -93,7 +93,7 @@ const ButtonComponent = (props: Props) => {
           padding: '10px',
           width: '307px',
           height: '39px',      
-          background: isActive? '#ECF8FF' : '#F3F3F4',
+          background: isActive? '#EBE8FC' : '#FFFFFF',
           
           fontFamily: 'Open Sans',
           fontSize: '14px',
@@ -132,6 +132,38 @@ const ButtonComponent = (props: Props) => {
         textTransform: 'capitalize'
       }
     }
+    if(type==='age')
+    {
+      return{
+        padding: '10px',
+          width: '100px',
+          height: '42px',      
+          background: isActive? '#57CE66' : '#F3F3F4',
+          borderRadius:'2px',
+          fontFamily: 'Open Sans',
+          fontSize: '14px',
+          fontWeight: isActive? '700' : '400',
+          color: isActive? '#FFFFFF' : '#161F29',
+          boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1), inset 1px 2px 3px rgba(0, 0, 0, 0.25)',
+          textTransform: 'capitalize'
+      }
+    }
+
+    if(type== 'publish')
+    {
+      return{
+        width: '125px',
+        height: '42px',
+        padding: '10px 20px',
+        borderRadius: '3px',
+        fontFamily: 'Open Sans',
+        fontSize: '16px',
+        fontWeight: '700',
+        background: '#57CE66',
+        color: '#FFFFFF',
+        textTransform: 'capitalize'
+      }
+    }
     if(type === 'apply'){
       return{
         padding: '5px 20px',
@@ -161,17 +193,21 @@ const ButtonComponent = (props: Props) => {
         color:'#161F29'
       }
     }
-
+    if(type==='customizable'){
+      return{
+        fontFamily: 'Open Sans',
+      }
+    }
     else{
       return{
         width: '100px',
-        height: '36px',
+        height: '42px',
         padding: '12px 20px',
         borderRadius: '2px',
         fontFamily: 'Open Sans',
-        fontSize: '12px',
-        fontWeight: '600',
-        background: '#009EFA',
+        fontSize: '14px',
+        fontWeight: '700',
+        background: '#57CE66',
         boxShadow: '0.5px 1px 3px rgba(22, 31, 41, 0.2)',
         color: '#FFFFFF',
         textTransform: 'capitalize'
@@ -182,9 +218,10 @@ const ButtonComponent = (props: Props) => {
   return (
     <div>
       <Button
-        style = {styleButton(props.type || '', props.isActive || false)}
-        onClick= {props.onClick
-        }
+        style= {{...styleButton(props.type || '', props.isActive || false), ...props.style}}
+        onClick= {props.onClick}
+        startIcon={props.startIcon}
+        endIcon ={props.endIcon}
       >
           {props.title}
        
