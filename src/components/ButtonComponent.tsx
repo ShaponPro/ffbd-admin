@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button } from '@mui/material'
 
-
 type Props = {
   title: string
   type?: string
@@ -14,7 +13,6 @@ type Props = {
 
 const ButtonComponent = (props: Props) => {
   
-
   const styleButton = (type: string, isActive: boolean) : React.CSSProperties => {
     if (type === 'tabButton')
       return {
@@ -95,7 +93,7 @@ const ButtonComponent = (props: Props) => {
           padding: '10px',
           width: '307px',
           height: '39px',      
-          background: isActive? '#ECF8FF' : '#F3F3F4',
+          background: isActive? '#EBE8FC' : '#FFFFFF',
           
           fontFamily: 'Open Sans',
           fontSize: '14px',
@@ -198,7 +196,6 @@ const ButtonComponent = (props: Props) => {
     if(type==='customizable'){
       return{
         fontFamily: 'Open Sans',
-        textTransform:'capitalize'
       }
     }
     else{
