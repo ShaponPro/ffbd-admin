@@ -20,7 +20,7 @@ const ButtonComponent = (props: Props) => {
       return {
         width: '200px',
         height: '40px',
-        padding: '10px 20px',
+        
         borderRadius: '20px',
         fontSize: '16px',
         fontFamily: 'Open Sans',
@@ -239,5 +239,5 @@ ButtonComponent.defaultProps = {
   type: "",
   style: {},
   onClick: () => null,
-  isActive: false
+  isActive: false
 }
