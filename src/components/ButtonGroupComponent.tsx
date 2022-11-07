@@ -114,6 +114,66 @@ ButtonGroupComponent.defaultProps = {
         key: "disburseGift",
         title: "Disburse Gift",
       },
+
+      // Sub Tab Change
+      //participates tab sub tabs
+      {
+        key: "videoUploader",
+        title: "Video Uploader",
+      },
+
+      // //videos tab sub tabs
+      // {
+      //   key: "quality",
+      //   title: "Quality",
+      // },
+      // {
+      //   key: "mostLiked",
+      //   title: "Most Liked",
+      // },
+      // {
+      //   key: "highestViewed",
+      //   title: "Highest Viewed",
+      // },
+
+      // //vote ranking tab sub tabs
+      // {
+      //   key: "myVotes",
+      //   title: "My Votes",
+      // },
+      // {
+      //   key: "votedSummary",
+      //   title: "Voted Summary",
+      // },
+      // {
+      //   key: "scoringDetails",
+      //   title: "scoring Details",
+      // },
+
+      // //shortlist tab sub tabs
+
+      // {
+      //   key: "qualityVideos",
+      //   title: "Quality Videos",
+      // },
+      // {
+      //   key: "topSharer",
+      //   title: "Top Sharer",
+      // },
+
+      // //shortlist tab sub tabs
+      // {
+      //   key: "videoShortList",
+      //   title: "Video-Shortlist",
+      // },
+      // {
+      //   key: "topSharerShortList",
+      //   title: "Top Sharer-Shortlist",
+      // },
+      // {
+      //   key: "manualListing",
+      //   title: "Manual Listing",
+      // },
   ],
   activeKey: "regular",
   onChange: (key: string) => null,
