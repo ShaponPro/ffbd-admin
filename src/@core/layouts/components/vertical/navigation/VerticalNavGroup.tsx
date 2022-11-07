@@ -81,7 +81,7 @@ const VerticalNavGroup = (props: Props) => {
     //     console.log(e.target.value);
     // };
 
-    // console.log(buttonValue);
+    //console.log("navHover", navHover, item);
 
     // ** Props
     const {
@@ -155,6 +155,10 @@ const VerticalNavGroup = (props: Props) => {
     // ** Menu Group Click
     const handleGroupClick = () => {
         const openGroup = groupActive;
+        props.saveSettings({
+            ...props.settings,
+            selectedItem: item,
+        });
         if (verticalNavToggleType === "collapse") {
             if (openGroup.includes(item.title)) {
                 openGroup.splice(openGroup.indexOf(item.title), 1);
@@ -306,11 +310,13 @@ const VerticalNavGroup = (props: Props) => {
                     }}
                 >
                     <ListItemButton
-                        onClick={(e) => {
-                            console.log('@props', props)
-                            props.saveSettings({...props.settings, selectedItem: item})
-                        }}
-
+                        // onClick={() => {
+                        //     console.log("@props", props);
+                        //     props.saveSettings({
+                        //         ...props.settings,
+                        //         selectedItem: item,
+                        //     });
+                        // }}
                         className={clsx({
                             "Mui-selected":
                                 groupActive.includes(item.title) ||

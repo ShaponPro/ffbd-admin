@@ -39,7 +39,8 @@ const resolveNavItemComponent = (
 const VerticalNavItems = (props: Props) => {
     // ** Props
     const { verticalNavItems } = props;
-    console.log('props', props)
+
+    // console.log('props', props)
 
     // console.log(verticalNavItems);
 
