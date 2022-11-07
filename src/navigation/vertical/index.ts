@@ -23,6 +23,12 @@ const navigation = (): VerticalNavItemsType => {
             title: "Dashboard",
             icon: AlarmOnIcon,
             path: "/dashboard",
+            children: [
+                {
+                    title: "",
+                    path: "/dashboard",
+                },
+            ],
         },
         {
             title: "videos",
@@ -76,40 +82,24 @@ const navigation = (): VerticalNavItemsType => {
             subject: "acl-page",
             children: [
                 {
-                    title: "Video Analytics",
+                    title: "Performance Overview",
                     path: "/ui/cards/basic",
                 },
                 {
-                    title: "List Videos",
+                    title: "Campaign Manager",
                     path: "/ui/cards/statistics",
                 },
                 {
-                    title: "User Videos",
+                    title: "Create Campaign",
                     path: "/ui/cards/advanced",
                 },
                 {
-                    title: "Brand Videos",
+                    title: "Manage Campaign",
                     path: "/ui/cards/gamification",
                 },
                 {
-                    title: "Tutorial",
+                    title: "In app Offers",
                     path: "/ui/cards/actions",
-                },
-                {
-                    title: "Youtube Crawler",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Upload a Video",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Download Code",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Content Restriction",
-                    path: "/ui/cards/widgets",
                 },
             ],
         },
@@ -166,51 +156,39 @@ const navigation = (): VerticalNavItemsType => {
             subject: "acl-page",
             children: [
                 {
-                    title: "Contest Overview",
+                    title: "Video Analytics",
                     path: "/ui/cards/basic",
                 },
                 {
-                    title: "Video Contest",
+                    title: "List Videos",
                     path: "/ui/cards/statistics",
                 },
                 {
-                    title: "Place a New Video Contest",
+                    title: "User Videos",
                     path: "/ui/cards/advanced",
                 },
                 {
-                    title: "Manage Contest",
+                    title: "Brand Videos",
                     path: "/ui/cards/gamification",
                 },
                 {
-                    title: "Contest Result",
+                    title: "Tutorial",
                     path: "/ui/cards/actions",
                 },
                 {
-                    title: "Quiz/pulls",
+                    title: "Youtube Crawler",
                     path: "/ui/cards/widgets",
                 },
                 {
-                    title: "Place a New Quiz/pulls",
+                    title: "Upload a Video",
                     path: "/ui/cards/widgets",
                 },
                 {
-                    title: "Manage Quiz/pulls",
+                    title: "Download Code",
                     path: "/ui/cards/widgets",
                 },
                 {
-                    title: "Quiz/pulls Result",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "judge Panel",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Gift Disbursement tracking",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Selling of Existing Content Rights",
+                    title: "Content Restriction",
                     path: "/ui/cards/widgets",
                 },
             ],
@@ -448,31 +426,39 @@ const navigation = (): VerticalNavItemsType => {
             subject: "acl-page",
             children: [
                 {
-                    title: "User Summary",
+                    title: "Video Analytics",
                     path: "/ui/cards/basic",
                 },
                 {
-                    title: "User List",
+                    title: "List Videos",
                     path: "/ui/cards/statistics",
                 },
                 {
-                    title: "Influencer List",
+                    title: "User Videos",
                     path: "/ui/cards/advanced",
                 },
                 {
-                    title: "Professional Contest Creator List",
+                    title: "Brand Videos",
                     path: "/ui/cards/gamification",
                 },
                 {
-                    title: "Users Dox",
+                    title: "Tutorial",
                     path: "/ui/cards/actions",
                 },
                 {
-                    title: "Sponsored Channel",
+                    title: "Youtube Crawler",
                     path: "/ui/cards/widgets",
                 },
                 {
-                    title: "Level & Badges",
+                    title: "Upload a Video",
+                    path: "/ui/cards/widgets",
+                },
+                {
+                    title: "Download Code",
+                    path: "/ui/cards/widgets",
+                },
+                {
+                    title: "Content Restriction",
                     path: "/ui/cards/widgets",
                 },
             ],

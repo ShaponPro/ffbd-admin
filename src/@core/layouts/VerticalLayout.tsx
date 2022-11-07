@@ -1,5 +1,8 @@
 // ** React Imports
-import { useState } from "react";
+import {
+    useEffect,
+    useState,
+} from "react";
 
 // ** Icons Imports
 import ArrowUp from "mdi-material-ui/ArrowUp";
@@ -53,7 +56,7 @@ const ContentWrapper = styled("main")(({ theme }) => ({
 
 const VerticalLayout = (props: LayoutProps) => {
     // ** Props
-    const [isClicked, setIsClicked] = useState(false);
+    const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
     // const verticalNavItems = [
     //     { title: 'Videos', children: [{name: 'video 1', path: '/video1'}] },
@@ -62,15 +65,17 @@ const VerticalLayout = (props: LayoutProps) => {
     //   ];
 
     // const avengers = characters.filter(character => character.team === 'Avengers');
-    // , isClicked, titlestring
+    // , isSidebarVisible, titlestring
 
-    const { hidden, settings, children, scrollToTop    } = props;
+    const { hidden, settings, children, scrollToTop } = props;
 
     const { item, parent } = VerticalNavGroup;
 
     // ** Vars
-    const { skin, navHidden, contentWidth, selectedItem} = settings;
-    const { navigationSize, disableCustomizer, collapsedNavigationSize } = themeConfig;
+    const { skin, navHidden, contentWidth, selectedItem } = settings;
+
+    const { navigationSize, disableCustomizer, collapsedNavigationSize } =
+        themeConfig;
     const navWidth = navigationSize;
     const navigationBorderWidth = skin === "bordered" ? 1 : 0;
     const collapsedNavWidth = collapsedNavigationSize;
@@ -78,6 +83,12 @@ const VerticalLayout = (props: LayoutProps) => {
     // ** States
     const [navHover, setNavHover] = useState<boolean>(false);
     const [navVisible, setNavVisible] = useState<boolean>(false);
+
+    console.log("@#@#@#navHover :>> ", navHover, selectedItem);
+
+    useEffect(() => {
+        setIsSidebarVisible(selectedItem?.children.length > 1)
+    }, [selectedItem, navHover]);
 
     // ** Toggle Functions
     const toggleNavVisibility = () => setNavVisible(!navVisible);
@@ -104,17 +115,21 @@ const VerticalLayout = (props: LayoutProps) => {
                         {...props}
                     />
                 )}{" "}
-                <SideBarContentComponents selectedItem={selectedItem}>
-                    {navHover ? <SideBarHover selectedItem={selectedItem}/> : null}
-                </SideBarContentComponents>
+                {isSidebarVisible ? (
+                    <SideBarContentComponents selectedItem={selectedItem}>
+                        {navHover ? (
+                            <SideBarHover selectedItem={selectedItem} />
+                        ) : null}
+                    </SideBarContentComponents>
+                ) : null}
                 <MainContentWrapper className="layout-content-wrapper">
                     {/* <Button
                         style={{ color: "red" }}
-                        onClick={() => setIsClicked(!isClicked)}
+                        onClick={() =, setIsSidebarVisible(!isSidebarVisible)}
                     >
                         click here
                     </Button>
-                    {isClicked ? <p>lorem</p> : null} */}
+                    {isSidebarVisible ? <p>lorem</p> : null} */}
 
                     {/* Content */}
                     <ContentWrapper
