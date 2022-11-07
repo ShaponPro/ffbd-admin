@@ -99,14 +99,14 @@ const ContestVideoUploaderList = () => {
 
     return (
         <>
-            <Grid container xs={12} md={8} mb={4} mt={4} rowSpacing={4}>
-                <Box
+            <Grid  xs={12}  mb={4} mt={4} rowSpacing={2}>
+                <Box 
                     sx={{
                         display: "flex",
-
-                        // alignItems: "center",
                         justifyContent: "space-between",
+                        padding:"10px"
                     }}
+                    container
                 >
                     <SearchComponent />
                     <Box>
