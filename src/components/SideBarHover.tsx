@@ -1,6 +1,10 @@
 import { Box } from "@mui/system";
 
-const SideBarHover = () => {
+type Props = {
+  selectedItem: object | undefined;
+}
+const SideBarHover = ({selectedItem}: Props) => {
+  console.log('selectedItem on hover', selectedItem)
   return (
     <Box
       style={{

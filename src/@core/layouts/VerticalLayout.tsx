@@ -55,8 +55,6 @@ const VerticalLayout = (props: LayoutProps) => {
     // ** Props
     const [isClicked, setIsClicked] = useState(false);
 
-    // console.log(isClicked);
-
     // const verticalNavItems = [
     //     { title: 'Videos', children: [{name: 'video 1', path: '/video1'}] },
     //     { title: 'Brands', children: [{name: 'Brands 1', path: '/b1'}] },
@@ -66,14 +64,13 @@ const VerticalLayout = (props: LayoutProps) => {
     // const avengers = characters.filter(character => character.team === 'Avengers');
     // , isClicked, titlestring
 
-    const { hidden, settings, children, scrollToTop } = props;
+    const { hidden, settings, children, scrollToTop    } = props;
 
     const { item, parent } = VerticalNavGroup;
 
     // ** Vars
-    const { skin, navHidden, contentWidth } = settings;
-    const { navigationSize, disableCustomizer, collapsedNavigationSize } =
-        themeConfig;
+    const { skin, navHidden, contentWidth, selectedItem} = settings;
+    const { navigationSize, disableCustomizer, collapsedNavigationSize } = themeConfig;
     const navWidth = navigationSize;
     const navigationBorderWidth = skin === "bordered" ? 1 : 0;
     const collapsedNavWidth = collapsedNavigationSize;
@@ -107,8 +104,8 @@ const VerticalLayout = (props: LayoutProps) => {
                         {...props}
                     />
                 )}{" "}
-                <SideBarContentComponents>
-                    {navHover ? <SideBarHover /> : null}
+                <SideBarContentComponents selectedItem={selectedItem}>
+                    {navHover ? <SideBarHover selectedItem={selectedItem}/> : null}
                 </SideBarContentComponents>
                 <MainContentWrapper className="layout-content-wrapper">
                     {/* <Button

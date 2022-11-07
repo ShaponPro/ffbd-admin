@@ -306,10 +306,10 @@ const VerticalNavGroup = (props: Props) => {
                     }}
                 >
                     <ListItemButton
-                        // onClick={(e) => {
-                        //     setIsClicked(!isClicked);
-                        //     setButtonValue(e.target.value);
-                        // }}
+                        onClick={(e) => {
+                            console.log('@props', props)
+                            props.saveSettings({...props.settings, selectedItem: item})
+                        }}
 
                         className={clsx({
                             "Mui-selected":
