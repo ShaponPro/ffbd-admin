@@ -19,7 +19,7 @@ import MangeContestFilter from "../../../container/filters/ManageContestFilter";
 
 import { useQuery } from "@apollo/client";
 
-import { GET_VIDEO_LIST } from "src/pages/videos/graphql/Queries";
+import { GET_VIDEO_LIST } from "src/graphql/Queries";
 import { useEffect, useState } from "react";
 import ListComponent from "src/components/ListComponent";
 import ManageContestList from "src/container/list/ManageContestList";
@@ -77,7 +77,7 @@ const row = {
     contestStartDate: 100,
     ContestEndDate: 5000,
     uploadedBy: 1000,
-    "action": [
+    action: [
         {
             type: "action",
             title: "View Contest",
