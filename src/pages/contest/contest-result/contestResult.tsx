@@ -16,6 +16,8 @@ import { ContestResultFilter } from "src/container/filters/ContestResultFilter";
 import ContestResultList from "src/container/lists/ContestResultList"
 import ButtonGroupComponent from "src/components/ButtonGroupComponent";
 import ListTableComponent from "src/components/ListTableComponent";
+import ListTableComponent2 from "src/components/ListTableComponent2";
+import ButtonComponent from "src/components/ButtonComponent";
 
 //**Style ***/
 const VoteBox = styled(Box)<BoxProps>(({ }) => ({
@@ -235,14 +237,6 @@ const subParticipateTab =[
 
  //Table Props
 
- function createData(
-  title: string,
-  tableValue: any,
-
-) {
-  return { title, tableValue};
-}
- 
   // ** State
   
   const [active, setActive] = useState<string>(props.activeKey || "contestInfo"); //
@@ -290,7 +284,7 @@ const subParticipateTab =[
                         {active == "contestInfo" ?  (
                           <>
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ListTableComponent />
+                          <ListTableComponent2 />
 
                           </>
                         ) : null}
@@ -308,7 +302,7 @@ const subParticipateTab =[
                           {active == "performance" ?  (
                           <>
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ListTableComponent />
+                          <ListTableComponent2 />
                           </>
                         ) : null}
 
@@ -326,7 +320,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subVideosTab} activeKey={'quality'} onChange={onClickHandler} />
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ListTableComponent/>
+                          <ContestResultList/>
                           </>
                         ) : null}
 
@@ -334,7 +328,7 @@ const subParticipateTab =[
                           {active == "potentialList" ?  (
                           <>
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ListTableComponent/>
+                          <ContestResultList/>
                           </>
                         ) : null}
 
@@ -342,8 +336,8 @@ const subParticipateTab =[
                           {active == "votedRanking" ?  (
                           <>
                           <ButtonGroupComponent  options={subVotRankingTab} activeKey={'myVotes'} onChange={onClickHandler} />
-                          <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ListTableComponent/>
+                          <VoteBoxComponent title="You can View Only your Voted Videos"/>
+                          <ContestResultList/>
                           </>
                         ) : null}
 
@@ -351,6 +345,7 @@ const subParticipateTab =[
                         {active == "irrelevantList" ?  (
                           <>
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
+                          <ContestResultList/>
                           </>
                         ) : null}
 
@@ -359,7 +354,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subShortlistTab} activeKey={'qualityVideos'} onChange={onClickHandler} />
                           <VoteBoxComponent title="Only Judge can Vote only 3 Videos"/>
-                          <ListTableComponent/>
+                          <ContestResultList/>
                           </>
                         ) : null}
                         
@@ -368,6 +363,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subPreResultTab} activeKey={'videoShortList'} onChange={onClickHandler} />
                           <VoteBoxComponent title="Visible Only Shortlisted Videos"/>
+                          <ContestResultList/>
                           
                           </>
                         ) : null}
@@ -376,6 +372,7 @@ const subParticipateTab =[
                           {active == "result" ?  (
                           <>
                           <VoteBoxComponent title="Only Judge can Vote only 3 Videos"/>
+                          <ListTableComponent/>
                           
                           </>
                         ) : null}
@@ -384,7 +381,8 @@ const subParticipateTab =[
                           {active == "disburseGift" ?  (
                           <>
                           <VoteBoxComponent title="Only Judge can Vote only 3 Videos"/>
-                       
+                          <ListTableComponent/>
+                        
                           </>
                         ) : null}                        
 
