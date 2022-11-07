@@ -6,7 +6,6 @@ import ButtonComponent from "src/components/ButtonComponent";
 
 // ** MUI Imports
 import styled from "@emotion/styled";
-import { string } from "yup";
 
 const TabContainer = styled.div({
   display: "flex",
