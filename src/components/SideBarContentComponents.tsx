@@ -38,9 +38,11 @@ const steps = [
 
 type Props = {
   children: React.ReactNode;
+  selectedItem: object | undefined;
 };
 const SideBarContentComponents = (props: Props) => {
   const [activeStep, setActiveStep] = React.useState(0);
+  console.log('props.selectedItem :>> ', props.selectedItem);
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
