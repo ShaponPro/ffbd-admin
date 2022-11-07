@@ -26,7 +26,7 @@ const tabs = [
   }
 ]
 
-const ContestOverview = () => {
+const PerformanceOverview = () => {
   /**
    * Handle on tab change
    */
@@ -40,7 +40,7 @@ const ContestOverview = () => {
         <Grid item xs={12} md={12}>
           <Typography variant='h5' sx={{ mb: 4.5 }}>
             <Box component='span' sx={{ fontWeight: 'bold' }}>
-              Contests Overview
+              Performance Overview
             </Box>
           </Typography>
         </Grid>
@@ -85,7 +85,7 @@ const ContestOverview = () => {
                     boxShadow: '0px 2px 3px rgba(0, 0, 0, 0.1)'
                   }}
                 >
-                  Overview
+                  Performance Overview
                 </Box>
               </Typography>
             </Grid>
@@ -96,4 +96,4 @@ const ContestOverview = () => {
   )
 }
 
-export default ContestOverview
+export default PerformanceOverview
