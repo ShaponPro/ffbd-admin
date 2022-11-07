@@ -16,9 +16,11 @@ import TableHead from "@mui/material/TableHead";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import Grid from "@mui/material/Grid";
 import MenuItem from "@mui/material/MenuItem";
+import Checkbox from "@mui/material/Checkbox";
 
 // ** Components
-import SearchComponent from "./SearchComponent";
+import SearchComponent from "src/components/SearchComponent";
+import ButtonComponent from "src/components/ButtonComponent";
 
 //styled Component
 const StyledTableCell = styled(TableCell)(() => ({
@@ -28,11 +30,13 @@ const StyledTableCell = styled(TableCell)(() => ({
         borderLeft: "2px solid white",
         color: "black",
         textTransform: "none",
+        textAlign: "center",
     },
 
     [`&.${tableCellClasses.body}`]: {
         fontSize: 12,
         border: "2px solid white",
+        whiteSpace: "nowrap",
     },
 }));
 
@@ -45,13 +49,20 @@ const StyledSelect = styled(Select)({
     boxShadow: "inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)",
 });
 
-const StyledMenuItem= styled(MenuItem)({
-margin:'5px'
+const StyledMenuItem = styled(MenuItem)({
+    margin: "5px",
 });
 
 const StyledGrid = styled(Grid)({
     display: "flex",
     margin: "10px",
+});
+
+const StyledCheckbox = styled(Checkbox)({
+    "& .MuiSvgIcon-root": {
+        fontSize: 30,
+        borderRadius: 0,
+    },
 });
 
 const StyledTableRow = styled(TableRow)(() => ({
@@ -85,6 +96,13 @@ const List = styled("ul")({
     listStyle: "none",
     padding: 0,
     margin: 0,
+    display: "flex",
+});
+
+const ButtonGrid = styled(Grid)({
+    margin: "5px",
+    fontSize: "12px",
+    whiteSpace: "nowrap",
     display: "flex",
 });
 
@@ -140,15 +158,26 @@ function UsePagination() {
     );
 }
 
-export default function ListComponent({
+type Item = {
+    type: string;
+    title: string;
+};
+export default function GiftDisbursementTracking({
     rowsData,
     columns,
+    actions,
+    actionHandler,
 }: {
     rowsData: object[];
     columns: object[];
+    actions: object[];
+    actionHandler: (type: string, id: string) => void;
 }) {
-
     const data = rowsData;
+
+    // const actionHandler2=((type: string, id: string)=>{
+    //     console.log("View Contest clicked")
+    // })
 
     return (
         <Box maxWidth={"xl"} sx={{ background: "#F3F3F4" }}>
@@ -209,8 +238,11 @@ export default function ListComponent({
                                 }}
                             >
                                 <StyledTableRow>
+                                    <StyledTableCell>
+                                        <StyledCheckbox disableRipple />
+                                    </StyledTableCell>
                                     {columns.map((col: any) => (
-                                        <StyledTableCell key={col.videoID}>
+                                        <StyledTableCell key={col.field}>
                                             {col?.header || ""}
                                         </StyledTableCell>
                                     ))}
@@ -218,125 +250,136 @@ export default function ListComponent({
                             </TableHead>
                             <TableBody>
                                 {data.map((row: any) => (
-                                    <StyledTableRow key={row?.videoID || ""}>
+                                    <StyledTableRow
+                                        key={row?.contestType || ""}
+                                    >
+                                        <StyledTableCell>
+                                            <StyledCheckbox disableRipple />
+                                        </StyledTableCell>
                                         <StyledTableCell
                                             component="th"
                                             scope="row"
                                         >
-                                            {row?.videoID || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            <img
-                                                height={120}
-                                                width={80}
-                                                src="/images/avatars/images1.jpg"
-                                                alt="this is image"
-                                            />
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.videoTitle || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.fileSize || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.videoLength || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.userName || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.userID || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.fanfareID || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.userCreatedDate || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.uploadData || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.uploadDays || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.uploadCountry || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.uploadedIP || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.deviceType || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.videoLengthGroup || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.totalViews || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.totalWatchTime || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.totalLikes || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.totalComments || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.totalShares || ""}
-                                        </StyledTableCell>
-                                        <StyledTableCell>
-                                            {row?.downloads || ""}
+                                            {row?.contestName || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             {row?.contestID || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.contestTitle || ""}
+                                            {row?.rewardNature || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.contestWinningPosition || ""}
+                                            {row?.rewardPeriod || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.allTimeRankingScore || ""}
+                                            {row?.positions || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.trendingScore || ""}
+                                            {row?.rewardConsiderations || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.activeAwarenessDays || ""}
+                                            {row?.typeOfGift || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.activeProductdays || ""}
+                                            {row?.fPoint || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.totalMonitization || ""}
+                                            {row?.valuInCash || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.activeDailyMonetization || ""}
+                                            {row?.videoId || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.awarenessClick || ""}
+                                            {row?.totalScorePerformance || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.addReach || ""}
+                                            {row?.userName || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.trafficGeneration || ""}
+                                            {row?.fanfareID || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.rightSellingStatus || ""}
+                                            {row?.userID || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.lastActivityDate || ""}
+                                            <img
+                                                height={58}
+                                                width={58}
+                                                src={row?.coverPhoto}
+                                                alt="this is image"
+                                            />
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.lastActivityTime || ""}
+                                            {row?.coverPhoto || ""}
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            {row?.currentSatus || ""}
+                                            {row?.contactNumber || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {row?.publishingBrandName || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {row?.redultPublishDate || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {row?.selectionMethod || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {row?.challanNo || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {row?.disbursementStatus || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {row?.deliveryStage || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {row?.deliveryUpdateDate || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {row?.lastUpdateBy || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {row?.userStatus || ""}
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            {actions && actions.length
+                                                ? actions.map(
+                                                      (
+                                                          item: Item | {},
+                                                          i: number
+                                                      ) => {
+                                                          return (
+                                                              <>
+                                                                  <ButtonGrid
+                                                                      key={i}
+                                                                  >
+                                                                      <ButtonComponent
+                                                                          type={
+                                                                              item?.type ||
+                                                                              ""
+                                                                          }
+                                                                          title={
+                                                                              item?.title ||
+                                                                              ""
+                                                                          }
+                                                                          onClick={() => {
+                                                                              if (
+                                                                                  actionHandler
+                                                                              )
+                                                                                  actionHandler(
+                                                                                      item?.type ||
+                                                                                          "no type",
+                                                                                      row?.contestID
+                                                                                  );
+                                                                          }}
+                                                                      />
+                                                                  </ButtonGrid>
+                                                              </>
+                                                          );
+                                                      }
+                                                  )
+                                                : null}
                                         </StyledTableCell>
                                     </StyledTableRow>
                                 ))}
@@ -411,197 +454,181 @@ export default function ListComponent({
     );
 }
 
-ListComponent.defaultProps = {
+GiftDisbursementTracking.defaultProps = {
     rowsData: [
         {
-            videoID: "62b956a760a6af7b2e98cae1",
-            thumbnail: "url",
-            videoTitle: "Beautiful Henna Design",
-            fileSize: 24.44,
-            videoLength: 0.4,
-            userName: "Nimul Islam",
-            userID: "124345579866",
-            fanfareID: "xyz2022",
-            userCreatedDate: "6/26/2021",
-            uploadData: "1:05:11 PM",
-            uploadDays: 410,
-            uploadCountry: "Bangladesh",
-            uploadedIP: "103.103.34.34",
-            deviceID: "d8c1a9b3ca05740d",
-            deviceType: "android",
-            videoLengthGroup: "31s-60s",
-            totalViews: 220,
-            totalWatchTime: 6160,
-            totalLikes: 50,
-            totalComments: 10,
-            totalShares: 15,
-            downloads: 55,
-            contestID: "VC123547",
-            contestTitle: "Talent's Wolrd",
-            contestWinningPosition: "1st",
-            allTimeRankingScore: 1700,
-            trendingScore: 415,
-            activeAwarenessDays: 0,
-            activeProductdays: 3,
-            totalMonitization: 5000,
-            activeDailyMonetization: 100,
-            addReach: 5000,
-            awarenessClick: 1000,
-            trafficGeneration: 1500,
-            rightSellingStatus: "Proccesing",
-            lastActivityDate: "6/27/2022",
-            lastActivityTime: "1:05:00 PM",
-            currentSatus: "Published",
+            contestType: "Video",
+            contestName: "Friends Forever",
+            contestID: "VC109957675",
+            rewardNature: "Fixed",
+            rewardPeriod: "Full",
+            positions: "Position-01",
+            rewardConsiderations: "Relevant Quality Content",
+            typeOfGift: "Cash",
+            fPoint: "-",
+            valuInCash: 3000,
+            videoId: "-",
+            totalScorePerformance: "7.09",
+            userName: "xyz2022",
+            fanfareID: "62b956a760a",
+            userID: "6af7b2e98",
+            coverPhoto: "https://i.postimg.cc/c1f434Wn/images1.jpg",
+            contactNumber: "-",
+            publishingBrandName: "-",
+            redultPublishDate: "-",
+            selectionMethod: "Wheel/Manual/Score",
+            challanNo: "-",
+            disbursementStatus: "-",
+            deliveryStage: "-",
+            deliveryUpdateDate: "-",
+            lastUpdateBy: "-",
+            userStatus: "Active",
+        },
+        {
+            contestType: "Video",
+            contestName: "Friends Forever",
+            contestID: "VC109957675",
+            rewardNature: "Fixed",
+            rewardPeriod: "Full",
+            positions: "Position-01",
+            rewardConsiderations: "Relevant Quality Content",
+            typeOfGift: "Cash",
+            fPoint: "-",
+            valuInCash: 3000,
+            videoId: "-",
+            totalScorePerformance: "7.09",
+            userName: "xyz2022",
+            fanfareID: "62b956a760a",
+            userID: "6af7b2e98",
+            coverPhoto: "https://i.postimg.cc/c1f434Wn/images1.jpg",
+            contactNumber: "-",
+            publishingBrandName: "-",
+            redultPublishDate: "-",
+            selectionMethod: "Wheel/Manual/Score",
+            challanNo: "-",
+            disbursementStatus: "-",
+            deliveryStage: "-",
+            deliveryUpdateDate: "-",
+            lastUpdateBy: "-",
+            userStatus: "Active",
         },
     ],
     columns: [
         {
-            field: "videoID",
-            header: "Video ID",
+            field: "contestType",
+            header: "Contest Type",
         },
         {
-            field: "thumbnail",
-            header: "Thumbnail",
-        },
-        {
-            field: "videoTitle",
-            header: "Video Title",
-        },
-        {
-            field: "fileSize",
-            header: "File Size(MB)",
-        },
-        {
-            field: "videoLength",
-            header: "Video Length",
-        },
-        {
-            field: "userName",
-            header: "User Name",
-        },
-        {
-            field: "userID",
-            header: "User ID",
-        },
-        {
-            field: "fanfareID",
-            header: "Fanfare ID",
-        },
-        {
-            field: "userCreatedDate",
-            header: "User Created Date",
-        },
-        {
-            field: "uploadData",
-            header: "Upload Data",
-        },
-        {
-            field: "uploadDays",
-            header: "Upload Days",
-        },
-        {
-            field: "uploadCountry",
-            header: "Upload Country",
-        },
-        {
-            field: "uploadedIP",
-            header: "Uploaded IP",
-        },
-        {
-            field: "deviceType",
-            header: "Device Type",
-        },
-        {
-            field: "videoLengthGroup",
-            header: "Video Length Group",
-        },
-        {
-            field: "totalViews",
-            header: "Total Views",
-        },
-        {
-            field: "totalWatchTime",
-            header: "Total Watch Time",
-        },
-        {
-            field: "totalLikes",
-            header: "Total Likes",
-        },
-        {
-            field: "totalComments",
-            header: "Total Comments",
-        },
-        {
-            field: "totalShares",
-            header: "Total Shares",
-        },
-        {
-            field: "downloads",
-            header: "Downloads",
+            field: "contestName",
+            header: "Contest Name",
         },
         {
             field: "contestID",
             header: "Contest ID",
         },
         {
-            field: "contestTitle",
-            header: "Contest Title",
+            field: "rewardNature",
+            header: "Reward Nature",
         },
         {
-            field: "contestWinningPosition",
-            header: "Contest Winning Position",
+            field: "rewardPeriod",
+            header: "Reward Period",
         },
         {
-            field: "allTimeRankingScore",
-            header: "All Time Ranking Score",
+            field: "positions",
+            header: "Positions",
         },
         {
-            field: "trendingScore",
-            header: "Tranding Score",
+            field: "rewardConsiderations",
+            header: "Reward Considerations",
         },
         {
-            field: "activeAwarenessDays",
-            header: "Active Awareness Days",
+            field: "typeOfGift",
+            header: "Type of Gift",
         },
         {
-            field: "activeProductdays",
-            header: "Active Product Days",
+            field: "fPoint",
+            header: "F:Points (if any)",
         },
         {
-            field: "totalMonitization",
-            header: "Total Monetization (Till Yestarday)",
+            field: "valueInCash",
+            header: "Value in Cash",
         },
         {
-            field: "activeDailyMonetization",
-            header: "Active Daily Monetization",
+            field: "videoId",
+            header: "Video ID",
         },
         {
-            field: "addReach",
-            header: "ADD Reach",
+            field: "totalScorePerformance",
+            header: "Total Score/ Performance",
         },
         {
-            field: "awarenessClick",
-            header: "Awareness Click",
+            field: "userName",
+            header: "User Name",
         },
         {
-            field: "trafficGeneration",
-            header: "Traffic Generation",
+            field: "fanfareID",
+            header: "Fanfare ID",
         },
         {
-            field: "rightSellingStatus",
-            header: "Right Selling Status",
+            field: "userID",
+            header: "User ID",
         },
         {
-            field: "lastActivityDate",
-            header: "Last Activity Date",
+            field: "coverPhoto",
+            header: "Cover Photo",
         },
         {
-            field: "lastActivityTime",
-            header: "Last Activity Time",
+            field: "contactNumber",
+            header: "Contact Number",
         },
         {
-            field: "currentSatus",
-            header: "Current Status",
+            field: "publishingBrandName",
+            header: "Publishing Brand Name",
+        },
+        {
+            field: "redultPublishDate",
+            header: "Result Publish Date",
+        },
+        {
+            field: "selectionMethod",
+            header: "Selection Method",
+        },
+        {
+            field: "challanNo",
+            header: "Challan No.",
+        },
+        {
+            field: "disbursementStatus",
+            header: "Disbursment Status",
+        },
+        {
+            field: "deliveryStage",
+            header: "Delivery Stage",
+        },
+        {
+            field: "deliveryUpdateDate",
+            header: "Delivery Update Date",
+        },
+        {
+            field: "lastUpdateBy",
+            header: "Last Update by",
+        },
+        {
+            field: "userStatus",
+            header: "User Status",
+        },
+        {
+            field: "action",
+            header: "Action",
         },
     ],
+    actions: [
+        {
+            type: "action",
+            title: "Disburse",
+        },
+    ],
+    actionHandler: (type: string, id: string) =>
+        console.log("type, id", type, id),
 };

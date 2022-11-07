@@ -36,6 +36,7 @@
     "@popperjs/core": "2.11.2",
     "@reduxjs/toolkit": "1.8.1",
     "add": "^2.0.6",
+    "ag-grid-community": "^28.2.1",
     "apexcharts-clevision": "3.28.5",
     "aws-amplify": "4.3.22",
     "axios": "0.27.2",

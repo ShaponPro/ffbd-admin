@@ -2,7 +2,7 @@ import React from "react";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { Grid } from "@mui/material";
+import { Grid, styled } from "@mui/material";
 import ButtonComp from "../../../../../src/components/ButtonComponent";
 
 const buttonGrid = css`
@@ -11,19 +11,23 @@ const buttonGrid = css`
     margin-right: 5px !important;
 `;
 
+const StyledGrid = styled(Grid)({
+    margin:'2px'
+})
+
 const ButtonComponent = () => {
     return (
         <>
             <Grid css={buttonGrid}>
-                <Grid>
+                <StyledGrid>
                     <ButtonComp type="action" title="Update" />
-                </Grid>
-                <Grid>
+                </StyledGrid>
+                <StyledGrid>
                     <ButtonComp type="action" title="Resend" />
-                </Grid>
-                <Grid>
+                </StyledGrid>
+                <StyledGrid>
                     <ButtonComp type="action" title="Suspend" />
-                </Grid>
+                </StyledGrid>
             </Grid>
         </>
     );
