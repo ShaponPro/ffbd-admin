@@ -82,7 +82,7 @@ const VerticalNavHeader = (props: Props) => {
     const menuCollapsedStyles =
         navCollapsed && !navHover ? { opacity: 0 } : { opacity: 1 };
 
-    // console.log("selectedItem :>> ", menuCollapsedStyles, selectedItem);
+    console.log("selectedItem :>> ", menuCollapsedStyles, selectedItem);
     const svgFillSecondary = () => {
         if (skin === "semi-dark" && theme.palette.mode === "light") {
             return `rgba(${theme.palette.customColors.dark}, 0.68)`;

@@ -1,24 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-// ** MUI Imports
-import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
-import Typography from '@mui/material/Typography'
-import CardContent from '@mui/material/CardContent'
-import Grid from '@mui/material/Grid'
-
 // ** Styled Component Import
-import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
-
+import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 // ** Components
+import { FilterComponent } from "src/components/FilterComponent";
+import ListComponent from "src/components/ListComponent";
 
-import ListComponent from 'src/components/ListComponent'
-import {FilterComponent} from 'src/components/FilterComponent';
+import { useQuery } from "@apollo/client";
+// ** MUI Imports
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 
-import { useQuery } from '@apollo/client'
-
-import { GET_VIDEO_LIST } from '../../../../graphql/Queries' 
-
+import { GET_VIDEO_LIST } from "../../../../graphql/Queries";
 
 const AnalyticsCongratulations = () => {
 
@@ -35,41 +29,44 @@ const AnalyticsCongratulations = () => {
   if (error) {
     return <p>:( an error happened</p>;
   }
+  if(loading){
+    return <p>Data Loading</p>
+  }
 
   console.log('data', data)
 
    /**
    * Handle on tab change
    */
-  const filterChangeHandler = (key: string) =>{
-    console.log('key', key)
-  }
+  // const filterChangeHandler = (key: string) =>{
+  //   console.log('key', key)
+  // }
 
 
-  const columns =[
-    {
-      field:"_id", header:"Video ID"
-    }, 
-    {
-      field:"title", header:"Video Title"
-    }, 
-    {
-      field:"activity_updated", header:"Last Activity Time"
-    }, 
-    {
-      field:"short_id", header:"Short ID"
-    },
-    {
-      field:"likes_count", header:"Total Likes"
-    }, 
-    {
-      field:"comments_count", header:"Total Comments"
-    },  
-    {
-      field:"views_count", header:"Total Views"
-    } ,
+  // const columns =[
+  //   {
+  //     field:"_id", header:"Video ID"
+  //   }, 
+  //   {
+  //     field:"title", header:"Video Title"
+  //   }, 
+  //   {
+  //     field:"activity_updated", header:"Last Activity Time"
+  //   }, 
+  //   {
+  //     field:"short_id", header:"Short ID"
+  //   },
+  //   {
+  //     field:"likes_count", header:"Total Likes"
+  //   }, 
+  //   {
+  //     field:"comments_count", header:"Total Comments"
+  //   },  
+  //   {
+  //     field:"views_count", header:"Total Views"
+  //   } ,
 
-  ]
+  // ]
 
   return (
     <ApexChartWrapper>

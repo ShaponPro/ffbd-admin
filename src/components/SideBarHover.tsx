@@ -26,10 +26,10 @@ const SideBarHover = (props: Props) => {
                 padding:'10px'
             }}
         >
-            {props.selectedItem.children.map((fff) => {
+            
+            {(props.selectedItem && props.selectedItem?.children) ? props.selectedItem.children.map((item: any, i: number) => {
                 return (
-                    <>
-                        <ul
+                        <ul key = {i}
                             style={{
                               alignItems:'center'
 
@@ -43,12 +43,11 @@ const SideBarHover = (props: Props) => {
                                     }
                                 }
                             >
-                                {fff.title}
+                                {item.title}
                             </li>
                         </ul>
-                    </>
                 );
-            })}
+            }) : null}
         </Box>
     );
 };

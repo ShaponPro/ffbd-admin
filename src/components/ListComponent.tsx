@@ -46,7 +46,6 @@ const StyledSelect = styled(Select)({
 });
 
 const StyledMenuItem= styled(MenuItem)({
-border:'2px solid red', 
 margin:'5px'
 });
 

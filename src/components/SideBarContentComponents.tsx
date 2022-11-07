@@ -36,7 +36,7 @@ const steps = [
 type Props = {
     children: React.ReactNode;
     selectedItem: object | undefined;
-    groupActive: string[]
+    groupActive: string[];
 };
 const SideBarContentComponents = (props: Props) => {
     const [catagory, setCatagory] = useState([]);
@@ -82,49 +82,49 @@ const SideBarContentComponents = (props: Props) => {
                 paddingRight: "1px",
             }}
         >
+            <ul
+                style={{
+                    paddingTop: "25px",
+                    paddingBottom: "20px",
+                    fontWeight: 700,
+                    fontSize: "16px",
+                }}
+            >
+                {props.selectedItem && props.selectedItem.title
+                    ? props.selectedItem.title
+                    : ""}
 
+                {props.selectedItem && props.selectedItem?.children
+                    ? props.selectedItem.children.map(
+                          (item: any, i: number) => {
+                              return (
+                                  <Link href={item.path} key={i}>
+                                      <li
+                                          style={{
+                                              backgroundColor: isHover
+                                                  ? "#F3F3F4"
+                                                  : "#FFFFFF",
 
-<ul
-                            style={{
-                                paddingTop: "25px",
-                                paddingBottom:'20px',
-                                fontWeight: 700,
-                                fontSize: "16px",
-                            }}
-                        >
-     {props.selectedItem.title}
-            {props.selectedItem.children.map((fff) => {
-                return (
-                    <>
-                       
-                     
-                            <Link href={fff.path}>
-                                <li
-                                    style={{
-                                        backgroundColor: isHover 
-                                            ? "#F3F3F4"
-                                            : "#FFFFFF",
+                                              cursor: "pointer",
 
-                                        cursor: "pointer",
+                                              paddingTop: "30px",
 
-                                        paddingTop: "30px",
+                                              // paddingTop: "30px",
+                                              fontWeight: 400,
 
-                                        // paddingTop: "30px",
-                                        fontWeight: 400,
-
-                                        paddingLeft: "5px",
-                                    }}
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                >
-                                    {fff.title}
-                                </li>
-                            </Link>
-                        
-                    </>
-                );
-            })}
-</ul>
+                                              paddingLeft: "5px",
+                                          }}
+                                          onMouseEnter={handleMouseEnter}
+                                          onMouseLeave={handleMouseLeave}
+                                      >
+                                          {item.title}
+                                      </li>
+                                  </Link>
+                              );
+                          }
+                      )
+                    : null}
+            </ul>
             {/* <ul
                 style={{
                     paddingTop: "25px",
