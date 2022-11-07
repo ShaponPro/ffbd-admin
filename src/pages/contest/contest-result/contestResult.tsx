@@ -12,12 +12,12 @@ import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 
 // ** Components
 import TabbarComponent from "src/components/TabbarComponent";
-import { ContestResultFilter } from "src/container/filters/ContestResultFilter";
-import ContestResultList from "src/container/lists/ContestResultList"
+import { ContestResultFilter } from "src/container/filter/ContestResultFilter";
+import ContestResultList from "src/container/list/ContestResultList"
 import ButtonGroupComponent from "src/components/ButtonGroupComponent";
 import ListTableComponent from "src/components/ListTableComponent";
 import ListTableComponent2 from "src/components/ListTableComponent2";
-import ButtonComponent from "src/components/ButtonComponent";
+import ContestVideoUploaderList from "src/container/list/ContestVideoUploaderList";
 
 //**Style ***/
 const VoteBox = styled(Box)<BoxProps>(({ }) => ({
@@ -311,7 +311,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subParticipateTab} activeKey={'videoUploader1'} onChange={onClickHandler} />
                           <VoteBoxComponent title="Total .....Participants under the contest"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           </>
                         ) : null}
 
