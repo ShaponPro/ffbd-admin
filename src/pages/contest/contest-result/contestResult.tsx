@@ -13,11 +13,11 @@ import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 // ** Components
 import TabbarComponent from "src/components/TabbarComponent";
 import { ContestResultFilter } from "src/container/filter/ContestResultFilter";
-import ContestResultList from "src/container/list/ContestResultList";
+import ContestResultList from "src/container/list/contestResult/ContestResultList";
 import ButtonGroupComponent from "src/components/ButtonGroupComponent";
 import ListTableComponent from "src/components/ListTableComponent";
 import ListTableComponent2 from "src/components/ListTableComponent2";
-import ContestVideoUploaderList from "src/container/list/ContestVideoUploaderList";
+import ContestVideoUploaderList from "src/container/list/contestResult/ContestVideoUploaderList";
 import ContestWinnersTabComponent from "../../../views/contest/ContestWinnersTabComponent";
 import ContestScoreSettingTabComponent from "../../../views/contest/ContestScoreSettingTabComponent";
 
