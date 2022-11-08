@@ -43,7 +43,7 @@ const SideBarContentComponents = (props: Props) => {
 
     const [activeStep, setActiveStep] = React.useState(0);
 
-    // console.log("props.selectedItem :>> ", props.selectedItem.children);
+    console.log("props.selectedItem :>> ", props.selectedItem.children);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
