@@ -93,10 +93,11 @@ const navigation = (): VerticalNavItemsType => {
                     title: "Create Campaign",
                     path: "/adcenter/campaignmanager/createcampaign",
                 },
-                // {
-                //     title: "Manage Campaign",
-                //     path: "/adcenter/campaignmanager/managecampaign",
-                // },
+
+                {
+                    title: "Manage Campaign",
+                    path: "/adcenter/campaignmanager/managecampaign",
+                },
                 {
                     title: "In app Offers",
                     path: "/adcenter/inappoffer",
@@ -169,7 +170,7 @@ const navigation = (): VerticalNavItemsType => {
                 },
                 {
                     title: "Contest Result",
-                    path: "/contest/contest-result",
+                    path: "/contest/contest-result/contestResult",
                 },
                 {
                     title: "Quiz /Polls",
@@ -191,6 +192,7 @@ const navigation = (): VerticalNavItemsType => {
                     title: "Judge Panel",
                     path: "/contest/judgePanel",
                 },
+
                 {
                     title: "Gift Disbursement Tracking",
                     path: "/contest/giftdisbursementtracking",
@@ -386,7 +388,7 @@ const navigation = (): VerticalNavItemsType => {
             children: [
                 {
                     title: "User Summary",
-                    path: "/ui/cards/basic",
+                    path: "user/user-summary",
                 },
                 {
                     title: "User List",
