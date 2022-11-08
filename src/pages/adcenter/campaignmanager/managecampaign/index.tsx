@@ -32,9 +32,9 @@ const AnalyticsCongratulations = () => {
   console.log(data);
 
   // check for errors
-  if (error) {
-    return <p>:( an error happened</p>;
-  }
+  // if (error) {
+  //   return <p>:( an error happened</p>;
+  // }
 
   console.log('data', data)
 
