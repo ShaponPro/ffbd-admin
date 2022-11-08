@@ -1,21 +1,16 @@
-// ** React Imports
 import { useState, ReactNode } from "react";
 
-// ** Next Imports
 import Link from "next/link";
 
 // ** MUI Components
 import Button, { ButtonProps } from "@mui/material/Button";
-import Alert from "@mui/material/Alert";
-import Grid from "@mui/material/Grid";
 import MuiLink from "@mui/material/Link";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import Box, { BoxProps } from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import FormHelperText from "@mui/material/FormHelperText";
 import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
@@ -32,7 +27,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 // ** Hooks
 import { useAuth } from "src/hooks/useAuth";
-import useBgColor from "src/@core/hooks/useBgColor";
+// import useBgColor from "src/@core/hooks/useBgColor";
 import { useSettings } from "src/@core/hooks/useSettings";
 
 // ** Layout Import
@@ -40,7 +35,7 @@ import BlankLayout from "src/@core/layouts/BlankLayout";
 
 // ** Styled Components
 
-const Wrapper = styled(Box)<BoxProps>(({ theme }) => ({
+const Wrapper = styled(Box)<BoxProps>(({ }) => ({
   width: "100%",
 }));
 
@@ -52,7 +47,7 @@ const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
   },
 }));
 
-const CustomButton = styled(Button)<ButtonProps>(({ theme }) => ({
+const CustomButton = styled(Button)<ButtonProps>(({ }) => ({
   width: "250px",
   height: "68px",
   marginBottom: "50px",
@@ -95,12 +90,12 @@ const LoginPage = () => {
 
   // ** Hooks
   const auth = useAuth();
-  const theme = useTheme();
-  const bgClasses = useBgColor();
-  const { settings } = useSettings();
+  // const theme = useTheme();
+  // const bgClasses = useBgColor();
+  // const { settings } = useSettings();
 
   // ** Vars
-  const { skin } = settings;
+  // const { skin } = settings;
 
   const {
     control,
@@ -165,8 +160,8 @@ const LoginPage = () => {
             </Alert> */}
 
             <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
-              <Box sx={{ textAlign: "center",mb:6}}>
-                <FormControl  color='secondary'>
+              <Box sx={{ textAlign: "center", mb: 6 }}>
+                <FormControl color='secondary'>
                   <Controller
                     name='email'
                     control={control}
@@ -241,13 +236,13 @@ const LoginPage = () => {
               <Box
                 sx={{
                   color: "#FFFFFF",
-                  marginTop:'10px',
-                  textAlign:'end',
-                  width:'63%'
+                  marginTop: '10px',
+                  textAlign: 'end',
+                  width: '63%'
                 }}
               >
                 <Link passHref href='/forgot-password'>
-                  <Typography component={MuiLink} sx={{ color:"#FFFFFF" ,fontWeight: "700",fontSize: "16px",}}>
+                  <Typography component={MuiLink} sx={{ color: "#FFFFFF", fontWeight: "700", fontSize: "16px", }}>
                     Forgot Password?
                   </Typography>
                 </Link>
@@ -255,7 +250,7 @@ const LoginPage = () => {
               <Box sx={{ textAlign: "center", py: 5 }}>
                 <FormControlLabel
                   label='Remember Me'
-                  control={<Checkbox  color='secondary' sx={{ color: "#FFFFFF" }} />}
+                  control={<Checkbox color='secondary' sx={{ color: "#FFFFFF" }} />}
                   sx={{ "& .MuiFormControlLabel-label": { color: "#FFFFFF" } }}
                 />
               </Box>

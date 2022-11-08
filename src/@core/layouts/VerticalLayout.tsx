@@ -1,5 +1,8 @@
 // ** React Imports
-import { useState } from "react";
+import {
+    useEffect,
+    useState,
+} from "react";
 
 // ** Icons Imports
 import ArrowUp from "mdi-material-ui/ArrowUp";
@@ -23,113 +26,152 @@ import { styled } from "@mui/material/styles";
 import Footer from "./components/shared-components/footer";
 import AppBar from "./components/vertical/appBar";
 import Navigation from "./components/vertical/navigation";
+import VerticalNavGroup
+    from "./components/vertical/navigation/VerticalNavGroup";
 
 const VerticalLayoutWrapper = styled("div")({
-  height: "100%",
-  display: "flex",
-  marginTop: "0px !important",
+    height: "100%",
+    display: "flex",
+    marginTop: "0px !important",
 });
 
 const MainContentWrapper = styled(Box)<BoxProps>({
-  flexGrow: 1,
-  minWidth: 0,
-  display: "flex",
-  minHeight: "100vh",
-  flexDirection: "column",
+    flexGrow: 1,
+    minWidth: 0,
+    display: "flex",
+    minHeight: "100vh",
+    flexDirection: "column",
 });
 
 const ContentWrapper = styled("main")(({ theme }) => ({
-  flexGrow: 1,
-  width: "100%",
-  padding: theme.spacing(6),
-  transition: "padding .25s ease-in-out",
-  [theme.breakpoints.down("sm")]: {
-    paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(4),
-  },
+    flexGrow: 1,
+    width: "100%",
+    padding: theme.spacing(6),
+    transition: "padding .25s ease-in-out",
+    [theme.breakpoints.down("sm")]: {
+        paddingLeft: theme.spacing(4),
+        paddingRight: theme.spacing(4),
+    },
 }));
 
 const VerticalLayout = (props: LayoutProps) => {
-  // ** Props
-  const { hidden, settings, children, scrollToTop } = props;
+    // ** Props
+    const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
-  // ** Vars
-  const { skin, navHidden, contentWidth } = settings;
-  const { navigationSize, disableCustomizer, collapsedNavigationSize } = themeConfig;
-  const navWidth = navigationSize;
-  const navigationBorderWidth = skin === "bordered" ? 1 : 0;
-  const collapsedNavWidth = collapsedNavigationSize;
+    // const verticalNavItems = [
+    //     { title: 'Videos', children: [{name: 'video 1', path: '/video1'}] },
+    //     { title: 'Brands', children: [{name: 'Brands 1', path: '/b1'}] },
+    //     { title: 'Ad', children: [{name: 'Ad 1', path: '/a1'}] },
+    //   ];
 
-  // ** States
-  const [navHover, setNavHover] = useState<boolean>(false);
-  const [navVisible, setNavVisible] = useState<boolean>(false);
+    // const avengers = characters.filter(character => character.team === 'Avengers');
+    // , isSidebarVisible, titlestring
 
-  // ** Toggle Functions
-  const toggleNavVisibility = () => setNavVisible(!navVisible);
+    const { hidden, settings, children, scrollToTop } = props;
 
-  return (
-    <>
-      {/* AppBar Component */}
-      <AppBar toggleNavVisibility={toggleNavVisibility} {...props} />
+    const { item, parent } = VerticalNavGroup;
 
-      <VerticalLayoutWrapper className='layout-wrapper'>
-        {/* Navigation Menu */}
-        {navHidden &&
-        themeConfig.layout === "vertical" &&
-        !(navHidden && settings.lastLayout === "horizontal") ? null : (
-          <Navigation
-            navWidth={navWidth}
-            navHover={navHover}
-            navVisible={navVisible}
-            setNavHover={setNavHover}
-            setNavVisible={setNavVisible}
-            collapsedNavWidth={collapsedNavWidth}
-            toggleNavVisibility={toggleNavVisibility}
-            navigationBorderWidth={navigationBorderWidth}
-            {...props}
-          />
-        )}{" "}
-        <SideBarContentComponents>{navHover ? <SideBarHover /> : null}</SideBarContentComponents>
-        <MainContentWrapper className='layout-content-wrapper'>
-          {/* Content */}
-          <ContentWrapper
-            className='layout-page-content'
-            sx={{
-              ...(contentWidth === "boxed" && {
-                mx: "auto",
-                "@media (min-width:1440px)": { maxWidth: 1440 },
-                "@media (min-width:1200px)": { maxWidth: "100%" },
-              }),
-            }}
-          >
-            {children}
-          </ContentWrapper>
+    // ** Vars
+    const { skin, navHidden, contentWidth, selectedItem } = settings;
 
-          {/* Footer Component */}
-          <Footer {...props} />
+    const { navigationSize, disableCustomizer, collapsedNavigationSize } =
+        themeConfig;
+    const navWidth = navigationSize;
+    const navigationBorderWidth = skin === "bordered" ? 1 : 0;
+    const collapsedNavWidth = collapsedNavigationSize;
 
-          {/* Portal for React Datepicker */}
-          <DatePickerWrapper sx={{ zIndex: 11 }}>
-            <Box id='react-datepicker-portal'></Box>
-          </DatePickerWrapper>
-        </MainContentWrapper>
-      </VerticalLayoutWrapper>
+    // ** States
+    const [navHover, setNavHover] = useState<boolean>(false);
+    const [navVisible, setNavVisible] = useState<boolean>(false);
 
-      {/* Customizer */}
-      {disableCustomizer || hidden ? null : <Customizer />}
+    console.log("@#@#@#navHover :>> ", navHover, selectedItem);
 
-      {/* Scroll to top button */}
-      {scrollToTop ? (
-        scrollToTop(props)
-      ) : (
-        <ScrollToTop className='mui-fixed'>
-          <Fab size='small' aria-label='scroll back to top'>
-            <ArrowUp />
-          </Fab>
-        </ScrollToTop>
-      )}
-    </>
-  );
+    useEffect(() => {
+        setIsSidebarVisible(selectedItem?.children?.length > 1)
+    }, [selectedItem, navHover]);
+
+    // ** Toggle Functions
+    const toggleNavVisibility = () => setNavVisible(!navVisible);
+
+    return (
+        <>
+            {/* AppBar Component */}
+            <AppBar toggleNavVisibility={toggleNavVisibility} {...props} />
+
+            <VerticalLayoutWrapper className="layout-wrapper">
+                {/* Navigation Menu */}
+                {navHidden &&
+                themeConfig.layout === "vertical" &&
+                !(navHidden && settings.lastLayout === "horizontal") ? null : (
+                    <Navigation
+                        navWidth={navWidth}
+                        navHover={navHover}
+                        navVisible={navVisible}
+                        setNavHover={setNavHover}
+                        setNavVisible={setNavVisible}
+                        collapsedNavWidth={collapsedNavWidth}
+                        toggleNavVisibility={toggleNavVisibility}
+                        navigationBorderWidth={navigationBorderWidth}
+                        {...props}
+                    />
+                )}{" "}
+                {isSidebarVisible ? (
+                    <SideBarContentComponents selectedItem={selectedItem}>
+                        {navHover ? (
+                            <SideBarHover selectedItem={selectedItem} />
+                        ) : null}
+                    </SideBarContentComponents>
+                ) : null}
+                <MainContentWrapper className="layout-content-wrapper">
+                    {/* <Button
+                        style={{ color: "red" }}
+                        onClick={() =, setIsSidebarVisible(!isSidebarVisible)}
+                    >
+                        click here
+                    </Button>
+                    {isSidebarVisible ? <p>lorem</p> : null} */}
+
+                    {/* Content */}
+                    <ContentWrapper
+                        className="layout-page-content"
+                        sx={{
+                            ...(contentWidth === "boxed" && {
+                                mx: "auto",
+                                "@media (min-width:1440px)": { maxWidth: 1440 },
+                                "@media (min-width:1200px)": {
+                                    maxWidth: "100%",
+                                },
+                            }),
+                        }}
+                    >
+                        {children}
+                    </ContentWrapper>
+
+                    {/* Footer Component */}
+                    <Footer {...props} />
+
+                    {/* Portal for React Datepicker */}
+                    <DatePickerWrapper sx={{ zIndex: 11 }}>
+                        <Box id="react-datepicker-portal"></Box>
+                    </DatePickerWrapper>
+                </MainContentWrapper>
+            </VerticalLayoutWrapper>
+
+            {/* Customizer */}
+            {disableCustomizer || hidden ? null : <Customizer />}
+
+            {/* Scroll to top button */}
+            {scrollToTop ? (
+                scrollToTop(props)
+            ) : (
+                <ScrollToTop className="mui-fixed">
+                    <Fab size="small" aria-label="scroll back to top">
+                        <ArrowUp />
+                    </Fab>
+                </ScrollToTop>
+            )}
+        </>
+    );
 };
 
 export default VerticalLayout;

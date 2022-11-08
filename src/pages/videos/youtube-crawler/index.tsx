@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid'
 
 import { useQuery } from '@apollo/client'
 
-import { GET_VIDEO_LIST } from '../graphql/Queries'
+import { GET_VIDEO_LIST } from '../../../graphql/Queries'
 
 // ** Styled Component Import
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
@@ -81,7 +81,7 @@ const YoutubeCrawler = () => {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={12}>
-              <FilterComponent title ='select'/>
+              <FilterComponent />
             </Grid>
             <Grid item xs={12} sm={12}>
               <ListComponent />

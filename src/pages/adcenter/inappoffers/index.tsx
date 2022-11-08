@@ -25,7 +25,7 @@ import OfferBox from "src/container/uploadimage/OfferBox";
 
 import { useQuery } from "@apollo/client";
 
-import { GET_VIDEO_LIST } from "src/pages/videos/graphql/Queries";
+import { GET_VIDEO_LIST } from "src/graphql/Queries";
 import TabbarComponent from "src/components/TabbarComponent";
 import { Tab } from "@mui/material";
 import ButtonComponent from "src/components/ButtonComponent";
