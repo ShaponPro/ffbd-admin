@@ -20,7 +20,7 @@ import MangeContestFilter from "../../../container/filters/ManageContestFilter";
 
 import { useQuery } from "@apollo/client";
 
-import { GET_VIDEO_LIST } from "src/pages/videos/graphql/Queries";
+import { GET_VIDEO_LIST } from "src/graphql/Queries";
 import { useEffect, useState } from "react";
 
 import GiftDisbursementTrackingfilter from "src/container/filters/GiftDisbursementTracking";

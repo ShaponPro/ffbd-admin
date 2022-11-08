@@ -90,7 +90,7 @@ const VerticalLayout = (props: LayoutProps) => {
     console.log("@#@#@#navHover :>> ", navHover, selectedItem);
 
     useEffect(() => {
-        setIsSidebarVisible(selectedItem?.children.length > 1)
+        setIsSidebarVisible(selectedItem?.children?.length > 1)
     }, [selectedItem, navHover]);
 
     // ** Toggle Functions

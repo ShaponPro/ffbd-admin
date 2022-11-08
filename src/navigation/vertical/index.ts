@@ -100,7 +100,7 @@ const navigation = (): VerticalNavItemsType => {
                 },
                 {
                     title: "In app Offers",
-                    path: "/adcenter/inappoffer",
+                    path: "/adcenter/inappoffers",
                 },
             ],
         },
@@ -170,7 +170,7 @@ const navigation = (): VerticalNavItemsType => {
                 },
                 {
                     title: "Contest Result",
-                    path: "/contest/contest-result/contestResult",
+                    path: "/contest/contest-result/contestResult/",
                 },
                 {
                     title: "Quiz /Polls",

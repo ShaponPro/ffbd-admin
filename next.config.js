@@ -46,5 +46,5 @@ module.exports = withTM({
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  distDir: 'build',
+  // distDir: 'build',
 })
