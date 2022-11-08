@@ -26,12 +26,12 @@ const AnalyticsCongratulations = () => {
   console.log(data);
 
   // check for errors
-  if (error) {
-    return <p>:( an error happened</p>;
-  }
-  if(loading){
-    return <p>Data Loading</p>
-  }
+  // if (error) {
+  //   return <p>:( an error happened</p>;
+  // }
+  // if(loading){
+  //   return <p>Data Loading</p>
+  // }
 
   console.log('data', data)
 
