@@ -96,7 +96,6 @@ const AnalyticsCongratulations = () => {
     },
   });
 
-
   // check for errors
   if (error) {
     return <p>:( an error happened</p>;
