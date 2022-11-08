@@ -388,7 +388,7 @@ const navigation = (): VerticalNavItemsType => {
             children: [
                 {
                     title: "User Summary",
-                    path: "user/user-summary",
+                    path: "/user/user-summary",
                 },
                 {
                     title: "User List",
