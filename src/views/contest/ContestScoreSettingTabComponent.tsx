@@ -116,7 +116,7 @@ const ContestScoreSettingTabComponent = () => {
                                 display="flex"
                                 style={typographyStyle}
                             >
-                                Minimum
+                                Maximum
                             </Typography>
                             <FormControl sx={{ minWidth: 120 }} size="small">
                                 <InputLabel
@@ -144,6 +144,21 @@ const ContestScoreSettingTabComponent = () => {
                                     </Grid>
                                     <Grid>
                                         <label style={{padding:"10px"}}>5</label>
+                                    </Grid>
+                                    <Grid>
+                                        <label style={{padding:"10px"}}>6</label>
+                                    </Grid>
+                                    <Grid>
+                                        <label style={{padding:"10px"}}>7</label>
+                                    </Grid>
+                                    <Grid>
+                                        <label style={{padding:"10px"}}>8</label>
+                                    </Grid>
+                                    <Grid>
+                                        <label style={{padding:"10px"}}>9</label>
+                                    </Grid>
+                                    <Grid>
+                                        <label style={{padding:"10px"}}>10</label>
                                     </Grid>
                                 </StyledSelect>
                             </FormControl>
