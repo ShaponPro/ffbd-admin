@@ -1,20 +1,24 @@
 // ** React Imports
 import {
     useEffect,
-    useState,
+    useState
 } from "react";
 
 // ** Icons Imports
 import ArrowUp from "mdi-material-ui/ArrowUp";
+
 // ** Components
 import Customizer from "src/@core/components/customizer";
 import ScrollToTop from "src/@core/components/scroll-to-top";
+
 // ** Type Import
 import { LayoutProps } from "src/@core/layouts/types";
+
 // ** Styled Component
 import DatePickerWrapper from "src/@core/styles/libs/react-datepicker";
 import SideBarContentComponents from "src/components/SideBarContentComponents";
 import SideBarHover from "src/components/SideBarHover";
+
 // ** Theme Config Import
 import themeConfig from "src/configs/themeConfig";
 
@@ -26,8 +30,7 @@ import { styled } from "@mui/material/styles";
 import Footer from "./components/shared-components/footer";
 import AppBar from "./components/vertical/appBar";
 import Navigation from "./components/vertical/navigation";
-import VerticalNavGroup
-    from "./components/vertical/navigation/VerticalNavGroup";
+import VerticalNavGroup from "./components/vertical/navigation/VerticalNavGroup";
 
 const VerticalLayoutWrapper = styled("div")({
     height: "100%",
@@ -115,6 +118,7 @@ const VerticalLayout = (props: LayoutProps) => {
                         {...props}
                     />
                 )}{" "}
+                
                 {isSidebarVisible ? (
                     <SideBarContentComponents selectedItem={selectedItem}>
                         {navHover && {selectedItem} ? (
