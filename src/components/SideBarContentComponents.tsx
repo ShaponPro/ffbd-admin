@@ -13,36 +13,37 @@ type Props = {
     groupActive: string[];
 };
 const SideBarContentComponents = (props: Props) => {
-    const [catagory, setCatagory] = useState([]);
+    
+    // const [catagory, setCatagory] = useState([]);
 
-    const [activeStep, setActiveStep] = React.useState(0);
+    // const [activeStep, setActiveStep] = React.useState(0);
 
-    console.log("props.selectedItem :>> ", props.selectedItem.children);
+    // console.log("props.selectedItem :>> ", props.selectedItem.children);
 
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
+    // const handleNext = () => {
+    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    // };
 
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+    // const handleBack = () => {
+    //     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    // };
 
-    const handleReset = () => {
-        setActiveStep(0);
-    };
+    // const handleReset = () => {
+    //     setActiveStep(0);
+    // };
 
-    const [isHover, setIsHover] = useState<boolean>(false);
+    // const [isHover, setIsHover] = useState<boolean>(false);
 
     // const { item } = props
 
     // hover effect
 
-    const handleMouseEnter = () => {
-        setIsHover(true);
-    };
-    const handleMouseLeave = () => {
-        setIsHover(false);
-    };
+    // const handleMouseEnter = () => {
+    //     setIsHover(true);
+    // };
+    // const handleMouseLeave = () => {
+    //     setIsHover(false);
+    // };
 
     return (
         <Box
