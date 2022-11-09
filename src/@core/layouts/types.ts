@@ -21,6 +21,7 @@ export type HorizontalMenuToggle = 'hover' | 'click'
 export type NavLink = {
   icon?: any
   path?: string
+  type: string
   title: string
   action?: string
   subject?: string

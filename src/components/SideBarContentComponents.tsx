@@ -3,35 +3,9 @@ import { useState } from "react";
 
 import Link from "next/link";
 
+import style from "../../styles/Home.module.css";
+
 import Box from "@mui/material/Box";
-
-// interface Props {
-//   item: NavGroup
-//   navHover: boolean
-//   parent?: NavGroup
-
-//   navVisible?: boolean
-//   groupActive: string[]
-//   collapsedNavWidth: number
-//   currentActiveGroup: string[]
-//   navigationBorderWidth: number
-//   isSubToSub?: NavGroup | undefined
-
-// steps label
-const steps = [
-    {
-        label: "User Video",
-    },
-    {
-        label: " Brand Video ",
-    },
-    {
-        label: "Tutorial",
-    },
-    {
-        label: "Youtube Crawler",
-    },
-];
 
 type Props = {
     children: React.ReactNode;
@@ -82,224 +56,55 @@ const SideBarContentComponents = (props: Props) => {
                 paddingRight: "1px",
             }}
         >
-            <ul
-                style={{
-                    paddingTop: "25px",
-                    paddingBottom: "20px",
-                    fontWeight: 700,
-                    fontSize: "16px",
-                }}
-            >
-                {props.selectedItem && props.selectedItem.title
-                    ? props.selectedItem.title
-                    : ""}
-
-                {props.selectedItem && props.selectedItem?.children
-                    ? props.selectedItem.children.map(
-                          (item: any, i: number) => {
-                              return (
-                                  <Link href={item.path} key={i}>
-                                      <li
-                                          style={{
-                                              backgroundColor: isHover
-                                                  ? "#F3F3F4"
-                                                  : "#FFFFFF",
-
-                                              cursor: "pointer",
-
-                                              paddingTop: "30px",
-
-                                              // paddingTop: "30px",
-                                              fontWeight: 400,
-
-                                              paddingLeft: "5px",
-                                          }}
-                                          onMouseEnter={handleMouseEnter}
-                                          onMouseLeave={handleMouseLeave}
-                                      >
-                                          {item.title}
-                                      </li>
-                                  </Link>
-                              );
-                          }
-                      )
-                    : null}
-            </ul>
-            {/* <ul
-                style={{
-                    paddingTop: "25px",
-                    fontWeight: 700,
-                    fontSize: "16px",
-                }}
-            >
-                Videos
-                <Link href="/videos/analytics">
-                    <li
-                        style={{
-                            backgroundColor: isHover ? "#F3F3F4" : "#FFFFFF",
-
-                            cursor: "pointer",
-                            paddingTop: "30px",
-                            fontWeight: 400,
-
-                            paddingLeft: "5px",
-                        }}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                    >
-                       {catagory.title}
-                    </li>
-                </Link> */}
-            {/* <Link href="/videos">
-                    <li
-                        style={{
-                            fontWeight: 400,
-                            paddingBottom: "10px",
-
-                            paddingTop: "15px",
-                            color: "#161F29",
-                        }}
-                    >
-                        List Video
-                    </li>
-                </Link> */}
-            {/* <Box>
-                    <Stepper activeStep={activeStep} orientation="vertical">
-                        <Link href="/videos">
-                            <Step
-                                sx={{ margin: "0px", cursor: "pointer" }}
-
-                                // sx={{
-                                //   "& .MuiStepLabel-root .Mui-completed": {
-                                //     color: "#161F29",
-                                //     margin: "0 !important",
-
-                                //     // circle color (COMPLETED)
-                                //   },
-                                //   "& .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel": {
-                                //     color: "#161F29",
-                                //     fontSize: "1px !important",
-                                //     margin: "0 !important",
-
-                                //     // Just text label  (COMPLETED)
-                                //   },
-                                //   "& .MuiStepLabel-root .Mui-active": {
-                                //     color: "#161F29",
-                                //     margin: "0 !important",
-
-                                //     // circle color (ACTIVE)
-                                //   },
-                                //   "& .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel": {
-                                //     color: "red !important",
-                                //     margin: "0 !important",
-
-                                //     // Just text label (ACTIVE)
-                                //   },
-
-                                //   "& .MuiStepLabel-root .Mui-active .MuiStepIcon-text": {
-                                //     fill: "", // circle's number (ACTIVE)
-                                //   },
-                                // }}
-                            >
-                                <StepLabel>User Video</StepLabel>
-                            </Step>
-                        </Link>
-                        <Link href="/videos/list-videos/brand-videos">
-                            <StepLabel>
-                                <Step sx={{ margin: "0px", cursor: "pointer" }}>
-                                    <StepLabel>Brand Videos</StepLabel>
-                                </Step>
-                            </StepLabel>
-                        </Link>
-                        <Link href="/videos/list-videos/tutorial">
-                            <Step sx={{ margin: "0px", cursor: "pointer" }}>
-                                <StepLabel>Tutorial</StepLabel>
-                            </Step>
-                        </Link>
-                        <Link href="/videos/youtube-crawler">
-                            <Step sx={{ margin: "0px", cursor: "pointer" }}>
-                                <StepLabel>Youtube Crawler</StepLabel>
-                            </Step>
-                        </Link>
-
-                        {/* <Step>
-              <StepLabel>Register your email</StepLabel>
-            </Step>
-            <Step>
-              <StepLabel>Click on Finish</StepLabel>
-            </Step> */}
-
-            {/* {steps.map(step => (
-              <Step
-                key={step.label}
-                sx={{
-                  "& .MuiStepLabel-root .Mui-completed": {
-                    color: "#161F29",
-
-                    // circle color (COMPLETED)
-                  },
-                  "& .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel": {
-                    color: "#161F29",
-                    fontSize: "1px !important",
-
-                    // Just text label  (COMPLETED)
-                  },
-                  "& .MuiStepLabel-root .Mui-active": {
-                    color: "#161F29", // circle color (ACTIVE)
-                  },
-                  "& .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel": {
-                    color: "rgba(22, 31, 41, 0.5) !important", // Just text label (ACTIVE)
-                  },import Tutorial from './../pages/videos/upload-videos/Tutorial';
-import YoutubeCrawler from './../pages/videos/youtube-crawler/index';
-
-                  "& .MuiStepLabel-root .Mui-active .MuiStepIcon-text": {
-                    fill: "", // circle's number (ACTIVE)
-                  },
-                }}
-              >
-                <StepLabel style={{ color: "#161F29", height: "15px" }}>{step.label}</StepLabel>
-              </Step>
-            ))} */}
-            {/* </Stepper> */}
-            {/* </Box> */}
-            {/* <Link href="/videos/upload-videos">
-                    <li
-                        style={{
-                            cursor: "pointer",
-                            fontWeight: 400,
-                            paddingBottom: "18px",
-                            paddingTop: "14px",
-                            color: "#161F29",
-                        }}
-                    >
-                        Upload a video
-                    </li>
-                </Link> */}
-            {/* <Link href="/videos/download-code">
-                    <li
-                        style={{
-                            fontWeight: 400,
-                            paddingBottom: "16px",
-                            cursor: "pointer",
-                            color: "#161F29",
-                        }}
-                    >
-                        Download code
-                    </li>
-                </Link> */}
-            {/* <Link href="/videos/content-restrictions">
-                    <li
-                        style={{
-                            fontWeight: 400,
-                            paddingBottom: "16px",
-                            cursor: "pointer",
-                            color: "#161F29",
-                        }}
-                    >
-                        Content Restriction
-                    </li>
-                </Link> */}
-            {/* </ul> */}
+            <div className={style.anythinglisting4}>
+                <ul>
+                    <b>
+                        {props.selectedItem && props.selectedItem.title
+                            ? props.selectedItem.title
+                            : ""}
+                    </b>
+                    {props.selectedItem && props.selectedItem?.children
+                        ? props.selectedItem.children.map(
+                              (item: any, i: number) => {
+                                  return (
+                                      <>
+                                          <a href={item.path} key={i}>
+                                              <li>
+                                                  {item.title}
+                                                  <ul>
+                                                      {item && item?.children
+                                                          ? item?.children?.map(
+                                                                (
+                                                                    subItem: any
+                                                                ) => {
+                                                                    return (
+                                                                        <>
+                                                                            <a
+                                                                                href={
+                                                                                    subItem.path
+                                                                                }
+                                                                            >
+                                                                                <li>
+                                                                                    {
+                                                                                        subItem.title
+                                                                                    }
+                                                                                </li>
+                                                                            </a>
+                                                                        </>
+                                                                    );
+                                                                }
+                                                            )
+                                                          : null}
+                                                  </ul>
+                                              </li>
+                                          </a>
+                                      </>
+                                  );
+                              }
+                          )
+                        : null}
+                </ul>
+            </div>
             {props.children}
         </Box>
     );

@@ -84,10 +84,10 @@ const VerticalLayout = (props: LayoutProps) => {
     const [navHover, setNavHover] = useState<boolean>(false);
     const [navVisible, setNavVisible] = useState<boolean>(false);
 
-    console.log("@#@#@#navHover :>> ", navHover, selectedItem);
+    // console.log("@#@#@#navHover :>> ", navHover, selectedItem);
 
     useEffect(() => {
-        setIsSidebarVisible(selectedItem?.children?.length > 1)
+        setIsSidebarVisible(selectedItem)
     }, [selectedItem, navHover]);
 
     // ** Toggle Functions
@@ -117,21 +117,12 @@ const VerticalLayout = (props: LayoutProps) => {
                 )}{" "}
                 {isSidebarVisible ? (
                     <SideBarContentComponents selectedItem={selectedItem}>
-                        {navHover ? (
-                            <SideBarHover selectedItem={selectedItem} />
+                        {navHover && {selectedItem} ? (
+                            <SideBarHover  selectedItem={selectedItem} />
                         ) : null}
                     </SideBarContentComponents>
                 ) : null}
                 <MainContentWrapper className="layout-content-wrapper">
-                    {/* <Button
-                        style={{ color: "red" }}
-                        onClick={() =, setIsSidebarVisible(!isSidebarVisible)}
-                    >
-                        click here
-                    </Button>
-                    {isSidebarVisible ? <p>lorem</p> : null} */}
-
-                    {/* Content */}
                     <ContentWrapper
                         className="layout-page-content"
                         sx={{
