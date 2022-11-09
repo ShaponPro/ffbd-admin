@@ -23,18 +23,10 @@ const navigation = (): VerticalNavItemsType => {
             title: "Dashboard",
             icon: AlarmOnIcon,
             path: "/dashboard",
-            children: [
-                {
-                    title: "",
-                    path: "/dashboard",
-                },
-            ],
         },
         {
-            title: "videos",
+            title: "Videos",
             icon: VideocamIcon,
-            path: "/videos",
-
             children: [
                 {
                     title: "Video Analytics",
@@ -42,23 +34,24 @@ const navigation = (): VerticalNavItemsType => {
                 },
                 {
                     title: "List Videos",
-                    path: "/videos",
-                },
-                {
-                    title: "User Videos",
-                    path: "/videos",
-                },
-                {
-                    title: "Brand Videos",
-                    path: "/videos/list-videos/brand-videos",
-                },
-                {
-                    title: "Tutorial",
-                    path: "/videos/list-videos/tutorial",
-                },
-                {
-                    title: "Youtube Crawler",
-                    path: "/videos/youtube-crawler",
+                    children: [
+                        {
+                            title: "User Videos",
+                            path: "/videos",
+                        },
+                        {
+                            title: "Brand Videos",
+                            path: "/videos/list-videos/brand-videos",
+                        },
+                        {
+                            title: "Tutorial",
+                            path: "/videos/list-videos/tutorial",
+                        },
+                        {
+                            title: "Youtube Crawler",
+                            path: "/videos/youtube-crawler",
+                        },
+                    ],
                 },
                 {
                     title: "Upload a Video",
@@ -75,11 +68,18 @@ const navigation = (): VerticalNavItemsType => {
             ],
         },
         {
+            title: "Analytics",
+            icon: AnalyticsIcon,
+            children: [
+                {
+                    title: "Overall Review",
+                    path: "/dashboard",
+                },
+            ]
+        },
+        {
             title: "Ad Centre",
             icon: CampaignIcon,
-            path: "/adcenter",
-            action: "read",
-            subject: "acl-page",
             children: [
                 {
                     title: "Performance Overview",
@@ -87,16 +87,16 @@ const navigation = (): VerticalNavItemsType => {
                 },
                 {
                     title: "Campaign Manager",
-                    path: "/adcenter/campaignmanager/managecampaign",
-                },
-                {
-                    title: "Create Campaign",
-                    path: "/adcenter/campaignmanager/createcampaign",
-                },
-
-                {
-                    title: "Manage Campaign",
-                    path: "/adcenter/campaignmanager/managecampaign",
+                    children: [
+                        {
+                            title: "Create Campaign",
+                            path: "/adcenter/campaignmanager/createcampaign",
+                        },
+                        {
+                            title: "Manage Campaign",
+                            path: "/adcenter/campaignmanager/managecampaign",
+                        },
+                    ],
                 },
                 {
                     title: "In app Offers",
@@ -105,149 +105,98 @@ const navigation = (): VerticalNavItemsType => {
             ],
         },
         {
-            title: "Analytics",
-            icon: AnalyticsIcon,
-            path: "/acl",
-            action: "hover",
-            subject: "acl-page",
-            children: [
-                {
-                    title: "Video Analytics",
-                    path: "/ui/cards/basic",
-                },
-                {
-                    title: "List Videos",
-                    path: "/ui/cards/statistics",
-                },
-                {
-                    title: "User Videos",
-                    path: "/ui/cards/advanced",
-                },
-                {
-                    title: "Brand Videos",
-                    path: "/ui/cards/gamification",
-                },
-                {
-                    title: "Tutorial",
-                    path: "/ui/cards/actions",
-                },
-                {
-                    title: "Youtube Crawler",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Upload a Video",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Download Code",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Content Restriction",
-                    path: "/ui/cards/widgets",
-                },
-            ],
-        },
-        {
             title: "content & Contests",
             icon: ContentPasteIcon,
-            path: "/acl",
-            action: "read",
-            subject: "acl-page",
             children: [
                 {
-                    title: "Contest Overview",
+                    title: "Contests Overview",
                     path: "/contest/contestoverview",
                 },
                 {
                     title: "Video Contest",
-                    path: "/contest/video-contest",
-                },
-                {
-                    title: "Place a New Video Contest",
-                    path: "/contest/video-contest",
-                },
-                {
-                    title: "Contest Result",
-                    path: "/contest/contest-result/contestResult/",
+                    children: [
+                        {
+                            title: "Place a New Video Contest",
+                            path: "/contest/video-contest",
+                        },
+                        {
+                            title: "Manage Contest",
+                            path: "/contest/video-contest",
+                        },
+                        {
+                            title: "Contest Result",
+                            path: "/contest/contest-result/contestResult/",
+                        },
+                    ],
                 },
                 {
                     title: "Quiz /Polls",
-                    path: "/contest/quiz-polls/manage-quiz",
-                },
-                {
-                    title: "Place a New Quiz /Polls",
-                    path: "/contest/quizePull",
-                },
-                {
-                    title: "Manage Quiz /Polls",
-                    path: "/contest/quiz-polls/manage-quiz",
-                },
-                {
-                    title: "Quiz /Polls Result",
-                    path: "/contest/quiz-polls/manage-quiz",
+                    children: [
+                        {
+                            title: "Place a New Quiz /Polls",
+                            path: "/contest/quizePull",
+                        },
+                        {
+                            title: "Manage Quiz /Polls",
+                            path: "/contest/quiz-polls/manage-quiz",
+                        },
+                        {
+                            title: "Quiz /Polls Result",
+                            path: "/contest/quiz-polls/manage-quiz",
+                        },
+                    ],
                 },
                 {
                     title: "Judge Panel",
-                    path: "/contest/judgePanel",
+                    path: "/",
                 },
 
                 {
                     title: "Gift Disbursement Tracking",
-                    path: "/contest/giftdisbursementtracking",
+                    path: "/",
                 },
                 {
                     title: "Selling of Existing Content Rights",
-                    path: "",
+                    path: "/",
                 },
             ],
-        },
+        }, 
         {
             title: "Manage All Brand",
             icon: BrandingWatermarkIcon,
-            path: "/acl",
             action: "read",
             subject: "acl-page",
             children: [
                 {
-                    title: "Video Analytics",
-                    path: "/ui/cards/basic",
+                    title: "Brands Overview",
+                    path: "/dashboard",
                 },
                 {
-                    title: "List Videos",
-                    path: "/ui/cards/statistics",
+                    title: "List of All Brands",
+                    path: "/dashboard",
                 },
                 {
-                    title: "User Videos",
-                    path: "/ui/cards/advanced",
+                    title: "Pending Approval List of Brands",
+                    path: "/dashboard",
                 },
                 {
-                    title: "Brand Videos",
-                    path: "/ui/cards/gamification",
+                    title: "Expired Request",
+                    path: "/dashboard",
                 },
                 {
-                    title: "Tutorial",
-                    path: "/ui/cards/actions",
+                    title: "Brand Representative",
+                    path: "/dashboard",
                 },
                 {
-                    title: "Youtube Crawler",
-                    path: "/ui/cards/widgets",
+                    title: "Brand Media Files",
+                    path: "/dashboard",
                 },
                 {
-                    title: "Upload a Video",
-                    path: "/ui/cards/widgets",
+                    title: "Add New Brand",
+                    path: "/dashboard",
                 },
-                {
-                    title: "Download Code",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Content Restriction",
-                    path: "/ui/cards/widgets",
-                },
-            ],
-        },
+            ]
+        }, 
         {
             title: "Shopping Centre",
             icon: LocalMallIcon,
@@ -256,42 +205,10 @@ const navigation = (): VerticalNavItemsType => {
             subject: "acl-page",
             children: [
                 {
-                    title: "Video Analytics",
-                    path: "/ui/cards/basic",
+                    title: "Shopping Dashboard",
+                    path: "/dashboard",
                 },
-                {
-                    title: "List Videos",
-                    path: "/ui/cards/statistics",
-                },
-                {
-                    title: "User Videos",
-                    path: "/ui/cards/advanced",
-                },
-                {
-                    title: "Brand Videos",
-                    path: "/ui/cards/gamification",
-                },
-                {
-                    title: "Tutorial",
-                    path: "/ui/cards/actions",
-                },
-                {
-                    title: "Youtube Crawler",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Upload a Video",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Download Code",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Content Restriction",
-                    path: "/ui/cards/widgets",
-                },
-            ],
+            ]
         },
         {
             title: "Collaboration & Events",
@@ -301,80 +218,44 @@ const navigation = (): VerticalNavItemsType => {
             subject: "acl-page",
             children: [
                 {
-                    title: "Video Analytics",
-                    path: "/ui/cards/basic",
+                    title: "Overview",
+                    path: "/dashboard",
                 },
-                {
-                    title: "List Videos",
-                    path: "/ui/cards/statistics",
-                },
-                {
-                    title: "User Videos",
-                    path: "/ui/cards/advanced",
-                },
-                {
-                    title: "Brand Videos",
-                    path: "/ui/cards/gamification",
-                },
-                {
-                    title: "Tutorial",
-                    path: "/ui/cards/actions",
-                },
-                {
-                    title: "Youtube Crawler",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Upload a Video",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Download Code",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Content Restriction",
-                    path: "/ui/cards/widgets",
-                },
-            ],
+            ]
         },
         {
             title: "Video Tags & Catagory",
             icon: TagRoundedIcon,
-            path: "/acl",
             action: "read",
             subject: "acl-page",
             children: [
                 {
                     title: "Performance Overview",
-                    path: "/ui/cards/basic",
+                    path: "/dashboard",
                 },
                 {
                     title: "Manage Tags",
-                    path: "/ui/cards/statistics",
+                    path: "/dashboard",
                 },
                 {
-                    title: "Manage Catagories",
-                    path: "/ui/cards/advanced",
+                    title: "Manage Categories",
+                    path: "/dashboard",
                 },
-               
-              
-            ],
+            ]
         },
         {
             title: "Fanfare Music",
             icon: LibraryMusicRoundedIcon,
-            path: "/acl",
             action: "read",
             subject: "acl-page",
             children: [
                 {
                     title: "Upload Music",
-                    path: "/ui/cards/basic",
+                    path: "/dashboard",
                 },
                 {
                     title: "Manage Music",
-                    path: "/ui/cards/statistics",
+                    path: "/dashboard",
                 },
                
             ],
@@ -382,7 +263,6 @@ const navigation = (): VerticalNavItemsType => {
         {
             title: "Users",
             icon: PeopleIcon,
-            path: "/acl",
             action: "read",
             subject: "acl-page",
             children: [
@@ -392,31 +272,26 @@ const navigation = (): VerticalNavItemsType => {
                 },
                 {
                     title: "User List",
-                    path: "/ui/cards/statistics",
+                    path: "/dashboard",
                 },
                 {
-                    title: "Influenser List",
-                    path: "/ui/cards/advanced",
+                    title: "Professional Contentent",
+                    path: "/dashboard",
                 },
                 {
-                    title: "Professional Content Creator List",
-                    path: "/ui/cards/gamification",
-                },
-                {
-                    title: "User Dox",
-                    path: "/ui/cards/actions",
+                    title: "Users Dox",
+                    path: "/dashboard",
                 },
                 {
                     title: "Sponsored Channel",
-                    path: "/ui/cards/widgets",
+                    path: "/dashboard",
                 },
                 {
                     title: "Level & Badges",
-                    path: "/ui/cards/widgets",
+                    path: "/dashboard",
                 },
-                
-            ],
-        },
+            ]
+        }, 
         {
             title: "Notification",
             icon: NotificationsIcon,
@@ -425,43 +300,11 @@ const navigation = (): VerticalNavItemsType => {
             subject: "acl-page",
             children: [
                 {
-                    title: "Video Analytics",
-                    path: "/ui/cards/basic",
+                    title: "Graphical Analytics",
+                    path: "/dashboard",
                 },
-                {
-                    title: "List Videos",
-                    path: "/ui/cards/statistics",
-                },
-                {
-                    title: "User Videos",
-                    path: "/ui/cards/advanced",
-                },
-                {
-                    title: "Brand Videos",
-                    path: "/ui/cards/gamification",
-                },
-                {
-                    title: "Tutorial",
-                    path: "/ui/cards/actions",
-                },
-                {
-                    title: "Youtube Crawler",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Upload a Video",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Download Code",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Content Restriction",
-                    path: "/ui/cards/widgets",
-                },
-            ],
-        },
+            ]
+        }, 
         {
             title: "Transaction",
             icon: PaidIcon,
@@ -470,42 +313,10 @@ const navigation = (): VerticalNavItemsType => {
             subject: "acl-page",
             children: [
                 {
-                    title: "Video Analytics",
-                    path: "/ui/cards/basic",
+                    title: "Transectional Chart",
+                    path: "/dashboard",
                 },
-                {
-                    title: "List Videos",
-                    path: "/ui/cards/statistics",
-                },
-                {
-                    title: "User Videos",
-                    path: "/ui/cards/advanced",
-                },
-                {
-                    title: "Brand Videos",
-                    path: "/ui/cards/gamification",
-                },
-                {
-                    title: "Tutorial",
-                    path: "/ui/cards/actions",
-                },
-                {
-                    title: "Youtube Crawler",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Upload a Video",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Download Code",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Content Restriction",
-                    path: "/ui/cards/widgets",
-                },
-            ],
+            ]
         },
         {
             title: "Access Manager",
@@ -515,42 +326,11 @@ const navigation = (): VerticalNavItemsType => {
             subject: "acl-page",
             children: [
                 {
-                    title: "Video Analytics",
-                    path: "/ui/cards/basic",
+                    title: "Roll Assign",
+                    path: "/dashboard",
                 },
-                {
-                    title: "List Videos",
-                    path: "/ui/cards/statistics",
-                },
-                {
-                    title: "User Videos",
-                    path: "/ui/cards/advanced",
-                },
-                {
-                    title: "Brand Videos",
-                    path: "/ui/cards/gamification",
-                },
-                {
-                    title: "Tutorial",
-                    path: "/ui/cards/actions",
-                },
-                {
-                    title: "Youtube Crawler",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Upload a Video",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Download Code",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Content Restriction",
-                    path: "/ui/cards/widgets",
-                },
-            ],
+            ]
+
         },
         {
             title: "Manage Your Profile",
@@ -561,41 +341,9 @@ const navigation = (): VerticalNavItemsType => {
             children: [
                 {
                     title: "Video Analytics",
-                    path: "/ui/cards/basic",
+                    path: "/dashboard",
                 },
-                {
-                    title: "List Videos",
-                    path: "/ui/cards/statistics",
-                },
-                {
-                    title: "User Videos",
-                    path: "/ui/cards/advanced",
-                },
-                {
-                    title: "Brand Videos",
-                    path: "/ui/cards/gamification",
-                },
-                {
-                    title: "Tutorial",
-                    path: "/ui/cards/actions",
-                },
-                {
-                    title: "Youtube Crawler",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Upload a Video",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Download Code",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Content Restriction",
-                    path: "/ui/cards/widgets",
-                },
-            ],
+            ]
         },
         {
             title: "Privacy & Policy",
@@ -605,43 +353,13 @@ const navigation = (): VerticalNavItemsType => {
             subject: "acl-page",
             children: [
                 {
-                    title: "Video Analytics",
-                    path: "/ui/cards/basic",
+                    title: "Genaral Terms and Condition",
+                    path: "/dashboard",
                 },
-                {
-                    title: "List Videos",
-                    path: "/ui/cards/statistics",
-                },
-                {
-                    title: "User Videos",
-                    path: "/ui/cards/advanced",
-                },
-                {
-                    title: "Brand Videos",
-                    path: "/ui/cards/gamification",
-                },
-                {
-                    title: "Tutorial",
-                    path: "/ui/cards/actions",
-                },
-                {
-                    title: "Youtube Crawler",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Upload a Video",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Download Code",
-                    path: "/ui/cards/widgets",
-                },
-                {
-                    title: "Content Restriction",
-                    path: "/ui/cards/widgets",
-                },
-            ],
-        },
+            ]
+        }
+
+
     ];
 };
 
