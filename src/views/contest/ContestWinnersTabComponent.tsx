@@ -11,13 +11,6 @@ import styled from "@emotion/styled"
 // ** Styled Component Import
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 
-// ** Components
-import TabbarComponent from "src/components/TabbarComponent";
-import { FilterComponent } from "src/components/FilterComponent";
-import { allData } from "src/@fake-db/table/allData";
-import UserVideosCustomizedComponent from "src/views/videos/user-videos/customized/customized-report-components/UserVideosCustomizedComponent";
-import MangeContestFilter from "../../../container/filter/ManageContestFilter";
-
 import { useQuery } from "@apollo/client";
 
 import { GET_VIDEO_LIST } from "src/graphql/Queries";
@@ -90,7 +83,7 @@ const row = {
     ],
 };
 
-const ManageContest = () => {
+const ContestWinnersTabComponent = () => {
     const [activeTab, setActiveTab] = useState<string>("");
     const [videos, setVideos] = useState<object[]>([]);
 
@@ -105,44 +98,40 @@ const ManageContest = () => {
     });
 
     // check for errors
-    // if (error) {
-    //     return <p>:( an error happened</p>;
-    // }
+    if (error) {
+        return <p>:( an error happened</p>;
+    }
 
     console.log("data", loading, error, data);
 
-    // const formatData = (data: object[]) => {
-    //     let newData = [row];
-    //     if (data.length > 0) {
-    //         newData = data.map((item, i) => {
-    //             return {
-    //                 ...row,
-    //                 ...item,
-    //                 videoID: item?._id || row.videoID,
-    //                 videoTitle: item?.title || row.videoTitle,
-    //             };
-    //         });
-    //     }
-    // };
+    const formatData = (data: object[]) => {
+        let newData = [row];
+        if (data.length > 0) {
+            newData = data.map((item, i) => {
+                return {
+                    ...row,
+                    ...item,
+                    videoID: item?._id || row.videoID,
+                    videoTitle: item?.title || row.videoTitle,
+                };
+            });
+        }
+    };
 
-    // useEffect(() => {
-    //     if (loading) return;
-    //     if (error) return;
-    //     if (data && data?.allVideos && data.allVideos.length) {
-    //         setVideos(formatData(data.allVideos));
-    //     }
-    // }, [data, loading]);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        if (loading) return;
+        if (error) return;
+        if (data && data?.allVideos && data.allVideos.length) {
+            setVideos(formatData(data.allVideos));
+        }
+    }, [data, loading]);
 
     /**
      * Handle on tab change
      */
     const filterChangeHandler = (key: string) => {
         console.log("key", key);
-    };
-
-    const tabChangeHandler = (key: string) => {
-        console.log("key", key);
-        setActiveTab(key);
     };
 
     const columns = [
@@ -258,23 +247,9 @@ const ManageContest = () => {
 
     return (
         <ApexChartWrapper>
-            <Grid container spacing={6}>
-                <Grid item xs={12} md={12}>
-                    <Typography variant="h5" sx={{ mb: 4.5 }}>
-                        <Box component="span" sx={{ fontWeight: "bold" }}>
-                            Gift Disbursment Tracking
-                        </Box>
-                    </Typography>
-                </Grid>
-            </Grid>
             <Card sx={{ position: "relative" }}>
                 <CardContent>
                     <Grid container spacing={6}>
-                        <Grid item xs={12} sm={12}>
-                            <TabContainer>
-                                <Typography variant="h6">Gift Disbursement Tracking</Typography>
-                            </TabContainer>
-                        </Grid>
                         <Grid item xs={12} sm={12}>
                             <GiftDisbursementTrackingfilter />
                         </Grid>
@@ -291,4 +266,4 @@ const ManageContest = () => {
     );
 };
 
-export default ManageContest;
+export default ContestWinnersTabComponent;

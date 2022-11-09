@@ -15,7 +15,7 @@ import TabbarComponent from "src/components/TabbarComponent";
 import { FilterComponent } from "src/components/FilterComponent";
 import { allData } from "src/@fake-db/table/allData";
 import UserVideosCustomizedComponent from "src/views/videos/user-videos/customized/customized-report-components/UserVideosCustomizedComponent";
-import MangeContestFilter from "../../../container/filters/ManageContestFilter";
+import MangeContestFilter from "../../../container/filter/ManageContestFilter";
 
 import { useQuery } from "@apollo/client";
 
