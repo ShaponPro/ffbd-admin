@@ -12,12 +12,12 @@ import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 
 // ** Components
 import TabbarComponent from "src/components/TabbarComponent";
-import { ContestResultFilter } from "src/container/filters/ContestResultFilter";
-import ContestResultList from "src/container/lists/ContestResultList"
+import { ContestResultFilter } from "src/container/filter/ContestResultFilter";
+import ContestResultList from "src/container/list/ContestResultList"
 import ButtonGroupComponent from "src/components/ButtonGroupComponent";
 import ListTableComponent from "src/components/ListTableComponent";
 import ListTableComponent2 from "src/components/ListTableComponent2";
-import ButtonComponent from "src/components/ButtonComponent";
+import ContestVideoUploaderList from "src/container/list/ContestVideoUploaderList";
 
 //**Style ***/
 const VoteBox = styled(Box)<BoxProps>(({ }) => ({
@@ -311,7 +311,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subParticipateTab} activeKey={'videoUploader1'} onChange={onClickHandler} />
                           <VoteBoxComponent title="Total .....Participants under the contest"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           </>
                         ) : null}
 
@@ -320,7 +320,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subVideosTab} activeKey={'quality'} onChange={onClickHandler} />
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           </>
                         ) : null}
 
@@ -328,7 +328,7 @@ const subParticipateTab =[
                           {active == "potentialList" ?  (
                           <>
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           </>
                         ) : null}
 
@@ -337,7 +337,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subVotRankingTab} activeKey={'myVotes'} onChange={onClickHandler} />
                           <VoteBoxComponent title="You can View Only your Voted Videos"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           </>
                         ) : null}
 
@@ -345,7 +345,7 @@ const subParticipateTab =[
                         {active == "irrelevantList" ?  (
                           <>
                           <VoteBoxComponent title="You can Vote only 3 Videos"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           </>
                         ) : null}
 
@@ -354,7 +354,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subShortlistTab} activeKey={'qualityVideos'} onChange={onClickHandler} />
                           <VoteBoxComponent title="Only Judge can Vote only 3 Videos"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           </>
                         ) : null}
                         
@@ -363,7 +363,7 @@ const subParticipateTab =[
                           <>
                           <ButtonGroupComponent  options={subPreResultTab} activeKey={'videoShortList'} onChange={onClickHandler} />
                           <VoteBoxComponent title="Visible Only Shortlisted Videos"/>
-                          <ContestResultList/>
+                          <ContestVideoUploaderList/>
                           
                           </>
                         ) : null}
