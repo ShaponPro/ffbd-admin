@@ -1,14 +1,14 @@
 // ** React Imports
-import { createContext, useState, ReactNode, useEffect } from 'react'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 
 // ** MUI Imports
-import { PaletteMode, Direction } from '@mui/material'
+import { Direction, PaletteMode } from '@mui/material'
 
 // ** ThemeConfig Import
 import themeConfig from 'src/configs/themeConfig'
 
 // ** Types Import
-import { Skin, AppBar, Footer, ThemeColor, ContentWidth, VerticalNavToggle } from 'src/@core/layouts/types'
+import { AppBar, ContentWidth, Footer, Skin, ThemeColor, VerticalNavToggle } from 'src/@core/layouts/types'
 
 export type Settings = {
   skin: Skin
@@ -67,7 +67,12 @@ const initialSettings: Settings = {
   contentWidth: themeConfig.contentWidth,
   toastPosition: themeConfig.toastPosition,
   verticalNavToggleType: themeConfig.verticalNavToggleType,
-  skin: themeConfig.layout === 'horizontal' && themeConfig.skin === 'semi-dark' ? 'default' : themeConfig.skin,
+
+  // skin: themeConfig.layout === 'horizontal' && themeConfig.skin === 'semi-dark' ? 'default' : themeConfig.skin,
+
+  skin: themeConfig.layout === 'horizontal' && themeConfig.skin === 'semi-dark' ? 'default' : themeConfig.skin, 
+
+
   appBar: themeConfig.layout === 'horizontal' && themeConfig.appBar === 'hidden' ? 'fixed' : themeConfig.appBar,
   selectedItem: {}
 }
