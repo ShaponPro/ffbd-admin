@@ -10,9 +10,9 @@ const SideBarHover = (props: Props) => {
     return (
         <Box
             sx={{
-                position: "absolute",
+                position:"relative",
                 left: "195px",
-                top: "100px",
+                top: "-100px",
 
                 // height: "360px",
                 zIndex: 9999,
@@ -23,7 +23,7 @@ const SideBarHover = (props: Props) => {
                 color: "#161F29",
                 fontWeight: 400,
                 fontSize: "16px",
-                padding:'10px'
+                padding:'10px',
             }}
         >
             
@@ -39,7 +39,7 @@ const SideBarHover = (props: Props) => {
                             <li
                                 style={
                                     {
-                                        // paddingBottom: "20px",
+                                        margin:"10px"
                                     }
                                 }
                             >

@@ -113,6 +113,7 @@ const Drawer = (props: Props) => {
     open: true,
     onOpen: () => null,
     onClose: () => null,
+
     onMouseEnter: () => {
       setNavHover(true);
     },

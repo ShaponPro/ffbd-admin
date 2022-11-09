@@ -3,14 +3,17 @@ import { ReactNode, useRef, useState } from 'react'
 
 // ** Third Party Components
 import PerfectScrollbar from 'react-perfect-scrollbar'
+
 // ** Type Import
 import { Settings } from 'src/@core/context/settingsContext'
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
+
 // ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 import themeConfig from 'src/configs/themeConfig'
 
 import Box, { BoxProps } from '@mui/material/Box'
+
 // ** MUI Import
 import List from '@mui/material/List'
 import { styled, useTheme } from '@mui/material/styles'
@@ -148,7 +151,7 @@ const Navigation = (props: Props) => {
       {(beforeVerticalNavMenuContentPosition === 'static' || !beforeVerticalNavMenuContent) && (
         <StyledBoxForShadow ref={shadowRef} sx={{ background: shadowBgColor() }} />
       )}
-      <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+      <Box sx={{ position: 'relative', overflow: 'hidden'}}>
         {/* @ts-ignore */}
         <ScrollWrapper
           containerRef={(ref: any) => handleInfiniteScroll(ref)}

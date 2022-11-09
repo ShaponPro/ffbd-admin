@@ -1,24 +1,23 @@
 // ** React Imports
-import {
-    Fragment,
-    useEffect,
-} from "react";
+import { Fragment, useEffect } from "react";
 
 // ** Third Party Imports
 import clsx from "clsx";
+
 // ** Icons Imports
 import ChevronLeft from "mdi-material-ui/ChevronLeft";
 import ChevronRight from "mdi-material-ui/ChevronRight";
+
 // ** Next Import
 import { useRouter } from "next/router";
 import { Settings } from "src/@core/context/settingsContext";
+
 // ** Types
 import { NavGroup } from "src/@core/layouts/types";
+
 // ** Utils
-import {
-    hasActiveChild,
-    removeChildren,
-} from "src/@core/layouts/utils";
+import { hasActiveChild, removeChildren } from "src/@core/layouts/utils";
+
 // ** Configs Import
 import themeConfig from "src/configs/themeConfig";
 import CanViewNavGroup from "src/layouts/components/acl/CanViewNavGroup";
@@ -31,13 +30,13 @@ import Chip from "@mui/material/Chip";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import {
-    styled,
-    useTheme,
-} from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import Collapse from "@mui/material/Collapse";
 
 // ** Custom Components Imports
+import VerticalNavItems from "./VerticalNavItems";
+import SideBarHover from "src/components/SideBarHover";
 
 interface Props {
     item: NavGroup;
@@ -440,26 +439,20 @@ const VerticalNavGroup = (props: Props) => {
                         </MenuItemTextWrapper>
                     </ListItemButton>
 
-                    {/* <Collapse
-            component='li'
-            onClick={e => e.stopPropagation()}
-            in={groupActive.includes(item.title)}
-            sx={{
-              pl: 0,
-              width: "100%",
-
-              ...menuGroupCollapsedStyles,
-              transition: "all .25s ease-in-out",
-            }}
-          >
-            <VerticalNavItems
-              {...props}
-              parent={item}
-              navHover={navHover}
-              navVisible={navVisible}
-              verticalNavItems={item.children}
-            />
-          </Collapse> */}
+                    <Collapse
+                        component="li"
+                        in={groupActive.includes(item.title)}
+                        sx={{
+                            pl: 0,
+                            width: "100%",
+                            position:"fixed",
+                            transition: "all .25s ease-in-out",
+                            left: "60px",
+                            //zIndex:"10",
+                        }}
+                    >
+                       {item.title? <SideBarHover selectedItem={item}/>: null}
+                    </Collapse>
                 </ListItem>
             </Fragment>
         </CanViewNavGroup>
