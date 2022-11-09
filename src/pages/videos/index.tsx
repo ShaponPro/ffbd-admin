@@ -98,34 +98,34 @@ const AnalyticsCongratulations = () => {
 
 
   // check for errors
-  if (error) {
-    return <p>:( an error happened</p>;
-  }
+  // if (error) {
+  //   return <p>:( an error happened</p>;
+  // }
 
   console.log("data", loading,error, data);
 
-  const formatData = (data: any): object[] => {
-    let newData = [row];
-    if(data.length > 0) {
-      newData = data.map((item: any) => {
-        return {
-          ...row,
-          ...item,
-          videoID: item?._id ?? row.videoID,
-          videoTitle: item?.title ?? row.videoTitle,
-        }
-      })
-    }
-    return newData;
-  }
+  // const formatData = (data: any): object[] => {
+  //   let newData = [row];
+  //   if(data.length > 0) {
+  //     newData = data.map((item: any) => {
+  //       return {
+  //         ...row,
+  //         ...item,
+  //         videoID: item?._id ?? row.videoID,
+  //         videoTitle: item?.title ?? row.videoTitle,
+  //       }
+  //     })
+  //   }
+  //   return newData;
+  // }
 
-  useEffect(() => {
-    if(loading) return;
-    if(error) return;
-    if(data && data?.allVideos && data.allVideos.length){
-      setVideos(formatData(data.allVideos));
-    }
-  }, [loading, error, data])
+  // useEffect(() => {
+  //   if(loading) return;
+  //   if(error) return;
+  //   if(data && data?.allVideos && data.allVideos.length){
+  //     setVideos(formatData(data.allVideos));
+  //   }
+  // }, [loading, error, data])
 
   /**
    * Handle on tab change
