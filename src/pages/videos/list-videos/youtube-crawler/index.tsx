@@ -1,22 +1,18 @@
-// ** MUI Imports
-import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
-import Typography from '@mui/material/Typography'
-import CardContent from '@mui/material/CardContent'
-import Grid from '@mui/material/Grid'
-
 // ** Styled Component Import
-import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
-
+import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 // ** Components
+import { FilterComponent } from "src/components/FilterComponent";
+import ListComponent from "src/components/ListComponent";
 
-import ListComponent from 'src/components/ListComponent'
-import {FilterComponent} from 'src/components/FilterComponent';
+import { useQuery } from "@apollo/client";
+// ** MUI Imports
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 
-import { useQuery } from '@apollo/client'
-
-import { GET_VIDEO_LIST } from '../../graphql/Queries' 
-
+import { GET_VIDEO_LIST } from "../../../../graphql/Queries";
 
 const AnalyticsCongratulations = () => {
 
@@ -103,7 +99,7 @@ const AnalyticsCongratulations = () => {
           </Box>
           </Grid>
           <Grid item xs={12} sm={12}>
-            <FilterComponent/>
+            <FilterComponent />
           </Grid>
           <Grid item xs={12} sm={12}>
             <ListComponent />

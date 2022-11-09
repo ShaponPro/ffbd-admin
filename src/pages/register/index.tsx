@@ -1,4 +1,3 @@
-// ** React Imports
 import { ReactNode, useState, Fragment, MouseEvent } from "react";
 
 // ** Next Imports
@@ -8,16 +7,16 @@ import Link from "next/link";
 import InputBase from "@mui/material/InputBase";
 import Button, { ButtonProps } from "@mui/material/Button";
 import Box, { BoxProps } from "@mui/material/Box";
-import useMediaQuery from "@mui/material/useMediaQuery";
+// import useMediaQuery from "@mui/material/useMediaQuery";
 import { styled, useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Card, { CardProps } from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+// import CardMedia from "@mui/material/CardMedia";
 import Grid, { GridProps } from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import BrandLogo from "public/images/logo/brandlogo.png";
-import CoverImage from "public/images/logo/coverImage.png";
+// import BrandLogo from "public/images/logo/brandlogo.png";
+// import CoverImage from "public/images/logo/coverImage.png";
 
 //** import Icon
 import SendIcon from "@mui/icons-material/Send";
@@ -91,14 +90,14 @@ const LeftWrapper = styled(Grid)<GridProps>(({ theme }) => ({
   },
 }));
 
-const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
+const BoxWrapper = styled(Box)<BoxProps>(({  }) => ({
   background: " #f3f3f4",
   padding: "20px",
   borderRadius: "5px",
   marginTop: "25px",
 }));
 
-const CardWrapper = styled(Card)<CardProps>(({ theme }) => ({
+const CardWrapper = styled(Card)<CardProps>(({  }) => ({
   display: "flex",
   justifyContent: "space-between",
   flexDirection: "row",
@@ -121,7 +120,7 @@ const Item = styled(Paper)(({ theme }) => ({
   boxShadow: " inset 1px 1.5px 5px rgba(22, 31, 41, 0.2)",
 }));
 
-const SubmitButton = styled(Button)<ButtonProps>(({ theme }) => ({
+const SubmitButton = styled(Button)<ButtonProps>(({  }) => ({
   height: "42px",
   background: "#57ce66",
   borderRadius: "3px",
@@ -130,7 +129,7 @@ const SubmitButton = styled(Button)<ButtonProps>(({ theme }) => ({
   padding: "10px",
 }));
 
-const CancleButton = styled(Button)<ButtonProps>(({ theme }) => ({
+const CancleButton = styled(Button)<ButtonProps>(({  }) => ({
   height: "42px",
   background: "#F3F3F4",
   borderRadius: "3px",
@@ -143,12 +142,12 @@ const Register = () => {
   // ** States
 
   // ** Hooks
-  const theme = useTheme();
+  // const theme = useTheme();
   const { register } = useAuth();
   const { settings } = useSettings();
 
   // ** Vars
-  const { skin } = settings;
+  // const { skin } = settings;
   const schema = yup.object().shape({
     password: yup.string().min(5).required(),
     username: yup.string().min(3).required(),
@@ -156,7 +155,7 @@ const Register = () => {
     terms: yup.bool().oneOf([true], "You must accept the privacy policy & terms"),
   });
 
-  const { control, setError, handleSubmit } = useForm({
+  const { setError, handleSubmit } = useForm({
     defaultValues,
     mode: "onBlur",
     resolver: yupResolver(schema),
@@ -193,7 +192,7 @@ const Register = () => {
               <b>Brand Logo*</b>
             </Typography>
             <CardContent>
-              <CardMedia component='img' sx={{ width: 120 }} image={BrandLogo.src} alt='Brand Logo' />
+              {/* <CardMedia component='img' sx={{ width: 120 }} image={BrandLogo.src} alt='Brand Logo' /> */}
               <Typography
                 variant='caption'
                 color='text.secondary'
@@ -349,7 +348,7 @@ const Register = () => {
               <b>Cover Image</b>
             </Typography>
             <CardContent>
-              <CardMedia component='img' sx={{ width: 200 }} image={CoverImage.src} alt='Brand Logo' />
+              {/* <CardMedia component='img' sx={{ width: 200 }} image={CoverImage.src} alt='Brand Logo' /> */}
               <Typography
                 variant='caption'
                 color='text.secondary'

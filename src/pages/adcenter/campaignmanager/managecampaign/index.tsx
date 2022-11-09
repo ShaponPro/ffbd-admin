@@ -17,7 +17,7 @@ import {FilterComponent} from 'src/components/FilterComponent';
 
 import { useQuery } from '@apollo/client'
 
-import { GET_VIDEO_LIST } from 'src/pages/videos/graphql/Queries'
+import { GET_VIDEO_LIST } from 'src/graphql/Queries'
 
 
 const AnalyticsCongratulations = () => {
