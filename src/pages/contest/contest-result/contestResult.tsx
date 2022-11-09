@@ -13,12 +13,13 @@ import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 // ** Components
 import TabbarComponent from "src/components/TabbarComponent";
 import { ContestResultFilter } from "src/container/filter/ContestResultFilter";
-import ContestResultList from "src/container/list/ContestResultList";
+import ContestResultList from "src/container/list/contestResult/ContestResultList";
 import ButtonGroupComponent from "src/components/ButtonGroupComponent";
 import ListTableComponent from "src/components/ListTableComponent";
 import ListTableComponent2 from "src/components/ListTableComponent2";
-import ContestVideoUploaderList from "src/container/list/ContestVideoUploaderList";
+import ContestVideoUploaderList from "src/container/list/contestResult/ContestVideoUploaderList";
 import ContestWinnersTabComponent from "../../../views/contest/ContestWinnersTabComponent";
+import ContestScoreSettingTabComponent from "../../../views/contest/ContestScoreSettingTabComponent";
 
 //**Style ***/
 const VoteBox = styled(Box)<BoxProps>(({}) => ({
@@ -46,8 +47,8 @@ type Props = {
     isActive?: boolean;
 };
 interface Item {
-  key: string;
-  title: string;
+    key: string;
+    title: string;
 }
 
 //Tab props
@@ -275,184 +276,210 @@ const ContestResult = (props: Props) => {
                     {activeTab === "scoreSettings" ? (
                         <>
                             <Grid item xs={12} sm={12}>
-                                <ListTableComponent />
-                            </Grid>
-                        </>
-                    ) : null}
-
-                    {activeTab === "winners" ? (
-                        <>
-                            <Grid item xs={12} sm={12}>
-                                <ContestWinnersTabComponent />
+                                <ContestScoreSettingTabComponent />
                             </Grid>
                         </>
                     ) : (
-                        <Box sx={{ width: "100%" }}>
-                            <Grid
-                                container
-                                rowSpacing={2}
-                                columnSpacing={{ xs: 2, sm: 2, md: 2 }}
-                            >
-                                <Grid
-                                    item
-                                    xs={12}
-                                    md={6}
-                                    sx={{
-                                        width: "100%",
-                                        background: "#F3F3F4",
-                                        borderRadius: "5px",
-                                    }}
-                                >
+                        <>
+                            {activeTab === "winners" ? (
+                                <>
                                     <Grid item xs={12} sm={12}>
-                                        <ContestResultFilter />
+                                        <ContestWinnersTabComponent />
                                     </Grid>
+                                </>
+                            ) : (
+                                <Box sx={{ width: "100%" }}>
                                     <Grid
-                                        item
-                                        xs={12}
-                                        sm={12}
-                                        sx={{ paddingRight: "10px" }}
+                                        container
+                                        rowSpacing={2}
+                                        columnSpacing={{ xs: 2, sm: 2, md: 2 }}
                                     >
-                                        <ContestResultList />
+                                        <Grid
+                                            item
+                                            xs={12}
+                                            md={6}
+                                            sx={{
+                                                width: "100%",
+                                                background: "#F3F3F4",
+                                                borderRadius: "5px",
+                                            }}
+                                        >
+                                            <Grid item xs={12} sm={12}>
+                                                <ContestResultFilter />
+                                            </Grid>
+                                            <Grid
+                                                item
+                                                xs={12}
+                                                sm={12}
+                                                sx={{ paddingRight: "10px" }}
+                                            >
+                                                <ContestResultList />
+                                            </Grid>
+                                        </Grid>
+                                        <Grid
+                                            item
+                                            xs={12}
+                                            md={6}
+                                            sx={{
+                                                width: "100%",
+                                                background: "#EBF9ED",
+                                            }}
+                                        >
+                                            <ButtonGroupComponent
+                                                options={buttonTabs}
+                                                activeKey={"contestInfo"}
+                                                onChange={onClickHandler}
+                                            />
+
+                                            {/* contest info tab */}
+                                            {active == "contestInfo" ? (
+                                                <>
+                                                    <VoteBoxComponent title="You can Vote only 3 Videos" />
+                                                    <ListTableComponent2 />
+                                                </>
+                                            ) : null}
+
+                                            {/* rewards tab */}
+                                            {active == "rewards" ? (
+                                                <>
+                                                    <VoteBoxComponent title="You can Vote only 3 Videos" />
+                                                    <ListTableComponent />
+                                                </>
+                                            ) : null}
+
+                                            {/* performance  tab */}
+                                            {active == "performance" ? (
+                                                <>
+                                                    <VoteBoxComponent title="You can Vote only 3 Videos" />
+                                                    <ListTableComponent2 />
+                                                </>
+                                            ) : null}
+
+                                            {/* participants  tab */}
+                                            {active == "participants" ? (
+                                                <>
+                                                    <ButtonGroupComponent
+                                                        options={
+                                                            subParticipateTab
+                                                        }
+                                                        activeKey={
+                                                            "videoUploader1"
+                                                        }
+                                                        onChange={
+                                                            onClickHandler
+                                                        }
+                                                    />
+                                                    <VoteBoxComponent title="Total .....Participants under the contest" />
+                                                    <ContestVideoUploaderList />
+                                                </>
+                                            ) : null}
+
+                                            {/* videos tab */}
+                                            {active == "videos" ? (
+                                                <>
+                                                    <ButtonGroupComponent
+                                                        options={subVideosTab}
+                                                        activeKey={"quality"}
+                                                        onChange={
+                                                            onClickHandler
+                                                        }
+                                                    />
+                                                    <VoteBoxComponent title="You can Vote only 3 Videos" />
+                                                    <ContestVideoUploaderList />
+                                                </>
+                                            ) : null}
+
+                                            {/* potential list tab */}
+                                            {active == "potentialList" ? (
+                                                <>
+                                                    <VoteBoxComponent title="You can Vote only 3 Videos" />
+                                                    <ContestVideoUploaderList />
+                                                </>
+                                            ) : null}
+
+                                            {/* vote ranking tab */}
+                                            {active == "votedRanking" ? (
+                                                <>
+                                                    <ButtonGroupComponent
+                                                        options={
+                                                            subVotRankingTab
+                                                        }
+                                                        activeKey={"myVotes"}
+                                                        onChange={
+                                                            onClickHandler
+                                                        }
+                                                    />
+                                                    <VoteBoxComponent title="You can View Only your Voted Videos" />
+                                                    <ContestVideoUploaderList />
+                                                </>
+                                            ) : null}
+
+                                            {/* irrelevant list tab */}
+                                            {active == "irrelevantList" ? (
+                                                <>
+                                                    <VoteBoxComponent title="You can Vote only 3 Videos" />
+                                                    <ContestVideoUploaderList />
+                                                </>
+                                            ) : null}
+
+                                            {/* shortlist  tab */}
+                                            {active == "shortlist" ? (
+                                                <>
+                                                    <ButtonGroupComponent
+                                                        options={
+                                                            subShortlistTab
+                                                        }
+                                                        activeKey={
+                                                            "qualityVideos"
+                                                        }
+                                                        onChange={
+                                                            onClickHandler
+                                                        }
+                                                    />
+                                                    <VoteBoxComponent title="Only Judge can Vote only 3 Videos" />
+                                                    <ContestVideoUploaderList />
+                                                </>
+                                            ) : null}
+
+                                            {/* pre Result Final Wheel  tab */}
+                                            {active == "preResultFinalWheel" ? (
+                                                <>
+                                                    <ButtonGroupComponent
+                                                        options={
+                                                            subPreResultTab
+                                                        }
+                                                        activeKey={
+                                                            "videoShortList"
+                                                        }
+                                                        onChange={
+                                                            onClickHandler
+                                                        }
+                                                    />
+                                                    <VoteBoxComponent title="Visible Only Shortlisted Videos" />
+                                                    <ContestVideoUploaderList />
+                                                </>
+                                            ) : null}
+
+                                            {/* Result  tab */}
+                                            {active == "result" ? (
+                                                <>
+                                                    <VoteBoxComponent title="Only Judge can Vote only 3 Videos" />
+                                                    <ListTableComponent />
+                                                </>
+                                            ) : null}
+
+                                            {/* disburse gift tab */}
+                                            {active == "disburseGift" ? (
+                                                <>
+                                                    <VoteBoxComponent title="Only Judge can Vote only 3 Videos" />
+                                                    <ListTableComponent />
+                                                </>
+                                            ) : null}
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                                <Grid
-                                    item
-                                    xs={12}
-                                    md={6}
-                                    sx={{
-                                        width: "100%",
-                                        background: "#EBF9ED",
-                                    }}
-                                >
-                                    <ButtonGroupComponent
-                                        options={buttonTabs}
-                                        activeKey={"contestInfo"}
-                                        onChange={onClickHandler}
-                                    />
-
-                                    {/* contest info tab */}
-                                    {active == "contestInfo" ? (
-                                        <>
-                                            <VoteBoxComponent title="You can Vote only 3 Videos" />
-                                            <ListTableComponent2 />
-                                        </>
-                                    ) : null}
-
-                                    {/* rewards tab */}
-                                    {active == "rewards" ? (
-                                        <>
-                                            <VoteBoxComponent title="You can Vote only 3 Videos" />
-                                            <ListTableComponent />
-                                        </>
-                                    ) : null}
-
-                                    {/* performance  tab */}
-                                    {active == "performance" ? (
-                                        <>
-                                            <VoteBoxComponent title="You can Vote only 3 Videos" />
-                                            <ListTableComponent2 />
-                                        </>
-                                    ) : null}
-
-                                    {/* participants  tab */}
-                                    {active == "participants" ? (
-                                        <>
-                                            <ButtonGroupComponent
-                                                options={subParticipateTab}
-                                                activeKey={"videoUploader1"}
-                                                onChange={onClickHandler}
-                                            />
-                                            <VoteBoxComponent title="Total .....Participants under the contest" />
-                                            <ContestVideoUploaderList />
-                                        </>
-                                    ) : null}
-
-                                    {/* videos tab */}
-                                    {active == "videos" ? (
-                                        <>
-                                            <ButtonGroupComponent
-                                                options={subVideosTab}
-                                                activeKey={"quality"}
-                                                onChange={onClickHandler}
-                                            />
-                                            <VoteBoxComponent title="You can Vote only 3 Videos" />
-                                            <ContestVideoUploaderList />
-                                        </>
-                                    ) : null}
-
-                                    {/* potential list tab */}
-                                    {active == "potentialList" ? (
-                                        <>
-                                            <VoteBoxComponent title="You can Vote only 3 Videos" />
-                                            <ContestVideoUploaderList />
-                                        </>
-                                    ) : null}
-
-                                    {/* vote ranking tab */}
-                                    {active == "votedRanking" ? (
-                                        <>
-                                            <ButtonGroupComponent
-                                                options={subVotRankingTab}
-                                                activeKey={"myVotes"}
-                                                onChange={onClickHandler}
-                                            />
-                                            <VoteBoxComponent title="You can View Only your Voted Videos" />
-                                            <ContestVideoUploaderList />
-                                        </>
-                                    ) : null}
-
-                                    {/* irrelevant list tab */}
-                                    {active == "irrelevantList" ? (
-                                        <>
-                                            <VoteBoxComponent title="You can Vote only 3 Videos" />
-                                            <ContestVideoUploaderList />
-                                        </>
-                                    ) : null}
-
-                                    {/* shortlist  tab */}
-                                    {active == "shortlist" ? (
-                                        <>
-                                            <ButtonGroupComponent
-                                                options={subShortlistTab}
-                                                activeKey={"qualityVideos"}
-                                                onChange={onClickHandler}
-                                            />
-                                            <VoteBoxComponent title="Only Judge can Vote only 3 Videos" />
-                                            <ContestVideoUploaderList />
-                                        </>
-                                    ) : null}
-
-                                    {/* pre Result Final Wheel  tab */}
-                                    {active == "preResultFinalWheel" ? (
-                                        <>
-                                            <ButtonGroupComponent
-                                                options={subPreResultTab}
-                                                activeKey={"videoShortList"}
-                                                onChange={onClickHandler}
-                                            />
-                                            <VoteBoxComponent title="Visible Only Shortlisted Videos" />
-                                            <ContestVideoUploaderList />
-                                        </>
-                                    ) : null}
-
-                                    {/* Result  tab */}
-                                    {active == "result" ? (
-                                        <>
-                                            <VoteBoxComponent title="Only Judge can Vote only 3 Videos" />
-                                            <ListTableComponent />
-                                        </>
-                                    ) : null}
-
-                                    {/* disburse gift tab */}
-                                    {active == "disburseGift" ? (
-                                        <>
-                                            <VoteBoxComponent title="Only Judge can Vote only 3 Videos" />
-                                            <ListTableComponent />
-                                        </>
-                                    ) : null}
-                                </Grid>
-                            </Grid>
-                        </Box>
+                                </Box>
+                            )}
+                        </>
                     )}
                 </CardContent>
             </Card>

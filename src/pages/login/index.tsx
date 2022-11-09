@@ -146,7 +146,7 @@ const LoginPage = () => {
             </Box>
             <Box sx={{ mb: 6, textAlign: "center", marginBottom: "70px" }}>
               <Typography variant='h4' sx={{ color: "#FFFFFF", fontWeight: 700 }}>
-                Brand Dashboard
+                Fanfare Dashboard
               </Typography>
             </Box>
 
