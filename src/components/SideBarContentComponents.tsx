@@ -5,7 +5,10 @@ import Link from "next/link";
 
 import style from "../../styles/Home.module.css";
 
+import SideBarHover from "../components/SideBarHover";
+
 import Box from "@mui/material/Box";
+import { PhoneReturnOutline } from "mdi-material-ui";
 
 type Props = {
     children: React.ReactNode;
@@ -13,7 +16,6 @@ type Props = {
     groupActive: string[];
 };
 const SideBarContentComponents = (props: Props) => {
-    
     // const [catagory, setCatagory] = useState([]);
 
     // const [activeStep, setActiveStep] = React.useState(0);

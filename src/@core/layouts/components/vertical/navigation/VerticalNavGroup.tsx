@@ -1,5 +1,5 @@
 // ** React Imports
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 // ** Third Party Imports
 import clsx from "clsx";
@@ -88,7 +88,6 @@ const VerticalNavGroup = (props: Props) => {
         parent,
         settings,
         navHover,
-
         navVisible,
         isSubToSub,
         groupActive,
@@ -104,6 +103,7 @@ const VerticalNavGroup = (props: Props) => {
     const router = useRouter();
     const currentURL = router.pathname;
     const { skin, direction, navCollapsed, verticalNavToggleType } = settings;
+    const [mouseHover, setMouseOver] = useState<boolean>(false);
 
     // ** Accordion menu group open toggle
     const toggleActiveGroup = (
@@ -152,12 +152,22 @@ const VerticalNavGroup = (props: Props) => {
     };
 
     // ** Menu Group Click
+    const handleMouseOver = () => {
+        setMouseOver(true);
+        console.log("yes");
+    };
+    const handleMouseOut = () => {
+        setMouseOver(false);
+        console.log("yes");
+    };
+
     const handleGroupClick = () => {
         const openGroup = groupActive;
         props.saveSettings({
             ...props.settings,
             selectedItem: item,
         });
+
         if (verticalNavToggleType === "collapse") {
             if (openGroup.includes(item.title)) {
                 openGroup.splice(openGroup.indexOf(item.title), 1);
@@ -172,7 +182,7 @@ const VerticalNavGroup = (props: Props) => {
 
     useEffect(() => {
         if (hasActiveChild(item, currentURL)) {
-            if (!groupActive.includes(item.title)) groupActive.push(item.title);
+            //if (!groupActive.includes(item.title)) groupActive.push(item.title);
         } else {
             const index = groupActive.indexOf(item.title);
             if (index > -1) groupActive.splice(index, 1);
@@ -307,15 +317,10 @@ const VerticalNavGroup = (props: Props) => {
                                       navCollapsed && !navHover ? 2 : 3
                                   )} !important`,
                     }}
+                    onMouseOver={handleMouseOver}
+                    onMouseOut={handleMouseOut}
                 >
                     <ListItemButton
-                        // onClick={() => {
-                        //     console.log("@props", props);
-                        //     props.saveSettings({
-                        //         ...props.settings,
-                        //         selectedItem: item,
-                        //     });
-                        // }}
                         className={clsx({
                             "Mui-selected":
                                 groupActive.includes(item.title) ||
@@ -438,21 +443,17 @@ const VerticalNavGroup = (props: Props) => {
                             </Box>
                         </MenuItemTextWrapper>
                     </ListItemButton>
-
-                    <Collapse
-                        component="li"
-                        in={groupActive.includes(item.title)}
-                        sx={{
-                            pl: 0,
+                    <div
+                        style={{
+                            paddingLeft: "0",
                             width: "100%",
-                            position:"fixed",
+                            position: "fixed",
                             transition: "all .25s ease-in-out",
                             left: "60px",
-                            //zIndex:"10",
                         }}
                     >
-                       {item.title? <SideBarHover selectedItem={item}/>: null}
-                    </Collapse>
+                        {mouseHover && <SideBarHover selectedItem={item} />}
+                    </div>
                 </ListItem>
             </Fragment>
         </CanViewNavGroup>
