@@ -121,9 +121,9 @@ const VerticalLayout = (props: LayoutProps) => {
                 
                 {isSidebarVisible ? (
                     <SideBarContentComponents selectedItem={selectedItem}>
-                        {navHover && {selectedItem} ? (
-                            <SideBarHover  selectedItem={selectedItem} />
-                        ) : null}
+                        {/* {navHover && {selectedItem} ? (
+                            <SideBarHover selectedItem={selectedItem} />
+                        ) : null} */}
                     </SideBarContentComponents>
                 ) : null}
                 <MainContentWrapper className="layout-content-wrapper">
