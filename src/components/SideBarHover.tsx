@@ -12,7 +12,7 @@ const SideBarHover = (props: Props) => {
             sx={{
                 position:"relative",
                 left: "195px",
-                top: "-100px",
+                top: "-40px",
 
                 // height: "360px",
                 zIndex: 9999,
